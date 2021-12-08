@@ -58,7 +58,7 @@ const categoryList = [
 
 
 
-const CategoryScreen = ()=>{
+const CategoryScreen = ({navigation})=>{
 
     
 
@@ -71,6 +71,7 @@ const CategoryScreen = ()=>{
                           onPress = {
                               ()=>{
                                   console.log(`${key.text} Clicked`);
+                                  navigation.navigate('Login Screen')
                               }
                           }
                       >
