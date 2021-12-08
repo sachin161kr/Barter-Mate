@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
 } from "react-native";
 
-const LoginScreen = ()=>{
+const LoginScreen = ({navigation})=>{
     return (
         <>
             <View style={
@@ -69,19 +69,20 @@ const LoginScreen = ()=>{
                        onPress = {
                            ()=>{
                                console.log("Register Button Clicked");
+                               navigation.navigate('Register Screen')
                            }
                        }
                     >
                     <Text style={
                         {
-                            fontSize : 30,
+                            fontSize : 20,
                             alignSelf : "center",
                             color : "#FFFFFF",
                             margin : 5,
-                            paddingBottom : 10,
+                            paddingBottom : 5,
                             
                         }
-                    }>Register</Text>
+                    }>Register Now</Text>
                     </TouchableOpacity>
 
 
