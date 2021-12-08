@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
     Text,
@@ -6,9 +6,14 @@ import {
     View,
     TextInput,
     TouchableOpacity,
+    Alert,
 } from "react-native";
 
 const LoginScreen = ({navigation})=>{
+
+    const [username,setUsername] = useState('');
+    const [password,setPassword] = useState('');
+
     return (
         <>
             <View style={
@@ -17,6 +22,9 @@ const LoginScreen = ({navigation})=>{
                 }
             }>
                 <TextInput
+                   onChangeText = {(tempUsername)=>{
+                        setUsername(tempUsername);
+                   }}
                    style = {styles.textinput}
                    placeholder = "Username"
                 >
@@ -27,6 +35,9 @@ const LoginScreen = ({navigation})=>{
                    style = {styles.textinput}
                    placeholder = "Password"
                    secureTextEntry = {true}
+                   onChangeText = {(tempPassword)=>{
+                    setPassword(tempPassword);
+               }}
                 >
 
                 </TextInput>
@@ -34,10 +45,19 @@ const LoginScreen = ({navigation})=>{
                 <View style = {styles.loginBtn}>
                     <TouchableOpacity
                        onPress = {
-                           ()=>{
-                               console.log("Login Button Clicked");
-                           }
-                       }
+                        ()=>{
+                            
+                         if(username.length==0 || password.length==0)
+                         {
+                             Alert.alert("Enter Valid Username and Password")
+                         }
+                         else{
+                             console.log(`Username = ${username} & Password = ${password}`);
+                            navigation.navigate('Pickup Screen')
+                         }
+
+                        }
+                    }
                     >
                     <Text style={
                         {

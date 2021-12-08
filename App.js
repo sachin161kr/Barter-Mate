@@ -8,6 +8,7 @@ const Stack = createNativeStackNavigator();
 import CategoryScreen from "./screens/Category";
 import LoginScreen from "./screens/Login";
 import RegisterScreen from "./screens/Register";
+import PickupScreen from "./screens/Pickup";
 
 const MyStack = () => {
   return (
@@ -27,6 +28,11 @@ const MyStack = () => {
           name="Register Screen"
           component={RegisterScreen}
           options={{ title: 'Register' }}
+        />
+        <Stack.Screen
+          name="Pickup Screen"
+          component={PickupScreen}
+          options={{ title: 'Provide Pickup Location' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
