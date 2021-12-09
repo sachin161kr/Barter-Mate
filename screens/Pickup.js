@@ -21,6 +21,7 @@ const PickupScreen = ()=>{
                               fontSize : 25,
                               alignSelf : "center",
                               marginTop : 100,
+                              color : "#000000"
                           }
                       }
                   >Welcome User</Text>
@@ -30,6 +31,7 @@ const PickupScreen = ()=>{
                               fontSize : 25,
                               alignSelf : "center",
                               marginTop : 20,
+                              color : "#000000"
                           }
                       }
                   >Category Selected = Glass</Text>
@@ -39,6 +41,7 @@ const PickupScreen = ()=>{
                    }}
                    style = {styles.textinput}
                    placeholder = "Enter Pickup Address"
+                   placeholderTextColor = "#758283"
                 ></TextInput>
                  
                  <View style = {styles.pickupBtn}>
@@ -88,6 +91,7 @@ const styles = StyleSheet.create({
         marginTop : 35,
         marginLeft : 20,
         marginRight : 20,
+        color : "#000000"
         
     },
 

@@ -27,6 +27,7 @@ const LoginScreen = ({navigation})=>{
                    }}
                    style = {styles.textinput}
                    placeholder = "Username"
+                   placeholderTextColor = "#758283"
                 >
 
                 </TextInput>
@@ -34,6 +35,7 @@ const LoginScreen = ({navigation})=>{
                 <TextInput
                    style = {styles.textinput}
                    placeholder = "Password"
+                   placeholderTextColor = "#758283"
                    secureTextEntry = {true}
                    onChangeText = {(tempPassword)=>{
                     setPassword(tempPassword);
@@ -49,7 +51,7 @@ const LoginScreen = ({navigation})=>{
                             
                          if(username.length==0 || password.length==0)
                          {
-                             Alert.alert("Enter Valid Username and Password")
+                             Alert.alert("Please Provide Valid Login Credentials")
                          }
                          else{
                              console.log(`Username = ${username} & Password = ${password}`);
@@ -79,6 +81,7 @@ const LoginScreen = ({navigation})=>{
                              fontSize : 18,
                              alignSelf : "center",
                              marginTop : 100,
+                             color : "#758283"
                             
                          }
                      }
@@ -125,6 +128,7 @@ const styles = StyleSheet.create({
         marginTop : 15,
         marginLeft : 20,
         marginRight : 20,
+        color : "#000000"
         
     },
 

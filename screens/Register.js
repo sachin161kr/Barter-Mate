@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
     Text,
@@ -6,9 +6,21 @@ import {
     View,
     TextInput,
     TouchableOpacity,
+    Alert,
 } from "react-native";
 
 const RegisterScreen = ()=>{
+    
+    const [fullName,setFullName] = useState('');
+    const [email,setEmail] = useState('');
+    const [phone,setPhone] = useState('');
+    const [username,setUsername] = useState('');
+    const [password,setPassword] = useState('');
+    const [confirmPass,setConfirmPass] = useState('');
+    const [address,setAddress] = useState('');
+    const [landmark,setLankmark] = useState('');
+    const [pincode,setPincode] = useState('');
+
     return (
         <>
             <View  style={
@@ -19,40 +31,103 @@ const RegisterScreen = ()=>{
             <TextInput
                    style = {styles.textinput}
                    placeholder = "Full Name"
+                   placeholderTextColor = "#758283"
+                   onChangeText = {(text)=>{
+                    setFullName(text);
+               }}
+
                 >
 
                 </TextInput> 
+                
                 <TextInput
+                   onChangeText = {(text)=>{
+                        setEmail(text);
+                   }}
+                   style = {styles.textinput}
+                   placeholder = "Email"
+                   placeholderTextColor = "#758283"
+                >
+
+                </TextInput> 
+
+                <TextInput
+                   onChangeText = {(text)=>{
+                        setPhone(text);
+                   }}
+                   style = {styles.textinput}
+                   placeholder = "Phone"
+                   placeholderTextColor = "#758283"
+                >
+
+                </TextInput> 
+
+                <TextInput
+                   onChangeText = {(text)=>{
+                        setUsername(text);
+                   }}
                    style = {styles.textinput}
                    placeholder = "Username"
+                   placeholderTextColor = "#758283"
                 >
 
                 </TextInput> 
                 <TextInput
+                   onChangeText = {(text)=>{
+                    setPassword(text);
+                   }}
                    style = {styles.textinput}
                    placeholder = "Password"
                    secureTextEntry = {true}
+                   placeholderTextColor = "#758283"
                 >
 
                 </TextInput> 
                 <TextInput
+                   onChangeText = {(text)=>{
+                    setConfirmPass(text);
+                  }}
                    style = {styles.textinput}
                    placeholder = "Confirm Password"
                    secureTextEntry = {true}
+                   placeholderTextColor = "#758283"
                 >
 
                 </TextInput> 
                 <TextInput
+                   onChangeText = {(text)=>{
+                    setAddress(text);
+                   }}
                    style = {styles.textinput}
                    placeholder = "Address"
+                   placeholderTextColor = "#758283"
                 >
 
                 </TextInput> 
+                
+                <TextInput
+                   onChangeText = {(text)=>{
+                        setPincode(text);
+                   }}
+                   style = {styles.textinput}
+                   placeholder = "Pincode"
+                   placeholderTextColor = "#758283"
+                >
+
+                </TextInput> 
+
                 <View style = {styles.registerBtn}>
                     <TouchableOpacity
                        onPress = {
                            ()=>{
-                               console.log("Register Button Clicked");
+                               if(fullName.length==0 || username.length==0 || password.length==0 || confirmPass.length==0 || address.length==0 || email.length==0 || phone.length==0 || pincode.length==0)
+                               {
+                                    Alert.alert("Provide Valid User Data");
+                               } 
+                               else{
+                                console.log("Register Button Clicked");
+
+                               }
                            }
                        }
                     >
@@ -85,6 +160,7 @@ const styles = StyleSheet.create({
         marginTop : 15,
         marginLeft : 20,
         marginRight : 20,
+        color : "#000000"
         
     },
 

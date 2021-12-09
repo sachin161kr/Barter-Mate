@@ -15,7 +15,7 @@ const categoryList = [
     {   
         key : 0,
         image : logo,
-        text : "GLass"
+        text : "Glass"
     },
 
     {   
@@ -39,7 +39,7 @@ const categoryList = [
     {   
         key : 4,
         image : logo,
-        text : "Electronic Items"
+        text : "Electronics"
     },
 
     {   
@@ -133,5 +133,7 @@ const styles = StyleSheet.create({
     text : {
         textAlign : "center",
         marginBottom : 4,
+        color : "#758283",
+        padding : 5,
     }
 })
