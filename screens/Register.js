@@ -7,6 +7,7 @@ import {
     TextInput,
     TouchableOpacity,
     Alert,
+    ScrollView,
 } from "react-native";
 
 const RegisterScreen = ()=>{
@@ -23,9 +24,10 @@ const RegisterScreen = ()=>{
 
     return (
         <>
+            <ScrollView>
             <View  style={
                 {
-                    marginTop : 50,
+                    marginTop : 10,
                 }
             }>
             <TextInput
@@ -47,9 +49,13 @@ const RegisterScreen = ()=>{
                    style = {styles.textinput}
                    placeholder = "Email"
                    placeholderTextColor = "#758283"
-                >
+                   keyboardType="email-address"
+                >   
 
-                </TextInput> 
+                </TextInput>
+
+               
+                     
 
                 <TextInput
                    onChangeText = {(text)=>{
@@ -58,6 +64,8 @@ const RegisterScreen = ()=>{
                    style = {styles.textinput}
                    placeholder = "Phone"
                    placeholderTextColor = "#758283"
+                   keyboardType="phone-pad"
+                   
                 >
 
                 </TextInput> 
@@ -104,6 +112,17 @@ const RegisterScreen = ()=>{
                 >
 
                 </TextInput> 
+
+                <TextInput
+                   onChangeText = {(text)=>{
+                        setLankmark(text);
+                   }}
+                   style = {styles.textinput}
+                   placeholder = "Lankmark"
+                   placeholderTextColor = "#758283"
+                >   
+
+                </TextInput>
                 
                 <TextInput
                    onChangeText = {(text)=>{
@@ -112,6 +131,7 @@ const RegisterScreen = ()=>{
                    style = {styles.textinput}
                    placeholder = "Pincode"
                    placeholderTextColor = "#758283"
+                   keyboardType="number-pad"
                 >
 
                 </TextInput> 
@@ -120,7 +140,7 @@ const RegisterScreen = ()=>{
                     <TouchableOpacity
                        onPress = {
                            ()=>{
-                               if(fullName.length==0 || username.length==0 || password.length==0 || confirmPass.length==0 || address.length==0 || email.length==0 || phone.length==0 || pincode.length==0)
+                               if(fullName.length==0 || username.length==0 || password.length==0 || confirmPass.length==0 || address.length==0 || email.length==0 || phone.length==0 || pincode.length==0 || landmark.length==0)
                                {
                                     Alert.alert("Provide Valid User Data");
                                } 
@@ -146,6 +166,7 @@ const RegisterScreen = ()=>{
 
                 </View>
             </View>
+            </ScrollView>
         </>
     );
 }
