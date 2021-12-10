@@ -71,7 +71,7 @@ const CategoryScreen = ({navigation})=>{
                           onPress = {
                               ()=>{
                                   console.log(`${key.text} Clicked`);
-                                  navigation.navigate('Login Screen')
+                                  navigation.navigate('Guest Screen')
                               }
                           }
                       >

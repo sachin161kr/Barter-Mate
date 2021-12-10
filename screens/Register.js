@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Picker} from '@react-native-picker/picker';
 
 import {
     Text,
@@ -10,8 +11,12 @@ import {
     ScrollView,
 } from "react-native";
 
+
+
+
 const RegisterScreen = ()=>{
     
+    const [selectedPincode,setSelectedPincode] = useState('Choose Pincode');
     const [fullName,setFullName] = useState('');
     const [email,setEmail] = useState('');
     const [phone,setPhone] = useState('');
@@ -20,7 +25,8 @@ const RegisterScreen = ()=>{
     const [confirmPass,setConfirmPass] = useState('');
     const [address,setAddress] = useState('');
     const [landmark,setLankmark] = useState('');
-    const [pincode,setPincode] = useState('');
+
+    
 
     return (
         <>
@@ -121,20 +127,35 @@ const RegisterScreen = ()=>{
                    placeholder = "Lankmark"
                    placeholderTextColor = "#758283"
                 >   
-
                 </TextInput>
-                
-                <TextInput
-                   onChangeText = {(text)=>{
-                        setPincode(text);
-                   }}
-                   style = {styles.textinput}
-                   placeholder = "Pincode"
-                   placeholderTextColor = "#758283"
-                   keyboardType="number-pad"
-                >
 
-                </TextInput> 
+                <View style = {styles.pickerStyle}>
+                    <Text
+                       style={
+                           {
+                               backgroundColor : "#FFFFFF",
+                               color : "#000000"
+                           }
+                       }
+                    >Choose Pincode</Text>
+                <Picker
+                   style = {
+                       {
+                           color : "#FFFFFF",
+                       }
+                   }
+                   selectedValue={selectedPincode}
+                   onValueChange={
+                       (itemValue)=>{
+                            setSelectedPincode(itemValue);
+                       }
+                    }>
+                       
+                 <Picker.Item label="827013" value="827013" />
+                 <Picker.Item label="827004" value="827004" />       
+                    
+                </Picker>
+                </View>
 
                 <View style = {styles.registerBtn}>
                     <TouchableOpacity
@@ -192,6 +213,19 @@ const styles = StyleSheet.create({
         marginRight : 100,
         
     },
+
+    pickerStyle : {
+        borderColor : "#CAD5E2",
+        borderWidth : 3,
+        
+        marginLeft : 70,
+        marginTop : 15,
+        marginRight : 70,
+        backgroundColor : "#758283"
+    
+
+        
+    }
 
 
 })

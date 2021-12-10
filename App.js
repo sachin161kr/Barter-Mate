@@ -9,6 +9,7 @@ import CategoryScreen from "./screens/Category";
 import LoginScreen from "./screens/Login";
 import RegisterScreen from "./screens/Register";
 import PickupScreen from "./screens/Pickup";
+import GuestScreen from "./screens/Guest";
 
 const MyStack = () => {
   return (
@@ -18,6 +19,11 @@ const MyStack = () => {
           name="Category Screen"
           component={CategoryScreen}
           options={{ title: 'Choose A Category' }}
+        />
+        <Stack.Screen
+          name="Guest Screen"
+          component={GuestScreen}
+          options={{ title: 'Category Chosen' }}
         />
         <Stack.Screen
           name="Login Screen"
