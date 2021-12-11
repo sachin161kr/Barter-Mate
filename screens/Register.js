@@ -133,17 +133,23 @@ const RegisterScreen = ()=>{
                     <Text
                        style={
                            {
-                               backgroundColor : "#FFFFFF",
-                               color : "#000000"
+                               color : "#758283",
+                               fontSize : 20,
+                               textAlign : "center",
+
                            }
                        }
                     >Choose Pincode</Text>
                 <Picker
                    style = {
                        {
-                           color : "#FFFFFF",
+                        color : "#1C8D73",
                        }
                    }
+                   dropdownIconColor = "#1C8D73"
+                   dropdownIconRippleColor = "#1C8D73"
+                   onTouchCancel = {true}
+                   mode = "dropdown"
                    selectedValue={selectedPincode}
                    onValueChange={
                        (itemValue)=>{
@@ -197,7 +203,8 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
     textinput : {
         fontSize : 20,
-        borderColor : "#CAD5E2",
+        borderColor : "#1C8D73",
+        borderRadius : 10,
         borderWidth : 3,
         marginTop : 15,
         marginLeft : 20,
@@ -207,21 +214,22 @@ const styles = StyleSheet.create({
     },
 
     registerBtn : {
-        marginTop : 30,
-        backgroundColor : "#F4BE2C",
+        marginTop : 10,
+        backgroundColor : "#1C8D73",
         marginLeft : 100,
         marginRight : 100,
+        marginBottom : 50,
         
     },
 
     pickerStyle : {
-        borderColor : "#CAD5E2",
-        borderWidth : 3,
-        
+        // borderColor : "#1C8D73",
+        // borderWidth : 3,
+        // borderRadius : 10,
         marginLeft : 70,
         marginTop : 15,
         marginRight : 70,
-        backgroundColor : "#758283"
+        //backgroundColor : "#242B2E"
     
 
         

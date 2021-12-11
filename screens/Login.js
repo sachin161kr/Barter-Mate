@@ -100,7 +100,7 @@ const LoginScreen = ({navigation})=>{
                         {
                             fontSize : 20,
                             alignSelf : "center",
-                            color : "#FFFFFF",
+                            color : "#000000",
                             margin : 5,
                             paddingBottom : 5,
                             
@@ -123,8 +123,9 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     textinput : {
         fontSize : 20,
-        borderColor : "#CAD5E2",
+        borderColor : "#1C8D73",
         borderWidth : 3,
+        borderRadius : 10,
         marginTop : 15,
         marginLeft : 20,
         marginRight : 20,
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
 
     loginBtn : {
         marginTop : 25,
-        backgroundColor : "#8D3DAF",
+        backgroundColor : "#1C8D73",
         marginLeft : 90,
         marginRight : 90,
         borderRadius : 15,
@@ -143,7 +144,8 @@ const styles = StyleSheet.create({
 
     registerBtn : {
         marginTop : 10,
-        backgroundColor : "#F4BE2C",
+        borderColor : "#1C8D73",
+        borderWidth : 3,
         marginLeft : 100,
         marginRight : 100,
         
