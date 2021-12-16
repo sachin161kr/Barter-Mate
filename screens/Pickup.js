@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {Picker} from '@react-native-picker/picker';
+import axios from "axios";
 
 
 import {
@@ -13,13 +14,75 @@ import {
 
 const PickupScreen = ({route})=>{
 
-     const itemSelected = route.params.item;
-     console.log(itemSelected);
+    var categorySaved = "Glass";
+    if(route.params.itemSelected)
+    {
+        categorySaved = route.params.itemSelected;
+    }
+    var email = "notprovided@example.com";
+    if(route.params.email)
+    {
+        email = route.params.email;
+    }
+    var phone = "";
+    if(route.params.phone)
+    {
+        phone = route.params.phone;
+    }
+    var landMark = "";
+    if(route.params.landMark)
+    {
+        landMark = route.params.landMark;
+    }
+    var pincode = "827013";
+    var name = "Guest";
+    if(route.params.name)
+    {
+        name = route.params.name;
+    }
 
+    var addressSaved = "";
+    if(route.params.addressSaved)
+    {
+        addressSaved = route.params.addressSaved;
+    }
+
+
+    
+    
+    
+     //const categorySaved = "Glass";
+      
      
-     
-     const [category,setCategory] = useState(itemSelected);
-     const [address,setAddress] = useState('');
+     const [category,setCategory] = useState(`${categorySaved}`);
+     const [address,setAddress] = useState(`${addressSaved}`);
+
+
+     const handlePickeup = ()=>{
+         
+        var data = JSON.stringify({"name":`${name}`,"email":`${email}`,"phone":`${phone}`,"address":`${address}`,"landMark":`${landMark}`,"pinCode":`${pincode}`,"category":`${category}`});
+
+        var config = {
+            method: 'post',
+            url: 'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/addPickup',
+            headers: { 
+              'Content-Type': 'application/json'
+            },
+            data : data
+          };
+
+          axios(config)
+          .then(function (response) {
+            console.log(JSON.stringify(response.data));
+            Alert.alert("Pickup Scheduled Successfully");
+          })
+          .catch(function (error) {
+            console.log(error);
+            Alert.alert("Sorry, Something Went Wrong");
+          });  
+      
+     }
+
      return(
          <>
               <View>
@@ -32,7 +95,7 @@ const PickupScreen = ({route})=>{
                               color : "#000000"
                           }
                       }
-                  >Welcome User</Text>
+                  >Welcome {name}</Text>
                   
                   <View style = {styles.pickerStyle}>
                     <Text
@@ -77,6 +140,7 @@ const PickupScreen = ({route})=>{
                 </View>
 
                    <TextInput
+                   defaultValue={`${addressSaved}`}
                    onChangeText = {(tempAddress)=>{
                          setAddress(tempAddress);
                    }}
@@ -89,15 +153,16 @@ const PickupScreen = ({route})=>{
                     <TouchableOpacity
                        onPress = {
                            ()=>{
-                               if(address.length==0)
+                               if(address.length!=0)
                                {
-                                   Alert.alert("Please provide a valid Address")
+                                handlePickeup();
+                                //printAll();
+                                
                                }
-                               else{
-                                console.log("Pickup Scheduled");
-                                Alert.alert("Pickup Scheduled , Thank You")
+                               else
+                               {
+                                   Alert.alert("Enter Valid Address");
                                }
-                               //navigation.navigate('Register Screen')
                            }
                        }
                     >

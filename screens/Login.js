@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import axios from "axios";
+
 
 import {
     Text,
@@ -11,8 +13,72 @@ import {
 
 const LoginScreen = ({navigation})=>{
 
-    const [username,setUsername] = useState('');
+    const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
+
+    var name = "";
+    var phone = "";
+    var addressSaved = "";
+    var landmark = "";
+    var pincode = "";
+   //var categorySaved = "";
+
+    const getCredentials = ()=>{
+    
+        if(email && password)
+        {
+            var data = JSON.stringify({"email":`${email}`,"password":`${password}`});
+            var config = {
+                method: 'post',
+                url: 'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/login',
+                headers: { 
+                  'Content-Type': 'application/json'
+                },
+                data : data
+              };
+
+              axios(config)
+              .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                const userData = response.data;
+                name = userData.data.userDetails.name;
+                phone = userData.data.userDetails.phone;
+                addressSaved = userData.data.userDetails.address;
+                landmark = userData.data.userDetails.landMark;
+                pincode = userData.data.userDetails.pinCode;
+
+                console.log(name);
+                console.log(email);
+                console.log(phone);
+                console.log(landmark);
+                console.log(pincode);
+                console.log(addressSaved);
+
+
+
+                navigation.navigate('Pickup Screen',{
+                    name : `${name}`,
+                    email : email,
+                    phone : `${phone}`,
+                    addressSaved : `${addressSaved}`,
+                    landmark : `${landmark}`,
+                    pincode : `${pincode}`
+                })
+
+
+              })
+              .catch(function (error) {
+                console.log(error);
+                Alert.alert("Login Failed");
+              });  
+    
+        }
+        else
+        {
+            Alert.alert("Enter Valid Credentials");
+        }
+    }   
+    
 
     return (
         <>
@@ -22,11 +88,11 @@ const LoginScreen = ({navigation})=>{
                 }
             }>
                 <TextInput
-                   onChangeText = {(tempUsername)=>{
-                        setUsername(tempUsername);
+                   onChangeText = {(tempEmail)=>{
+                        setEmail(tempEmail);
                    }}
                    style = {styles.textinput}
-                   placeholder = "Username"
+                   placeholder = "Email"
                    placeholderTextColor = "#758283"
                 >
 
@@ -48,15 +114,8 @@ const LoginScreen = ({navigation})=>{
                     <TouchableOpacity
                        onPress = {
                         ()=>{
-                            
-                         if(username.length==0 || password.length==0)
-                         {
-                             Alert.alert("Please Provide Valid Login Credentials")
-                         }
-                         else{
-                             console.log(`Username = ${username} & Password = ${password}`);
-                            navigation.navigate('Pickup Screen')
-                         }
+
+                            getCredentials();
 
                         }
                     }
@@ -110,17 +169,17 @@ const LoginScreen = ({navigation})=>{
 
 
                 </View>
-                
-                
 
             </View>
         </>
     );
 };
 
+
 export default LoginScreen;
 
 const styles = StyleSheet.create({
+     
     textinput : {
         fontSize : 20,
         borderColor : "#1C8D73",
@@ -150,6 +209,5 @@ const styles = StyleSheet.create({
         marginRight : 100,
         
     },
-
-
 })
+

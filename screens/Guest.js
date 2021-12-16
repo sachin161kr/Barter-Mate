@@ -8,9 +8,7 @@ import {
     ScrollView,
     TouchableOpacity,
 } from "react-native";
-import { useState } from "react/cjs/react.development";
 
-import logo from "../assets/logo.png"
 
 
 
@@ -98,7 +96,7 @@ const GuestScreen = ({navigation,route})=>{
        
          onPress={()=>{
              navigation.navigate('Pickup Screen',{
-                 item : `${itemSelected}`
+                 itemSelected : `${itemSelected}`
              })
          }}
      

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {Picker} from '@react-native-picker/picker';
+import axios from "axios";
 
 import {
     Text,
@@ -16,15 +17,38 @@ import {
 
 const RegisterScreen = ()=>{
     
-    const [selectedPincode,setSelectedPincode] = useState('Choose Pincode');
+    const [pincode,setSelectedPincode] = useState('827013');
     const [fullName,setFullName] = useState('');
     const [email,setEmail] = useState('');
     const [phone,setPhone] = useState('');
-    const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
     const [confirmPass,setConfirmPass] = useState('');
     const [address,setAddress] = useState('');
     const [landmark,setLankmark] = useState('');
+
+        const handleSubmit = ()=>{
+            var data = JSON.stringify({"name":`${fullName}`,"email":`${email}`,"phone":`${phone}`,"address":`${address}`,"landMark":`${landmark}`,"pinCode":`${pincode}`,"password":`${password}`});
+            
+            var config = {
+                method: 'post',
+                url: 'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/registration',
+                headers: { 
+                    'Content-Type': 'application/json'
+                },
+                data : data
+                
+            };
+        
+                axios(config)
+                .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                Alert.alert("Successfully Registered");
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
+        }
+    
 
     
 
@@ -76,16 +100,6 @@ const RegisterScreen = ()=>{
 
                 </TextInput> 
 
-                <TextInput
-                   onChangeText = {(text)=>{
-                        setUsername(text);
-                   }}
-                   style = {styles.textinput}
-                   placeholder = "Username"
-                   placeholderTextColor = "#758283"
-                >
-
-                </TextInput> 
                 <TextInput
                    onChangeText = {(text)=>{
                     setPassword(text);
@@ -150,7 +164,7 @@ const RegisterScreen = ()=>{
                    dropdownIconRippleColor = "#1C8D73"
                    onTouchCancel = {true}
                    mode = "dropdown"
-                   selectedValue={selectedPincode}
+                   selectedValue={pincode}
                    onValueChange={
                        (itemValue)=>{
                             setSelectedPincode(itemValue);
@@ -167,14 +181,26 @@ const RegisterScreen = ()=>{
                     <TouchableOpacity
                        onPress = {
                            ()=>{
-                               if(fullName.length==0 || username.length==0 || password.length==0 || confirmPass.length==0 || address.length==0 || email.length==0 || phone.length==0 || pincode.length==0 || landmark.length==0)
-                               {
-                                    Alert.alert("Provide Valid User Data");
-                               } 
-                               else{
-                                console.log("Register Button Clicked");
-
-                               }
+                              if(fullName && email && phone && password && confirmPass && address && landmark)
+                              {
+                                    
+                                    if(password!=confirmPass)
+                                    {
+                                        Alert.alert("Password and Comfirmed Password must be same");
+                                    }
+                                    else if(phone.length!=10)
+                                    {
+                                        Alert.alert("Enter Valid Phone Number");
+                                    }
+                                    else
+                                    {
+                                        handleSubmit();
+                                    }
+                              }
+                              else
+                              {
+                                  Alert.alert("Enter Valid Details");
+                              }
                            }
                        }
                     >
