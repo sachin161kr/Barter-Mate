@@ -11,11 +11,12 @@ import {
     Alert,
     ScrollView,
 } from "react-native";
+import { parse } from "@babel/core";
 
 
 
 
-const RegisterScreen = ()=>{
+const RegisterScreen = ({navigation})=>{
     
     const [pincode,setSelectedPincode] = useState('827013');
     const [fullName,setFullName] = useState('');
@@ -25,6 +26,47 @@ const RegisterScreen = ()=>{
     const [confirmPass,setConfirmPass] = useState('');
     const [address,setAddress] = useState('');
     const [landmark,setLankmark] = useState('');
+
+    const passCheck = ()=>{
+        console.log(password);
+        console.log(confirmPass);
+        if(password!=confirmPass)
+        {
+            Alert.alert("Password must be same as Confirmed Password");
+            return false;
+        }
+        else if(password.length<8)
+        {
+            Alert.alert("Password length must be greater than 7");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+        
+    }
+
+    const phoneCheck = ()=>{
+        var num = parseInt(phone,10);
+        var tempNum = num.toString(10);
+        // console.log(phone);
+        // console.log(tempNum);
+        if(phone.length==10 && (phone.length===tempNum.length))
+        {    
+            // console.log(phone);
+            // console.log(tempNum);
+            return true;
+        }
+        else
+        {    
+            Alert.alert("Enter Valid Phone Number")
+            return false;
+        }
+
+        //return false;
+    }
 
         const handleSubmit = ()=>{
             var data = JSON.stringify({"name":`${fullName}`,"email":`${email}`,"phone":`${phone}`,"address":`${address}`,"landMark":`${landmark}`,"pinCode":`${pincode}`,"password":`${password}`});
@@ -43,6 +85,8 @@ const RegisterScreen = ()=>{
                 .then(function (response) {
                 console.log(JSON.stringify(response.data));
                 Alert.alert("Successfully Registered");
+                navigation.navigate('Login Screen')
+
                 })
                 .catch(function (error) {
                 console.log(error);
@@ -108,6 +152,9 @@ const RegisterScreen = ()=>{
                    placeholder = "Password"
                    secureTextEntry = {true}
                    placeholderTextColor = "#758283"
+                   passwordRules = {
+                    "required: upper; required: lower; required: digit; minlength: 8;"
+                   }
                 >
 
                 </TextInput> 
@@ -119,6 +166,9 @@ const RegisterScreen = ()=>{
                    placeholder = "Confirm Password"
                    secureTextEntry = {true}
                    placeholderTextColor = "#758283"
+                   //passwordRules = "required: upper; required: lower; required: digit; minlength: 8;"
+                   
+                   
                 >
 
                 </TextInput> 
@@ -140,6 +190,9 @@ const RegisterScreen = ()=>{
                    style = {styles.textinput}
                    placeholder = "Lankmark"
                    placeholderTextColor = "#758283"
+                   
+                   
+                   
                 >   
                 </TextInput>
 
@@ -181,21 +234,16 @@ const RegisterScreen = ()=>{
                     <TouchableOpacity
                        onPress = {
                            ()=>{
+                                  //phoneCheck();
                               if(fullName && email && phone && password && confirmPass && address && landmark)
                               {
                                     
-                                    if(password!=confirmPass)
+                                    if(passCheck() && phoneCheck())
                                     {
-                                        Alert.alert("Password and Comfirmed Password must be same");
-                                    }
-                                    else if(phone.length!=10)
-                                    {
-                                        Alert.alert("Enter Valid Phone Number");
-                                    }
-                                    else
-                                    {
+                                        //Alert.alert("Password and Comfirmed Password must be same");
                                         handleSubmit();
                                     }
+                                    
                               }
                               else
                               {
@@ -231,7 +279,7 @@ const styles = StyleSheet.create({
         fontSize : 20,
         borderColor : "#1C8D73",
         borderRadius : 10,
-        borderWidth : 3,
+        borderWidth : 1,
         marginTop : 15,
         marginLeft : 20,
         marginRight : 20,

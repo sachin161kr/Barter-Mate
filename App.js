@@ -23,11 +23,13 @@ const MyStack = () => {
           headerTitleStyle : {
             color : "#FFFFFF",
             fontWeight : "bold",
+            
 
           },
 
           headerStyle : {
             backgroundColor : "#1C8D73",
+
           }
 
         

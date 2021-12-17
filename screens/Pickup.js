@@ -12,7 +12,7 @@ import {
     Alert,
 } from "react-native";
 
-const PickupScreen = ({route})=>{
+const PickupScreen = ({route,navigation})=>{
 
     var categorySaved = "Glass";
     if(route.params.itemSelected)
@@ -75,6 +75,7 @@ const PickupScreen = ({route})=>{
           .then(function (response) {
             console.log(JSON.stringify(response.data));
             Alert.alert("Pickup Scheduled Successfully");
+            navigation.navigate('Category Screen')
           })
           .catch(function (error) {
             console.log(error);
@@ -92,7 +93,8 @@ const PickupScreen = ({route})=>{
                               fontSize : 25,
                               alignSelf : "center",
                               marginTop : 100,
-                              color : "#000000"
+                              color : "#1C8D73",
+                              fontWeight : "bold"
                           }
                       }
                   >Welcome {name}</Text>
@@ -194,7 +196,7 @@ const styles = StyleSheet.create({
         fontSize : 20,
         borderColor : "#1C8D73",
         borderRadius : 10,
-        borderWidth : 3,
+        borderWidth : 1,
         marginTop : 35,
         marginLeft : 20,
         marginRight : 20,

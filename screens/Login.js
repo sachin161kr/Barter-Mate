@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 
-
 import {
     Text,
     StyleSheet,
@@ -84,9 +83,25 @@ const LoginScreen = ({navigation})=>{
         <>
             <View style={
                 {
-                    marginTop : 70,
+                    marginTop : 50,
                 }
-            }>
+            }>  
+                <Text
+                  style = {
+                      {
+                          fontSize : 25,
+                          textAlign : "center",
+                          fontWeight : "bold",
+                          marginTop : 30,
+                          marginBottom : 30,
+                          color : "#1C8D73",
+                          
+                             
+                          
+                          
+                      }
+                  }
+                >Welcome To TrashToCash</Text>
                 <TextInput
                    onChangeText = {(tempEmail)=>{
                         setEmail(tempEmail);
@@ -94,6 +109,7 @@ const LoginScreen = ({navigation})=>{
                    style = {styles.textinput}
                    placeholder = "Email"
                    placeholderTextColor = "#758283"
+                   
                 >
 
                 </TextInput>
@@ -103,6 +119,7 @@ const LoginScreen = ({navigation})=>{
                    placeholder = "Password"
                    placeholderTextColor = "#758283"
                    secureTextEntry = {true}
+                   
                    onChangeText = {(tempPassword)=>{
                     setPassword(tempPassword);
                }}
@@ -183,7 +200,7 @@ const styles = StyleSheet.create({
     textinput : {
         fontSize : 20,
         borderColor : "#1C8D73",
-        borderWidth : 3,
+        borderWidth : 1,
         borderRadius : 10,
         marginTop : 15,
         marginLeft : 20,
@@ -204,7 +221,7 @@ const styles = StyleSheet.create({
     registerBtn : {
         marginTop : 10,
         borderColor : "#1C8D73",
-        borderWidth : 3,
+        borderWidth : 1,
         marginLeft : 100,
         marginRight : 100,
         

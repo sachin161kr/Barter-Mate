@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     
     container : {
         flex : 1,
+        //backgroundColor : "#CAD5E2"
         
     },
 
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
     },
 
     viewGroup : {
-        borderWidth : 4,
+        borderWidth : 1,
         borderColor : "#1C8D73",
         borderRadius : 15,
         margin : 10,

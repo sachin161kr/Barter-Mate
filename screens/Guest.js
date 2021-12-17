@@ -63,7 +63,7 @@ const GuestScreen = ({navigation,route})=>{
         color : "#000000",
         textAlign : "center",
         margin : 20,
-        fontSize : 20,
+        fontSize : 18,
         
     }
 }>
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     guestRegister : {
         marginTop : 25,
         borderColor : "#1C8D73",
-        borderWidth : 3,
+        borderWidth : 1,
         marginLeft : 90,
         marginRight : 90,
         paddingTop : 7,
