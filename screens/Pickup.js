@@ -10,6 +10,7 @@ import {
     TextInput,
     TouchableOpacity,
     Alert,
+    ActivityIndicator,
 } from "react-native";
 
 const PickupScreen = ({route,navigation})=>{
@@ -57,8 +58,12 @@ const PickupScreen = ({route,navigation})=>{
      const [category,setCategory] = useState(`${categorySaved}`);
      const [address,setAddress] = useState(`${addressSaved}`);
 
+     const [isLoading,setLoading] = useState(false);
+
 
      const handlePickeup = ()=>{
+
+        setLoading(true);
          
         var data = JSON.stringify({"name":`${name}`,"email":`${email}`,"phone":`${phone}`,"address":`${address}`,"landMark":`${landMark}`,"pinCode":`${pincode}`,"category":`${category}`});
 
@@ -74,6 +79,7 @@ const PickupScreen = ({route,navigation})=>{
           axios(config)
           .then(function (response) {
             console.log(JSON.stringify(response.data));
+            setLoading(false);
             Alert.alert("Pickup Scheduled Successfully");
             navigation.navigate('Category Screen')
           })
@@ -151,37 +157,53 @@ const PickupScreen = ({route,navigation})=>{
                    placeholderTextColor = "#758283"
                 ></TextInput>
                  
-                 <View style = {styles.pickupBtn}>
-                    <TouchableOpacity
-                       onPress = {
-                           ()=>{
-                               if(address.length!=0)
-                               {
-                                handlePickeup();
-                                //printAll();
-                                
-                               }
-                               else
-                               {
-                                   Alert.alert("Enter Valid Address");
-                               }
-                           }
-                       }
-                    >
-                    <Text style={
-                        {
-                            fontSize : 20,
-                            alignSelf : "center",
-                            color : "#FFFFFF",
-                            margin : 5,
-                            paddingBottom : 5,
-                            
+                 {isLoading==false?
+                     <View style = {styles.pickupBtn}>
+                     <TouchableOpacity
+                        onPress = {
+                            ()=>{
+                                if(address.length!=0)
+                                {
+                                 handlePickeup();
+                                 //printAll();
+                                 
+                                }
+                                else
+                                {
+                                    Alert.alert("Enter Valid Address");
+                                }
+                            }
                         }
-                    }>Send Pickup Request</Text>
-                    </TouchableOpacity>
+                     >
+                     <Text style={
+                         {
+                             fontSize : 20,
+                             alignSelf : "center",
+                             color : "#FFFFFF",
+                             margin : 5,
+                             paddingBottom : 5,
+                             
+                         }
+                     }>Send Pickup Request</Text>
+                     </TouchableOpacity>
+ 
+ 
+                 </View> :
 
+                <ActivityIndicator
+                size={'large'}
+                style = {
+                    {
+                        marginTop : 30,
+                        
+                    }
+                 }
+                  />
+                      
+                 }
+                 
 
-                </View> 
+                 
 
 
               </View>

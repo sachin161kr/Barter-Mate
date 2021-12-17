@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import {
@@ -8,7 +8,10 @@ import {
     TextInput,
     TouchableOpacity,
     Alert,
+    ActivityIndicator,
 } from "react-native";
+
+
 
 const LoginScreen = ({navigation})=>{
 
@@ -22,7 +25,11 @@ const LoginScreen = ({navigation})=>{
     var pincode = "";
    //var categorySaved = "";
 
+   const [isLoading,setLoading] = useState(false);
+
     const getCredentials = ()=>{
+
+        setLoading(true);
     
         if(email && password)
         {
@@ -39,6 +46,7 @@ const LoginScreen = ({navigation})=>{
               axios(config)
               .then(function (response) {
                 console.log(JSON.stringify(response.data));
+                setLoading(false);
                 const userData = response.data;
                 name = userData.data.userDetails.name;
                 phone = userData.data.userDetails.phone;
@@ -127,11 +135,13 @@ const LoginScreen = ({navigation})=>{
 
                 </TextInput>
 
+                {isLoading==false? 
+
                 <View style = {styles.loginBtn}>
                     <TouchableOpacity
                        onPress = {
                         ()=>{
-
+                            //setLoading(true);
                             getCredentials();
 
                         }
@@ -150,13 +160,24 @@ const LoginScreen = ({navigation})=>{
                     </TouchableOpacity>
 
 
-                </View>
+                  </View> :   
+                    
+                    <ActivityIndicator
+                        size={'large'}
+                         style = {
+                             {
+                                 marginTop : 30,
+                                 
+                             }
+                         }
+                    />
+                }
                 <Text
                      style = {
                          {
                              fontSize : 18,
                              alignSelf : "center",
-                             marginTop : 100,
+                             marginTop : 70,
                              color : "#758283"
                             
                          }
@@ -167,6 +188,7 @@ const LoginScreen = ({navigation})=>{
                     <TouchableOpacity
                        onPress = {
                            ()=>{
+                               
                                console.log("Register Button Clicked");
                                navigation.navigate('Register Screen')
                            }
