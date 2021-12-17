@@ -29,10 +29,11 @@ const LoginScreen = ({navigation})=>{
 
     const getCredentials = ()=>{
 
-        setLoading(true);
+        
     
         if(email && password)
-        {
+        {   
+            setLoading(true);
             var data = JSON.stringify({"email":`${email}`,"password":`${password}`});
             var config = {
                 method: 'post',
