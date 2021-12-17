@@ -10,8 +10,8 @@ import {
     TouchableOpacity,
     Alert,
     ScrollView,
+    ActivityIndicator,
 } from "react-native";
-import { parse } from "@babel/core";
 
 
 
@@ -26,6 +26,8 @@ const RegisterScreen = ({navigation})=>{
     const [confirmPass,setConfirmPass] = useState('');
     const [address,setAddress] = useState('');
     const [landmark,setLankmark] = useState('');
+
+    const [isLoading,setLoading] = useState(false);
 
     const passCheck = ()=>{
         console.log(password);
@@ -69,6 +71,7 @@ const RegisterScreen = ({navigation})=>{
     }
 
         const handleSubmit = ()=>{
+            setLoading(true);
             var data = JSON.stringify({"name":`${fullName}`,"email":`${email}`,"phone":`${phone}`,"address":`${address}`,"landMark":`${landmark}`,"pinCode":`${pincode}`,"password":`${password}`});
             
             var config = {
@@ -84,6 +87,7 @@ const RegisterScreen = ({navigation})=>{
                 axios(config)
                 .then(function (response) {
                 console.log(JSON.stringify(response.data));
+                setLoading(false);
                 Alert.alert("Successfully Registered");
                 navigation.navigate('Login Screen')
 
@@ -230,42 +234,56 @@ const RegisterScreen = ({navigation})=>{
                 </Picker>
                 </View>
 
+                {isLoading==false?
+                
                 <View style = {styles.registerBtn}>
-                    <TouchableOpacity
-                       onPress = {
-                           ()=>{
-                                  //phoneCheck();
-                              if(fullName && email && phone && password && confirmPass && address && landmark)
-                              {
-                                    
-                                    if(passCheck() && phoneCheck())
-                                    {
-                                        //Alert.alert("Password and Comfirmed Password must be same");
-                                        handleSubmit();
-                                    }
-                                    
-                              }
-                              else
-                              {
-                                  Alert.alert("Enter Valid Details");
-                              }
-                           }
+                <TouchableOpacity
+                   onPress = {
+                       ()=>{
+                              //phoneCheck();
+                          if(fullName && email && phone && password && confirmPass && address && landmark)
+                          {
+                                
+                                if(passCheck() && phoneCheck())
+                                {
+                                    //Alert.alert("Password and Comfirmed Password must be same");
+                                    handleSubmit();
+                                }
+                                
+                          }
+                          else
+                          {
+                              Alert.alert("Enter Valid Details");
+                          }
                        }
-                    >
-                    <Text style={
-                        {
-                            fontSize : 30,
-                            alignSelf : "center",
-                            color : "#FFFFFF",
-                            margin : 5,
-                            paddingBottom : 10,
-                            
-                        }
-                    }>Register</Text>
-                    </TouchableOpacity>
+                   }
+                >
+                <Text style={
+                    {
+                        fontSize : 30,
+                        alignSelf : "center",
+                        color : "#FFFFFF",
+                        margin : 5,
+                        paddingBottom : 10,
+                        
+                    }
+                }>Register</Text>
+                </TouchableOpacity>
 
 
-                </View>
+                      </View>  :
+                      <ActivityIndicator
+                           size={"large"}
+                           style={
+                                {
+                                    marginTop : 10,
+                                }   
+                           }
+                      />    
+            
+                }
+
+                
             </View>
             </ScrollView>
         </>
