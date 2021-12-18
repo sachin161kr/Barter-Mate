@@ -165,10 +165,10 @@ const RegisterScreen = ({navigation}) => {
             </Text>
             <Picker
               style={{
-                color: '#1C8D73',
+                color: '#1FAA59',
               }}
-              dropdownIconColor="#1C8D73"
-              dropdownIconRippleColor="#1C8D73"
+              dropdownIconColor="#1FAA59"
+              dropdownIconRippleColor="#1FAA59"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={pincode}
@@ -231,7 +231,7 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
-    borderColor: '#1C8D73',
+    borderColor: '#1FAA59',
     borderRadius: 10,
     borderWidth: 1,
     marginTop: 15,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
 
   registerBtn: {
     marginTop: 10,
-    backgroundColor: '#1C8D73',
+    backgroundColor: '#1FAA59',
     marginLeft: 100,
     marginRight: 100,
     marginBottom: 50,

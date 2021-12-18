@@ -28,7 +28,7 @@ const MyStack = () => {
           },
 
           headerStyle : {
-            backgroundColor : "#1C8D73",
+            backgroundColor : "#1FAA59",
 
           }
 
@@ -48,7 +48,7 @@ const MyStack = () => {
           },
 
           headerStyle : {
-            backgroundColor : "#1C8D73",
+            backgroundColor : "#1FAA59",
           }
         }}
         />
@@ -63,7 +63,7 @@ const MyStack = () => {
           },
 
           headerStyle : {
-            backgroundColor : "#1C8D73",
+            backgroundColor : "#1FAA59",
           }
         
         
@@ -81,7 +81,7 @@ const MyStack = () => {
           },
 
           headerStyle : {
-            backgroundColor : "#1C8D73",
+            backgroundColor : "#1FAA59",
           }
         }}
         />
@@ -97,7 +97,7 @@ const MyStack = () => {
           },
 
           headerStyle : {
-            backgroundColor : "#1C8D73",
+            backgroundColor : "#1FAA59",
           }
         }}
         />

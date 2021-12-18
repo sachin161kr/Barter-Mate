@@ -16,7 +16,6 @@ const GuestScreen = ({navigation, route}) => {
 
   const description = route.params.description;
 
-  console.log(`${description}`);
 
   return (
     <>
@@ -29,6 +28,7 @@ const GuestScreen = ({navigation, route}) => {
               alignSelf: 'center',
               marginTop: 20,
               fontSize: 20,
+              fontWeight : "bold",
             }}>
             {itemSelected} Selected
           </Text>
@@ -38,6 +38,7 @@ const GuestScreen = ({navigation, route}) => {
               textAlign: 'center',
               margin: 20,
               fontSize: 18,
+              fontStyle : "italic"
             }}>
             {description}
           </Text>
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
 
   loginBtn: {
     marginTop: 25,
-    backgroundColor: '#1C8D73',
+    backgroundColor: '#1FAA59',
     marginLeft: 90,
     marginRight: 90,
     borderRadius: 15,
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
 
   guestRegister: {
     marginTop: 25,
-    borderColor: '#1C8D73',
+    borderColor: '#1FAA59',
     borderWidth: 1,
     borderRadius: 15,
     marginLeft: 90,

@@ -102,10 +102,11 @@ const PickupScreen = ({route, navigation}) => {
             fontSize: 25,
             alignSelf: 'center',
             marginTop: 30,
-            color: '#1C8D73',
+            color: '#000000',
             fontWeight: 'bold',
+            fontStyle : "italic"
           }}>
-          Welcome {name}
+          Hello! {name}
         </Text>
 
         <View style={styles.pickerStyle}>
@@ -120,10 +121,10 @@ const PickupScreen = ({route, navigation}) => {
           </Text>
           <Picker
             style={{
-              color: '#1C8D73',
+              color: '#1FAA59',
             }}
-            dropdownIconColor="#1C8D73"
-            dropdownIconRippleColor="#1C8D73"
+            dropdownIconColor="#1FAA59"
+            dropdownIconRippleColor="#1FAA59"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={category}
@@ -190,7 +191,7 @@ export default PickupScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
-    borderColor: '#1C8D73',
+    borderColor: '#1FAA59',
     borderRadius: 10,
     borderWidth: 1,
     marginTop: 10,

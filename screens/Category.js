@@ -80,7 +80,7 @@ const CategoryScreen = ({navigation}) => {
   return (
     <>
       <ScrollView style={styles.container}>
-        <StatusBar backgroundColor="#1C8D73" />
+        <StatusBar backgroundColor="#1FAA59" />
         <View style={styles.gridContainer}>
           {categoryList.map(key => (
             <TouchableOpacity
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
 
   viewGroup: {
     borderWidth: 1,
-    borderColor: '#1C8D73',
+    borderColor: '#1FAA59',
     borderRadius: 15,
     margin: 10,
   },

@@ -94,9 +94,10 @@ const LoginScreen = ({navigation}) => {
             fontWeight: 'bold',
             marginTop: 30,
             marginBottom: 30,
-            color: '#1C8D73',
+            color: '#000000',
+            fontStyle : "italic"
           }}>
-          Welcome To TrashToCash
+           Welcome To TrashToCash  
         </Text>
         <TextInput
           onChangeText={tempEmail => {
@@ -179,7 +180,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
-    borderColor: '#1C8D73',
+    borderColor: '#1FAA59',
     borderWidth: 1,
     borderRadius: 10,
     marginTop: 15,
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
 
   loginBtn: {
     marginTop: 25,
-    backgroundColor: '#1C8D73',
+    backgroundColor: '#1FAA59',
     marginLeft: 90,
     marginRight: 90,
     borderRadius: 15,
@@ -198,7 +199,7 @@ const styles = StyleSheet.create({
 
   registerBtn: {
     marginTop: 10,
-    borderColor: '#1C8D73',
+    borderColor: '#1FAA59',
     borderWidth: 1,
     marginLeft: 100,
     marginRight: 100,
