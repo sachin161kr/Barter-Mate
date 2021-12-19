@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
   Text,
   StyleSheet,
@@ -26,6 +28,24 @@ const LoginScreen = ({navigation}) => {
 
   const [isLoading, setLoading] = useState(false);
 
+  const setUser = async ()=>{
+    await AsyncStorage.setItem("loginStatus","true");
+    await AsyncStorage.setItem("User",`${name}`);
+
+    var tempStatus = await AsyncStorage.getItem("loginStatus");
+    console.log(tempStatus);
+    var tempName = await AsyncStorage.getItem("User");
+    console.log(tempName);
+
+  }
+
+  // const getStatus = async ()=>{
+  //   var temp = await AsyncStorage.getItem("loginStatus");
+  //   console.log(temp);
+  // }
+
+ 
+
   const getCredentials = () => {
     if (email && password) {
       setLoading(true);
@@ -41,8 +61,10 @@ const LoginScreen = ({navigation}) => {
 
       axios(config)
         .then(function (response) {
-          console.log(JSON.stringify(response.data));
+          //console.log(JSON.stringify(response.data));
           setLoading(false);
+          setUser();
+          //getStatus();
           const userData = response.data;
           name = userData.data.userDetails.name;
           phone = userData.data.userDetails.phone;
@@ -50,12 +72,12 @@ const LoginScreen = ({navigation}) => {
           landmark = userData.data.userDetails.landMark;
           pincode = userData.data.userDetails.pinCode;
 
-          console.log(name);
-          console.log(email);
-          console.log(phone);
-          console.log(landmark);
-          console.log(pincode);
-          console.log(addressSaved);
+          // console.log(name);
+          // console.log(email);
+          // console.log(phone);
+          // console.log(landmark);
+          // console.log(pincode);
+          // console.log(addressSaved);
 
           navigation.navigate('Pickup Screen', {
             name: `${name}`,

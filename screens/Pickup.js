@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   Text,
@@ -11,6 +12,8 @@ import {
   Alert,
   ActivityIndicator,
   Image,
+  ScrollView,
+  Touchable,
 } from 'react-native';
 
 import sweeper from '../assets/sweeper.png';
@@ -37,17 +40,45 @@ const PickupScreen = ({route, navigation}) => {
   if (route.params.name) {
     name = route.params.name;
   }
+  else if(route.params.username)
+  {
+     name = route.params.username;
+  }
 
   var addressSaved = '';
   if (route.params.addressSaved) {
     addressSaved = route.params.addressSaved;
   }
 
+  var isLoggedIn = true;
+  if(route.params.isLoggedIn == false)
+  {
+    isLoggedIn = route.params.isLoggedIn;
+  }
+  //console.log(typeof(isLoggedIn));
+
+  // var isLoggedIn = true;
+  // if(route.params.isLoggedIn)
+  // {
+  //       isLoggedIn = false;
+  // }
+
+  // useEffect()
+  // {
+  //   getStatus();
+  // }
 
   const [category, setCategory] = useState(`${categorySaved}`);
   const [address, setAddress] = useState(`${addressSaved}`);
 
   const [isLoading, setLoading] = useState(false);
+
+  const setUser = async ()=>{
+    await AsyncStorage.setItem("loginStatus","false");
+    await AsyncStorage.setItem("User",`Guest`);
+
+  } 
+  
 
   const handlePickeup = () => {
     setLoading(true);
@@ -73,7 +104,7 @@ const PickupScreen = ({route, navigation}) => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        //console.log(JSON.stringify(response.data));
         setLoading(false);
         Alert.alert('Pickup Scheduled Successfully');
         navigation.navigate('Category Screen');
@@ -181,6 +212,35 @@ const PickupScreen = ({route, navigation}) => {
             }}
           />
         )}
+
+        {
+           isLoggedIn==true?
+           <View>
+          <TouchableOpacity
+              onPress={
+                ()=>{
+                  setUser();
+                  navigation.navigate('Category Screen');
+                  Alert.alert("You are logged out!");
+                }
+              }
+          >
+          <Text
+             style = {
+               {
+                 fontSize : 20,
+                 textAlign : "center",
+                 marginTop : 30,
+                 color : "#1FAA59",
+                 width : 70,
+                 alignSelf : "center",
+                 
+               }
+             }
+          >Logout</Text>
+          </TouchableOpacity>
+        </View> : <></>
+        }
       </View>
     </>
   );

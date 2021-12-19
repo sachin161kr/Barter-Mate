@@ -89,7 +89,6 @@ const MyStack = () => {
           name="Pickup Screen"
           component={PickupScreen}
           options={{ title: 'Provide Pickup Location',
-          
           headerTitleStyle : {
             color : "#FFFFFF",
             fontWeight : "bold",

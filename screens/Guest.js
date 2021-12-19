@@ -1,4 +1,5 @@
 import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   View,
@@ -15,7 +16,28 @@ const GuestScreen = ({navigation, route}) => {
   const itemSelected = route.params.text;
 
   const description = route.params.description;
+ 
+  var loginStatus = ""; 
+  var username = "";
+  const getUser = async ()=>{
+      loginStatus = await AsyncStorage.getItem("loginStatus");
+      username =  await AsyncStorage.getItem("User");
+      console.log(loginStatus);
+      console.log(username);
 
+      if(loginStatus=="true")
+                { 
+                  navigation.navigate('Pickup Screen', {
+                    username: `${username}`,
+                  });
+                  
+                }
+                else
+                {
+                  navigation.navigate('Login Screen');
+                }
+      
+  }
 
   return (
     <>
@@ -46,7 +68,9 @@ const GuestScreen = ({navigation, route}) => {
           <View style={styles.loginBtn}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('Login Screen');
+                getUser();
+                
+                
               }}>
               <Text
                 style={{
@@ -66,6 +90,7 @@ const GuestScreen = ({navigation, route}) => {
               onPress={() => {
                 navigation.navigate('Pickup Screen', {
                   itemSelected: `${itemSelected}`,
+                  isLoggedIn : false,
                 });
               }}>
               <Text

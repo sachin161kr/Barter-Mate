@@ -86,7 +86,7 @@ const CategoryScreen = ({navigation}) => {
             <TouchableOpacity
               key={key.key}
               onPress={() => {
-                console.log(`${key.text} Clicked`);
+                //console.log(`${key.text} Clicked`);
                 navigation.navigate('Guest Screen', {
                   text: `${key.text}`,
                   imageSelected: key.image,
