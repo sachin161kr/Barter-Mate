@@ -8,7 +8,11 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
+import { useState } from 'react/cjs/react.development';
+
+
 
 const GuestScreen = ({navigation, route}) => {
   const image = route.params.imageSelected;
@@ -16,28 +20,35 @@ const GuestScreen = ({navigation, route}) => {
   const itemSelected = route.params.text;
 
   const description = route.params.description;
- 
-  var loginStatus = ""; 
-  var username = "";
-  const getUser = async ()=>{
-      loginStatus = await AsyncStorage.getItem("loginStatus");
-      username =  await AsyncStorage.getItem("User");
-      console.log(loginStatus);
-      console.log(username);
 
-      if(loginStatus=="true")
-                { 
-                  navigation.navigate('Pickup Screen', {
-                    username: `${username}`,
-                  });
-                  
-                }
-                else
-                {
-                  navigation.navigate('Login Screen');
-                }
-      
+  
+  
+  
+ 
+  // var loginStatus = ""; 
+  // var username = "";
+
+  const [loginStatus,setLogin] = useState('');
+  const [username,setName] = useState('');
+  
+  
+
+  const getUser = async ()=>{
+      var tempLoginStatus = await AsyncStorage.getItem("loginStatus");
+      var tempUsername =  await AsyncStorage.getItem("User");
+      //console.log(loginStatus);
+      setLogin(tempLoginStatus);
+      //console.log(username);
+      setName(tempUsername);   
   }
+
+  getUser();
+
+//   const [loginStatus,setLogin] = useState(()=>{
+//     getUser();
+// })
+
+// const [username,setName] = useState('');
 
   return (
     <>
@@ -68,11 +79,35 @@ const GuestScreen = ({navigation, route}) => {
           <View style={styles.loginBtn}>
             <TouchableOpacity
               onPress={() => {
-                getUser();
+                if(loginStatus=="true")
+                { 
+                  navigation.navigate('Pickup Screen', {
+                    username: `${username}`,
+                  });
+                  
+                }
+                else
+                {
+                  navigation.navigate('Login Screen');
+                }
                 
                 
               }}>
-              <Text
+              {
+                loginStatus=="true"?
+                <Text
+                style={{
+                  fontSize: 30,
+                  alignSelf: 'center',
+                  color: '#FFFFFF',
+                  margin: 5,
+                  paddingBottom: 10,
+                  justifyContent : "center",
+                  textAlign : "center",
+                }}>
+                Continue As {username}
+              </Text> :
+                <Text
                 style={{
                   fontSize: 30,
                   alignSelf: 'center',
@@ -82,10 +117,15 @@ const GuestScreen = ({navigation, route}) => {
                 }}>
                 Login
               </Text>
+              }
             </TouchableOpacity>
           </View>
 
-          <View style={styles.guestRegister}>
+          {
+             loginStatus=="true"?
+            
+            <></> :
+            <View style={styles.guestRegister}>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('Pickup Screen', {
@@ -104,7 +144,8 @@ const GuestScreen = ({navigation, route}) => {
                 Continue As Guest
               </Text>
             </TouchableOpacity>
-          </View>
+          </View> 
+          }
         </View>
       </ScrollView>
     </>

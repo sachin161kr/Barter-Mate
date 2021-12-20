@@ -3,6 +3,7 @@ import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 import {
   Text,
   StyleSheet,
@@ -12,13 +13,13 @@ import {
   Alert,
   ActivityIndicator,
   Image,
-  ScrollView,
-  Touchable,
 } from 'react-native';
 
 import sweeper from '../assets/sweeper.png';
 
 const PickupScreen = ({route, navigation}) => {
+
+
   var categorySaved = 'Glass';
   if (route.params.itemSelected) {
     categorySaved = route.params.itemSelected;
@@ -50,23 +51,17 @@ const PickupScreen = ({route, navigation}) => {
     addressSaved = route.params.addressSaved;
   }
 
-  var isLoggedIn = true;
-  if(route.params.isLoggedIn == false)
-  {
-    isLoggedIn = route.params.isLoggedIn;
+  const [loginStatus,setLogin] = useState('');
+  
+  
+
+  const getUser = async ()=>{
+      var tempLoginStatus = await AsyncStorage.getItem("loginStatus");
+      setLogin(tempLoginStatus); 
   }
-  //console.log(typeof(isLoggedIn));
 
-  // var isLoggedIn = true;
-  // if(route.params.isLoggedIn)
-  // {
-  //       isLoggedIn = false;
-  // }
-
-  // useEffect()
-  // {
-  //   getStatus();
-  // }
+  getUser();
+  
 
   const [category, setCategory] = useState(`${categorySaved}`);
   const [address, setAddress] = useState(`${addressSaved}`);
@@ -75,7 +70,7 @@ const PickupScreen = ({route, navigation}) => {
 
   const setUser = async ()=>{
     await AsyncStorage.setItem("loginStatus","false");
-    await AsyncStorage.setItem("User",`Guest`);
+    await AsyncStorage.setItem("User","Guest");
 
   } 
   
@@ -214,7 +209,7 @@ const PickupScreen = ({route, navigation}) => {
         )}
 
         {
-           isLoggedIn==true?
+           loginStatus=="true" ?
            <View>
           <TouchableOpacity
               onPress={
