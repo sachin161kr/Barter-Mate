@@ -19,54 +19,23 @@ import {
 import sweeper from '../assets/sweeper.png';
 
 const PickupScreen = ({route, navigation}) => {
-  // const backAction = NavigationActions.back({
-  //   key: 'Guest Screen',
-  // });
-  // navigation.dispatch(backAction);
+  
+  var name = route.params.name;
+  
+  var email = route.params.email;
+  var phone = route.params.phone;
+  var landmark = route.params.landmark;
+  var pincode = route.params.pincode;
+  
+  
 
-  var categorySaved = 'Glass';
-  if (route.params.itemSelected) {
-    categorySaved = route.params.itemSelected;
-  }
-  var email = '';
-  if (route.params.email) {
-    email = route.params.email;
-  }
-  var phone = '';
-  if (route.params.phone) {
-    phone = route.params.phone;
-  }
-  var landMark = '';
-  if (route.params.landMark) {
-    landMark = route.params.landMark;
-  }
-  var pincode = '827013';
-  var name = '';
-  if (route.params.name) {
-    name = route.params.name;
-  } else if (route.params.username) {
-    name = route.params.username;
-  }
-
-  var addressSaved = '';
-  if (route.params.addressSaved) {
-    addressSaved = route.params.addressSaved;
-  }
-
-
-
-  const [category, setCategory] = useState(`${categorySaved}`);
-  //const [address, setAddress] = useState(`${addressSaved}`);
-
+  var tempCategory = route.params.itemSelected;
+  var tempAddress = route.params.address;
+  
+  const [address,setAddress] = useState(`${tempAddress}`);
+  const [category,setCategory] = useState(`${tempCategory}`);
+  
   const [isLoading, setLoading] = useState(false);
-
-    const getUser = async ()=>{
-      var tempAddress = await AsyncStorage.getItem("address");
-      //setAddress(tempAddress);
-      addressSaved = tempAddress;
-  }
-
-  getUser();
 
   const setUser = async () => {
     await AsyncStorage.setItem('loginStatus', 'false');
@@ -80,8 +49,8 @@ const PickupScreen = ({route, navigation}) => {
       name: `${name}`,
       email: `${email}`,
       phone: `${phone}`,
-      address: `${addressSaved}`,
-      landMark: `${landMark}`,
+      address: `${address}`,
+      landMark: `${landmark}`,
       pinCode: `${pincode}`,
       category: `${category}`,
     });
@@ -174,10 +143,10 @@ const PickupScreen = ({route, navigation}) => {
         </View>
 
         <TextInput
-          defaultValue={`${addressSaved}`}
+          defaultValue={`${address}`}
           onChangeText={tempAddress => {
-            //setAddress(tempAddress);
-            addressSaved = tempAddress;
+            setAddress(tempAddress);
+            
           }}
           style={styles.textinput}
           placeholder="Enter Pickup Address"
@@ -187,7 +156,7 @@ const PickupScreen = ({route, navigation}) => {
           <View style={styles.pickupBtn}>
             <TouchableOpacity
               onPress={() => {
-                if (addressSaved.length != 0) {
+                if (address.length != 0) {
                   handlePickeup();
                   //printAll();
                 } else {

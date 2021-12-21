@@ -18,32 +18,35 @@ const GuestScreen = ({navigation, route}) => {
 
   const description = route.params.description;
 
-  // var loginStatus = "";
-  // var username = "";
-
   const [loginStatus, setLogin] = useState('');
   const [username, setName] = useState('');
+  const [email,setEmail] = useState('');
+  const [phone,setPhone] = useState('');
+  const [landmark,setLandmark] = useState('')
+  const [pincode,setPincode] = useState('');
   const [address,setAddress] = useState('');
+  
+  
 
   const getUser = async () => {
     var tempLoginStatus = await AsyncStorage.getItem('loginStatus');
     var tempUsername = await AsyncStorage.getItem('User');
     var tempAddress = await AsyncStorage.getItem('address');
+    var tempEmail = await AsyncStorage.getItem('email');
+    var tempPhone = await AsyncStorage.getItem('phone');
+    var tempLandmark = await AsyncStorage.getItem('landmark');
+    var tempPincode = await AsyncStorage.getItem('pincode');
+    
     setLogin(tempLoginStatus);
-    //console.log(loginStatus);
     setName(tempUsername);
-    //console.log(username);
     setAddress(tempAddress);
-    //console.log(address);
+    setEmail(tempEmail);
+    setPhone(tempPhone);
+    setLandmark(tempLandmark);
+    setPincode(tempPincode);
   };
 
   getUser();
-
-  //   const [loginStatus,setLogin] = useState(()=>{
-  //     getUser();
-  // })
-
-  // const [username,setName] = useState('');
 
   
 
@@ -78,13 +81,22 @@ const GuestScreen = ({navigation, route}) => {
               onPress={() => {
                 if (loginStatus == 'true') {
                   navigation.navigate('Pickup Screen', {
-                    username: `${username}`,
+                    name: `${username}`,
                     itemSelected : `${itemSelected}`,
-                    addressSaved : `${address}`
+                    address : `${address}`,
+                    email: `${email}`,
+                    phone: `${phone}`,
+                    landmark: `${landmark}`,
+                    pincode: `${pincode}`,
+
                   });
                   
                 } else {
-                  navigation.navigate('Login Screen');
+                  navigation.navigate('Login Screen',{
+                    
+                    itemSelected : `${itemSelected}`
+                    
+                  });
                 }
               }}>
               {loginStatus == 'true' ? (

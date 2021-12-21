@@ -12,33 +12,46 @@ import {
   Alert,
   ActivityIndicator,
   Image,
+  ScrollView
 } from 'react-native';
 
 import logo from '../assets/logo.png';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({navigation,route}) => {
+  // const [name,setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const [address,setAddress] = useState('');
+  // const [phone,setPhone] = useState('');
+  // const [landMark,setLandMark] = useState('');
+  // const [pinCode,setPincode] = useState('');
+
+  var name = "";
   var address = "";
-  //const [name,setName] = useState('');
-  var username = '';
+  var phone = "";
+  var landmark = "";
+  var pincode = "";
+  
+  const itemSelected = route.params.itemSelected;
+  
   const [isLoading, setLoading] = useState(false);
 
   const setUser = async () => {
+    console.log(name);
+    console.log(email);
+    console.log(address);
+    console.log(phone);
+    console.log(landmark);
+    console.log(pincode);
+    console.log("Done");
     await AsyncStorage.setItem('loginStatus', 'true');
-    await AsyncStorage.setItem('User', `${username}`);
+    await AsyncStorage.setItem('User', `${name}`);
+    await AsyncStorage.setItem('email',`${email}`);
     await AsyncStorage.setItem('address',`${address}`);
-
-    //getUser();
-  };
-
-  //   const getUser = async ()=>{
-  //     var tempLoginStatus = await AsyncStorage.getItem("loginStatus");
-  //     var tempUsername =  await AsyncStorage.getItem("User");
-  //     console.log(tempLoginStatus);
-  //     console.log(tempUsername);
-
-  // }
+    await AsyncStorage.setItem('phone',`${phone}`);
+    await AsyncStorage.setItem('landmark',`${landmark}`);
+    await AsyncStorage.setItem('pincode',`${pincode}`);
+   };
 
   const getCredentials = () => {
     if (email && password) {
@@ -57,25 +70,31 @@ const LoginScreen = ({navigation}) => {
         .then(function (response) {
           setLoading(false);
           const userData = response.data;
-          var name = userData.data.userDetails.name;
-          var phone = userData.data.userDetails.phone;
-          var addressSaved = userData.data.userDetails.address;
-          var landmark = userData.data.userDetails.landMark;
-          var pincode = userData.data.userDetails.pinCode;
-          username = name;
-          address = addressSaved;
+          name = userData.data.userDetails.name;
+          phone = userData.data.userDetails.phone;
+          address = userData.data.userDetails.address;
+          landmark = userData.data.userDetails.landMark;
+          pincode = userData.data.userDetails.pinCode;
 
-          //console.log(name);
-          //setName(username);
+          // setName(name);
+          // setPhone(phone);
+          // setAddress(addressSaved);
+          // setLandMark(landmark);
+          // setPincode(pincode);
+          
+          
+        
+    
           setUser();
 
           navigation.navigate('Pickup Screen', {
             name: `${name}`,
             email: email,
             phone: `${phone}`,
-            addressSaved: `${addressSaved}`,
-            landMark: `${landmark}`,
+            address: `${address}`,
+            landmark: `${landmark}`,
             pincode: `${pincode}`,
+            itemSelected : itemSelected
           });
         })
         .catch(function (error) {
@@ -89,7 +108,7 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <>
-      <View
+      <ScrollView
         style={{
           marginTop: 20,
         }}>
@@ -182,7 +201,7 @@ const LoginScreen = ({navigation}) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 };
