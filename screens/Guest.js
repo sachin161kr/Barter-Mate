@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
@@ -10,9 +10,6 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import { useState } from 'react/cjs/react.development';
-
-
 
 const GuestScreen = ({navigation, route}) => {
   const image = route.params.imageSelected;
@@ -21,34 +18,34 @@ const GuestScreen = ({navigation, route}) => {
 
   const description = route.params.description;
 
-  
-  
-  
- 
-  // var loginStatus = ""; 
+  // var loginStatus = "";
   // var username = "";
 
-  const [loginStatus,setLogin] = useState('');
-  const [username,setName] = useState('');
-  
-  
+  const [loginStatus, setLogin] = useState('');
+  const [username, setName] = useState('');
+  const [address,setAddress] = useState('');
 
-  const getUser = async ()=>{
-      var tempLoginStatus = await AsyncStorage.getItem("loginStatus");
-      var tempUsername =  await AsyncStorage.getItem("User");
-      //console.log(loginStatus);
-      setLogin(tempLoginStatus);
-      //console.log(username);
-      setName(tempUsername);   
-  }
+  const getUser = async () => {
+    var tempLoginStatus = await AsyncStorage.getItem('loginStatus');
+    var tempUsername = await AsyncStorage.getItem('User');
+    var tempAddress = await AsyncStorage.getItem('address');
+    setLogin(tempLoginStatus);
+    //console.log(loginStatus);
+    setName(tempUsername);
+    //console.log(username);
+    setAddress(tempAddress);
+    //console.log(address);
+  };
 
   getUser();
 
-//   const [loginStatus,setLogin] = useState(()=>{
-//     getUser();
-// })
+  //   const [loginStatus,setLogin] = useState(()=>{
+  //     getUser();
+  // })
 
-// const [username,setName] = useState('');
+  // const [username,setName] = useState('');
+
+  
 
   return (
     <>
@@ -61,7 +58,7 @@ const GuestScreen = ({navigation, route}) => {
               alignSelf: 'center',
               marginTop: 20,
               fontSize: 20,
-              fontWeight : "bold",
+              fontWeight: 'bold',
             }}>
             {itemSelected} Selected
           </Text>
@@ -71,7 +68,7 @@ const GuestScreen = ({navigation, route}) => {
               textAlign: 'center',
               margin: 20,
               fontSize: 18,
-              fontStyle : "italic"
+              fontStyle: 'italic',
             }}>
             {description}
           </Text>
@@ -79,73 +76,68 @@ const GuestScreen = ({navigation, route}) => {
           <View style={styles.loginBtn}>
             <TouchableOpacity
               onPress={() => {
-                if(loginStatus=="true")
-                { 
+                if (loginStatus == 'true') {
                   navigation.navigate('Pickup Screen', {
                     username: `${username}`,
+                    itemSelected : `${itemSelected}`,
+                    addressSaved : `${address}`
                   });
                   
-                }
-                else
-                {
+                } else {
                   navigation.navigate('Login Screen');
                 }
-                
-                
               }}>
-              {
-                loginStatus=="true"?
+              {loginStatus == 'true' ? (
                 <Text
-                style={{
-                  fontSize: 30,
-                  alignSelf: 'center',
-                  color: '#FFFFFF',
-                  margin: 5,
-                  paddingBottom: 10,
-                  justifyContent : "center",
-                  textAlign : "center",
-                }}>
-                Continue As {username}
-              </Text> :
+                  style={{
+                    fontSize: 30,
+                    alignSelf: 'center',
+                    color: '#FFFFFF',
+                    margin: 5,
+                    paddingBottom: 10,
+                    justifyContent: 'center',
+                    textAlign: 'center',
+                  }}>
+                  Continue As {username}
+                </Text>
+              ) : (
                 <Text
-                style={{
-                  fontSize: 30,
-                  alignSelf: 'center',
-                  color: '#FFFFFF',
-                  margin: 5,
-                  paddingBottom: 10,
-                }}>
-                Login
-              </Text>
-              }
+                  style={{
+                    fontSize: 30,
+                    alignSelf: 'center',
+                    color: '#FFFFFF',
+                    margin: 5,
+                    paddingBottom: 10,
+                  }}>
+                  Login
+                </Text>
+              )}
             </TouchableOpacity>
           </View>
 
-          {
-             loginStatus=="true"?
-            
-            <></> :
+          {loginStatus == 'true' ? (
+            <></>
+          ) : (
             <View style={styles.guestRegister}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Pickup Screen', {
-                  itemSelected: `${itemSelected}`,
-                  isLoggedIn : false,
-                });
-              }}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  alignSelf: 'center',
-                  color: '#000000',
-                  margin: 5,
-                  paddingBottom: 10,
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Guest Pickup Screen', {
+                    itemSelected: `${itemSelected}`,
+                  });
                 }}>
-                Continue As Guest
-              </Text>
-            </TouchableOpacity>
-          </View> 
-          }
+                <Text
+                  style={{
+                    fontSize: 20,
+                    alignSelf: 'center',
+                    color: '#000000',
+                    margin: 5,
+                    paddingBottom: 10,
+                  }}>
+                  Continue As Guest
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </ScrollView>
     </>

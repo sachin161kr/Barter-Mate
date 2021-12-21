@@ -48,8 +48,6 @@ const RegisterScreen = ({navigation}) => {
       Alert.alert('Enter Valid Phone Number');
       return false;
     }
-
-    
   };
 
   const handleSubmit = () => {
@@ -136,8 +134,7 @@ const RegisterScreen = ({navigation}) => {
             style={styles.textinput}
             placeholder="Confirm Password"
             secureTextEntry={true}
-            placeholderTextColor="#758283"
-          ></TextInput>
+            placeholderTextColor="#758283"></TextInput>
           <TextInput
             onChangeText={text => {
               setAddress(text);

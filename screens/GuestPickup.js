@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//import { NavigationActions } from 'react-navigation';
 
 import {
   Text,
@@ -13,65 +12,39 @@ import {
   Alert,
   ActivityIndicator,
   Image,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 
 import sweeper from '../assets/sweeper.png';
 
-const PickupScreen = ({route, navigation}) => {
-  // const backAction = NavigationActions.back({
-  //   key: 'Guest Screen',
-  // });
-  // navigation.dispatch(backAction);
+const GuestPickupScreen = ({route, navigation}) => {
+  const [category, setCategory] = useState(`${route.params.itemSelected}`);
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [landMark, setLandmark] = useState('');
+  const [pincode, setPincode] = useState('827013');
+  const [name, setName] = useState('');
 
-  var categorySaved = 'Glass';
-  if (route.params.itemSelected) {
-    categorySaved = route.params.itemSelected;
-  }
-  var email = '';
-  if (route.params.email) {
-    email = route.params.email;
-  }
-  var phone = '';
-  if (route.params.phone) {
-    phone = route.params.phone;
-  }
-  var landMark = '';
-  if (route.params.landMark) {
-    landMark = route.params.landMark;
-  }
-  var pincode = '827013';
-  var name = '';
-  if (route.params.name) {
-    name = route.params.name;
-  } else if (route.params.username) {
-    name = route.params.username;
-  }
+  //setCategory(tempCategory);
 
-  var addressSaved = '';
-  if (route.params.addressSaved) {
-    addressSaved = route.params.addressSaved;
-  }
+  //const [loginStatus,setLogin] = useState('');
 
+  // const getUser = async ()=>{
+  //     var tempLoginStatus = await AsyncStorage.getItem("loginStatus");
+  //     setLogin(tempLoginStatus);
+  // }
 
+  // getUser();
 
-  const [category, setCategory] = useState(`${categorySaved}`);
-  //const [address, setAddress] = useState(`${addressSaved}`);
+  const [address, setAddress] = useState(``);
 
   const [isLoading, setLoading] = useState(false);
 
-    const getUser = async ()=>{
-      var tempAddress = await AsyncStorage.getItem("address");
-      //setAddress(tempAddress);
-      addressSaved = tempAddress;
-  }
+  // const setUser = async ()=>{
+  //   await AsyncStorage.setItem("loginStatus","false");
+  //   await AsyncStorage.setItem("User","Guest");
 
-  getUser();
-
-  const setUser = async () => {
-    await AsyncStorage.setItem('loginStatus', 'false');
-    await AsyncStorage.setItem('User', 'Guest');
-  };
+  // }
 
   const handlePickeup = () => {
     setLoading(true);
@@ -80,7 +53,7 @@ const PickupScreen = ({route, navigation}) => {
       name: `${name}`,
       email: `${email}`,
       phone: `${phone}`,
-      address: `${addressSaved}`,
+      address: `${address}`,
       landMark: `${landMark}`,
       pinCode: `${pincode}`,
       category: `${category}`,
@@ -97,22 +70,14 @@ const PickupScreen = ({route, navigation}) => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        //console.log(JSON.stringify(response.data));
         setLoading(false);
         Alert.alert('Pickup Scheduled Successfully');
         navigation.navigate('Category Screen');
-        // console.log(name);
-        // console.log(email);
-        // console.log(phone);
-        // console.log(categorySaved);
-        // console.log(addressSaved);
-        // console.log(pincode);
       })
       .catch(function (error) {
         console.log(error);
         Alert.alert('Sorry, Something Went Wrong');
-        setLoading(false);
-
       });
   };
 
@@ -174,25 +139,87 @@ const PickupScreen = ({route, navigation}) => {
         </View>
 
         <TextInput
-          defaultValue={`${addressSaved}`}
+          defaultValue={`${name}`}
+          onChangeText={tempName => {
+            setName(tempName);
+          }}
+          style={styles.textinput}
+          placeholder="Enter Name"
+          placeholderTextColor="#758283"></TextInput>
+
+        <TextInput
+          defaultValue={`${email}`}
+          onChangeText={tempEmail => {
+            setEmail(tempEmail);
+          }}
+          style={styles.textinput}
+          placeholder="Enter Email"
+          placeholderTextColor="#758283"></TextInput>
+
+        <TextInput
+          defaultValue={`${phone}`}
+          onChangeText={tempPhone => {
+            setPhone(tempPhone);
+          }}
+          style={styles.textinput}
+          placeholder="Enter Phone Number"
+          placeholderTextColor="#758283"></TextInput>
+
+        <TextInput
+          defaultValue={`${address}`}
           onChangeText={tempAddress => {
-            //setAddress(tempAddress);
-            addressSaved = tempAddress;
+            setAddress(tempAddress);
           }}
           style={styles.textinput}
           placeholder="Enter Pickup Address"
           placeholderTextColor="#758283"></TextInput>
 
+        <TextInput
+          defaultValue={`${landMark}`}
+          onChangeText={tempLandmark => {
+            setLandmark(tempLandmark);
+          }}
+          style={styles.textinput}
+          placeholder="Enter Landmark"
+          placeholderTextColor="#758283"></TextInput>
+
+        <View style={styles.pickerStyle}>
+          <Text
+            style={{
+              color: '#758283',
+              fontSize: 20,
+              textAlign: 'center',
+            }}>
+            Choose Pincode
+          </Text>
+          <Picker
+            style={{
+              color: '#1FAA59',
+            }}
+            dropdownIconColor="#1FAA59"
+            dropdownIconRippleColor="#1FAA59"
+            onTouchCancel={true}
+            mode="dropdown"
+            selectedValue={pincode}
+            onValueChange={itemValue => {
+              setPincode(itemValue);
+            }}>
+            <Picker.Item label="827013" value="827013" />
+            <Picker.Item label="827004" value="827004" />
+          </Picker>
+        </View>
+
         {isLoading == false ? (
           <View style={styles.pickupBtn}>
             <TouchableOpacity
               onPress={() => {
-                if (addressSaved.length != 0) {
-                  handlePickeup();
-                  //printAll();
-                } else {
-                  Alert.alert('Enter Valid Address');
-                }
+                // if (address.length != 0) {
+                //   handlePickeup();
+                //   //printAll();
+                // } else {
+                //   Alert.alert('Enter Valid Address');
+                // }
+                Alert.alert('Button Pressed');
               }}>
               <Text
                 style={{
@@ -214,32 +241,12 @@ const PickupScreen = ({route, navigation}) => {
             }}
           />
         )}
-
-        <View>
-          <TouchableOpacity
-            onPress={() => {
-              setUser();
-              navigation.navigate('Category Screen');
-              Alert.alert('You are logged out!');
-            }}>
-            <Text
-              style={{
-                fontSize: 20,
-                textAlign: 'center',
-                marginTop: 30,
-                color: '#1FAA59',
-                alignSelf: 'center',
-              }}>
-              Logout
-            </Text>
-          </TouchableOpacity>
-        </View>
       </ScrollView>
     </>
   );
 };
 
-export default PickupScreen;
+export default GuestPickupScreen;
 
 const styles = StyleSheet.create({
   textinput: {
@@ -258,6 +265,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     marginLeft: 90,
     marginRight: 90,
+    marginBottom: 30,
   },
 
   pickerStyle: {

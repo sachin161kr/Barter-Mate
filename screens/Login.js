@@ -19,32 +19,26 @@ import logo from '../assets/logo.png';
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  var name = '';
-  var phone = '';
-  var addressSaved = '';
-  var landmark = '';
-  var pincode = '';
-
+  var address = "";
+  //const [name,setName] = useState('');
+  var username = '';
   const [isLoading, setLoading] = useState(false);
 
-  const setUser = async ()=>{
-    await AsyncStorage.setItem("loginStatus","true");
-    await AsyncStorage.setItem("User",`${name}`);
+  const setUser = async () => {
+    await AsyncStorage.setItem('loginStatus', 'true');
+    await AsyncStorage.setItem('User', `${username}`);
+    await AsyncStorage.setItem('address',`${address}`);
 
-    var tempStatus = await AsyncStorage.getItem("loginStatus");
-    console.log(tempStatus);
-    var tempName = await AsyncStorage.getItem("User");
-    console.log(tempName);
+    //getUser();
+  };
 
-  }
+  //   const getUser = async ()=>{
+  //     var tempLoginStatus = await AsyncStorage.getItem("loginStatus");
+  //     var tempUsername =  await AsyncStorage.getItem("User");
+  //     console.log(tempLoginStatus);
+  //     console.log(tempUsername);
 
-  // const getStatus = async ()=>{
-  //   var temp = await AsyncStorage.getItem("loginStatus");
-  //   console.log(temp);
   // }
-
- 
 
   const getCredentials = () => {
     if (email && password) {
@@ -61,30 +55,26 @@ const LoginScreen = ({navigation}) => {
 
       axios(config)
         .then(function (response) {
-          //console.log(JSON.stringify(response.data));
           setLoading(false);
-          setUser();
-          //getStatus();
           const userData = response.data;
-          name = userData.data.userDetails.name;
-          phone = userData.data.userDetails.phone;
-          addressSaved = userData.data.userDetails.address;
-          landmark = userData.data.userDetails.landMark;
-          pincode = userData.data.userDetails.pinCode;
+          var name = userData.data.userDetails.name;
+          var phone = userData.data.userDetails.phone;
+          var addressSaved = userData.data.userDetails.address;
+          var landmark = userData.data.userDetails.landMark;
+          var pincode = userData.data.userDetails.pinCode;
+          username = name;
+          address = addressSaved;
 
-          // console.log(name);
-          // console.log(email);
-          // console.log(phone);
-          // console.log(landmark);
-          // console.log(pincode);
-          // console.log(addressSaved);
+          //console.log(name);
+          //setName(username);
+          setUser();
 
           navigation.navigate('Pickup Screen', {
             name: `${name}`,
             email: email,
             phone: `${phone}`,
             addressSaved: `${addressSaved}`,
-            landmark: `${landmark}`,
+            landMark: `${landmark}`,
             pincode: `${pincode}`,
           });
         })
@@ -117,9 +107,9 @@ const LoginScreen = ({navigation}) => {
             marginTop: 30,
             marginBottom: 30,
             color: '#000000',
-            fontStyle : "italic"
+            fontStyle: 'italic',
           }}>
-           Welcome To TrashToCash  
+          Welcome To TrashToCash
         </Text>
         <TextInput
           onChangeText={tempEmail => {
