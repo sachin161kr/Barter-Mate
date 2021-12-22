@@ -76,15 +76,6 @@ const LoginScreen = ({navigation,route}) => {
           landmark = userData.data.userDetails.landMark;
           pincode = userData.data.userDetails.pinCode;
 
-          // setName(name);
-          // setPhone(phone);
-          // setAddress(addressSaved);
-          // setLandMark(landmark);
-          // setPincode(pincode);
-          
-          
-        
-    
           setUser();
 
           navigation.navigate('Pickup Screen', {
@@ -94,7 +85,7 @@ const LoginScreen = ({navigation,route}) => {
             address: `${address}`,
             landmark: `${landmark}`,
             pincode: `${pincode}`,
-            itemSelected : itemSelected
+            itemSelected : `${itemSelected}`
           });
         })
         .catch(function (error) {
@@ -187,7 +178,9 @@ const LoginScreen = ({navigation,route}) => {
           <TouchableOpacity
             onPress={() => {
               console.log('Register Button Clicked');
-              navigation.navigate('Register Screen');
+              navigation.navigate('Register Screen',{
+                itemSelected : `${itemSelected}`
+              });
             }}>
             <Text
               style={{

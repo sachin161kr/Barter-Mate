@@ -13,7 +13,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-const RegisterScreen = ({navigation}) => {
+const RegisterScreen = ({navigation,route}) => {
   const [pincode, setSelectedPincode] = useState('827013');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,6 +24,8 @@ const RegisterScreen = ({navigation}) => {
   const [landmark, setLankmark] = useState('');
 
   const [isLoading, setLoading] = useState(false);
+
+  const itemSelected = route.params.itemSelected;
 
   const passCheck = () => {
     console.log(password);
@@ -76,7 +78,9 @@ const RegisterScreen = ({navigation}) => {
         console.log(JSON.stringify(response.data));
         setLoading(false);
         Alert.alert('Successfully Registered');
-        navigation.navigate('Login Screen');
+        navigation.navigate('Login Screen',{
+          itemSelected : `${itemSelected}`,
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -124,9 +128,7 @@ const RegisterScreen = ({navigation}) => {
             placeholder="Password"
             secureTextEntry={true}
             placeholderTextColor="#758283"
-            passwordRules={
-              'required: upper; required: lower; required: digit; minlength: 8;'
-            }></TextInput>
+           ></TextInput>
           <TextInput
             onChangeText={text => {
               setConfirmPass(text);
@@ -181,6 +183,7 @@ const RegisterScreen = ({navigation}) => {
             <View style={styles.registerBtn}>
               <TouchableOpacity
                 onPress={() => {
+                  //navigation.navigate('Category Screen');
                   if (
                     fullName &&
                     email &&
