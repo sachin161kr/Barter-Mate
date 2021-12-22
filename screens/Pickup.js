@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 //import { NavigationActions } from 'react-navigation';
+import { BackHandler } from 'react-native';
 
 import {
   Text,
@@ -13,12 +14,24 @@ import {
   Alert,
   ActivityIndicator,
   Image,
-  ScrollView
+  ScrollView,
+  Button
 } from 'react-native';
 
 import sweeper from '../assets/sweeper.png';
 
 const PickupScreen = ({route, navigation}) => {
+
+  // useLayoutEffect(()=>{
+  //    navigation.setOptions({
+  //      headerLeft : ()=>(
+  //        <Button 
+  //           onPress={()=>null}
+  //           title='Back Button'
+  //        />
+  //      )
+  //    })
+  // })
   
   var name = route.params.name;
   
@@ -36,6 +49,11 @@ const PickupScreen = ({route, navigation}) => {
   const [category,setCategory] = useState(`${tempCategory}`);
   
   const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
+    return () => backHandler.remove()
+  }, []) 
 
   const setUser = async () => {
     await AsyncStorage.setItem('loginStatus', 'false');

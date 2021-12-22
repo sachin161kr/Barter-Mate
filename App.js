@@ -11,6 +11,7 @@ import RegisterScreen from './screens/Register';
 import PickupScreen from './screens/Pickup';
 import GuestScreen from './screens/Guest';
 import GuestPickupScreen from './screens/GuestPickup';
+import { back } from 'react-native/Libraries/Animated/Easing';
 
 const MyStack = () => {
   return (
@@ -90,6 +91,11 @@ const MyStack = () => {
             headerStyle: {
               backgroundColor: '#1FAA59',
             },
+            headerBackVisible : false,
+            
+            
+            
+            
           }}
         />
         <Stack.Screen

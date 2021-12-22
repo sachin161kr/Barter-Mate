@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { StackActions } from '@react-navigation/native';
+
 import {
   Text,
   StyleSheet,
@@ -77,6 +79,20 @@ const LoginScreen = ({navigation,route}) => {
           pincode = userData.data.userDetails.pinCode;
 
           setUser();
+          
+          // const pushAction = StackActions.push('Category Screen');
+          // navigation.dispatch(
+          //   pushAction,
+          //   StackActions.replace('Pickup Screen', {
+          //   name: `${name}`,
+          //   email: email,
+          //   phone: `${phone}`,
+          //   address: `${address}`,
+          //   landmark: `${landmark}`,
+          //   pincode: `${pincode}`,
+          //   itemSelected : `${itemSelected}`
+          //   })
+          // );
 
           navigation.navigate('Pickup Screen', {
             name: `${name}`,
