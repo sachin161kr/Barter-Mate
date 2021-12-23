@@ -125,6 +125,9 @@ const LoginScreen = ({navigation,route}) => {
           source={logo}
           style={{
             alignSelf: 'center',
+            resizeMode : "contain",
+            height : 150,
+            width : 150,
           }}
         />
         <Text
