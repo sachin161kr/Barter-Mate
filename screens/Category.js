@@ -10,18 +10,19 @@ import {
   StatusBar,
 } from 'react-native';
 
-import glass from '../assets/glass.png';
-import plastic from '../assets/plastic.png';
-import electronic from '../assets/electronic.png';
-import metal from '../assets/metal.png';
-import paper from '../assets/paper.png';
-import copper from '../assets/copper.png';
-import iron from '../assets/iron.png';
 
+
+
+import people from "../assets/people.jpg"
+import glassBottle from "../assets/glassBottle.png";
+import plasticIcon from "../assets/plasticIcon.png";
+import metalIcon from "../assets/metalIcon.png";
+import paperIcon from "../assets/paperIcon.png";
+import electronicIcon from "../assets/electronicIcon.png"
 const categoryList = [
   {
     key: 0,
-    image: glass,
+    image: glassBottle,
     text: 'Glass',
     description:
       'Glass is found in municipal solid waste (MSW), primarily in the form of containers such as beer and soft drink bottles; wine and liquor bottles; and bottles and jars for food, cosmetics and other products.',
@@ -29,15 +30,15 @@ const categoryList = [
 
   {
     key: 1,
-    image: metal,
+    image: metalIcon,
     text: 'Metal',
     description:
-      'Several kinds and also large amounts of metals are used in industrial processes every day.Since the industrial revolution period has taken place, our consumption levels skyrocketed due to the mass production of goods and the resulting low unit price.The most consumed metal worldwide is aluminum, followed by copper, zinc, lead and nickel.',
+      'Since the industrial revolution period has taken place, our consumption levels skyrocketed due to the mass production of goods and the resulting low unit price.The most consumed metal worldwide is aluminum, followed by copper, zinc, lead and nickel.',
   },
 
   {
     key: 2,
-    image: plastic,
+    image: plasticIcon,
     text: 'Plastic',
     description:
       'Plastic waste, or plastic pollution, is the accumulation of plastic objects (e.g.: plastic bottles and much more) in the Earth’s environment that adversely affects wildlife, wildlife habitat, and humans.',
@@ -45,7 +46,7 @@ const categoryList = [
 
   {
     key: 3,
-    image: paper,
+    image: paperIcon,
     text: 'Paper',
     description:
       'Post-consumer waste is material discarded after consumer use, such as old corrugated containers (OCC), old magazines, and newspapers. Paper suitable for recycling is called scrap paper, often used to produce moulded pulp packaging.',
@@ -53,7 +54,7 @@ const categoryList = [
 
   {
     key: 4,
-    image: electronic,
+    image: electronicIcon,
     text: 'Electronics',
     description:
       'E-waste is electronic products that are unwanted, not working, and nearing or at the end of their “useful life.” Computers, televisions, VCRs, stereos, copiers, and fax machines are everyday electronic products.',
@@ -81,6 +82,19 @@ const CategoryScreen = ({navigation}) => {
     <>
       <ScrollView style={styles.container}>
         <StatusBar backgroundColor="#1FAA59" />
+        <Image
+            source={people}
+            style = {
+              {
+                 height : 200,
+                 width : 400,
+                 marginTop : 10,
+                 alignSelf : "center",
+                 resizeMode : "cover",
+                 
+              }
+            }
+        />
         <View style={styles.gridContainer}>
           {categoryList.map(key => (
             <TouchableOpacity
@@ -101,6 +115,7 @@ const CategoryScreen = ({navigation}) => {
             </TouchableOpacity>
           ))}
         </View>
+        
       </ScrollView>
     </>
   );
@@ -118,27 +133,32 @@ const styles = StyleSheet.create({
     margin: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    justifyContent: 'space-around',
+    justifyContent: "space-around",
   },
 
   viewGroup: {
-    borderWidth: 1,
-    borderColor: '#1FAA59',
-    borderRadius: 15,
-    margin: 30,
+    borderWidth: 4,
+    borderColor: '#758283',
+    borderRadius: 20,
+    marginTop : 30,
+    padding : 10,
+    overflow : "hidden",
+
+    //margin: 10,
   },
 
   image: {
-    height: 90,
-    width: 90,
+    height: 80,
+    width: 100,
     margin: 10,
+    overflow : "hidden",
+    //padding : 30,
   },
 
   text: {
     textAlign: 'center',
     marginBottom: 4,
     color: '#000000',
-    padding: 5,
+    //padding: 5,
   },
 });

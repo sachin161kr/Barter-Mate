@@ -11,7 +11,11 @@ import {
   Alert,
   ScrollView,
   ActivityIndicator,
+  Image
 } from 'react-native';
+
+
+import banner from "../assets/banner.jpg"
 
 const RegisterScreen = ({navigation,route}) => {
   const [pincode, setSelectedPincode] = useState('827013');
@@ -92,6 +96,20 @@ const RegisterScreen = ({navigation,route}) => {
   return (
     <>
       <ScrollView>
+      <Image
+            source={banner}
+            style = {
+              {
+                 height : 200,
+                 width : 400,
+                 alignSelf : "center",
+                 marginTop : 10,
+                 resizeMode : "cover",
+                 marginBottom : 10,
+                 
+              }
+            }
+        />
         <View
           style={{
             marginTop: 10,
@@ -245,10 +263,11 @@ const styles = StyleSheet.create({
   registerBtn: {
     marginTop: 10,
     backgroundColor: '#1FAA59',
+    //backgroundColor: 'red',
     marginLeft: 100,
     marginRight: 100,
     marginBottom: 50,
-    borderRadius: 10,
+    //borderRadius: 10,
   },
 
   pickerStyle: {

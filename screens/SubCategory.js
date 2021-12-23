@@ -56,7 +56,7 @@ const SubCategoryScreen = ({route, navigation}) => {
           style={{
             color: '#000000',
             alignSelf: 'center',
-            marginTop: 20,
+            marginTop: 10,
             fontSize: 20,
             fontWeight: 'bold',
           }}>
@@ -79,7 +79,7 @@ const SubCategoryScreen = ({route, navigation}) => {
               fontSize: 20,
               textAlign: 'center',
               color: '#758283',
-              marginTop: 10,
+              //marginTop: 10,
             }}>
             Sub-Category Chosen
           </Text>
@@ -221,7 +221,7 @@ const SubCategoryScreen = ({route, navigation}) => {
               }
               else
               {
-                Alert.alert("Choose A Sub-Category");
+                Alert.alert("Choose a Sub-Category");
               }
               
             }}>
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: 10,
   },
 
   pickerStyle: {
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
   },
 
   loginBtn: {
-    marginTop: 25,
+    marginTop: 20,
     backgroundColor: '#1FAA59',
     marginLeft: 90,
     marginRight: 90,
