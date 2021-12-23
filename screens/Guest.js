@@ -149,6 +149,8 @@ const GuestScreen = ({navigation, route}) => {
                 </Text>
               </TouchableOpacity>
             </View>
+
+            
           )}
         </View>
       </ScrollView>

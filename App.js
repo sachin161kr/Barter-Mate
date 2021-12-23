@@ -11,7 +11,7 @@ import RegisterScreen from './screens/Register';
 import PickupScreen from './screens/Pickup';
 import GuestScreen from './screens/Guest';
 import GuestPickupScreen from './screens/GuestPickup';
-import { back } from 'react-native/Libraries/Animated/Easing';
+import SubCategoryScreen from './screens/SubCategory';
 
 const MyStack = () => {
   return (
@@ -68,6 +68,22 @@ const MyStack = () => {
           component={RegisterScreen}
           options={{
             title: 'Register',
+
+            headerTitleStyle: {
+              color: '#FFFFFF',
+              fontWeight: 'bold',
+            },
+
+            headerStyle: {
+              backgroundColor: '#1FAA59',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="SubCategory Screen"
+          component={SubCategoryScreen}
+          options={{
+            title: 'Select Sub-Category',
 
             headerTitleStyle: {
               color: '#FFFFFF',

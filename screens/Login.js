@@ -35,7 +35,8 @@ const LoginScreen = ({navigation,route}) => {
   var pincode = "";
   
   const itemSelected = route.params.itemSelected;
-  
+  const subCategory = route.params.subCategory;
+
   const [isLoading, setLoading] = useState(false);
 
   const setUser = async () => {
@@ -101,7 +102,8 @@ const LoginScreen = ({navigation,route}) => {
             address: `${address}`,
             landmark: `${landmark}`,
             pincode: `${pincode}`,
-            itemSelected : `${itemSelected}`
+            itemSelected : `${itemSelected}`,
+            subCategory : `${subCategory}`,
           });
         })
         .catch(function (error) {
@@ -195,7 +197,8 @@ const LoginScreen = ({navigation,route}) => {
             onPress={() => {
               console.log('Register Button Clicked');
               navigation.navigate('Register Screen',{
-                itemSelected : `${itemSelected}`
+                itemSelected : `${itemSelected}`,
+                subCategory : `${subCategory}`,
               });
             }}>
             <Text

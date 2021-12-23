@@ -26,6 +26,7 @@ const RegisterScreen = ({navigation,route}) => {
   const [isLoading, setLoading] = useState(false);
 
   const itemSelected = route.params.itemSelected;
+  const subCategory = route.params.subCategory;
 
   const passCheck = () => {
     console.log(password);
@@ -80,6 +81,7 @@ const RegisterScreen = ({navigation,route}) => {
         Alert.alert('Successfully Registered');
         navigation.navigate('Login Screen',{
           itemSelected : `${itemSelected}`,
+          subCategory : `${subCategory}`
         });
       })
       .catch(function (error) {

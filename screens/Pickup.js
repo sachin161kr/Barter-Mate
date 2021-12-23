@@ -43,10 +43,12 @@ const PickupScreen = ({route, navigation}) => {
   
 
   var tempCategory = route.params.itemSelected;
+  var  tempSubCategory = route.params.subCategory;
   var tempAddress = route.params.address;
   
   const [address,setAddress] = useState(`${tempAddress}`);
   const [category,setCategory] = useState(`${tempCategory}`);
+  const [subCategory,setSubCategory] = useState(`${tempSubCategory}`);
   
   const [isLoading, setLoading] = useState(false);
 
@@ -111,7 +113,7 @@ const PickupScreen = ({route, navigation}) => {
             height: 180,
             width: 180,
             margin: 20,
-            marginTop: 50,
+            marginTop: 20,
             alignSelf: 'center',
           }}
           source={sweeper}
@@ -120,7 +122,7 @@ const PickupScreen = ({route, navigation}) => {
           style={{
             fontSize: 25,
             alignSelf: 'center',
-            marginTop: 30,
+            marginTop: 10,
             color: '#000000',
             fontWeight: 'bold',
             fontStyle: 'italic',
@@ -134,7 +136,6 @@ const PickupScreen = ({route, navigation}) => {
               fontSize: 20,
               textAlign: 'center',
               color: '#758283',
-              marginTop: 10,
             }}>
             Category Chosen
           </Text>
@@ -151,15 +152,132 @@ const PickupScreen = ({route, navigation}) => {
               setCategory(itemValue);
             }}>
             <Picker.Item label="Glass" value="Glass" />
-            <Picker.Item label="Metal-Others" value="Metal-Others" />
+            <Picker.Item label="Metal" value="Metal" />
             <Picker.Item label="Plastic" value="Plastic" />
             <Picker.Item label="Paper" value="Paper" />
             <Picker.Item label="Electronics" value="Electronics" />
-            <Picker.Item label="Copper Items" value="Copper Items" />
-            <Picker.Item label="Iron Items" value="Iron Items" />
           </Picker>
         </View>
 
+        <View style={styles.pickerStyle}>
+          <Text
+            style={{
+              fontSize: 20,
+              textAlign: 'center',
+              color: '#758283',
+              marginTop: 10,
+            }}>
+            Sub-Category Chosen
+          </Text>
+
+          {
+             category=="Glass"?
+             <Picker
+              style={{
+                color: '#1FAA59',
+              }}
+              dropdownIconColor="#1FAA59"
+              dropdownIconRippleColor="#1FAA59"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={itemValue => {
+                setSubCategory(itemValue);
+              }}>
+              <Picker.Item label="Bottles" value="Bottles" />
+              <Picker.Item label="Mirrors" value="Mirrors" />
+            </Picker>:
+              category=="Metal"?
+            <Picker
+              style={{
+                color: '#1FAA59',
+              }}
+              dropdownIconColor="#1FAA59"
+              dropdownIconRippleColor="#1FAA59"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={itemValue => {
+                setSubCategory(itemValue);
+              }}>
+              <Picker.Item label="Steel" value="Steel" />
+              <Picker.Item label="Brass" value="Brass" />
+              <Picker.Item label="Motor" value="Motor" />
+              <Picker.Item label="Aluminium" value="Aluminium" />
+              <Picker.Item label="Copper" value="Copper" />
+              <Picker.Item label="Iron" value="Iron" />
+              <Picker.Item
+                label="Beer/Beverage Cans"
+                value="Beer/Beverage Cans"
+              />
+            </Picker> :
+             category=="Paper"?
+             <Picker
+              style={{
+                color: '#1FAA59',
+              }}
+              dropdownIconColor="#1FAA59"
+              dropdownIconRippleColor="#1FAA59"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={itemValue => {
+                setSubCategory(itemValue);
+              }}>
+              <Picker.Item label="Mil Board" value="Mil Board" />
+              <Picker.Item label="Magazine" value="Magazine" />
+              <Picker.Item
+                label="Gatta/Corrugated Board"
+                value="Gatta/Corrugated Board"
+              />
+              <Picker.Item label="Newspaper" value="Newspaper" />
+              <Picker.Item label="Books" value="Books" />
+            </Picker> : 
+            category=="Plastic"?
+            <Picker
+              style={{
+                color: '#1FAA59',
+              }}
+              dropdownIconColor="#1FAA59"
+              dropdownIconRippleColor="#1FAA59"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={itemValue => {
+                setSubCategory(itemValue);
+              }}>
+               <Picker.Item label="Milk Pouch" value="Milk Pouch" />
+              <Picker.Item label="Plastic Bottles" value="Plastic Bottles" />
+            </Picker> :
+            <Picker
+            style={{
+              color: '#1FAA59',
+            }}
+            dropdownIconColor="#1FAA59"
+            dropdownIconRippleColor="#1FAA59"
+            onTouchCancel={true}
+            mode="dropdown"
+            selectedValue={subCategory}
+            onValueChange={itemValue => {
+              setSubCategory(itemValue);
+            }}>
+            <Picker.Item label="Black Battery" value="Black Battery" />
+              <Picker.Item label="White Battery" value="White Battery" />
+              <Picker.Item
+                label="Single-Door Fridge"
+                value="Single-Door Fridge"
+              />
+              <Picker.Item
+                label="Double-Door Fridge"
+                value="Double-Door Fridge"
+              />
+              <Picker.Item label="Air Conditioner" value="Air Conditioner" />
+              <Picker.Item label="Washing Machine" value="Washing Machine" />
+          </Picker>
+          }
+        </View>
+
+       
         <TextInput
           defaultValue={`${address}`}
           onChangeText={tempAddress => {
@@ -249,7 +367,7 @@ const styles = StyleSheet.create({
 
   pickerStyle: {
     marginLeft: 70,
-    marginTop: 15,
+    marginTop: 10,
     marginRight: 70,
   },
 });

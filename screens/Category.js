@@ -30,7 +30,7 @@ const categoryList = [
   {
     key: 1,
     image: metal,
-    text: 'Metal-Others',
+    text: 'Metal',
     description:
       'Several kinds and also large amounts of metals are used in industrial processes every day.Since the industrial revolution period has taken place, our consumption levels skyrocketed due to the mass production of goods and the resulting low unit price.The most consumed metal worldwide is aluminum, followed by copper, zinc, lead and nickel.',
   },
@@ -59,21 +59,21 @@ const categoryList = [
       'E-waste is electronic products that are unwanted, not working, and nearing or at the end of their “useful life.” Computers, televisions, VCRs, stereos, copiers, and fax machines are everyday electronic products.',
   },
 
-  {
-    key: 5,
-    image: copper,
-    text: 'Copper Items',
-    description:
-      'Copper scrap is smelted in primary (concentrate) and secondary (scrap) smelters. Primary smelters mainly smelt concentrate. ... The main smelting product is molten black copper (80% Cu), which is converted to rough copper (96% Cu) then fire refined and cast into anodes (98.5% Cu).',
-  },
+  // {
+  //   key: 5,
+  //   image: copper,
+  //   text: 'Copper Items',
+  //   description:
+  //     'Copper scrap is smelted in primary (concentrate) and secondary (scrap) smelters. Primary smelters mainly smelt concentrate. ... The main smelting product is molten black copper (80% Cu), which is converted to rough copper (96% Cu) then fire refined and cast into anodes (98.5% Cu).',
+  // },
 
-  {
-    key: 6,
-    image: iron,
-    text: 'Iron Items',
-    description:
-      "Iron and steel scrap also known as 'ferrous metal scrap' is a recyclable material which is left- over during the production of iron and steel products and fabrication of ferrous materials or generated at end of life of the ferrous products. Ferrous scrap is normally recycled during steelmaking.",
-  },
+  // {
+  //   key: 6,
+  //   image: iron,
+  //   text: 'Iron Items',
+  //   description:
+  //     "Iron and steel scrap also known as 'ferrous metal scrap' is a recyclable material which is left- over during the production of iron and steel products and fabrication of ferrous materials or generated at end of life of the ferrous products. Ferrous scrap is normally recycled during steelmaking.",
+  // },
 ];
 
 const CategoryScreen = ({navigation}) => {
@@ -87,7 +87,7 @@ const CategoryScreen = ({navigation}) => {
               key={key.key}
               onPress={() => {
                 //console.log(`${key.text} Clicked`);
-                navigation.navigate('Guest Screen', {
+                navigation.navigate('SubCategory Screen', {
                   text: `${key.text}`,
                   imageSelected: key.image,
                   description: key.description,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#1FAA59',
     borderRadius: 15,
-    margin: 10,
+    margin: 30,
   },
 
   image: {
