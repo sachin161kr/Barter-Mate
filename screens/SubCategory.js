@@ -7,6 +7,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -17,7 +18,7 @@ const SubCategoryScreen = ({route, navigation}) => {
 
   const description = route.params.description;
 
-  const [subCategory, setSubCategory] = useState('');
+  const [subCategory, setSubCategory] = useState('Choose Sub-Category');
 
   const [loginStatus, setLogin] = useState('');
   const [username, setName] = useState('');
@@ -93,9 +94,10 @@ const SubCategoryScreen = ({route, navigation}) => {
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
-              onValueChange={itemValue => {
+              onValueChange={(itemValue) => {
                 setSubCategory(itemValue);
               }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />  
               <Picker.Item label="Bottles" value="Bottles" />
               <Picker.Item label="Mirrors" value="Mirrors" />
             </Picker>
@@ -109,9 +111,10 @@ const SubCategoryScreen = ({route, navigation}) => {
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
-              onValueChange={itemValue => {
+              onValueChange={(itemValue) => {
                 setSubCategory(itemValue);
               }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
               <Picker.Item label="Steel" value="Steel" />
               <Picker.Item label="Brass" value="Brass" />
               <Picker.Item label="Motor" value="Motor" />
@@ -133,9 +136,10 @@ const SubCategoryScreen = ({route, navigation}) => {
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
-              onValueChange={itemValue => {
+              onValueChange={(itemValue) => {
                 setSubCategory(itemValue);
               }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
               <Picker.Item label="Mil Board" value="Mil Board" />
               <Picker.Item label="Magazine" value="Magazine" />
               <Picker.Item
@@ -155,9 +159,10 @@ const SubCategoryScreen = ({route, navigation}) => {
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
-              onValueChange={itemValue => {
+              onValueChange={(itemValue) => {
                 setSubCategory(itemValue);
               }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
               <Picker.Item label="Milk Pouch" value="Milk Pouch" />
               <Picker.Item label="Plastic Bottles" value="Plastic Bottles" />
             </Picker>
@@ -171,9 +176,10 @@ const SubCategoryScreen = ({route, navigation}) => {
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
-              onValueChange={itemValue => {
+              onValueChange={(itemValue) => {
                 setSubCategory(itemValue);
               }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
               <Picker.Item label="Black Battery" value="Black Battery" />
               <Picker.Item label="White Battery" value="White Battery" />
               <Picker.Item
@@ -193,23 +199,31 @@ const SubCategoryScreen = ({route, navigation}) => {
         <View style={styles.loginBtn}>
           <TouchableOpacity
             onPress={() => {
-              if (loginStatus == 'true') {
-                navigation.navigate('Pickup Screen', {
-                  name: `${username}`,
-                  itemSelected: `${itemSelected}`,
-                  subCategory : `${subCategory}`,
-                  address: `${address}`,
-                  email: `${email}`,
-                  phone: `${phone}`,
-                  landmark: `${landmark}`,
-                  pincode: `${pincode}`,
-                });
-              } else {
-                navigation.navigate('Login Screen', {
-                  itemSelected: `${itemSelected}`,
-                  subCategory : `${subCategory}`,
-                });
+              if(subCategory!="Choose Sub-Category")
+              {
+                if (loginStatus == 'true') {
+                  navigation.navigate('Pickup Screen', {
+                    name: `${username}`,
+                    itemSelected: `${itemSelected}`,
+                    subCategory : `${subCategory}`,
+                    address: `${address}`,
+                    email: `${email}`,
+                    phone: `${phone}`,
+                    landmark: `${landmark}`,
+                    pincode: `${pincode}`,
+                  });
+                } else {
+                  navigation.navigate('Login Screen', {
+                    itemSelected: `${itemSelected}`,
+                    subCategory : `${subCategory}`,
+                  });
+                }
               }
+              else
+              {
+                Alert.alert("Choose A Sub-Category");
+              }
+              
             }}>
             {loginStatus == 'true' ? (
               <Text

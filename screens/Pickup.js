@@ -45,10 +45,16 @@ const PickupScreen = ({route, navigation}) => {
   var tempCategory = route.params.itemSelected;
   var  tempSubCategory = route.params.subCategory;
   var tempAddress = route.params.address;
+
+  console.log(`${tempSubCategory}`);
   
   const [address,setAddress] = useState(`${tempAddress}`);
   const [category,setCategory] = useState(`${tempCategory}`);
   const [subCategory,setSubCategory] = useState(`${tempSubCategory}`);
+
+  // console.log(`${address}`);
+  // console.log(`${category}`);
+  // console.log(`${subCategory}`);
   
   const [isLoading, setLoading] = useState(false);
 
@@ -72,7 +78,7 @@ const PickupScreen = ({route, navigation}) => {
       address: `${address}`,
       landMark: `${landmark}`,
       pinCode: `${pincode}`,
-      category: `${category}`,
+      category: `${subCategory}`,
     });
 
     var config = {
@@ -148,8 +154,10 @@ const PickupScreen = ({route, navigation}) => {
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={category}
-            onValueChange={itemValue => {
+            onValueChange={(itemValue) => {
               setCategory(itemValue);
+              setSubCategory('Choose Sub-Category');
+              console.log(`${category}`);
             }}>
             <Picker.Item label="Glass" value="Glass" />
             <Picker.Item label="Metal" value="Metal" />
@@ -181,9 +189,11 @@ const PickupScreen = ({route, navigation}) => {
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
-              onValueChange={itemValue => {
+              onValueChange={(itemValue) => {
                 setSubCategory(itemValue);
+                //console.log(`${subCategory}`);
               }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
               <Picker.Item label="Bottles" value="Bottles" />
               <Picker.Item label="Mirrors" value="Mirrors" />
             </Picker>:
@@ -197,9 +207,11 @@ const PickupScreen = ({route, navigation}) => {
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
-              onValueChange={itemValue => {
+              onValueChange={(itemValue) => {
                 setSubCategory(itemValue);
+                //console.log(`${subCategory}`);
               }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
               <Picker.Item label="Steel" value="Steel" />
               <Picker.Item label="Brass" value="Brass" />
               <Picker.Item label="Motor" value="Motor" />
@@ -221,9 +233,11 @@ const PickupScreen = ({route, navigation}) => {
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
-              onValueChange={itemValue => {
+              onValueChange={(itemValue) => {
                 setSubCategory(itemValue);
+                //console.log(`${subCategory}`);
               }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
               <Picker.Item label="Mil Board" value="Mil Board" />
               <Picker.Item label="Magazine" value="Magazine" />
               <Picker.Item
@@ -243,9 +257,11 @@ const PickupScreen = ({route, navigation}) => {
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
-              onValueChange={itemValue => {
+              onValueChange={(itemValue) => {
                 setSubCategory(itemValue);
+                //console.log(`${subCategory}`);
               }}>
+               <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />  
                <Picker.Item label="Milk Pouch" value="Milk Pouch" />
               <Picker.Item label="Plastic Bottles" value="Plastic Bottles" />
             </Picker> :
@@ -258,9 +274,11 @@ const PickupScreen = ({route, navigation}) => {
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={subCategory}
-            onValueChange={itemValue => {
+            onValueChange={(itemValue) => {
               setSubCategory(itemValue);
+              //console.log(`${subCategory}`);
             }}>
+             <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />  
             <Picker.Item label="Black Battery" value="Black Battery" />
               <Picker.Item label="White Battery" value="White Battery" />
               <Picker.Item
@@ -292,12 +310,20 @@ const PickupScreen = ({route, navigation}) => {
           <View style={styles.pickupBtn}>
             <TouchableOpacity
               onPress={() => {
-                if (address.length != 0) {
-                  handlePickeup();
-                  //printAll();
-                } else {
-                  Alert.alert('Enter Valid Address');
+                if(subCategory!="Choose Sub-Category")
+                {
+                  if (address.length != 0) {
+                    handlePickeup();
+                    //printAll();
+                  } else {
+                    Alert.alert('Enter Valid Address');
+                  }
                 }
+                else
+                {
+                  Alert.alert("Choose a Sub-Category");
+                }
+                
               }}>
               <Text
                 style={{
