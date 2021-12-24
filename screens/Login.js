@@ -140,7 +140,7 @@ const LoginScreen = ({navigation,route}) => {
             color: '#000000',
             fontStyle: 'italic',
           }}>
-          Welcome To TrashToCash
+          Welcome To Barter-Mate
         </Text>
         <TextInput
           onChangeText={tempEmail => {

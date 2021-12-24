@@ -23,7 +23,7 @@ const GuestPickupScreen = ({route, navigation}) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [landMark, setLandmark] = useState('');
-  const [pincode, setPincode] = useState('827013');
+  const [pincode, setPincode] = useState('201301');
   const [name, setName] = useState('');
 
   //setCategory(tempCategory);
@@ -311,6 +311,7 @@ const GuestPickupScreen = ({route, navigation}) => {
               color: '#758283',
               fontSize: 20,
               textAlign: 'center',
+              marginTop : 15,
             }}>
             Choose Pincode
           </Text>
@@ -326,8 +327,8 @@ const GuestPickupScreen = ({route, navigation}) => {
             onValueChange={itemValue => {
               setPincode(itemValue);
             }}>
-            <Picker.Item label="827013" value="827013" />
-            <Picker.Item label="827004" value="827004" />
+            <Picker.Item label="201301" value="201301" />
+            <Picker.Item label="201304" value="201304" />
           </Picker>
         </View>
 

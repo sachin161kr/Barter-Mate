@@ -18,7 +18,7 @@ import {
 import banner from "../assets/banner.jpg"
 
 const RegisterScreen = ({navigation,route}) => {
-  const [pincode, setSelectedPincode] = useState('827013');
+  const [pincode, setSelectedPincode] = useState('201301');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -194,8 +194,8 @@ const RegisterScreen = ({navigation,route}) => {
               onValueChange={itemValue => {
                 setSelectedPincode(itemValue);
               }}>
-              <Picker.Item label="827013" value="827013" />
-              <Picker.Item label="827004" value="827004" />
+              <Picker.Item label="201301" value="201301" />
+              <Picker.Item label="201304" value="201304" />
             </Picker>
           </View>
 

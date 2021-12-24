@@ -94,7 +94,7 @@ const PickupScreen = ({route, navigation}) => {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         setLoading(false);
-        Alert.alert('Pickup Scheduled Successfully');
+        Alert.alert('Pickup Scheduled , We will send our representatives soon. Thank You');
         navigation.navigate('Category Screen');
         // console.log(name);
         // console.log(email);
