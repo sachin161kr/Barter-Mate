@@ -15,7 +15,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import sweeper from '../assets/sweeper.png';
+
 
 const GuestPickupScreen = ({route, navigation}) => {
   const [category, setCategory] = useState(`${route.params.itemSelected}`);
@@ -85,7 +85,7 @@ const GuestPickupScreen = ({route, navigation}) => {
   return (
     <>
       <ScrollView>
-        <Image
+        {/* <Image
           style={{
             height: 180,
             width: 180,
@@ -94,7 +94,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             alignSelf: 'center',
           }}
           source={sweeper}
-        />
+        /> */}
         <Text
           style={{
             fontSize: 25,
@@ -102,6 +102,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             color: '#000000',
             fontWeight: 'bold',
             fontStyle: 'italic',
+            marginTop : 20,
           }}>
           Hello! {name}
         </Text>
@@ -118,10 +119,10 @@ const GuestPickupScreen = ({route, navigation}) => {
           </Text>
           <Picker
             style={{
-              color: '#1FAA59',
+              color: '#000000',
             }}
-            dropdownIconColor="#1FAA59"
-            dropdownIconRippleColor="#1FAA59"
+            dropdownIconColor="#000000"
+            dropdownIconRippleColor="#000000"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={category}
@@ -152,10 +153,10 @@ const GuestPickupScreen = ({route, navigation}) => {
              category=="Glass"?
              <Picker
               style={{
-                color: '#1FAA59',
+                color: '#000000',
               }}
-              dropdownIconColor="#1FAA59"
-              dropdownIconRippleColor="#1FAA59"
+              dropdownIconColor="#000000"
+              dropdownIconRippleColor="#000000"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -169,10 +170,10 @@ const GuestPickupScreen = ({route, navigation}) => {
               category=="Metal"?
             <Picker
               style={{
-                color: '#1FAA59',
+                color: '#000000',
               }}
-              dropdownIconColor="#1FAA59"
-              dropdownIconRippleColor="#1FAA59"
+              dropdownIconColor="#000000"
+              dropdownIconRippleColor="#000000"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -194,10 +195,10 @@ const GuestPickupScreen = ({route, navigation}) => {
              category=="Paper"?
              <Picker
               style={{
-                color: '#1FAA59',
+                color: '#000000',
               }}
-              dropdownIconColor="#1FAA59"
-              dropdownIconRippleColor="#1FAA59"
+              dropdownIconColor="#000000"
+              dropdownIconRippleColor="#000000"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -217,10 +218,10 @@ const GuestPickupScreen = ({route, navigation}) => {
             category=="Plastic"?
             <Picker
               style={{
-                color: '#1FAA59',
+                color: '#000000',
               }}
-              dropdownIconColor="#1FAA59"
-              dropdownIconRippleColor="#1FAA59"
+              dropdownIconColor="#000000"
+              dropdownIconRippleColor="#000000"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -233,10 +234,10 @@ const GuestPickupScreen = ({route, navigation}) => {
             </Picker> :
             <Picker
             style={{
-              color: '#1FAA59',
+              color: '#000000',
             }}
-            dropdownIconColor="#1FAA59"
-            dropdownIconRippleColor="#1FAA59"
+            dropdownIconColor="#000000"
+            dropdownIconRippleColor="#000000"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={subCategory}
@@ -317,10 +318,10 @@ const GuestPickupScreen = ({route, navigation}) => {
           </Text>
           <Picker
             style={{
-              color: '#1FAA59',
+              color: '#000000',
             }}
-            dropdownIconColor="#1FAA59"
-            dropdownIconRippleColor="#1FAA59"
+            dropdownIconColor="#000000"
+            dropdownIconRippleColor="#000000"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={pincode}
@@ -366,6 +367,7 @@ const GuestPickupScreen = ({route, navigation}) => {
           </View>
         ) : (
           <ActivityIndicator
+          color="#000000"
             size={'large'}
             style={{
               marginTop: 30,
@@ -382,7 +384,7 @@ export default GuestPickupScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
-    borderColor: '#1FAA59',
+    borderColor: '#758283',
     borderRadius: 10,
     borderWidth: 1,
     marginTop: 10,

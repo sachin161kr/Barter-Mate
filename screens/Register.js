@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 
 
-import banner from "../assets/banner.jpg"
+
 
 const RegisterScreen = ({navigation,route}) => {
   const [pincode, setSelectedPincode] = useState('201301');
@@ -96,20 +96,19 @@ const RegisterScreen = ({navigation,route}) => {
   return (
     <>
       <ScrollView>
-      <Image
-            source={banner}
-            style = {
-              {
-                 height : 200,
-                 width : 400,
-                 alignSelf : "center",
-                 marginTop : 10,
-                 resizeMode : "cover",
-                 marginBottom : 10,
-                 
-              }
-            }
-        />
+      <Text 
+         style = {
+           {
+            fontSize: 30,
+            textAlign: 'left',
+            marginTop: 10,
+            color: '#758283',
+            marginLeft: 30,
+           }
+         }
+      >
+        Sign Up
+      </Text>
         <View
           style={{
             marginTop: 10,
@@ -184,10 +183,10 @@ const RegisterScreen = ({navigation,route}) => {
             </Text>
             <Picker
               style={{
-                color: '#1FAA59',
+                color: '#758283',
               }}
-              dropdownIconColor="#1FAA59"
-              dropdownIconRippleColor="#1FAA59"
+              dropdownIconColor="#758283"
+              dropdownIconRippleColor="#758283"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={pincode}
@@ -251,22 +250,23 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
-    borderColor: '#1FAA59',
-    borderRadius: 10,
+    borderColor: '#c4c4c4',
     borderWidth: 1,
+    borderRadius: 25,
     marginTop: 15,
     marginLeft: 20,
+    padding : 15,
     marginRight: 20,
     color: '#000000',
   },
 
   registerBtn: {
-    marginTop: 10,
-    backgroundColor: '#1FAA59',
-    //backgroundColor: 'red',
-    marginLeft: 100,
-    marginRight: 100,
-    marginBottom: 50,
+    marginTop: 15,
+    backgroundColor: '#c4c4c4',
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 25,
+    marginBottom : 20,
     //borderRadius: 10,
   },
 

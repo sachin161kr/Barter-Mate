@@ -121,26 +121,17 @@ const LoginScreen = ({navigation,route}) => {
         style={{
           marginTop: 20,
         }}>
-        <Image
-          source={logo}
-          style={{
-            alignSelf: 'center',
-            resizeMode : "contain",
-            height : 150,
-            width : 150,
-          }}
-        />
         <Text
           style={{
-            fontSize: 25,
-            textAlign: 'center',
-            fontWeight: 'bold',
+            fontSize: 30,
+            textAlign: 'left',
+            
             marginTop: 30,
             marginBottom: 30,
-            color: '#000000',
-            fontStyle: 'italic',
+            color: '#758283',
+            marginLeft: 30,
           }}>
-          Welcome To Barter-Mate
+          Login
         </Text>
         <TextInput
           onChangeText={tempEmail => {
@@ -179,6 +170,7 @@ const LoginScreen = ({navigation,route}) => {
           </View>
         ) : (
           <ActivityIndicator
+            color="#000000"
             size={'large'}
             style={{
               marginTop: 30,
@@ -190,9 +182,9 @@ const LoginScreen = ({navigation,route}) => {
             fontSize: 18,
             alignSelf: 'center',
             marginTop: 70,
-            color: '#758283',
+            
           }}>
-          Don't Have An Account?
+          Not A Member Yet?
         </Text>
 
         <View style={styles.registerBtn}>
@@ -208,7 +200,7 @@ const LoginScreen = ({navigation,route}) => {
               style={{
                 fontSize: 20,
                 alignSelf: 'center',
-                color: '#000000',
+                
                 margin: 5,
                 paddingBottom: 5,
               }}>
@@ -226,28 +218,32 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
-    borderColor: '#1FAA59',
+    borderColor: '#c4c4c4',
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 25,
     marginTop: 15,
     marginLeft: 20,
+    padding : 15,
     marginRight: 20,
     color: '#000000',
   },
 
   loginBtn: {
     marginTop: 25,
-    backgroundColor: '#1FAA59',
-    marginLeft: 90,
-    marginRight: 90,
-    borderRadius: 15,
+    backgroundColor: '#c4c4c4',
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 25,
   },
 
   registerBtn: {
     marginTop: 10,
-    borderColor: '#1FAA59',
-    borderWidth: 1,
-    marginLeft: 100,
-    marginRight: 100,
+    marginLeft: 20,
+    padding : 8,
+    borderWidth : 1,
+    borderColor : "#c4c4c4",
+    marginRight: 20,
+    borderRadius: 25,
+    
   },
 });

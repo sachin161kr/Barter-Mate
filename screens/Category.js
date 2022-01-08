@@ -10,6 +10,10 @@ import {
   StatusBar,
 } from 'react-native';
 
+import MyBottomSheetGuest from './bottomSheetGuest';
+import RBSheet from 'react-native-raw-bottom-sheet';
+
+
 
 
 
@@ -19,6 +23,8 @@ import plasticIcon from "../assets/plasticIcon.png";
 import metalIcon from "../assets/metalIcon.png";
 import paperIcon from "../assets/paperIcon.png";
 import electronicIcon from "../assets/electronicIcon.png"
+import sweeper from '../assets/sweeper.png';
+import banner from '../assets/banner.jpg';
 const categoryList = [
   {
     key: 0,
@@ -81,31 +87,75 @@ const CategoryScreen = ({navigation}) => {
   return (
     <>
       <ScrollView style={styles.container}>
-        <StatusBar backgroundColor="#1FAA59" />
+         
+        
+        <ScrollView  
+           horizontal = {true}
+           pagingEnabled = {true}
+           showsHorizontalScrollIndicator = {true}
+        >
+        <View style={
+          {
+             flex : 1,
+             flexDirection : 'row',
+             
+          }
+        }>
         <Image
             source={people}
             style = {
               {
-                 height : 200,
-                 width : 400,
+                 height : 250,
+                 width : 300,
                  marginTop : 10,
+                 marginRight : 20,
+                 marginLeft : 20,
                  alignSelf : "center",
                  resizeMode : "cover",
                  
               }
             }
         />
+        <Image
+            source={banner}
+            style = {
+              {
+                height : 250,
+                width : 300,
+                 marginTop : 10,
+                 marginRight : 20,
+                 alignSelf : "center",
+                 resizeMode : "cover",
+                 
+              }
+            }
+        />
+        </View>
+        </ScrollView>
+        <Text 
+           style={
+             {
+               fontSize : 30,
+               marginTop : 20,
+               marginLeft : 30,
+              fontWeight : 'bold'
+             }
+           }
+        >Categories</Text>
         <View style={styles.gridContainer}>
           {categoryList.map(key => (
             <TouchableOpacity
               key={key.key}
               onPress={() => {
+
+                
                 //console.log(`${key.text} Clicked`);
                 navigation.navigate('SubCategory Screen', {
                   text: `${key.text}`,
                   imageSelected: key.image,
                   description: key.description,
                 });
+
               }}>
               <View style={styles.viewGroup}>
                 <Image source={key.image} style={styles.image} />

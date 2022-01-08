@@ -114,7 +114,7 @@ const PickupScreen = ({route, navigation}) => {
   return (
     <>
       <ScrollView>
-        <Image
+        {/* <Image
           style={{
             height: 180,
             width: 180,
@@ -123,12 +123,12 @@ const PickupScreen = ({route, navigation}) => {
             alignSelf: 'center',
           }}
           source={sweeper}
-        />
+        /> */}
         <Text
           style={{
             fontSize: 25,
             alignSelf: 'center',
-            marginTop: 10,
+            marginTop: 20,
             color: '#000000',
             fontWeight: 'bold',
             fontStyle: 'italic',
@@ -147,10 +147,10 @@ const PickupScreen = ({route, navigation}) => {
           </Text>
           <Picker
             style={{
-              color: '#1FAA59',
+              color: '#000000',
             }}
-            dropdownIconColor="#1FAA59"
-            dropdownIconRippleColor="#1FAA59"
+            dropdownIconColor="#000000"
+            dropdownIconRippleColor="#000000"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={category}
@@ -182,10 +182,10 @@ const PickupScreen = ({route, navigation}) => {
              category=="Glass"?
              <Picker
               style={{
-                color: '#1FAA59',
+                color: '#000000',
               }}
-              dropdownIconColor="#1FAA59"
-              dropdownIconRippleColor="#1FAA59"
+              dropdownIconColor="#000000"
+              dropdownIconRippleColor="#000000"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -200,10 +200,10 @@ const PickupScreen = ({route, navigation}) => {
               category=="Metal"?
             <Picker
               style={{
-                color: '#1FAA59',
+                color: '#000000',
               }}
-              dropdownIconColor="#1FAA59"
-              dropdownIconRippleColor="#1FAA59"
+              dropdownIconColor="#000000"
+              dropdownIconRippleColor="#000000"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -226,10 +226,10 @@ const PickupScreen = ({route, navigation}) => {
              category=="Paper"?
              <Picker
               style={{
-                color: '#1FAA59',
+                color: '#000000',
               }}
-              dropdownIconColor="#1FAA59"
-              dropdownIconRippleColor="#1FAA59"
+              dropdownIconColor="#000000"
+              dropdownIconRippleColor="#000000"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -250,10 +250,10 @@ const PickupScreen = ({route, navigation}) => {
             category=="Plastic"?
             <Picker
               style={{
-                color: '#1FAA59',
+                color: '#000000',
               }}
-              dropdownIconColor="#1FAA59"
-              dropdownIconRippleColor="#1FAA59"
+              dropdownIconColor="#000000"
+              dropdownIconRippleColor="#000000"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -267,10 +267,10 @@ const PickupScreen = ({route, navigation}) => {
             </Picker> :
             <Picker
             style={{
-              color: '#1FAA59',
+              color: '#000000',
             }}
-            dropdownIconColor="#1FAA59"
-            dropdownIconRippleColor="#1FAA59"
+            dropdownIconColor="#000000"
+            dropdownIconRippleColor="#000000"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={subCategory}
@@ -339,6 +339,7 @@ const PickupScreen = ({route, navigation}) => {
           </View>
         ) : (
           <ActivityIndicator
+          color="#000000"
             size={'large'}
             style={{
               marginTop: 30,
@@ -358,7 +359,7 @@ const PickupScreen = ({route, navigation}) => {
                 fontSize: 20,
                 textAlign: 'center',
                 marginTop: 30,
-                color: '#1FAA59',
+                color: '#000000',
                 alignSelf: 'center',
               }}>
               Logout
@@ -375,7 +376,7 @@ export default PickupScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
-    borderColor: '#1FAA59',
+    borderColor: '#758283',
     borderRadius: 10,
     borderWidth: 1,
     marginTop: 10,

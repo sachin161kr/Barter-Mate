@@ -28,7 +28,7 @@ const MyStack = () => {
             },
 
             headerStyle: {
-              backgroundColor: '#1FAA59',
+             
             },
           }}
         />
@@ -44,7 +44,7 @@ const MyStack = () => {
             },
 
             headerStyle: {
-              backgroundColor: '#1FAA59',
+              
             },
           }}
         />
@@ -59,7 +59,7 @@ const MyStack = () => {
             },
 
             headerStyle: {
-              backgroundColor: '#1FAA59',
+              
             },
           }}
         />
@@ -75,7 +75,7 @@ const MyStack = () => {
             },
 
             headerStyle: {
-              backgroundColor: '#1FAA59',
+              
             },
           }}
         />
@@ -91,7 +91,7 @@ const MyStack = () => {
             },
 
             headerStyle: {
-              backgroundColor: '#1FAA59',
+             
             },
           }}
         />
@@ -105,7 +105,7 @@ const MyStack = () => {
               fontWeight: 'bold',
             },
             headerStyle: {
-              backgroundColor: '#1FAA59',
+              
             },
             headerBackVisible : false,
             
@@ -125,7 +125,7 @@ const MyStack = () => {
             },
 
             headerStyle: {
-              backgroundColor: '#1FAA59',
+              
             },
           }}
         />
