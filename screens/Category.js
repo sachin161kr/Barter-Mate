@@ -33,7 +33,7 @@ const categoryList = [
     image: glassBottle,
     text: 'Glass',
     description:
-      'Glass is found in municipal solid waste (MSW), primarily in the form of containers such as beer and soft drink bottles; wine and liquor bottles; and bottles and jars for food, cosmetics and other products.',
+      'Glass is found in municipal solid waste (MSW), primarily in the form of containers such as beer and soft drink bottles; wine and liquor bottles, etc.',
   },
 
   {
@@ -49,7 +49,7 @@ const categoryList = [
     image: plasticIcon,
     text: 'Plastic',
     description:
-      'Plastic waste, or plastic pollution, is the accumulation of plastic objects (e.g.: plastic bottles and much more) in the Earth’s environment that adversely affects wildlife, wildlife habitat, and humans.',
+      'Plastic waste, or plastic pollution, is the accumulation of plastic objects in the Earth’s environment that adversely affects wildlife, wildlife habitat, and humans.',
   },
 
   {
@@ -57,7 +57,7 @@ const categoryList = [
     image: paperIcon,
     text: 'Paper',
     description:
-      'Post-consumer waste is material discarded after consumer use, such as old corrugated containers (OCC), old magazines, and newspapers. Paper suitable for recycling is called scrap paper, often used to produce moulded pulp packaging.',
+      'Paper suitable for recycling is called scrap paper, often used to produce moulded pulp packaging.',
   },
 
   {
@@ -65,7 +65,7 @@ const categoryList = [
     image: electronicIcon,
     text: 'Electronics',
     description:
-      'E-waste is electronic products that are unwanted, not working, and nearing or at the end of their “useful life.” Computers, televisions, VCRs, stereos, copiers, and fax machines are everyday electronic products.',
+      'E-waste is electronic products that are unwanted, not working, and nearing or at the end of their “useful life.” Computers, televisions, VCRs, stereos, etc',
   },
 
   // {
@@ -173,6 +173,7 @@ const CategoryScreen = ({navigation}) => {
             marginTop: 20,
             marginLeft: 30,
             fontWeight: 'bold',
+            color : '#758283'
           }}>
           Categories
         </Text>

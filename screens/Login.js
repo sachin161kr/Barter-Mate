@@ -183,6 +183,7 @@ const LoginScreen = ({navigation,route}) => {
             fontSize: 18,
             alignSelf: 'center',
             marginTop: 70,
+            color : "#758283",
             
           }}>
           Not A Member Yet?
@@ -201,7 +202,7 @@ const LoginScreen = ({navigation,route}) => {
               style={{
                 fontSize: 20,
                 alignSelf: 'center',
-                
+                color : "#758283",
                 margin: 5,
                 paddingBottom: 5,
               }}>

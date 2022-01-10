@@ -1,7 +1,11 @@
 import React from 'react';
-
+import {
+  Image,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import logo from './assets/logo.png';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,22 +24,78 @@ const MyStack = () => {
         <Stack.Screen
           name="Category Screen"
           component={CategoryScreen}
-          options={{
+          options={
+            {
             title: 'Choose A Category',
-          }}
+             header : ()=>{
+               return(
+                 <Image
+                   source = {logo}
+                   
+                   style = {
+                     {  
+                        marginTop : 10,
+                        marginBottom : 10,
+                        height : 55,
+                        width : 55,
+                        alignSelf : 'center',
+                      
+                        
+                     }
+                   }
+                 />
+               )
+             }
+           }
+        }
         />
         <Stack.Screen
           name="Guest Screen"
           component={GuestScreen}
           options={{
             title: 'Category Description',
-          }}
+            header : ()=>{
+              return(
+                <Image
+                  source = {logo}
+                  style = {
+                    {  
+                      marginTop : 10,
+                      marginBottom : 10,
+                      height : 55,
+                      width : 55,
+                      alignSelf : 'center',
+                    }
+                  }
+                />
+              )
+            }
+          }
+           
+        }
         />
         <Stack.Screen
           name="Login Screen"
           component={LoginScreen}
           options={{
             title: 'Login',
+            header : ()=>{
+              return(
+                <Image
+                  source = {logo}
+                  style = {
+                    {  
+                      marginTop : 10,
+                      marginBottom : 10,
+                      height : 55,
+                      width : 55,
+                      alignSelf : 'center',
+                    }
+                  }
+                />
+              )
+            }
+          
           }}
         />
         <Stack.Screen
@@ -43,6 +103,23 @@ const MyStack = () => {
           component={RegisterScreen}
           options={{
             title: 'Register',
+            header : ()=>{
+              return(
+                <Image
+                  source = {logo}
+                  style = {
+                    {  
+                      marginTop : 10,
+                      marginBottom : 10,
+                      height : 55,
+                      width : 55,
+                      alignSelf : 'center',
+                    }
+                  }
+                />
+              )
+            }
+          
           }}
         />
         <Stack.Screen
@@ -50,6 +127,23 @@ const MyStack = () => {
           component={SubCategoryScreen}
           options={{
             title: 'Select Sub-Category',
+            header : ()=>{
+              return(
+                <Image
+                  source = {logo}
+                  style = {
+                    {  
+                      marginTop : 10,
+                      marginBottom : 10,
+                      height : 55,
+                      width : 55,
+                      alignSelf : 'center',
+                    }
+                  }
+                />
+              )
+            }
+          
           }}
         />
         <Stack.Screen
@@ -58,6 +152,23 @@ const MyStack = () => {
           options={{
             title: 'Provide Pickup Location',
             headerBackVisible : false,
+            header : ()=>{
+              return(
+                <Image
+                  source = {logo}
+                  style = {
+                    {  
+                      marginTop : 10,
+                      marginBottom : 10,
+                      height : 55,
+                      width : 55,
+                      alignSelf : 'center',
+                    }
+                  }
+                />
+              )
+            }
+          
           }}
         />
         <Stack.Screen
@@ -65,6 +176,25 @@ const MyStack = () => {
           component={GuestPickupScreen}
           options={{
             title: 'Provide Pickup Location',
+            header : ()=>{
+              return(
+                <Image
+                  source = {logo}
+                  style = {
+                    {  
+                      marginTop : 10,
+                        marginBottom : 10,
+                        height : 55,
+                        width : 55,
+                        alignSelf : 'center',
+                       
+                       
+                    }
+                  }
+                />
+              )
+            }
+          
           }}
         />
       </Stack.Navigator>
