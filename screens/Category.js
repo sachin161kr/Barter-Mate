@@ -1,28 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Picker} from '@react-native-picker/picker';
 
 import {
   Text,
   StyleSheet,
   View,
+  TextInput,
+  Alert,
   Image,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicator,
   StatusBar,
 } from 'react-native';
 
-import MyBottomSheetGuest from './bottomSheetGuest';
-import RBSheet from 'react-native-raw-bottom-sheet';
+import {BottomSheet} from 'react-native-btr';
+import axios from 'axios';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-
-
-import people from "../assets/people.jpg"
-import glassBottle from "../assets/glassBottle.png";
-import plasticIcon from "../assets/plasticIcon.png";
-import metalIcon from "../assets/metalIcon.png";
-import paperIcon from "../assets/paperIcon.png";
-import electronicIcon from "../assets/electronicIcon.png"
+import people from '../assets/people.jpg';
+import glassBottle from '../assets/glassBottle.png';
+import plasticIcon from '../assets/plasticIcon.png';
+import metalIcon from '../assets/metalIcon.png';
+import paperIcon from '../assets/paperIcon.png';
+import electronicIcon from '../assets/electronicIcon.png';
 import sweeper from '../assets/sweeper.png';
 import banner from '../assets/banner.jpg';
 const categoryList = [
@@ -39,7 +41,7 @@ const categoryList = [
     image: metalIcon,
     text: 'Metal',
     description:
-      'Since the industrial revolution period has taken place, our consumption levels skyrocketed due to the mass production of goods and the resulting low unit price.The most consumed metal worldwide is aluminum, followed by copper, zinc, lead and nickel.',
+      'Since the industrial revolution period has taken place, our consumption levels skyrocketed due to the mass production of goods and the resulting low unit price.',
   },
 
   {
@@ -84,78 +86,110 @@ const categoryList = [
 ];
 
 const CategoryScreen = ({navigation}) => {
+  //const sheetRef = React.useRef(null);
+
+  const [visible, setVisible] = useState(false);
+  function toggle() {
+    setVisible(visible => !visible);
+  }
+
+  const [description,setDescription] = useState("");
+  const [itemSelected,setItem] = useState("");
+  const [subCategory, setSubCategory] = useState('Choose Sub-Category');
+
+  const [loginStatus, setLogin] = useState('');
+  const [username, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [landmark, setLandmark] = useState('');
+  const [pincode, setPincode] = useState('');
+  const [address, setAddress] = useState('');
+
+  const getUser = async () => {
+    var tempLoginStatus = await AsyncStorage.getItem('loginStatus');
+    var tempUsername = await AsyncStorage.getItem('User');
+    var tempAddress = await AsyncStorage.getItem('address');
+    var tempEmail = await AsyncStorage.getItem('email');
+    var tempPhone = await AsyncStorage.getItem('phone');
+    var tempLandmark = await AsyncStorage.getItem('landmark');
+    var tempPincode = await AsyncStorage.getItem('pincode');
+
+    setLogin(tempLoginStatus);
+    setName(tempUsername);
+    setAddress(tempAddress);
+    setEmail(tempEmail);
+    setPhone(tempPhone);
+    setLandmark(tempLandmark);
+    setPincode(tempPincode);
+  };
+
+  getUser();
+
+  const setUser = async () => {
+    await AsyncStorage.setItem('loginStatus', 'false');
+    await AsyncStorage.setItem('User', 'Guest');
+  };
+
   return (
     <>
       <ScrollView style={styles.container}>
-         
-        
-        <ScrollView  
-           horizontal = {true}
-           pagingEnabled = {true}
-           showsHorizontalScrollIndicator = {true}
-        >
-        <View style={
-          {
-             flex : 1,
-             flexDirection : 'row',
-             
-          }
-        }>
-        <Image
-            source={people}
-            style = {
-              {
-                 height : 250,
-                 width : 300,
-                 marginTop : 10,
-                 marginRight : 20,
-                 marginLeft : 20,
-                 alignSelf : "center",
-                 resizeMode : "cover",
-                 
-              }
-            }
-        />
-        <Image
-            source={banner}
-            style = {
-              {
-                height : 250,
-                width : 300,
-                 marginTop : 10,
-                 marginRight : 20,
-                 alignSelf : "center",
-                 resizeMode : "cover",
-                 
-              }
-            }
-        />
-        </View>
+        <ScrollView
+          horizontal={true}
+          pagingEnabled={true}
+          showsHorizontalScrollIndicator={true}>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+            }}>
+            <Image
+              source={people}
+              style={{
+                height: 250,
+                width: 300,
+                marginTop: 10,
+                marginRight: 20,
+                marginLeft: 20,
+                alignSelf: 'center',
+                resizeMode: 'cover',
+              }}
+            />
+            <Image
+              source={banner}
+              style={{
+                height: 250,
+                width: 300,
+                marginTop: 10,
+                marginRight: 20,
+                alignSelf: 'center',
+                resizeMode: 'cover',
+              }}
+            />
+          </View>
         </ScrollView>
-        <Text 
-           style={
-             {
-               fontSize : 30,
-               marginTop : 20,
-               marginLeft : 30,
-              fontWeight : 'bold'
-             }
-           }
-        >Categories</Text>
+        <Text
+          style={{
+            fontSize: 30,
+            marginTop: 20,
+            marginLeft: 30,
+            fontWeight: 'bold',
+          }}>
+          Categories
+        </Text>
         <View style={styles.gridContainer}>
           {categoryList.map(key => (
             <TouchableOpacity
               key={key.key}
               onPress={() => {
-
-                
-                //console.log(`${key.text} Clicked`);
-                navigation.navigate('SubCategory Screen', {
-                  text: `${key.text}`,
-                  imageSelected: key.image,
-                  description: key.description,
-                });
-
+                setItem(key.text);
+                setDescription(key.description);
+                toggle();
+                // console.log(`${key.text} Clicked`);
+                // navigation.navigate('SubCategory Screen', {
+                //   text: `${key.text}`,
+                //   imageSelected: key.image,
+                //   description: key.description,
+                // });
               }}>
               <View style={styles.viewGroup}>
                 <Image source={key.image} style={styles.image} />
@@ -165,7 +199,294 @@ const CategoryScreen = ({navigation}) => {
             </TouchableOpacity>
           ))}
         </View>
-        
+
+        <BottomSheet
+          visible={visible}
+          onBackButtonPress={toggle}
+
+          onBackdropPress={toggle}
+          >
+          <View style={styles.card}>
+            <Text
+              style={{
+                color: '#000000',
+                alignSelf: 'center',
+                fontSize: 25,
+                fontWeight: 'bold',
+                marginTop : 25,
+              }}>
+              {itemSelected}
+            </Text>
+            <Text
+              style={{
+                color: '#000000',
+                textAlign: 'center',
+                margin: 23,
+                fontSize: 18,
+                fontStyle: 'italic',
+                marginTop : 20,
+              }}>
+              {description}
+            </Text>
+            <View style={styles.pickerStyle}>
+          <Text
+            style={{
+              fontSize: 20,
+              textAlign: 'center',
+              color: '#758283',
+              //marginTop: 10,
+            }}>
+            Sub-Category Chosen
+          </Text>
+
+          {itemSelected == 'Glass' ? (
+            <Picker
+              style={{
+                color: '#758283',
+              }}
+              dropdownIconColor="#758283"
+              dropdownIconRippleColor="#758283"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={(itemValue) => {
+                setSubCategory(itemValue);
+              }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />  
+              <Picker.Item label="Bottles" value="Bottles" />
+              <Picker.Item label="Mirrors" value="Mirrors" />
+            </Picker>
+          ) : itemSelected == 'Metal' ? (
+            <Picker
+              style={{
+                color: '#758283',
+              }}
+              dropdownIconColor="#758283"
+              dropdownIconRippleColor="#758283"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={(itemValue) => {
+                setSubCategory(itemValue);
+              }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
+              <Picker.Item label="Steel" value="Steel" />
+              <Picker.Item label="Brass" value="Brass" />
+              <Picker.Item label="Motor" value="Motor" />
+              <Picker.Item label="Aluminium" value="Aluminium" />
+              <Picker.Item label="Copper" value="Copper" />
+              <Picker.Item label="Iron" value="Iron" />
+              <Picker.Item
+                label="Beer/Beverage Cans"
+                value="Beer/Beverage Cans"
+              />
+            </Picker>
+          ) : itemSelected == 'Paper' ? (
+            <Picker
+              style={{
+                color: '#758283',
+              }}
+              dropdownIconColor="#758283"
+              dropdownIconRippleColor="#758283"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={(itemValue) => {
+                setSubCategory(itemValue);
+              }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
+              <Picker.Item label="Mil Board" value="Mil Board" />
+              <Picker.Item label="Magazine" value="Magazine" />
+              <Picker.Item
+                label="Gatta/Corrugated Board"
+                value="Gatta/Corrugated Board"
+              />
+              <Picker.Item label="Newspaper" value="Newspaper" />
+              <Picker.Item label="Books" value="Books" />
+            </Picker>
+          ) : itemSelected == 'Plastic' ? (
+            <Picker
+              style={{
+                color: '#758283',
+              }}
+              dropdownIconColor="#758283"
+              dropdownIconRippleColor="#758283"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={(itemValue) => {
+                setSubCategory(itemValue);
+              }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
+              <Picker.Item label="Milk Pouch" value="Milk Pouch" />
+              <Picker.Item label="Plastic Bottles" value="Plastic Bottles" />
+            </Picker>
+          ) : (
+            <Picker
+              style={{
+                color: '#758283',
+              }}
+              dropdownIconColor="#758283"
+              dropdownIconRippleColor="#758283"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={(itemValue) => {
+                setSubCategory(itemValue);
+              }}>
+              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
+              <Picker.Item label="Black Battery" value="Black Battery" />
+              <Picker.Item label="White Battery" value="White Battery" />
+              <Picker.Item
+                label="Single-Door Fridge"
+                value="Single-Door Fridge"
+              />
+              <Picker.Item
+                label="Double-Door Fridge"
+                value="Double-Door Fridge"
+              />
+              <Picker.Item label="Air Conditioner" value="Air Conditioner" />
+              <Picker.Item label="Washing Machine" value="Washing Machine" />
+            </Picker>
+          )}
+        </View>
+        <View 
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent : 'space-evenly',
+              marginTop : 5,
+            }}
+        >
+        <View style={styles.loginBtn}>
+          <TouchableOpacity
+            onPress={() => {
+              if(subCategory!="Choose Sub-Category")
+              { 
+                toggle();
+                if (loginStatus == 'true') {
+
+                  
+                  navigation.navigate('Pickup Screen', {
+                    name: `${username}`,
+                    itemSelected: `${itemSelected}`,
+                    subCategory : `${subCategory}`,
+                    address: `${address}`,
+                    email: `${email}`,
+                    phone: `${phone}`,
+                    landmark: `${landmark}`,
+                    pincode: `${pincode}`,
+                  });
+                } 
+                else {
+                 
+                  navigation.navigate('Login Screen', {
+                    itemSelected: `${itemSelected}`,
+                    subCategory : `${subCategory}`,
+                  });
+                }
+              }
+              else
+              { 
+                
+                Alert.alert("Choose a Sub-Category");
+              }
+              
+            }}
+            >
+            {loginStatus == 'true' ? (
+                <Text
+                style={{
+                  fontSize: 27,
+                  padding : 10,
+                  alignSelf: 'center',
+                  color: '#FFFFFF',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  backgroundColor: '#c4c4c4',
+                  borderRadius: 25,
+                }}>
+                Login As {username}
+              </Text>
+              
+              
+            ) : (
+              <Text
+                style={{
+                  fontSize: 27,
+                  alignSelf: 'center',
+                  color: '#FFFFFF',
+                  backgroundColor: '#c4c4c4',
+                  textAlign : "center",
+                  margin : 10,
+                  padding : 10,
+                  borderRadius : 25,
+                  paddingRight : 43,
+                  paddingLeft : 43,
+                }}>
+                Login
+              </Text>
+            )}
+          </TouchableOpacity>
+        </View>
+
+        {loginStatus == 'true' ? (
+          <>
+          </>
+        ) : (
+          <View style={styles.guestRegister}>
+            <TouchableOpacity
+              onPress={() => {
+                toggle();
+                navigation.navigate('Guest Pickup Screen', {
+                  itemSelected: `${itemSelected}`,
+                  subCategory : `${subCategory}`,
+                });
+              }}
+              >
+              <Text
+                style={{
+                  fontSize: 25,
+                  alignSelf: 'center',
+                  color: '#5E5E5E',
+                  borderWidth : 1,
+                  margin : 10,
+                  padding : 10,
+                  borderRadius : 25,
+                }}>
+                Guest User
+              </Text>
+            </TouchableOpacity>
+          </View>
+          )}
+
+        </View>   
+        {
+           loginStatus=='true'?
+           <TouchableOpacity
+              onPress={()=>{
+               
+                setUser();
+                toggle();
+                Alert.alert('You are logged out!');
+
+              }}
+           >
+              <Text
+                 style={
+                   {
+                     fontSize : 20,
+                     alignSelf : 'center',
+                     marginTop : 5,
+                     marginBottom : 24, 
+                   }
+                 }
+              >Logout</Text>
+              </TouchableOpacity> : 
+              <></>
+        }
+          </View>
+        </BottomSheet>
       </ScrollView>
     </>
   );
@@ -183,16 +504,32 @@ const styles = StyleSheet.create({
     margin: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: "space-around",
+    justifyContent: 'space-around',
+  },
+
+  pickerStyle: {
+    marginLeft: 70,
+    marginTop: 15,
+    marginRight: 70,
+  },
+
+  card: {
+    backgroundColor: '#fff',
+    height: 450,
+    //borderRadius : 40,
+    borderTopRightRadius : 40,
+    borderTopLeftRadius : 40,
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
 
   viewGroup: {
     borderWidth: 4,
     borderColor: '#758283',
     borderRadius: 20,
-    marginTop : 30,
-    padding : 10,
-    overflow : "hidden",
+    marginTop: 30,
+    padding: 10,
+    overflow: 'hidden',
 
     //margin: 10,
   },
@@ -201,10 +538,13 @@ const styles = StyleSheet.create({
     height: 80,
     width: 100,
     margin: 10,
-    overflow : "hidden",
+    overflow: 'hidden',
     //padding : 30,
   },
 
+ 
+
+  
   text: {
     textAlign: 'center',
     marginBottom: 4,

@@ -108,6 +108,7 @@ const LoginScreen = ({navigation,route}) => {
         })
         .catch(function (error) {
           console.log(error);
+          setLoading(false);
           Alert.alert('Login Failed');
         });
     } else {

@@ -385,7 +385,8 @@ const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
     borderColor: '#758283',
-    borderRadius: 10,
+    borderRadius: 25,
+    padding : 15,
     borderWidth: 1,
     marginTop: 10,
     marginLeft: 20,

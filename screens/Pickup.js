@@ -114,7 +114,7 @@ const PickupScreen = ({route, navigation}) => {
   return (
     <>
       <ScrollView>
-        {/* <Image
+        <Image
           style={{
             height: 180,
             width: 180,
@@ -123,12 +123,11 @@ const PickupScreen = ({route, navigation}) => {
             alignSelf: 'center',
           }}
           source={sweeper}
-        /> */}
+        />
         <Text
           style={{
             fontSize: 25,
             alignSelf: 'center',
-            marginTop: 20,
             color: '#000000',
             fontWeight: 'bold',
             fontStyle: 'italic',
@@ -377,7 +376,8 @@ const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
     borderColor: '#758283',
-    borderRadius: 10,
+    borderRadius: 25,
+    padding : 15,
     borderWidth: 1,
     marginTop: 10,
     marginLeft: 20,

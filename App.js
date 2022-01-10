@@ -22,14 +22,6 @@ const MyStack = () => {
           component={CategoryScreen}
           options={{
             title: 'Choose A Category',
-            headerTitleStyle: {
-              color: '#FFFFFF',
-              fontWeight: 'bold',
-            },
-
-            headerStyle: {
-             
-            },
           }}
         />
         <Stack.Screen
@@ -37,15 +29,6 @@ const MyStack = () => {
           component={GuestScreen}
           options={{
             title: 'Category Description',
-
-            headerTitleStyle: {
-              color: '#FFFFFF',
-              fontWeight: 'bold',
-            },
-
-            headerStyle: {
-              
-            },
           }}
         />
         <Stack.Screen
@@ -53,14 +36,6 @@ const MyStack = () => {
           component={LoginScreen}
           options={{
             title: 'Login',
-            headerTitleStyle: {
-              color: '#FFFFFF',
-              fontWeight: 'bold',
-            },
-
-            headerStyle: {
-              
-            },
           }}
         />
         <Stack.Screen
@@ -68,15 +43,6 @@ const MyStack = () => {
           component={RegisterScreen}
           options={{
             title: 'Register',
-
-            headerTitleStyle: {
-              color: '#FFFFFF',
-              fontWeight: 'bold',
-            },
-
-            headerStyle: {
-              
-            },
           }}
         />
         <Stack.Screen
@@ -84,15 +50,6 @@ const MyStack = () => {
           component={SubCategoryScreen}
           options={{
             title: 'Select Sub-Category',
-
-            headerTitleStyle: {
-              color: '#FFFFFF',
-              fontWeight: 'bold',
-            },
-
-            headerStyle: {
-             
-            },
           }}
         />
         <Stack.Screen
@@ -100,18 +57,7 @@ const MyStack = () => {
           component={PickupScreen}
           options={{
             title: 'Provide Pickup Location',
-            headerTitleStyle: {
-              color: '#FFFFFF',
-              fontWeight: 'bold',
-            },
-            headerStyle: {
-              
-            },
             headerBackVisible : false,
-            
-            
-            
-            
           }}
         />
         <Stack.Screen
@@ -119,14 +65,6 @@ const MyStack = () => {
           component={GuestPickupScreen}
           options={{
             title: 'Provide Pickup Location',
-            headerTitleStyle: {
-              color: '#FFFFFF',
-              fontWeight: 'bold',
-            },
-
-            headerStyle: {
-              
-            },
           }}
         />
       </Stack.Navigator>
