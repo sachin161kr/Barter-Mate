@@ -357,7 +357,7 @@ const PickupScreen = ({route, navigation}) => {
               style={{
                 fontSize: 20,
                 textAlign: 'center',
-                marginTop: 30,
+                marginTop: 10,
                 color: '#000000',
                 alignSelf: 'center',
               }}>
@@ -388,8 +388,10 @@ const styles = StyleSheet.create({
   pickupBtn: {
     marginTop: 25,
     backgroundColor: 'red',
-    marginLeft: 90,
-    marginRight: 90,
+    marginLeft: 60,
+    marginRight: 60,
+    borderRadius : 20,
+    padding : 6,
   },
 
   pickerStyle: {

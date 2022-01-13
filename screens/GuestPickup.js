@@ -397,9 +397,12 @@ const styles = StyleSheet.create({
   pickupBtn: {
     marginTop: 25,
     backgroundColor: 'red',
-    marginLeft: 90,
-    marginRight: 90,
+    marginLeft: 60,
+    marginRight: 60,
+    padding : 6,
     marginBottom: 30,
+    borderRadius : 20,
+    
   },
 
   pickerStyle: {

@@ -214,7 +214,7 @@ const CategoryScreen = ({navigation}) => {
                 alignSelf: 'center',
                 fontSize: 25,
                 fontWeight: 'bold',
-                marginTop : 25,
+                marginTop : 40,
               }}>
               {itemSelected}
             </Text>
@@ -225,12 +225,12 @@ const CategoryScreen = ({navigation}) => {
                 margin: 23,
                 fontSize: 18,
                 fontStyle: 'italic',
-                marginTop : 20,
+                marginTop : 40,
               }}>
               {description}
             </Text>
             <View style={styles.pickerStyle}>
-          <Text
+          {/* <Text
             style={{
               fontSize: 20,
               textAlign: 'center',
@@ -238,7 +238,7 @@ const CategoryScreen = ({navigation}) => {
               //marginTop: 10,
             }}>
             Sub-Category Chosen
-          </Text>
+          </Text> */}
 
           {itemSelected == 'Glass' ? (
             <Picker
@@ -400,6 +400,7 @@ const CategoryScreen = ({navigation}) => {
                 style={{
                   fontSize: 27,
                   padding : 10,
+                  marginTop : 12,
                   alignSelf: 'center',
                   color: '#FFFFFF',
                   justifyContent: 'center',
@@ -414,16 +415,18 @@ const CategoryScreen = ({navigation}) => {
             ) : (
               <Text
                 style={{
-                  fontSize: 27,
+                  fontSize: 25,
                   alignSelf: 'center',
                   color: '#FFFFFF',
                   backgroundColor: '#c4c4c4',
                   textAlign : "center",
                   margin : 10,
-                  padding : 10,
-                  borderRadius : 25,
-                  paddingRight : 43,
-                  paddingLeft : 43,
+                  paddingTop : 7,
+                  paddingBottom : 13,
+                  borderRadius : 30,
+                  paddingRight : 50,
+                  paddingLeft : 50,
+                  
                 }}>
                 Login
               </Text>
@@ -447,13 +450,15 @@ const CategoryScreen = ({navigation}) => {
               >
               <Text
                 style={{
-                  fontSize: 25,
+                  fontSize: 22,
                   alignSelf: 'center',
                   color: '#5E5E5E',
                   borderWidth : 1,
                   margin : 10,
                   padding : 10,
                   borderRadius : 25,
+                  paddingLeft : 25,
+                  paddingRight : 25,                
                 }}>
                 Guest User
               </Text>
@@ -512,6 +517,10 @@ const styles = StyleSheet.create({
     marginLeft: 70,
     marginTop: 15,
     marginRight: 70,
+    borderWidth : 1,
+    borderRadius : 25,
+    marginLeft : 25,
+    marginRight : 25,
   },
 
   card: {
