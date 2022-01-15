@@ -49,7 +49,7 @@ const categoryList = [
     image: plasticIcon,
     text: 'Plastic',
     description:
-      'Plastic waste, or plastic pollution, is the accumulation of plastic objects in the Earth’s environment that adversely affects wildlife, wildlife habitat, and humans.',
+      'Plastic waste is the accumulation of plastic objects in the Earth’s environment that adversely affects wildlife, wildlife habitat, and humans.',
   },
 
   {
@@ -65,7 +65,7 @@ const categoryList = [
     image: electronicIcon,
     text: 'Electronics',
     description:
-      'E-waste is electronic products that are unwanted, not working, and nearing or at the end of their “useful life.” Computers, televisions, VCRs, stereos, etc',
+      'E-waste is electronic products that are unwanted and nearing or at the end of their “useful life.” Computers, televisions, VCRs, stereos, etc',
   },
 
   // {
@@ -90,12 +90,13 @@ const CategoryScreen = ({navigation}) => {
 
   const [visible, setVisible] = useState(false);
   function toggle() {
-    setVisible(visible => !visible);
+    setVisible(visible => !visible);  
   }
 
   const [description,setDescription] = useState("");
   const [itemSelected,setItem] = useState("");
   const [subCategory, setSubCategory] = useState('Choose Sub-Category');
+  
 
   const [loginStatus, setLogin] = useState('');
   const [username, setName] = useState('');
@@ -185,6 +186,7 @@ const CategoryScreen = ({navigation}) => {
                 setItem(key.text);
                 setDescription(key.description);
                 toggle();
+                setSubCategory('Choose Sub-Category');
                 // console.log(`${key.text} Clicked`);
                 // navigation.navigate('SubCategory Screen', {
                 //   text: `${key.text}`,
@@ -441,12 +443,22 @@ const CategoryScreen = ({navigation}) => {
           <View style={styles.guestRegister}>
             <TouchableOpacity
               onPress={() => {
-                toggle();
-                navigation.navigate('Guest Pickup Screen', {
-                  itemSelected: `${itemSelected}`,
-                  subCategory : `${subCategory}`,
-                });
-              }}
+
+                if(subCategory!="Choose Sub-Category")
+                {
+                  toggle();
+                  navigation.navigate('Guest Pickup Screen', {
+                    itemSelected: `${itemSelected}`,
+                    subCategory : `${subCategory}`,
+                  });
+                }
+                else
+                {
+                  Alert.alert("Choose a Sub-Category");
+                }
+                
+              }
+            }
               >
               <Text
                 style={{
@@ -535,7 +547,7 @@ const styles = StyleSheet.create({
 
   viewGroup: {
     borderWidth: 4,
-    borderColor: '#758283',
+    borderColor: '#CAD5E2',
     borderRadius: 20,
     marginTop: 30,
     padding: 10,

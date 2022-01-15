@@ -357,7 +357,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 style={{
                   fontSize: 20,
                   alignSelf: 'center',
-                  color: '#FFFFFF',
+                  color: '#000000',
                   margin: 5,
                   paddingBottom: 5,
                 }}>
@@ -396,12 +396,13 @@ const styles = StyleSheet.create({
 
   pickupBtn: {
     marginTop: 25,
-    backgroundColor: 'red',
+    borderWidth : 2,
+    borderColor : '#f56f67',
     marginLeft: 60,
     marginRight: 60,
     padding : 6,
     marginBottom: 30,
-    borderRadius : 20,
+    borderRadius : 25,
     
   },
 
