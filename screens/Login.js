@@ -122,7 +122,8 @@ const LoginScreen = ({navigation,route}) => {
     <>
       <ScrollView
         style={{
-          marginTop: 20,
+          //marginTop: 20,
+          backgroundColor : "#FFFFFF"
         }}>
         <Text
           style={{
@@ -131,7 +132,7 @@ const LoginScreen = ({navigation,route}) => {
             
             marginTop: 30,
             marginBottom: 30,
-            color: '#A363A9',
+            color: '#000000',
             marginLeft: 30,
           }}>
           Login

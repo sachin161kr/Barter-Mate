@@ -113,7 +113,13 @@ const PickupScreen = ({route, navigation}) => {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView
+         style = {
+           {
+             backgroundColor : "#FFFFFF"
+           }
+         }
+      >
         <Image
           style={{
             height: 180,

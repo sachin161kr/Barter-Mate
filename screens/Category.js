@@ -441,6 +441,9 @@ const CategoryScreen = ({navigation}) => {
                    }
                    start={{x: 0, y: 0}} 
                    end={{x: 1, y: 0}}
+
+
+                   
                 >
                 <Text
                 style={{
@@ -548,6 +551,7 @@ export default CategoryScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor : "#FFFFFF",
   },
 
   gridContainer: {
@@ -587,6 +591,7 @@ const styles = StyleSheet.create({
     padding: 10,
     overflow: 'hidden',
     elevation : 3,
+    marginBottom : 20,
 
 
   },

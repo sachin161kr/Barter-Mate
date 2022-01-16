@@ -97,14 +97,20 @@ const RegisterScreen = ({navigation,route}) => {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView  
+         style = {
+           {
+             backgroundColor : "#FFFFFF"
+           }
+         }
+      >
       <Text 
          style = {
            {
             fontSize: 30,
             textAlign: 'left',
             marginTop: 10,
-            color: '#A363A9',
+            color: '#000000',
             marginLeft: 30,
            }
          }

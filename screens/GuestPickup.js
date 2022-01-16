@@ -17,6 +17,8 @@ import {
   ScrollView,
 } from 'react-native';
 
+import sweeper from "../assets/sweeper.png";
+
 
 
 const GuestPickupScreen = ({route, navigation}) => {
@@ -86,17 +88,24 @@ const GuestPickupScreen = ({route, navigation}) => {
 
   return (
     <>
-      <ScrollView>
-        {/* <Image
+      <ScrollView
+         
+         style = {
+           {
+            backgroundColor : "#FFFFFF"
+           }
+         }
+      
+       >
+        <Image
           style={{
             height: 180,
             width: 180,
-            margin: 20,
-            marginTop: 10,
+            margintop: 20,
             alignSelf: 'center',
           }}
           source={sweeper}
-        /> */}
+        />
         <Text
           style={{
             fontSize: 25,
@@ -104,7 +113,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             color: '#000000',
             fontWeight: 'bold',
             fontStyle: 'italic',
-            marginTop : 20,
+            marginTop : 10,
           }}>
           Hello! {name}
         </Text>
