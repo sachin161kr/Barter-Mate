@@ -4,7 +4,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 //import { NavigationActions } from 'react-navigation';
 import { BackHandler } from 'react-native';
-
+import LinearGradient from 'react-native-linear-gradient';
 import {
   Text,
   StyleSheet,
@@ -136,20 +136,20 @@ const PickupScreen = ({route, navigation}) => {
         </Text>
 
         <View style={styles.pickerStyle}>
-          <Text
+          {/* <Text
             style={{
               fontSize: 20,
               textAlign: 'center',
               color: '#758283',
             }}>
             Category Chosen
-          </Text>
+          </Text> */}
           <Picker
             style={{
-              color: '#000000',
+              color: '#A363A9',
             }}
-            dropdownIconColor="#000000"
-            dropdownIconRippleColor="#000000"
+            dropdownIconColor="#A363A9"
+            dropdownIconRippleColor="#A363A9"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={category}
@@ -167,7 +167,7 @@ const PickupScreen = ({route, navigation}) => {
         </View>
 
         <View style={styles.pickerStyle}>
-          <Text
+          {/* <Text
             style={{
               fontSize: 20,
               textAlign: 'center',
@@ -175,16 +175,16 @@ const PickupScreen = ({route, navigation}) => {
               marginTop: 10,
             }}>
             Sub-Category Chosen
-          </Text>
+          </Text> */}
 
           {
              category=="Glass"?
              <Picker
               style={{
-                color: '#000000',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#000000"
-              dropdownIconRippleColor="#000000"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -199,10 +199,10 @@ const PickupScreen = ({route, navigation}) => {
               category=="Metal"?
             <Picker
               style={{
-                color: '#000000',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#000000"
-              dropdownIconRippleColor="#000000"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -225,10 +225,10 @@ const PickupScreen = ({route, navigation}) => {
              category=="Paper"?
              <Picker
               style={{
-                color: '#000000',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#000000"
-              dropdownIconRippleColor="#000000"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -249,10 +249,10 @@ const PickupScreen = ({route, navigation}) => {
             category=="Plastic"?
             <Picker
               style={{
-                color: '#000000',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#000000"
-              dropdownIconRippleColor="#000000"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -266,10 +266,10 @@ const PickupScreen = ({route, navigation}) => {
             </Picker> :
             <Picker
             style={{
-              color: '#000000',
+              color: '#A363A9',
             }}
-            dropdownIconColor="#000000"
-            dropdownIconRippleColor="#000000"
+            dropdownIconColor="#A363A9"
+            dropdownIconRippleColor="#A363A9"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={subCategory}
@@ -324,21 +324,35 @@ const PickupScreen = ({route, navigation}) => {
                 }
                 
               }}>
-              <Text
+              <LinearGradient colors={['#A363A9', '#FAB06D']}
+                   style = {
+                     {
+                      borderRadius: 25,
+                      //marginTop : 10,
+                                        
+                     }
+                   }
+                   start={{x: 0, y: 0}} 
+                   end={{x: 1, y: 0}}
+                >
+                   <Text
                 style={{
                   fontSize: 20,
                   alignSelf: 'center',
-                  color: '#000000',
+                  color: '#FFFFFF',
                   margin: 5,
-                  paddingBottom: 5,
+                  paddingTop : 10,
+                  paddingBottom: 15,
                 }}>
                 Send Pickup Request
               </Text>
+                  </LinearGradient>  
+             
             </TouchableOpacity>
           </View>
         ) : (
           <ActivityIndicator
-          color="#000000"
+          color="#A363A9"
             size={'large'}
             style={{
               marginTop: 30,
@@ -357,8 +371,9 @@ const PickupScreen = ({route, navigation}) => {
               style={{
                 fontSize: 20,
                 textAlign: 'center',
-                marginTop: 20,
-                color: '#000000',
+                marginTop: 10,
+                color: '#A363A9',
+                paddingBottom : 10,
                 alignSelf: 'center',
               }}>
               Logout
@@ -375,11 +390,11 @@ export default PickupScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
-    borderColor: '#758283',
+   // borderColor: '#A363A9',
     borderRadius: 25,
     padding : 15,
     borderWidth: 1,
-    marginTop: 10,
+    marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
     color: '#000000',
@@ -387,8 +402,9 @@ const styles = StyleSheet.create({
 
   pickupBtn: {
     marginTop: 25,
-    borderWidth : 2,
-    borderColor : '#f56f67',
+    //borderWidth : 2,
+    //borderColor : 'red',
+   
     marginLeft: 60,
     marginRight: 60,
     borderRadius : 25,
@@ -398,6 +414,10 @@ const styles = StyleSheet.create({
   pickerStyle: {
     marginLeft: 70,
     marginTop: 10,
+    borderColor : "#A363A9",
     marginRight: 70,
+    borderRadius : 25,
+    borderWidth : 1,
+
   },
 });

@@ -3,6 +3,8 @@ import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import LinearGradient from 'react-native-linear-gradient';
+
 import {
   Text,
   StyleSheet,
@@ -108,7 +110,7 @@ const GuestPickupScreen = ({route, navigation}) => {
         </Text>
 
         <View style={styles.pickerStyle}>
-          <Text
+          {/* <Text
             style={{
               fontSize: 20,
               textAlign: 'center',
@@ -116,20 +118,20 @@ const GuestPickupScreen = ({route, navigation}) => {
               marginTop: 10,
             }}>
             Category Chosen
-          </Text>
+          </Text> */}
           <Picker
             style={{
-              color: '#000000',
+              color: '#A363A9',
             }}
-            dropdownIconColor="#000000"
-            dropdownIconRippleColor="#000000"
+            dropdownIconColor="#A363A9"
+            dropdownIconRippleColor="#A363A9"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={category}
             onValueChange={itemValue => {
               setCategory(itemValue);
               setSubCategory('Choose Sub-Category');
-            }}>
+            }}>  
             <Picker.Item label="Glass" value="Glass" />
             <Picker.Item label="Metal" value="Metal" />
             <Picker.Item label="Plastic" value="Plastic" />
@@ -139,7 +141,7 @@ const GuestPickupScreen = ({route, navigation}) => {
         </View>
 
         <View style={styles.pickerStyle}>
-          <Text
+          {/* <Text
             style={{
               fontSize: 20,
               textAlign: 'center',
@@ -147,16 +149,16 @@ const GuestPickupScreen = ({route, navigation}) => {
               marginTop: 10,
             }}>
             Sub-Category Chosen
-          </Text>
+          </Text> */}
 
           {
              category=="Glass"?
              <Picker
               style={{
-                color: '#000000',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#000000"
-              dropdownIconRippleColor="#000000"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -170,10 +172,10 @@ const GuestPickupScreen = ({route, navigation}) => {
               category=="Metal"?
             <Picker
               style={{
-                color: '#000000',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#000000"
-              dropdownIconRippleColor="#000000"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -195,10 +197,10 @@ const GuestPickupScreen = ({route, navigation}) => {
              category=="Paper"?
              <Picker
               style={{
-                color: '#000000',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#000000"
-              dropdownIconRippleColor="#000000"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -218,10 +220,10 @@ const GuestPickupScreen = ({route, navigation}) => {
             category=="Plastic"?
             <Picker
               style={{
-                color: '#000000',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#000000"
-              dropdownIconRippleColor="#000000"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -234,10 +236,10 @@ const GuestPickupScreen = ({route, navigation}) => {
             </Picker> :
             <Picker
             style={{
-              color: '#000000',
+              color: '#A363A9',
             }}
-            dropdownIconColor="#000000"
-            dropdownIconRippleColor="#000000"
+            dropdownIconColor="#A363A9"
+            dropdownIconRippleColor="#A363A9"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={subCategory}
@@ -306,8 +308,18 @@ const GuestPickupScreen = ({route, navigation}) => {
           placeholder="Enter Landmark"
           placeholderTextColor="#758283"></TextInput>
 
-        <View style={styles.pickerStyle}>
-          <Text
+        <View style={
+          {
+            marginLeft: 70,
+    marginRight: 70,
+    borderColor : "#A363A9",
+    borderWidth : 1,
+    borderRadius : 25,
+    margin : 10,
+    marginTop : 25,
+          }
+        }>
+          {/* <Text
             style={{
               color: '#758283',
               fontSize: 20,
@@ -315,19 +327,20 @@ const GuestPickupScreen = ({route, navigation}) => {
               marginTop : 15,
             }}>
             Choose Pincode
-          </Text>
+          </Text> */}
           <Picker
             style={{
-              color: '#000000',
+              color: '#A363A9',
             }}
-            dropdownIconColor="#000000"
-            dropdownIconRippleColor="#000000"
+            dropdownIconColor="#A363A9"
+            dropdownIconRippleColor="#A363A9"
             onTouchCancel={true}
             mode="dropdown"
             selectedValue={pincode}
             onValueChange={itemValue => {
               setPincode(itemValue);
             }}>
+            <Picker.Item label="Choose Pincode" value="Choose Pincode" />  
             <Picker.Item label="201301" value="201301" />
             <Picker.Item label="201304" value="201304" />
           </Picker>
@@ -343,7 +356,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 // } else {
                 //   Alert.alert('Enter Valid Address');
                 // }
-                if(subCategory!="Choose Sub-Category")
+                if(subCategory!="Choose Sub-Category" && pincode!="Choose Pincode")
                 {
                   Alert.alert('Button Pressed');
                 }
@@ -353,16 +366,31 @@ const GuestPickupScreen = ({route, navigation}) => {
                 }
                 
               }}>
-              <Text
+              <LinearGradient colors={['#A363A9', '#FAB06D']}
+                   style = {
+                     {
+                      borderRadius: 25,
+                    
+                                        
+                     }
+                   }
+                   start={{x: 0, y: 0}} 
+                   end={{x: 1, y: 0}}
+                >
+                  <Text
                 style={{
                   fontSize: 20,
                   alignSelf: 'center',
-                  color: '#000000',
+                  color: '#FFFFFF',
                   margin: 5,
-                  paddingBottom: 5,
+                  paddingTop : 10,
+                 
+                  paddingBottom: 15,
                 }}>
                 Send Pickup Request
               </Text>
+                  </LinearGradient>  
+              
             </TouchableOpacity>
           </View>
         ) : (
@@ -395,11 +423,9 @@ const styles = StyleSheet.create({
   },
 
   pickupBtn: {
-    marginTop: 25,
-    borderWidth : 2,
-    borderColor : '#f56f67',
-    marginLeft: 60,
-    marginRight: 60,
+    marginTop: 5,
+    marginLeft: 30,
+    marginRight: 30,
     padding : 6,
     marginBottom: 30,
     borderRadius : 25,
@@ -409,5 +435,9 @@ const styles = StyleSheet.create({
   pickerStyle: {
     marginLeft: 70,
     marginRight: 70,
+    borderColor : "#A363A9",
+    borderWidth : 1,
+    borderRadius : 25,
+    margin : 10,
   },
 });

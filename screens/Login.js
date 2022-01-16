@@ -5,6 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { StackActions } from '@react-navigation/native';
 
+import LinearGradient from 'react-native-linear-gradient';
+
 import {
   Text,
   StyleSheet,
@@ -129,7 +131,7 @@ const LoginScreen = ({navigation,route}) => {
             
             marginTop: 30,
             marginBottom: 30,
-            color: '#758283',
+            color: '#A363A9',
             marginLeft: 30,
           }}>
           Login
@@ -157,6 +159,17 @@ const LoginScreen = ({navigation,route}) => {
               onPress={() => {
                 getCredentials();
               }}>
+              <LinearGradient colors={['#A363A9', '#FAB06D']}
+                   style = {
+                     {
+                      borderRadius: 25,
+                      //marginTop : 10,
+                                        
+                     }
+                   }
+                   start={{x: 0, y: 0}} 
+                   end={{x: 1, y: 0}}
+                >
               <Text
                 style={{
                   fontSize: 30,
@@ -167,11 +180,12 @@ const LoginScreen = ({navigation,route}) => {
                 }}>
                 Login
               </Text>
+              </LinearGradient>  
             </TouchableOpacity>
           </View>
         ) : (
           <ActivityIndicator
-            color="#000000"
+            color="#A363A9"
             size={'large'}
             style={{
               marginTop: 30,
@@ -202,7 +216,7 @@ const LoginScreen = ({navigation,route}) => {
               style={{
                 fontSize: 20,
                 alignSelf: 'center',
-                color : "#758283",
+                color : "#A363A9",
                 margin: 5,
                 paddingBottom: 5,
               }}>
@@ -243,7 +257,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     padding : 8,
     borderWidth : 1,
-    borderColor : "#c4c4c4",
+    borderColor : "#A363A9",
     marginRight: 20,
     borderRadius: 25,
     

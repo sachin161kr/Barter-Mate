@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 
+import LinearGradient from 'react-native-linear-gradient';
+
 import {
   Text,
   StyleSheet,
@@ -18,7 +20,7 @@ import {
 
 
 const RegisterScreen = ({navigation,route}) => {
-  const [pincode, setSelectedPincode] = useState('201301');
+  const [pincode, setSelectedPincode] = useState('Choose Pincode');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -102,7 +104,7 @@ const RegisterScreen = ({navigation,route}) => {
             fontSize: 30,
             textAlign: 'left',
             marginTop: 10,
-            color: '#758283',
+            color: '#A363A9',
             marginLeft: 30,
            }
          }
@@ -173,26 +175,19 @@ const RegisterScreen = ({navigation,route}) => {
             placeholderTextColor="#758283"></TextInput>
 
           <View style={styles.pickerStyle}>
-            <Text
-              style={{
-                color: '#758283',
-                fontSize: 20,
-                textAlign: 'center',
-              }}>
-              Choose Pincode
-            </Text>
             <Picker
               style={{
-                color: '#758283',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#758283"
-              dropdownIconRippleColor="#758283"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={pincode}
               onValueChange={itemValue => {
                 setSelectedPincode(itemValue);
               }}>
+                <Picker.Item label="Choose Pincode" value="Choose Pincode" />
               <Picker.Item label="201301" value="201301" />
               <Picker.Item label="201304" value="201304" />
             </Picker>
@@ -212,14 +207,25 @@ const RegisterScreen = ({navigation,route}) => {
                     address &&
                     landmark
                   ) {
-                    if (passCheck() && phoneCheck()) {
+                    if (passCheck() && phoneCheck() && pincode!="Choose Pincode") {
                       handleSubmit();
                     }
                   } else {
                     Alert.alert('Enter Valid Details');
                   }
                 }}>
-                <Text
+                  <LinearGradient colors={['#A363A9', '#FAB06D']}
+                   style = {
+                     {
+                      borderRadius: 25,
+                                        
+                     }
+                   }
+                   start={{x: 0, y: 0}} 
+                   end={{x: 1, y: 0}}
+                >
+
+<Text
                   style={{
                     fontSize: 30,
                     alignSelf: 'center',
@@ -229,10 +235,13 @@ const RegisterScreen = ({navigation,route}) => {
                   }}>
                   Register
                 </Text>
+                </LinearGradient>
+               
               </TouchableOpacity>
             </View>
           ) : (
             <ActivityIndicator
+              color="#A363A9"
               size={'large'}
               style={{
                 marginTop: 10,
@@ -250,7 +259,7 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
-    borderColor: '#c4c4c4',
+    borderColor: '#758283',
     borderWidth: 1,
     borderRadius: 25,
     marginTop: 15,
@@ -274,5 +283,8 @@ const styles = StyleSheet.create({
     marginLeft: 70,
     marginTop: 15,
     marginRight: 70,
+    borderWidth : 1,
+    borderRadius : 25,
+    borderColor : "#A363A9", 
   },
 });

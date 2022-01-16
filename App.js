@@ -5,7 +5,7 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import logo from './assets/logo.png';
+import logo from './assets/logo2.png';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,10 +34,10 @@ const MyStack = () => {
                    
                    style = {
                      {  
-                        marginTop : 10,
-                        marginBottom : 10,
-                        height : 55,
-                        width : 55,
+                        marginTop : 2,
+                        marginBottom : 2,
+                        height : 100,
+                        width : 100,
                         alignSelf : 'center',
                       
                         
@@ -60,10 +60,10 @@ const MyStack = () => {
                   source = {logo}
                   style = {
                     {  
-                      marginTop : 10,
-                      marginBottom : 10,
-                      height : 55,
-                      width : 55,
+                      marginTop : 2,
+                        marginBottom : 2,
+                        height : 100,
+                        width : 100,
                       alignSelf : 'center',
                     }
                   }
@@ -85,10 +85,10 @@ const MyStack = () => {
                   source = {logo}
                   style = {
                     {  
-                      marginTop : 10,
-                      marginBottom : 10,
-                      height : 55,
-                      width : 55,
+                      marginTop : 2,
+                        marginBottom : 2,
+                        height : 100,
+                        width : 100,
                       alignSelf : 'center',
                     }
                   }
@@ -109,10 +109,10 @@ const MyStack = () => {
                   source = {logo}
                   style = {
                     {  
-                      marginTop : 10,
-                      marginBottom : 10,
-                      height : 55,
-                      width : 55,
+                      marginTop : 2,
+                        marginBottom : 2,
+                        height : 100,
+                        width : 100,
                       alignSelf : 'center',
                     }
                   }
@@ -133,10 +133,10 @@ const MyStack = () => {
                   source = {logo}
                   style = {
                     {  
-                      marginTop : 10,
-                      marginBottom : 10,
-                      height : 55,
-                      width : 55,
+                      marginTop : 2,
+                        marginBottom : 2,
+                        height : 100,
+                        width : 100,
                       alignSelf : 'center',
                     }
                   }
@@ -158,10 +158,10 @@ const MyStack = () => {
                   source = {logo}
                   style = {
                     {  
-                      marginTop : 10,
-                      marginBottom : 10,
-                      height : 55,
-                      width : 55,
+                      marginTop : 2,
+                        marginBottom : 2,
+                        height : 100,
+                        width : 100,
                       alignSelf : 'center',
                     }
                   }
@@ -182,10 +182,10 @@ const MyStack = () => {
                   source = {logo}
                   style = {
                     {  
-                      marginTop : 10,
-                        marginBottom : 10,
-                        height : 55,
-                        width : 55,
+                      marginTop : 2,
+                        marginBottom : 2,
+                        height : 100,
+                        width : 100,
                         alignSelf : 'center',
                        
                        

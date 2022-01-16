@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 import {
   Text,
@@ -245,10 +247,10 @@ const CategoryScreen = ({navigation}) => {
           {itemSelected == 'Glass' ? (
             <Picker
               style={{
-                color: '#758283',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#758283"
-              dropdownIconRippleColor="#758283"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -262,10 +264,10 @@ const CategoryScreen = ({navigation}) => {
           ) : itemSelected == 'Metal' ? (
             <Picker
               style={{
-                color: '#758283',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#758283"
-              dropdownIconRippleColor="#758283"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -287,10 +289,10 @@ const CategoryScreen = ({navigation}) => {
           ) : itemSelected == 'Paper' ? (
             <Picker
               style={{
-                color: '#758283',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#758283"
-              dropdownIconRippleColor="#758283"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -310,10 +312,10 @@ const CategoryScreen = ({navigation}) => {
           ) : itemSelected == 'Plastic' ? (
             <Picker
               style={{
-                color: '#758283',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#758283"
-              dropdownIconRippleColor="#758283"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -327,10 +329,10 @@ const CategoryScreen = ({navigation}) => {
           ) : (
             <Picker
               style={{
-                color: '#758283',
+                color: '#A363A9',
               }}
-              dropdownIconColor="#758283"
-              dropdownIconRippleColor="#758283"
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
               onTouchCancel={true}
               mode="dropdown"
               selectedValue={subCategory}
@@ -358,7 +360,7 @@ const CategoryScreen = ({navigation}) => {
               flex: 1,
               flexDirection: 'row',
               justifyContent : 'space-evenly',
-              marginTop : 5,
+              marginTop : 15,
             }}
         >
         <View style={styles.loginBtn}>
@@ -398,40 +400,69 @@ const CategoryScreen = ({navigation}) => {
             }}
             >
             {loginStatus == 'true' ? (
-                <Text
+                <LinearGradient colors={['#A363A9', '#FAB06D']}
+                   style = {
+                     {
+                      borderRadius: 25,
+                      marginTop : 10,
+                     }
+                   }
+                   start={{x: 0, y: 0}} 
+                   end={{x: 1, y: 0}}
+                >
+                  <Text
                 style={{
                   fontSize: 27,
-                  padding : 10,
+                  textAlignVertical : "center",
+                  //padding : 10,
+                  paddingBottom : 12,
+                  paddingLeft : 15,
+                  paddingRight : 15,
                   marginTop : 12,
                   alignSelf: 'center',
                   color: '#FFFFFF',
                   justifyContent: 'center',
                   textAlign: 'center',
-                  backgroundColor: '#c4c4c4',
-                  borderRadius: 25,
+                  //backgroundColor: '#c4c4c4',
+                 // borderRadius: 25,
                 }}>
                 Login As {username}
               </Text>
-              
+              </LinearGradient>
               
             ) : (
-              <Text
+              <LinearGradient colors={['#A363A9', '#FAB06D']}
+                   style = {
+                     {
+                      borderRadius: 25,
+                      marginTop : 10,
+                                        
+                     }
+                   }
+                   start={{x: 0, y: 0}} 
+                   end={{x: 1, y: 0}}
+                >
+                <Text
                 style={{
-                  fontSize: 25,
+                  fontSize: 30,
                   alignSelf: 'center',
                   color: '#FFFFFF',
-                  backgroundColor: '#c4c4c4',
+  
                   textAlign : "center",
-                  margin : 10,
-                  paddingTop : 7,
-                  paddingBottom : 13,
-                  borderRadius : 30,
-                  paddingRight : 50,
-                  paddingLeft : 50,
+                  
+                  // paddingTop : 7,
+                  textAlignVertical : "center",
+                  paddingTop : 5,
+                  paddingBottom : 15,
+                  // borderRadius : 30,
+                  paddingRight : 40,
+                  paddingLeft : 40,
                   
                 }}>
                 Login
               </Text>
+                </LinearGradient>
+              
             )}
           </TouchableOpacity>
         </View>
@@ -464,10 +495,11 @@ const CategoryScreen = ({navigation}) => {
                 style={{
                   fontSize: 22,
                   alignSelf: 'center',
-                  color: '#5E5E5E',
+                  color: '#A363A9',
                   borderWidth : 1,
                   margin : 10,
-                  padding : 10,
+                  padding : 14,
+                  borderColor : '#A363A9',
                   borderRadius : 25,
                   paddingLeft : 25,
                   paddingRight : 25,                
@@ -494,6 +526,7 @@ const CategoryScreen = ({navigation}) => {
                  style={
                    {
                      fontSize : 20,
+                     color : '#A363A9',
                      alignSelf : 'center',
                      marginTop : 5,
                      marginBottom : 24, 
@@ -531,6 +564,7 @@ const styles = StyleSheet.create({
     marginRight: 70,
     borderWidth : 1,
     borderRadius : 25,
+    borderColor : '#A363A9',
     marginLeft : 25,
     marginRight : 25,
   },
@@ -538,22 +572,23 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     height: 450,
-    //borderRadius : 40,
     borderTopRightRadius : 40,
     borderTopLeftRadius : 40,
-    // justifyContent: 'center',
-    // alignItems: 'center',
   },
 
   viewGroup: {
-    borderWidth: 4,
-    borderColor: '#CAD5E2',
-    borderRadius: 20,
+    // borderWidth: 2,
+    //borderColor: '#758283',
+    //elevation : 4,
+    borderRadius : 15,
+
     marginTop: 30,
+    backgroundColor : "#F5F5F5",
     padding: 10,
     overflow: 'hidden',
+    elevation : 3,
 
-    //margin: 10,
+
   },
 
   image: {
