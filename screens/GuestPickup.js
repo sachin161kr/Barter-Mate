@@ -413,10 +413,10 @@ const GuestPickupScreen = ({route, navigation}) => {
           </View>
         ) : (
           <ActivityIndicator
-            color="#000000"
+            color="#A363A9"
             size={'large'}
             style={{
-              marginTop: 30,
+              marginTop: 10,
             }}
           />
         )}

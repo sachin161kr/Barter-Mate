@@ -359,8 +359,9 @@ const CategoryScreen = ({navigation}) => {
             style={{
               flex: 1,
               flexDirection: 'row',
-              justifyContent : 'space-evenly',
+              justifyContent : 'center',
               marginTop : 15,
+              
             }}
         >
         <View style={styles.loginBtn}>
