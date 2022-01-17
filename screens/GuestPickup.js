@@ -17,17 +17,15 @@ import {
   ScrollView,
 } from 'react-native';
 
-import sweeper from "../assets/sweeper.png";
-
-
+import sweeper from '../assets/sweeper.png';
 
 const GuestPickupScreen = ({route, navigation}) => {
   const [category, setCategory] = useState(`${route.params.itemSelected}`);
-  const [subCategory,setSubCategory] = useState(`${route.params.subCategory}`);
+  const [subCategory, setSubCategory] = useState(`${route.params.subCategory}`);
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [landMark, setLandmark] = useState('');
-  const [pincode, setPincode] = useState('201301');
+  const [pincode, setPincode] = useState('Choose Pincode');
   const [name, setName] = useState('');
 
   //setCategory(tempCategory);
@@ -64,9 +62,17 @@ const GuestPickupScreen = ({route, navigation}) => {
       category: `${subCategory}`,
     });
 
+    console.log(`${name}`);
+    console.log(`${email}`);
+    console.log(`${phone}`);
+    console.log(`${address}`);
+    console.log(`${landMark}`);
+    console.log(`${pincode}`);
+    console.log(`${subCategory}`);
+
     var config = {
       method: 'post',
-      url: 'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/addPickup',
+      url: 'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/guest',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -75,7 +81,7 @@ const GuestPickupScreen = ({route, navigation}) => {
 
     axios(config)
       .then(function (response) {
-        //console.log(JSON.stringify(response.data));
+        console.log(JSON.stringify(response.data));
         setLoading(false);
         Alert.alert('We will send our representatives soon. Thank You');
         navigation.navigate('Category Screen');
@@ -83,25 +89,20 @@ const GuestPickupScreen = ({route, navigation}) => {
       .catch(function (error) {
         console.log(error);
         Alert.alert('Sorry, Something Went Wrong');
+        setLoading(false);
       });
   };
 
   return (
     <>
       <ScrollView
-         
-         style = {
-           {
-            backgroundColor : "#FFFFFF"
-           }
-         }
-      
-       >
+        style={{
+          backgroundColor: '#FFFFFF',
+        }}>
         <Image
           style={{
             height: 180,
             width: 180,
-            margintop: 20,
             alignSelf: 'center',
           }}
           source={sweeper}
@@ -113,7 +114,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             color: '#000000',
             fontWeight: 'bold',
             fontStyle: 'italic',
-            marginTop : 10,
+            marginTop: 10,
           }}>
           Hello! {name}
         </Text>
@@ -140,7 +141,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             onValueChange={itemValue => {
               setCategory(itemValue);
               setSubCategory('Choose Sub-Category');
-            }}>  
+            }}>
             <Picker.Item label="Glass" value="Glass" />
             <Picker.Item label="Metal" value="Metal" />
             <Picker.Item label="Plastic" value="Plastic" />
@@ -160,25 +161,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             Sub-Category Chosen
           </Text> */}
 
-          {
-             category=="Glass"?
-             <Picker
-              style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={subCategory}
-              onValueChange={itemValue => {
-                setSubCategory(itemValue);
-              }}>
-              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />    
-              <Picker.Item label="Bottles" value="Bottles" />
-              <Picker.Item label="Mirrors" value="Mirrors" />
-            </Picker>:
-              category=="Metal"?
+          {category == 'Glass' ? (
             <Picker
               style={{
                 color: '#A363A9',
@@ -191,7 +174,30 @@ const GuestPickupScreen = ({route, navigation}) => {
               onValueChange={itemValue => {
                 setSubCategory(itemValue);
               }}>
-              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />    
+              <Picker.Item
+                label="Choose Sub-Category"
+                value="Choose Sub-Category"
+              />
+              <Picker.Item label="Bottles" value="Bottles" />
+              <Picker.Item label="Mirrors" value="Mirrors" />
+            </Picker>
+          ) : category == 'Metal' ? (
+            <Picker
+              style={{
+                color: '#A363A9',
+              }}
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={itemValue => {
+                setSubCategory(itemValue);
+              }}>
+              <Picker.Item
+                label="Choose Sub-Category"
+                value="Choose Sub-Category"
+              />
               <Picker.Item label="Steel" value="Steel" />
               <Picker.Item label="Brass" value="Brass" />
               <Picker.Item label="Motor" value="Motor" />
@@ -202,9 +208,9 @@ const GuestPickupScreen = ({route, navigation}) => {
                 label="Beer/Beverage Cans"
                 value="Beer/Beverage Cans"
               />
-            </Picker> :
-             category=="Paper"?
-             <Picker
+            </Picker>
+          ) : category == 'Paper' ? (
+            <Picker
               style={{
                 color: '#A363A9',
               }}
@@ -216,7 +222,10 @@ const GuestPickupScreen = ({route, navigation}) => {
               onValueChange={itemValue => {
                 setSubCategory(itemValue);
               }}>
-              <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />    
+              <Picker.Item
+                label="Choose Sub-Category"
+                value="Choose Sub-Category"
+              />
               <Picker.Item label="Mil Board" value="Mil Board" />
               <Picker.Item label="Magazine" value="Magazine" />
               <Picker.Item
@@ -225,8 +234,8 @@ const GuestPickupScreen = ({route, navigation}) => {
               />
               <Picker.Item label="Newspaper" value="Newspaper" />
               <Picker.Item label="Books" value="Books" />
-            </Picker> : 
-            category=="Plastic"?
+            </Picker>
+          ) : category == 'Plastic' ? (
             <Picker
               style={{
                 color: '#A363A9',
@@ -239,24 +248,31 @@ const GuestPickupScreen = ({route, navigation}) => {
               onValueChange={itemValue => {
                 setSubCategory(itemValue);
               }}>
-               <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />   
-               <Picker.Item label="Milk Pouch" value="Milk Pouch" />
+              <Picker.Item
+                label="Choose Sub-Category"
+                value="Choose Sub-Category"
+              />
+              <Picker.Item label="Milk Pouch" value="Milk Pouch" />
               <Picker.Item label="Plastic Bottles" value="Plastic Bottles" />
-            </Picker> :
+            </Picker>
+          ) : (
             <Picker
-            style={{
-              color: '#A363A9',
-            }}
-            dropdownIconColor="#A363A9"
-            dropdownIconRippleColor="#A363A9"
-            onTouchCancel={true}
-            mode="dropdown"
-            selectedValue={subCategory}
-            onValueChange={itemValue => {
-              setSubCategory(itemValue);
-            }}>
-            <Picker.Item label="Choose Sub-Category" value="Choose Sub-Category" />                
-            <Picker.Item label="Black Battery" value="Black Battery" />
+              style={{
+                color: '#A363A9',
+              }}
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={subCategory}
+              onValueChange={itemValue => {
+                setSubCategory(itemValue);
+              }}>
+              <Picker.Item
+                label="Choose Sub-Category"
+                value="Choose Sub-Category"
+              />
+              <Picker.Item label="Black Battery" value="Black Battery" />
               <Picker.Item label="White Battery" value="White Battery" />
               <Picker.Item
                 label="Single-Door Fridge"
@@ -268,8 +284,8 @@ const GuestPickupScreen = ({route, navigation}) => {
               />
               <Picker.Item label="Air Conditioner" value="Air Conditioner" />
               <Picker.Item label="Washing Machine" value="Washing Machine" />
-          </Picker>
-          }
+            </Picker>
+          )}
         </View>
 
         <TextInput
@@ -317,17 +333,16 @@ const GuestPickupScreen = ({route, navigation}) => {
           placeholder="Enter Landmark"
           placeholderTextColor="#758283"></TextInput>
 
-        <View style={
-          {
+        <View
+          style={{
             marginLeft: 70,
-    marginRight: 70,
-    borderColor : "#A363A9",
-    borderWidth : 1,
-    borderRadius : 25,
-    margin : 10,
-    marginTop : 25,
-          }
-        }>
+            marginRight: 70,
+            borderColor: '#A363A9',
+            borderWidth: 1,
+            borderRadius: 25,
+            margin: 10,
+            marginTop: 25,
+          }}>
           {/* <Text
             style={{
               color: '#758283',
@@ -349,7 +364,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             onValueChange={itemValue => {
               setPincode(itemValue);
             }}>
-            <Picker.Item label="Choose Pincode" value="Choose Pincode" />  
+            <Picker.Item label="Choose Pincode" value="Choose Pincode" />
             <Picker.Item label="201301" value="201301" />
             <Picker.Item label="201304" value="201304" />
           </Picker>
@@ -365,46 +380,40 @@ const GuestPickupScreen = ({route, navigation}) => {
                 // } else {
                 //   Alert.alert('Enter Valid Address');
                 // }
-                if(subCategory!="Choose Sub-Category" && pincode!="Choose Pincode")
-                {
-                  Alert.alert('Button Pressed');
+                if (
+                  subCategory != 'Choose Sub-Category' &&
+                  pincode != 'Choose Pincode'
+                ) {
+                  handlePickeup();
+                } else {
+                  Alert.alert('Choose a Sub-Category');
                 }
-                else
-                {
-                  Alert.alert("Choose a Sub-Category");
-                }
-                
               }}>
-              <LinearGradient colors={['#A363A9', '#FAB06D']}
-                   style = {
-                     {
-                      borderRadius: 25,
-                    
-                                        
-                     }
-                   }
-                   start={{x: 0, y: 0}} 
-                   end={{x: 1, y: 0}}
-                >
-                  <Text
+              <LinearGradient
+                colors={['#A363A9', '#FAB06D']}
                 style={{
-                  fontSize: 20,
-                  alignSelf: 'center',
-                  color: '#FFFFFF',
-                  margin: 5,
-                  paddingTop : 10,
-                 
-                  paddingBottom: 15,
-                }}>
-                Send Pickup Request
-              </Text>
-                  </LinearGradient>  
-              
+                  borderRadius: 25,
+                }}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    alignSelf: 'center',
+                    color: '#FFFFFF',
+                    margin: 5,
+                    paddingTop: 10,
+
+                    paddingBottom: 15,
+                  }}>
+                  Send Pickup Request
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
           </View>
         ) : (
           <ActivityIndicator
-          color="#000000"
+            color="#000000"
             size={'large'}
             style={{
               marginTop: 30,
@@ -423,7 +432,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     borderColor: '#758283',
     borderRadius: 25,
-    padding : 15,
+    padding: 15,
     borderWidth: 1,
     marginTop: 10,
     marginLeft: 20,
@@ -435,18 +444,17 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginLeft: 30,
     marginRight: 30,
-    padding : 6,
+    padding: 6,
     marginBottom: 30,
-    borderRadius : 25,
-    
+    borderRadius: 25,
   },
 
   pickerStyle: {
     marginLeft: 70,
     marginRight: 70,
-    borderColor : "#A363A9",
-    borderWidth : 1,
-    borderRadius : 25,
-    margin : 10,
+    borderColor: '#A363A9',
+    borderWidth: 1,
+    borderRadius: 25,
+    margin: 10,
   },
 });
