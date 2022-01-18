@@ -49,6 +49,31 @@ const GuestPickupScreen = ({route, navigation}) => {
 
   // }
 
+  const passCheck = () => {
+    console.log(password);
+    console.log(confirmPass);
+    if (password != confirmPass) {
+      Alert.alert('Password must be same as Confirmed Password');
+      return false;
+    } else if (password.length < 8) {
+      Alert.alert('Password length must be greater than 7');
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const phoneCheck = () => {
+    var num = parseInt(phone, 10);
+    var tempNum = num.toString(10);
+    if (phone.length == 10 && phone.length === tempNum.length) {
+      return true;
+    } else {
+      Alert.alert('Enter Valid Phone Number');
+      return false;
+    }
+  };
+
   const handlePickeup = () => {
     setLoading(true);
 
@@ -374,19 +399,25 @@ const GuestPickupScreen = ({route, navigation}) => {
           <View style={styles.pickupBtn}>
             <TouchableOpacity
               onPress={() => {
-                // if (address.length != 0) {
-                //   handlePickeup();
-                //   //printAll();
-                // } else {
-                //   Alert.alert('Enter Valid Address');
-                // }
                 if (
-                  subCategory != 'Choose Sub-Category' &&
-                  pincode != 'Choose Pincode'
+                  name &&
+                  email &&
+                  phone &&
+                  address &&
+                  landMark
                 ) {
-                  handlePickeup();
+                  if (phoneCheck()) {
+                    if(pincode!="Choose Pincode")
+                    {
+                      handlePickeup();
+                    }
+                    else
+                    {
+                      Alert.alert("Choose Pincode");
+                    }
+                  }
                 } else {
-                  Alert.alert('Choose a Sub-Category');
+                  Alert.alert('Enter Valid Details');
                 }
               }}>
               <LinearGradient
