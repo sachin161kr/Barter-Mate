@@ -26,27 +26,8 @@ const MyStack = () => {
           component={CategoryScreen}
           options={
             {
-            title: 'Choose A Category',
-             header : ()=>{
-               return(
-                 <Image
-                   source = {logo}
-                   
-                   style = {
-                     {  
-                        marginTop : 2,
-                        marginBottom : 2,
-                        height : 100,
-                        width : 100,
-                        alignSelf : 'center',
-                      
-                        
-                     }
-                   }
-                 />
-               )
-             }
-           }
+             title: '',            
+            }
         }
         />
         <Stack.Screen
@@ -54,22 +35,6 @@ const MyStack = () => {
           component={GuestScreen}
           options={{
             title: 'Category Description',
-            header : ()=>{
-              return(
-                <Image
-                  source = {logo}
-                  style = {
-                    {  
-                      marginTop : 2,
-                        marginBottom : 2,
-                        height : 100,
-                        width : 100,
-                      alignSelf : 'center',
-                    }
-                  }
-                />
-              )
-            }
           }
            
         }
@@ -78,23 +43,7 @@ const MyStack = () => {
           name="Login Screen"
           component={LoginScreen}
           options={{
-            title: 'Login',
-            header : ()=>{
-              return(
-                <Image
-                  source = {logo}
-                  style = {
-                    {  
-                      marginTop : 2,
-                        marginBottom : 2,
-                        height : 100,
-                        width : 100,
-                      alignSelf : 'center',
-                    }
-                  }
-                />
-              )
-            }
+            title: '',
           
           }}
         />
@@ -102,23 +51,8 @@ const MyStack = () => {
           name="Register Screen"
           component={RegisterScreen}
           options={{
-            title: 'Register',
-            header : ()=>{
-              return(
-                <Image
-                  source = {logo}
-                  style = {
-                    {  
-                      marginTop : 2,
-                        marginBottom : 2,
-                        height : 100,
-                        width : 100,
-                      alignSelf : 'center',
-                    }
-                  }
-                />
-              )
-            }
+            title: '',
+          
           
           }}
         />
@@ -126,25 +60,11 @@ const MyStack = () => {
           name="SubCategory Screen"
           component={SubCategoryScreen}
           options={{
-            title: 'Select Sub-Category',
-            header : ()=>{
-              return(
-                <Image
-                  source = {logo}
-                  style = {
-                    {  
-                      marginTop : 2,
-                        marginBottom : 2,
-                        height : 100,
-                        width : 100,
-                      alignSelf : 'center',
-                    }
-                  }
-                />
-              )
-            }
+            title: '',
+            
           
-          }}
+          }
+        }
         />
         <Stack.Screen
           name="Pickup Screen"
@@ -152,22 +72,7 @@ const MyStack = () => {
           options={{
             title: 'Provide Pickup Location',
             headerBackVisible : false,
-            header : ()=>{
-              return(
-                <Image
-                  source = {logo}
-                  style = {
-                    {  
-                      marginTop : 2,
-                        marginBottom : 2,
-                        height : 100,
-                        width : 100,
-                      alignSelf : 'center',
-                    }
-                  }
-                />
-              )
-            }
+           
           
           }}
         />
@@ -175,25 +80,8 @@ const MyStack = () => {
           name="Guest Pickup Screen"
           component={GuestPickupScreen}
           options={{
-            title: 'Provide Pickup Location',
-            header : ()=>{
-              return(
-                <Image
-                  source = {logo}
-                  style = {
-                    {  
-                      marginTop : 2,
-                        marginBottom : 2,
-                        height : 100,
-                        width : 100,
-                        alignSelf : 'center',
-                       
-                       
-                    }
-                  }
-                />
-              )
-            }
+            title: '',
+            
           
           }}
         />

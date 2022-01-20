@@ -360,13 +360,13 @@ const GuestPickupScreen = ({route, navigation}) => {
 
         <View
           style={{
-            marginLeft: 70,
-            marginRight: 70,
+            marginLeft: 20,
+            marginRight: 20,
             borderColor: '#A363A9',
             borderWidth: 1,
             borderRadius: 25,
             margin: 10,
-            marginTop: 25,
+            marginTop: 10,
           }}>
           {/* <Text
             style={{
@@ -380,6 +380,7 @@ const GuestPickupScreen = ({route, navigation}) => {
           <Picker
             style={{
               color: '#A363A9',
+              
             }}
             dropdownIconColor="#A363A9"
             dropdownIconRippleColor="#A363A9"
@@ -473,16 +474,16 @@ const styles = StyleSheet.create({
 
   pickupBtn: {
     marginTop: 5,
-    marginLeft: 30,
-    marginRight: 30,
+    marginLeft: 15,
+    marginRight: 15,
     padding: 6,
     marginBottom: 30,
     borderRadius: 25,
   },
 
   pickerStyle: {
-    marginLeft: 70,
-    marginRight: 70,
+    marginLeft: 20,
+    marginRight: 20,
     borderColor: '#A363A9',
     borderWidth: 1,
     borderRadius: 25,

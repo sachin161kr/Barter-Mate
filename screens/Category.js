@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import LinearGradient from 'react-native-linear-gradient';
-
+import { FloatingAction } from "react-native-floating-action";
+import SplashScreen from 'react-native-splash-screen';
 
 import {
   Text,
@@ -29,6 +30,9 @@ import paperIcon from '../assets/paperIcon.png';
 import electronicIcon from '../assets/electronicIcon.png';
 import sweeper from '../assets/sweeper.png';
 import banner from '../assets/banner.jpg';
+import question from "../assets/question.png";
+import { useEffect } from 'react/cjs/react.development';
+
 const categoryList = [
   {
     key: 0,
@@ -87,7 +91,9 @@ const categoryList = [
   // },
 ];
 
-const CategoryScreen = ({navigation}) => {
+const CategoryScreen  = ({navigation}) => {
+
+ 
   //const sheetRef = React.useRef(null);
 
   const [visible, setVisible] = useState(false);
@@ -133,8 +139,25 @@ const CategoryScreen = ({navigation}) => {
     await AsyncStorage.setItem('User', 'Guest');
   };
 
+  const action = [
+    //  {
+    //    text : "About",
+    //    position : 2,
+    //    name : "bt_about",
+    //    color : "#FFFFFF",
+       
+    //  },
+     {
+      text : "Contact",
+      position : 1,
+      name : "bt_contact",
+      color : "#FFFFFF"
+    }
+  ]
+
   return (
     <>
+      
       <ScrollView style={styles.container}>
         <ScrollView
           horizontal={true}
@@ -360,7 +383,8 @@ const CategoryScreen = ({navigation}) => {
               flex: 1,
               flexDirection: 'row',
               justifyContent : 'center',
-              marginTop : 15,
+              marginTop : 8,
+              
               
             }}
         >
@@ -404,7 +428,7 @@ const CategoryScreen = ({navigation}) => {
                 <LinearGradient colors={['#A363A9', '#FAB06D']}
                    style = {
                      {
-                      borderRadius: 25,
+                      borderRadius: 50,
                       marginTop : 10,
                      }
                    }
@@ -413,13 +437,17 @@ const CategoryScreen = ({navigation}) => {
                 >
                   <Text
                 style={{
-                  fontSize: 27,
+                  fontSize: 20,
                   textAlignVertical : "center",
                   //padding : 10,
-                  paddingBottom : 12,
-                  paddingLeft : 15,
-                  paddingRight : 15,
-                  marginTop : 12,
+                  // marginLeft : 50,
+                  // marginRight : 40,
+                  paddingBottom : 15,
+                  width: 350,
+                  height : 60,
+                  // paddingLeft : 30,
+                  // paddingRight : 30,
+                  marginTop : 8,
                   alignSelf: 'center',
                   color: '#FFFFFF',
                   justifyContent: 'center',
@@ -435,7 +463,7 @@ const CategoryScreen = ({navigation}) => {
               <LinearGradient colors={['#A363A9', '#FAB06D']}
                    style = {
                      {
-                      borderRadius: 25,
+                      borderRadius: 50,
                       marginTop : 10,
                                         
                      }
@@ -461,6 +489,7 @@ const CategoryScreen = ({navigation}) => {
                   // borderRadius : 30,
                   paddingRight : 40,
                   paddingLeft : 40,
+                  
                   
                 }}>
                 Login
@@ -504,7 +533,7 @@ const CategoryScreen = ({navigation}) => {
                   margin : 10,
                   padding : 14,
                   borderColor : '#A363A9',
-                  borderRadius : 25,
+                  borderRadius : 50,
                   paddingLeft : 25,
                   paddingRight : 25,                
                 }}>
@@ -542,6 +571,29 @@ const CategoryScreen = ({navigation}) => {
         }
           </View>
         </BottomSheet>
+        <FloatingAction
+            color='#FFFFFF'
+            actions={action}
+            floatingIcon={question}
+            iconHeight={30}
+            iconWidth={30}
+            onPressItem={name=>{
+                if(name=="bt_contact")
+                {
+                   Alert.alert("Phone : 9876543212\nAddress : Near Lake House");
+                }
+                else
+                {
+                  Alert.alert("Welcome To Barter-Mate");
+                }
+            }}
+            // onPressMain={()=>{
+            //   Alert.alert("Buttom");
+            // }}
+
+            
+            
+        />
       </ScrollView>
     </>
   );

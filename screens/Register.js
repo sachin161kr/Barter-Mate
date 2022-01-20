@@ -286,9 +286,9 @@ const styles = StyleSheet.create({
   },
 
   pickerStyle: {
-    marginLeft: 70,
+    marginLeft: 20,
     marginTop: 15,
-    marginRight: 70,
+    marginRight: 20,
     borderWidth : 1,
     borderRadius : 25,
     borderColor : "#A363A9", 

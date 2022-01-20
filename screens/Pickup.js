@@ -396,32 +396,33 @@ export default PickupScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: 20,
-   // borderColor: '#A363A9',
+    borderColor: '#A363A9',
     borderRadius: 25,
     padding : 15,
+    justifyContent : "center",
     borderWidth: 1,
-    marginTop: 20,
+    marginTop: 10,
     marginLeft: 20,
     marginRight: 20,
     color: '#000000',
   },
 
   pickupBtn: {
-    marginTop: 25,
+    marginTop: 20,
     //borderWidth : 2,
     //borderColor : 'red',
    
-    marginLeft: 60,
-    marginRight: 60,
+    marginLeft: 15,
+    marginRight: 15,
     borderRadius : 25,
     padding : 6,
   },
 
   pickerStyle: {
-    marginLeft: 70,
+    marginLeft: 20,
     marginTop: 10,
     borderColor : "#A363A9",
-    marginRight: 70,
+    marginRight: 20,
     borderRadius : 25,
     borderWidth : 1,
 
