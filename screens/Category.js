@@ -384,6 +384,7 @@ const CategoryScreen  = ({navigation}) => {
               flexDirection: 'row',
               justifyContent : 'center',
               marginTop : 8,
+              marginLeft : 10,
               
               
             }}
@@ -487,8 +488,8 @@ const CategoryScreen  = ({navigation}) => {
                   paddingTop : 5,
                   paddingBottom : 15,
                   // borderRadius : 30,
-                  paddingRight : 40,
-                  paddingLeft : 40,
+                  paddingRight : 50,
+                  paddingLeft : 50,
                   
                   
                 }}>
