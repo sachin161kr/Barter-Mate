@@ -34,7 +34,7 @@ const MyStack = () => {
           name="Guest Screen"
           component={GuestScreen}
           options={{
-            title: 'Category Description',
+            title: '',
           }
            
         }
