@@ -223,7 +223,7 @@ const RegisterScreen = ({navigation,route}) => {
                   <LinearGradient colors={['#A363A9', '#FAB06D']}
                    style = {
                      {
-                      borderRadius: 25,
+                      borderRadius: 50,
                                         
                      }
                    }
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#c4c4c4',
     marginLeft: 20,
     marginRight: 20,
-    borderRadius: 25,
+    borderRadius: 50,
     marginBottom : 20,
     //borderRadius: 10,
   },

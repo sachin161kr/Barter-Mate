@@ -163,7 +163,7 @@ const LoginScreen = ({navigation,route}) => {
               <LinearGradient colors={['#A363A9', '#FAB06D']}
                    style = {
                      {
-                      borderRadius: 25,
+                      borderRadius: 50,
                       //marginTop : 10,
                                         
                      }
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#c4c4c4',
     marginLeft: 20,
     marginRight: 20,
-    borderRadius: 25,
+    borderRadius: 50,
   },
 
   registerBtn: {
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     borderWidth : 1,
     borderColor : "#A363A9",
     marginRight: 20,
-    borderRadius: 25,
+    borderRadius: 50,
     
   },
 });
