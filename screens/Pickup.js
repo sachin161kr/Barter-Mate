@@ -333,7 +333,7 @@ const PickupScreen = ({route, navigation}) => {
               <LinearGradient colors={['#A363A9', '#FAB06D']}
                    style = {
                      {
-                      borderRadius: 25,
+                      borderRadius: 100,
                       //marginTop : 10,
                                         
                      }
@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
    
     marginLeft: 15,
     marginRight: 15,
-    borderRadius : 25,
+    borderRadius : 50,
     padding : 6,
   },
 

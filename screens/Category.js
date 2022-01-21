@@ -22,16 +22,14 @@ import axios from 'axios';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import people from '../assets/people.jpg';
+
 import glassBottle from '../assets/glassBottle.png';
 import plasticIcon from '../assets/plasticIcon.png';
 import metalIcon from '../assets/metalIcon.png';
 import paperIcon from '../assets/paperIcon.png';
 import electronicIcon from '../assets/electronicIcon.png';
-import sweeper from '../assets/sweeper.png';
-import banner from '../assets/banner.jpg';
 import question from "../assets/question.png";
-import { useEffect } from 'react/cjs/react.development';
+import new_banner from "../assets/new_banner.jpeg"
 
 const categoryList = [
   {
@@ -157,42 +155,22 @@ const CategoryScreen  = ({navigation}) => {
 
   return (
     <>
-      
+      <StatusBar
+         backgroundColor="#A363A9"
+      />
       <ScrollView style={styles.container}>
-        <ScrollView
-          horizontal={true}
-          pagingEnabled={true}
-          showsHorizontalScrollIndicator={true}>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-            }}>
-            <Image
-              source={people}
+      <Image
+              source={new_banner}
               style={{
-                height: 250,
-                width: 300,
-                marginTop: 10,
-                marginRight: 20,
-                marginLeft: 20,
-                alignSelf: 'center',
-                resizeMode: 'cover',
-              }}
-            />
-            <Image
-              source={banner}
-              style={{
-                height: 250,
-                width: 300,
-                marginTop: 10,
-                marginRight: 20,
-                alignSelf: 'center',
-                resizeMode: 'cover',
-              }}
-            />
-          </View>
-        </ScrollView>
+                height: 280,
+                width: 360,
+                marginTop : 10,
+                resizeMode : "stretch",
+                alignSelf : "center",
+                borderRadius : 15,
+                
+          }}
+          />
         <Text
           style={{
             fontSize: 30,
@@ -384,7 +362,7 @@ const CategoryScreen  = ({navigation}) => {
               flexDirection: 'row',
               justifyContent : 'center',
               marginTop : 8,
-              marginLeft : 10,
+              
               
               
             }}
@@ -563,7 +541,7 @@ const CategoryScreen  = ({navigation}) => {
                      color : '#A363A9',
                      alignSelf : 'center',
                      marginTop : 5,
-                     marginBottom : 24, 
+                     marginBottom : 44, 
                    }
                  }
               >Logout</Text>
@@ -581,7 +559,7 @@ const CategoryScreen  = ({navigation}) => {
             onPressItem={name=>{
                 if(name=="bt_contact")
                 {
-                   Alert.alert("Phone : 9876543212\nAddress : Near Lake House");
+                   Alert.alert("Phone - (+91)88-2626-7661\nEmail - info@bartermate.in");
                 }
                 else
                 {
@@ -618,7 +596,6 @@ const styles = StyleSheet.create({
 
   pickerStyle: {
     marginLeft: 70,
-    marginTop: 15,
     marginRight: 70,
     borderWidth : 1,
     borderRadius : 25,
@@ -629,7 +606,7 @@ const styles = StyleSheet.create({
 
   card: {
     backgroundColor: '#fff',
-    height: 450,
+    height: 500,
     borderTopRightRadius : 40,
     borderTopLeftRadius : 40,
   },

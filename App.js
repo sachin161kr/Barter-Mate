@@ -1,6 +1,8 @@
 import React from 'react';
 import {
   Image,
+  View,
+  Text,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -26,7 +28,43 @@ const MyStack = () => {
           component={CategoryScreen}
           options={
             {
-             title: '',            
+             title: '',
+             header : ()=>{
+               return(
+                 <>
+                     <View
+                         style={
+                           {
+                              
+                              flexDirection : "row",
+                              justifyContent : "center",
+                           }
+                         }
+                     >
+                       <Image
+                          source={logo} 
+                          style = {
+                            {
+                               height : 75,
+                               width : 80,
+                               
+                            }
+                          }                      
+                       />
+                       <Text
+                          style = {
+                            {
+                               fontSize : 25,
+                               marginTop : 18,
+                            }
+                          }
+                       >Barter-Mate</Text>
+                     </View>
+                 </>
+               )
+             },
+                      
+             
             }
         }
         />

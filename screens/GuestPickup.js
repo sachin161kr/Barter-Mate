@@ -424,7 +424,7 @@ const GuestPickupScreen = ({route, navigation}) => {
               <LinearGradient
                 colors={['#A363A9', '#FAB06D']}
                 style={{
-                  borderRadius: 25,
+                  borderRadius: 50,
                 }}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}>
