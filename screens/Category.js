@@ -238,7 +238,7 @@ const CategoryScreen  = ({navigation}) => {
               style={{
                 fontSize : moderateScale(25),
                 height : verticalScale(120),
-                color: '#000000',
+                color: '#758283',
                 textAlign: 'center',
                 //margin: 23,
                 marginTop : verticalScale(10),

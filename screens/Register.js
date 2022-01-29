@@ -35,6 +35,16 @@ const RegisterScreen = ({navigation,route}) => {
   const itemSelected = route.params.itemSelected;
   const subCategory = route.params.subCategory;
 
+
+  const emailCheck = () => {
+     if(email.includes("@gmail.com") || email.includes("@yahoo.com") || email.includes("@rediff.com") || email.includes("@hotmail.com"))
+     {
+        return true;
+     }
+
+     return false;
+  }
+
   const passCheck = () => {
     console.log(password);
     console.log(confirmPass);
@@ -139,14 +149,44 @@ const RegisterScreen = ({navigation,route}) => {
             placeholderTextColor="#758283"
             keyboardType="email-address"></TextInput>
 
+          <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                marginLeft : scale(10),
+              }}
+          >
+          <Text
+            style={{
+              fontSize: moderateScale(20),
+              marginTop: verticalScale(23),
+              marginLeft : scale(15),
+              color : "#758283",
+            }}>
+            +91
+          </Text>  
           <TextInput
             onChangeText={text => {
               setPhone(text);
             }}
-            style={styles.textinput}
+            style={
+              {
+                fontSize: moderateScale(20),
+                borderColor: '#758283',
+                borderRadius: moderateScale(100),
+                padding: moderateScale(15),
+                borderWidth: 1,
+                width : scale(270),
+                marginLeft: scale(5),
+                marginTop: verticalScale(10),
+                marginRight: scale(23),
+                color: '#000000',
+              }
+            }
             placeholder="Phone"
             placeholderTextColor="#758283"
             keyboardType="phone-pad"></TextInput>
+          </View>
 
           <TextInput
             onChangeText={text => {
@@ -214,7 +254,7 @@ const RegisterScreen = ({navigation,route}) => {
                     address 
                   
                   ) {
-                    if (passCheck() && phoneCheck() && pincode!="Choose Pincode") {
+                    if (passCheck() && phoneCheck() && pincode!="Choose Pincode" && emailCheck()) {
                       handleSubmit();
                     }
                   } else {

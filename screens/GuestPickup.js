@@ -64,6 +64,15 @@ const GuestPickupScreen = ({route, navigation}) => {
     }
   };
 
+  const emailCheck = () => {
+    if(email.includes("@gmail.com") || email.includes("@yahoo.com") || email.includes("@rediff.com") || email.includes("@hotmail.com"))
+    {
+       return true;
+    }
+
+    return false;
+ }
+
   const phoneCheck = () => {
     var num = parseInt(phone, 10);
     var tempNum = num.toString(10);
@@ -126,23 +135,19 @@ const GuestPickupScreen = ({route, navigation}) => {
           backgroundColor: '#FFFFFF',
         }}>
         <View
-          style = {
-            {
-              height: verticalScale(180),
-              width: scale(180),
-              alignSelf: 'center',
-              marginTop : verticalScale(12)
-            }
-          }
-        >
-        <Image
           style={{
-            height: 180,
-            width: 180,
-            
-          }}
-          source={sweeper}
-        />
+            height: verticalScale(180),
+            width: scale(180),
+            alignSelf: 'center',
+            marginTop: verticalScale(12),
+          }}>
+          <Image
+            style={{
+              height: 180,
+              width: 180,
+            }}
+            source={sweeper}
+          />
         </View>
         <Text
           style={{
@@ -335,14 +340,42 @@ const GuestPickupScreen = ({route, navigation}) => {
           placeholder="Enter Email"
           placeholderTextColor="#758283"></TextInput>
 
-        <TextInput
-          defaultValue={`${phone}`}
-          onChangeText={tempPhone => {
-            setPhone(tempPhone);
-          }}
-          style={styles.textinput}
-          placeholder="Enter Phone Number"
-          placeholderTextColor="#758283"></TextInput>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            marginLeft : scale(10),
+          }}>
+          <Text
+            style={{
+              fontSize: moderateScale(20),
+              marginTop: verticalScale(23),
+              marginLeft : scale(15),
+              color : "#758283",
+            }}>
+            +91
+          </Text>
+          <TextInput
+            defaultValue={`${phone}`}
+            keyboardType="number-pad"
+            onChangeText={tempPhone => {
+              setPhone(tempPhone);
+            }}
+            style={{
+              fontSize: moderateScale(20),
+              borderColor: '#758283',
+              borderRadius: moderateScale(100),
+              padding: moderateScale(15),
+              borderWidth: 1,
+              width : scale(270),
+              marginLeft: scale(5),
+              marginTop: verticalScale(10),
+              marginRight: scale(23),
+              color: '#000000',
+            }}
+            placeholder="Enter Phone Number"
+            placeholderTextColor="#758283"></TextInput>
+        </View>
 
         <TextInput
           defaultValue={`${address}`}
@@ -384,7 +417,6 @@ const GuestPickupScreen = ({route, navigation}) => {
           <Picker
             style={{
               color: '#A363A9',
-              
             }}
             dropdownIconColor="#A363A9"
             dropdownIconRippleColor="#A363A9"
@@ -404,20 +436,12 @@ const GuestPickupScreen = ({route, navigation}) => {
           <View style={styles.pickupBtn}>
             <TouchableOpacity
               onPress={() => {
-                if (
-                  name &&
-                  email &&
-                  phone &&
-                  address
-                ) {
+                if (name && email && phone && address && emailCheck()) {
                   if (phoneCheck()) {
-                    if(pincode!="Choose Pincode")
-                    {
+                    if (pincode != 'Choose Pincode') {
                       handlePickeup();
-                    }
-                    else
-                    {
-                      Alert.alert("Choose Pincode");
+                    } else {
+                      Alert.alert('Choose Pincode');
                     }
                   }
                 } else {
