@@ -1,6 +1,7 @@
 import React, {Component, useEffect, useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 //import { NavigationActions } from 'react-navigation';
 import { BackHandler } from 'react-native';
@@ -74,11 +75,11 @@ const PickupScreen = ({route, navigation}) => {
     var data = JSON.stringify({
       name: `${name}`,
       email: `${email}`,
-      phone: `${phone}`,
+      phone: `+91${phone}`,
       address: `${address}`,
       landMark: `${landmark}`,
       pinCode: `${pincode}`,
-      category: `${subCategory}`,
+      category: `${category}`,
     });
 
     var config = {
@@ -120,23 +121,35 @@ const PickupScreen = ({route, navigation}) => {
            }
          }
       >
+        <View
+          style = {
+            { 
+               height : verticalScale(180),
+               width : scale(180),
+               alignSelf: 'center',
+               margin: moderateScale(20),
+            } 
+          }
+        >
         <Image
           style={{
             height: 180,
             width: 180,
-            margin: 20,
-            marginTop: 20,
-            alignSelf: 'center',
+           
+           
+            
           }}
           source={sweeper}
         />
+        </View>
         <Text
           style={{
-            fontSize: 25,
+            fontSize: moderateScale(25),
             alignSelf: 'center',
             color: '#000000',
             fontWeight: 'bold',
             fontStyle: 'italic',
+            marginBottom : verticalScale(20),
           }}>
           Hello! {name}
         </Text>
@@ -172,16 +185,8 @@ const PickupScreen = ({route, navigation}) => {
           </Picker>
         </View>
 
-        <View style={styles.pickerStyle}>
-          {/* <Text
-            style={{
-              fontSize: 20,
-              textAlign: 'center',
-              color: '#758283',
-              marginTop: 10,
-            }}>
-            Sub-Category Chosen
-          </Text> */}
+        {/* <View style={styles.pickerStyle}>
+         
 
           {
              category=="Glass"?
@@ -298,7 +303,7 @@ const PickupScreen = ({route, navigation}) => {
               <Picker.Item label="Washing Machine" value="Washing Machine" />
           </Picker>
           }
-        </View>
+        </View> */}
 
        
         <TextInput
@@ -315,25 +320,21 @@ const PickupScreen = ({route, navigation}) => {
           <View style={styles.pickupBtn}>
             <TouchableOpacity
               onPress={() => {
-                if(subCategory!="Choose Sub-Category")
-                {
+                
                   if (address.length != 0) {
                     handlePickeup();
                     //printAll();
                   } else {
                     Alert.alert('Enter Valid Address');
                   }
-                }
-                else
-                {
-                  Alert.alert("Choose a Sub-Category");
-                }
+                
+                
                 
               }}>
               <LinearGradient colors={['#A363A9', '#FAB06D']}
                    style = {
                      {
-                      borderRadius: 100,
+                      borderRadius: moderateScale(100),
                       //marginTop : 10,
                                         
                      }
@@ -343,12 +344,12 @@ const PickupScreen = ({route, navigation}) => {
                 >
                    <Text
                 style={{
-                  fontSize: 20,
+                  fontSize: moderateScale(20),
                   alignSelf: 'center',
                   color: '#FFFFFF',
-                  margin: 5,
-                  paddingTop : 10,
-                  paddingBottom: 15,
+                  margin: moderateScale(5),
+                  paddingTop : verticalScale(10),
+                  paddingBottom: verticalScale(15),
                 }}>
                 Send Pickup Request
               </Text>
@@ -361,7 +362,7 @@ const PickupScreen = ({route, navigation}) => {
           color="#A363A9"
             size={'large'}
             style={{
-              marginTop: 30,
+              marginTop: verticalScale(30),
             }}
           />
         )}
@@ -375,11 +376,11 @@ const PickupScreen = ({route, navigation}) => {
             }}>
             <Text
               style={{
-                fontSize: 20,
+                fontSize: moderateScale(20),
                 textAlign: 'center',
-                marginTop: 10,
+                marginTop: verticalScale(10),
                 color: '#A363A9',
-                paddingBottom : 10,
+                paddingBottom : verticalScale(10),
                 alignSelf: 'center',
               }}>
               Logout
@@ -395,35 +396,35 @@ export default PickupScreen;
 
 const styles = StyleSheet.create({
   textinput: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     borderColor: '#A363A9',
-    borderRadius: 25,
-    padding : 15,
+    borderRadius: moderateScale(100),
+    padding : moderateScale(15),
     justifyContent : "center",
     borderWidth: 1,
-    marginTop: 10,
-    marginLeft: 20,
-    marginRight: 20,
+    marginTop: verticalScale(10),
+    marginLeft: scale(20),
+    marginRight: scale(20),
     color: '#000000',
   },
 
   pickupBtn: {
-    marginTop: 20,
+    marginTop: verticalScale(20),
     //borderWidth : 2,
     //borderColor : 'red',
    
-    marginLeft: 15,
-    marginRight: 15,
-    borderRadius : 50,
-    padding : 6,
+    marginLeft: scale(15),
+    marginRight: scale(15),
+    borderRadius : moderateScale(100),
+    padding : moderateScale(6),
   },
 
   pickerStyle: {
-    marginLeft: 20,
-    marginTop: 10,
+    marginLeft: scale(20),
+    marginTop: verticalScale(10),
     borderColor : "#A363A9",
-    marginRight: 20,
-    borderRadius : 25,
+    marginRight: scale(20),
+    borderRadius : moderateScale(100),
     borderWidth : 1,
 
   },

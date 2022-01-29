@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { StackActions } from '@react-navigation/native';
@@ -127,13 +129,13 @@ const LoginScreen = ({navigation,route}) => {
         }}>
         <Text
           style={{
-            fontSize: 30,
+            fontSize: moderateScale(30),
             textAlign: 'left',
             
-            marginTop: 30,
-            marginBottom: 30,
+            marginTop: verticalScale(30),
+            marginBottom: verticalScale(30),
             color: '#000000',
-            marginLeft: 30,
+            marginLeft: scale(30),
           }}>
           Login
         </Text>
@@ -163,7 +165,7 @@ const LoginScreen = ({navigation,route}) => {
               <LinearGradient colors={['#A363A9', '#FAB06D']}
                    style = {
                      {
-                      borderRadius: 50,
+                      borderRadius: moderateScale(100),
                       //marginTop : 10,
                                         
                      }
@@ -173,11 +175,11 @@ const LoginScreen = ({navigation,route}) => {
                 >
               <Text
                 style={{
-                  fontSize: 30,
+                  fontSize: moderateScale(30),
                   alignSelf: 'center',
                   color: '#FFFFFF',
-                  margin: 5,
-                  paddingBottom: 10,
+                  margin: moderateScale(5),
+                  paddingBottom: verticalScale(10),
                 }}>
                 Login
               </Text>
@@ -189,15 +191,15 @@ const LoginScreen = ({navigation,route}) => {
             color="#A363A9"
             size={'large'}
             style={{
-              marginTop: 30,
+              marginTop: verticalScale(30),
             }}
           />
         )}
         <Text
           style={{
-            fontSize: 18,
+            fontSize: moderateScale(18),
             alignSelf: 'center',
-            marginTop: 70,
+            marginTop: verticalScale(70),
             color : "#758283",
             
           }}>
@@ -215,11 +217,11 @@ const LoginScreen = ({navigation,route}) => {
             }}>
             <Text
               style={{
-                fontSize: 20,
+                fontSize: moderateScale(20),
                 alignSelf: 'center',
                 color : "#A363A9",
-                margin: 5,
-                paddingBottom: 5,
+                margin: moderateScale(5),
+                paddingBottom: verticalScale(5),
               }}>
               Register Now
             </Text>
@@ -234,33 +236,33 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   textinput: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     borderColor: '#c4c4c4',
     borderWidth: 1,
-    borderRadius: 25,
-    marginTop: 15,
-    marginLeft: 20,
-    padding : 15,
-    marginRight: 20,
+    borderRadius: moderateScale(100),
+    marginTop: verticalScale(15),
+    marginLeft: scale(20),
+    padding : moderateScale(15),
+    marginRight: scale(20),
     color: '#000000',
   },
 
   loginBtn: {
-    marginTop: 25,
+    marginTop: verticalScale(25),
     backgroundColor: '#c4c4c4',
-    marginLeft: 20,
-    marginRight: 20,
-    borderRadius: 50,
+    marginLeft: scale(20),
+    marginRight: scale(20),
+    borderRadius: moderateScale(100),
   },
 
   registerBtn: {
-    marginTop: 10,
-    marginLeft: 20,
-    padding : 8,
+    marginTop: verticalScale(10),
+    marginLeft: scale(20),
+    padding : moderateScale(8),
     borderWidth : 1,
     borderColor : "#A363A9",
-    marginRight: 20,
-    borderRadius: 50,
+    marginRight: scale(20),
+    borderRadius: moderateScale(100),
     
   },
 });

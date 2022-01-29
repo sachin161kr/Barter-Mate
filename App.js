@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import logo from './assets/logo2.png';
 
 const Stack = createNativeStackNavigator();
@@ -45,8 +45,8 @@ const MyStack = () => {
                           source={logo} 
                           style = {
                             {
-                               height : 75,
-                               width : 80,
+                               height : verticalScale(75),
+                               width : scale(80),
                                
                             }
                           }                      
@@ -54,11 +54,12 @@ const MyStack = () => {
                        <Text
                           style = {
                             {
-                               fontSize : 25,
-                               marginTop : 18,
+                               fontSize : moderateScale(25),
+                               marginTop : verticalScale(19),
+                              
                             }
                           }
-                       >Barter-Mate</Text>
+                       >BarterMate</Text>
                      </View>
                  </>
                )

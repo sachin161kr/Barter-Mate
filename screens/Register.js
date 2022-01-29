@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -64,7 +65,7 @@ const RegisterScreen = ({navigation,route}) => {
     var data = JSON.stringify({
       name: `${fullName}`,
       email: `${email}`,
-      phone: `${phone}`,
+      phone: `+91${phone}`,
       address: `${address}`,
       landMark: `${landmark}`,
       pinCode: `${pincode}`,
@@ -107,11 +108,11 @@ const RegisterScreen = ({navigation,route}) => {
       <Text 
          style = {
            {
-            fontSize: 30,
+            fontSize: moderateScale(30),
             textAlign: 'left',
-            marginTop: 10,
+            marginTop: verticalScale(10),
             color: '#000000',
-            marginLeft: 30,
+            marginLeft: scale(30),
            }
          }
       >
@@ -119,7 +120,7 @@ const RegisterScreen = ({navigation,route}) => {
       </Text>
         <View
           style={{
-            marginTop: 10,
+            marginTop: verticalScale(10),
           }}>
           <TextInput
             style={styles.textinput}
@@ -131,7 +132,7 @@ const RegisterScreen = ({navigation,route}) => {
 
           <TextInput
             onChangeText={text => {
-              setEmail(text);
+              setEmail(text); 
             }}
             style={styles.textinput}
             placeholder="Email"
@@ -210,8 +211,8 @@ const RegisterScreen = ({navigation,route}) => {
                     phone &&
                     password &&
                     confirmPass &&
-                    address &&
-                    landmark
+                    address 
+                  
                   ) {
                     if (passCheck() && phoneCheck() && pincode!="Choose Pincode") {
                       handleSubmit();
@@ -223,7 +224,7 @@ const RegisterScreen = ({navigation,route}) => {
                   <LinearGradient colors={['#A363A9', '#FAB06D']}
                    style = {
                      {
-                      borderRadius: 50,
+                      borderRadius: moderateScale(100),
                                         
                      }
                    }
@@ -233,11 +234,11 @@ const RegisterScreen = ({navigation,route}) => {
 
 <Text
                   style={{
-                    fontSize: 30,
+                    fontSize: moderateScale(30),
                     alignSelf: 'center',
                     color: '#FFFFFF',
-                    margin: 5,
-                    paddingBottom: 10,
+                    margin: moderateScale(5),
+                    paddingBottom: verticalScale(10),
                   }}>
                   Register
                 </Text>
@@ -250,7 +251,7 @@ const RegisterScreen = ({navigation,route}) => {
               color="#A363A9"
               size={'large'}
               style={{
-                marginTop: 10,
+                marginTop: verticalScale(10),
               }}
             />
           )}
@@ -264,33 +265,33 @@ export default RegisterScreen;
 
 const styles = StyleSheet.create({
   textinput: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     borderColor: '#758283',
     borderWidth: 1,
-    borderRadius: 25,
-    marginTop: 15,
-    marginLeft: 20,
-    padding : 15,
-    marginRight: 20,
+    borderRadius: moderateScale(100),
+    marginTop: verticalScale(15),
+    marginLeft: scale(20),
+    padding : moderateScale(15),
+    marginRight: scale(20),
     color: '#000000',
   },
 
   registerBtn: {
-    marginTop: 15,
+    marginTop: verticalScale(15),
     backgroundColor: '#c4c4c4',
-    marginLeft: 20,
-    marginRight: 20,
-    borderRadius: 50,
-    marginBottom : 20,
+    marginLeft: scale(20),
+    marginRight: scale(20),
+    borderRadius: moderateScale(100),
+    marginBottom : verticalScale(20),
     //borderRadius: 10,
   },
 
   pickerStyle: {
-    marginLeft: 20,
-    marginTop: 15,
-    marginRight: 20,
+    marginLeft: scale(20),
+    marginTop: verticalScale(15),
+    marginRight: scale(20),
     borderWidth : 1,
-    borderRadius : 25,
+    borderRadius : moderateScale(100),
     borderColor : "#A363A9", 
   },
 });

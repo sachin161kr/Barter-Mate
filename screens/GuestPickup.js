@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -80,11 +81,11 @@ const GuestPickupScreen = ({route, navigation}) => {
     var data = JSON.stringify({
       name: `${name}`,
       email: `${email}`,
-      phone: `${phone}`,
+      phone: `+91${phone}`,
       address: `${address}`,
       landMark: `${landMark}`,
       pinCode: `${pincode}`,
-      category: `${subCategory}`,
+      category: `${category}`,
     });
 
     console.log(`${name}`);
@@ -124,22 +125,33 @@ const GuestPickupScreen = ({route, navigation}) => {
         style={{
           backgroundColor: '#FFFFFF',
         }}>
+        <View
+          style = {
+            {
+              height: verticalScale(180),
+              width: scale(180),
+              alignSelf: 'center',
+              marginTop : verticalScale(12)
+            }
+          }
+        >
         <Image
           style={{
             height: 180,
             width: 180,
-            alignSelf: 'center',
+            
           }}
           source={sweeper}
         />
+        </View>
         <Text
           style={{
-            fontSize: 25,
+            fontSize: moderateScale(25),
             alignSelf: 'center',
             color: '#000000',
             fontWeight: 'bold',
             fontStyle: 'italic',
-            marginTop: 10,
+            marginTop: verticalScale(10),
           }}>
           Hello! {name}
         </Text>
@@ -149,7 +161,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             style={{
               fontSize: 20,
               textAlign: 'center',
-              color: '#758283',
+              color: '#758283', 
               marginTop: 10,
             }}>
             Category Chosen
@@ -175,16 +187,8 @@ const GuestPickupScreen = ({route, navigation}) => {
           </Picker>
         </View>
 
-        <View style={styles.pickerStyle}>
-          {/* <Text
-            style={{
-              fontSize: 20,
-              textAlign: 'center',
-              color: '#758283',
-              marginTop: 10,
-            }}>
-            Sub-Category Chosen
-          </Text> */}
+        {/* <View style={styles.pickerStyle}>
+          
 
           {category == 'Glass' ? (
             <Picker
@@ -311,7 +315,7 @@ const GuestPickupScreen = ({route, navigation}) => {
               <Picker.Item label="Washing Machine" value="Washing Machine" />
             </Picker>
           )}
-        </View>
+        </View> */}
 
         <TextInput
           defaultValue={`${name}`}
@@ -360,13 +364,13 @@ const GuestPickupScreen = ({route, navigation}) => {
 
         <View
           style={{
-            marginLeft: 20,
-            marginRight: 20,
+            marginLeft: scale(20),
+            marginRight: scale(20),
             borderColor: '#A363A9',
             borderWidth: 1,
-            borderRadius: 25,
-            margin: 10,
-            marginTop: 10,
+            borderRadius: moderateScale(100),
+            margin: moderateScale(10),
+            marginTop: verticalScale(10),
           }}>
           {/* <Text
             style={{
@@ -404,8 +408,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                   name &&
                   email &&
                   phone &&
-                  address &&
-                  landMark
+                  address
                 ) {
                   if (phoneCheck()) {
                     if(pincode!="Choose Pincode")
@@ -424,19 +427,19 @@ const GuestPickupScreen = ({route, navigation}) => {
               <LinearGradient
                 colors={['#A363A9', '#FAB06D']}
                 style={{
-                  borderRadius: 50,
+                  borderRadius: moderateScale(100),
                 }}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}>
                 <Text
                   style={{
-                    fontSize: 20,
+                    fontSize: moderateScale(20),
                     alignSelf: 'center',
                     color: '#FFFFFF',
-                    margin: 5,
-                    paddingTop: 10,
+                    margin: moderateScale(5),
+                    paddingTop: verticalScale(10),
 
-                    paddingBottom: 15,
+                    paddingBottom: verticalScale(15),
                   }}>
                   Send Pickup Request
                 </Text>
@@ -448,7 +451,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             color="#A363A9"
             size={'large'}
             style={{
-              marginTop: 10,
+              marginTop: verticalScale(10),
             }}
           />
         )}
@@ -461,32 +464,32 @@ export default GuestPickupScreen;
 
 const styles = StyleSheet.create({
   textinput: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     borderColor: '#758283',
-    borderRadius: 25,
-    padding: 15,
+    borderRadius: moderateScale(100),
+    padding: moderateScale(15),
     borderWidth: 1,
-    marginTop: 10,
-    marginLeft: 20,
-    marginRight: 20,
+    marginTop: verticalScale(10),
+    marginLeft: scale(20),
+    marginRight: scale(20),
     color: '#000000',
   },
 
   pickupBtn: {
-    marginTop: 5,
-    marginLeft: 15,
-    marginRight: 15,
-    padding: 6,
-    marginBottom: 30,
-    borderRadius: 25,
+    marginTop: verticalScale(5),
+    marginLeft: scale(15),
+    marginRight: scale(15),
+    padding: moderateScale(6),
+    marginBottom: verticalScale(30),
+    borderRadius: moderateScale(100),
   },
 
   pickerStyle: {
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: scale(20),
+    marginRight: scale(20),
     borderColor: '#A363A9',
     borderWidth: 1,
-    borderRadius: 25,
-    margin: 10,
+    borderRadius: moderateScale(100),
+    margin: moderateScale(10),
   },
 });

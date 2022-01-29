@@ -3,6 +3,8 @@ import {Picker} from '@react-native-picker/picker';
 import LinearGradient from 'react-native-linear-gradient';
 import { FloatingAction } from "react-native-floating-action";
 import SplashScreen from 'react-native-splash-screen';
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+
 
 import {
   Text,
@@ -60,8 +62,7 @@ const categoryList = [
     key: 3,
     image: paperIcon,
     text: 'Paper',
-    description:
-      'Paper suitable for recycling is called scrap paper, often used to produce moulded pulp packaging.',
+    description:'Post-consumer waste is material discarded after consumer use, such as old magazines, and newspapers. Paper suitable for recycling is called "scrap paper".',
   },
 
   {
@@ -159,23 +160,33 @@ const CategoryScreen  = ({navigation}) => {
          backgroundColor="#A363A9"
       />
       <ScrollView style={styles.container}>
+      <View 
+         style = {
+           {
+            height: verticalScale(280),
+            width: scale(360),
+            alignSelf : "center",
+           }
+         }
+      >
       <Image
               source={new_banner}
               style={{
-                height: 280,
+                height: verticalScale(280),
                 width: 360,
-                marginTop : 10,
+                marginTop : verticalScale(10),
                 resizeMode : "stretch",
                 alignSelf : "center",
-                borderRadius : 15,
+                borderRadius : moderateScale(15),
                 
           }}
           />
+      </View>
         <Text
           style={{
-            fontSize: 30,
-            marginTop: 20,
-            marginLeft: 30,
+            fontSize: moderateScale(30),
+            marginTop: verticalScale(30),
+            marginLeft: scale(30),
             fontWeight: 'bold',
             color : '#758283'
           }}>
@@ -217,34 +228,27 @@ const CategoryScreen  = ({navigation}) => {
               style={{
                 color: '#000000',
                 alignSelf: 'center',
-                fontSize: 25,
+                fontSize: moderateScale(25),
                 fontWeight: 'bold',
-                marginTop : 40,
+                marginTop : verticalScale(40),
               }}>
               {itemSelected}
             </Text>
             <Text
               style={{
+                fontSize : moderateScale(25),
+                height : verticalScale(120),
                 color: '#000000',
                 textAlign: 'center',
-                margin: 23,
-                fontSize: 18,
+                //margin: 23,
+                marginTop : verticalScale(10),
+                paddingHorizontal : moderateScale(15),
+                fontSize: moderateScale(18),
                 fontStyle: 'italic',
-                marginTop : 40,
               }}>
               {description}
             </Text>
-            <View style={styles.pickerStyle}>
-          {/* <Text
-            style={{
-              fontSize: 20,
-              textAlign: 'center',
-              color: '#758283',
-              //marginTop: 10,
-            }}>
-            Sub-Category Chosen
-          </Text> */}
-
+            {/* <View style={styles.pickerStyle}>
           {itemSelected == 'Glass' ? (
             <Picker
               style={{
@@ -355,125 +359,48 @@ const CategoryScreen  = ({navigation}) => {
               <Picker.Item label="Washing Machine" value="Washing Machine" />
             </Picker>
           )}
-        </View>
+        </View> */}
         <View 
             style={{
               flex: 1,
               flexDirection: 'row',
-              justifyContent : 'center',
-              marginTop : 8,
-              
-              
-              
+              justifyContent : "space-evenly",
+              marginTop : verticalScale(8),
             }}
         >
         <View style={styles.loginBtn}>
           <TouchableOpacity
-            onPress={() => {
-              if(subCategory!="Choose Sub-Category")
-              { 
-                toggle();
-                if (loginStatus == 'true') {
-
-                  
-                  navigation.navigate('Pickup Screen', {
-                    name: `${username}`,
-                    itemSelected: `${itemSelected}`,
-                    subCategory : `${subCategory}`,
-                    address: `${address}`,
-                    email: `${email}`,
-                    phone: `${phone}`,
-                    landmark: `${landmark}`,
-                    pincode: `${pincode}`,
-                  });
-                } 
-                else {
-                 
-                  navigation.navigate('Login Screen', {
-                    itemSelected: `${itemSelected}`,
-                    subCategory : `${subCategory}`,
-                  });
-                }
-              }
-              else
-              { 
-                
-                Alert.alert("Choose a Sub-Category");
-              }
-              
-            }}
+           onPress={() => {
+             toggle();
+            console.log('Register Button Clicked');
+            navigation.navigate('Register Screen',{
+              itemSelected : `${itemSelected}`,
+              subCategory : `${subCategory}`,
+            });
+          }}
             >
             {loginStatus == 'true' ? (
-                <LinearGradient colors={['#A363A9', '#FAB06D']}
-                   style = {
-                     {
-                      borderRadius: 50,
-                      marginTop : 10,
-                     }
-                   }
-                   start={{x: 0, y: 0}} 
-                   end={{x: 1, y: 0}}
-                >
-                  <Text
-                style={{
-                  fontSize: 20,
-                  textAlignVertical : "center",
-                  //padding : 10,
-                  // marginLeft : 50,
-                  // marginRight : 40,
-                  paddingBottom : 15,
-                  width: 350,
-                  height : 60,
-                  // paddingLeft : 30,
-                  // paddingRight : 30,
-                  marginTop : 8,
-                  alignSelf: 'center',
-                  color: '#FFFFFF',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  //backgroundColor: '#c4c4c4',
-                 // borderRadius: 25,
-                }}>
-                Login As {username}
-              </Text>
-              </LinearGradient>
+                <>
+              </>
               
             ) : (
-              <LinearGradient colors={['#A363A9', '#FAB06D']}
-                   style = {
-                     {
-                      borderRadius: 50,
-                      marginTop : 10,
-                                        
-                     }
-                   }
-                   start={{x: 0, y: 0}} 
-                   end={{x: 1, y: 0}}
-
-
-                   
-                >
+             
                 <Text
                 style={{
-                  fontSize: 30,
-                  alignSelf: 'center',
-                  color: '#FFFFFF',
-  
+                  fontSize: moderateScale(27),
+                  height : verticalScale(60),
+                  width : scale(150),
+                  color : "#A363A9",
+                  borderColor : "#A363A9",
+                  borderWidth : 1,
                   textAlign : "center",
-                  
-                  // paddingTop : 7,
-                  textAlignVertical : "center",
-                  paddingTop : 5,
-                  paddingBottom : 15,
-                  // borderRadius : 30,
-                  paddingRight : 50,
-                  paddingLeft : 50,
-                  
+                  paddingTop : verticalScale(10),
+                  borderRadius : moderateScale(100),
                   
                 }}>
-                Login
+                Sign-Up
               </Text>
-                </LinearGradient>
+              
               
             )}
           </TouchableOpacity>
@@ -486,43 +413,165 @@ const CategoryScreen  = ({navigation}) => {
           <View style={styles.guestRegister}>
             <TouchableOpacity
               onPress={() => {
-
-                if(subCategory!="Choose Sub-Category")
-                {
                   toggle();
                   navigation.navigate('Guest Pickup Screen', {
                     itemSelected: `${itemSelected}`,
                     subCategory : `${subCategory}`,
                   });
                 }
-                else
-                {
-                  Alert.alert("Choose a Sub-Category");
-                }
-                
-              }
             }
               >
               <Text
                 style={{
-                  fontSize: 22,
+                  fontSize: moderateScale(30),
                   alignSelf: 'center',
                   color: '#A363A9',
                   borderWidth : 1,
-                  margin : 10,
-                  padding : 14,
+                  height : verticalScale(60),
+                  width : scale(150),
+                  textAlign : "center",
+                  paddingTop : verticalScale(8),
+                  borderRadius : moderateScale(100),
                   borderColor : '#A363A9',
-                  borderRadius : 50,
-                  paddingLeft : 25,
-                  paddingRight : 25,                
+                  borderRadius : moderateScale(100),
+                               
                 }}>
-                Guest User
+                Guest
               </Text>
             </TouchableOpacity>
           </View>
           )}
+        </View>
+       {
+          loginStatus=='true'?
+          <TouchableOpacity
+            onPress={() => {
+              toggle();
+              if (loginStatus == 'true') {
 
-        </View>   
+                
+                navigation.navigate('Pickup Screen', {
+                  name: `${username}`,
+                  itemSelected: `${itemSelected}`,
+                  subCategory : `${subCategory}`,
+                  address: `${address}`,
+                  email: `${email}`,
+                  phone: `${phone}`,
+                  landmark: `${landmark}`,
+                  pincode: `${pincode}`,
+                });
+              } 
+              else {
+               
+                navigation.navigate('Login Screen', {
+                  itemSelected: `${itemSelected}`,
+                  subCategory : `${subCategory}`,
+                });
+              }
+            
+            
+            
+          }}
+       
+       >
+       <LinearGradient
+        colors={['#A363A9', '#FAB06D']}
+        style = {
+          {
+           borderRadius: moderateScale(100),
+           height : verticalScale(60),
+           width : scale(320),
+           marginLeft : scale(2),
+           marginBottom : verticalScale(25),
+           alignSelf : "center",
+          
+                             
+          }
+        }
+        start={{x: 0, y: 0}} 
+        end={{x: 1, y: 0}}
+       >
+       <Text
+          style = {
+            {  
+              color : "#FFFFFF",
+        
+              fontSize : moderateScale(20),
+
+             paddingTop : verticalScale(15),
+              textAlignVertical : "center",
+              textAlign : "center",
+            }
+          }
+        >Login As {username}</Text> 
+       </LinearGradient>
+       </TouchableOpacity>:
+       <TouchableOpacity
+       onPress={() => {
+         toggle();
+         if (loginStatus == 'true') {
+
+           
+           navigation.navigate('Pickup Screen', {
+             name: `${username}`,
+             itemSelected: `${itemSelected}`,
+             subCategory : `${subCategory}`,
+             address: `${address}`,
+             email: `${email}`,
+             phone: `${phone}`,
+             landmark: `${landmark}`,
+             pincode: `${pincode}`,
+           });
+         } 
+         else {
+          
+           navigation.navigate('Login Screen', {
+             itemSelected: `${itemSelected}`,
+             subCategory : `${subCategory}`,
+           });
+         }
+       
+       
+       
+     }}
+  
+  >
+  <LinearGradient
+       colors={['#A363A9', '#FAB06D']}
+       style = {
+         {
+          borderRadius: moderateScale(100),
+          height : verticalScale(60),
+          width : scale(320),
+          marginLeft : scale(2),
+          marginBottom : verticalScale(25),
+          alignSelf : "center",
+         
+                            
+         }
+       }
+       start={{x: 0, y: 0}} 
+       end={{x: 1, y: 0}}
+  >
+  <Text
+     style = {
+       {  
+          color : "#FFFFFF",
+        
+          fontSize : moderateScale(30),
+         paddingTop : verticalScale(7),
+          textAlignVertical : "center",
+          textAlign : "center",
+       
+          
+         
+         
+       }
+     }
+   >Login</Text> 
+  </LinearGradient>
+  </TouchableOpacity>
+       }
         {
            loginStatus=='true'?
            <TouchableOpacity
@@ -537,11 +586,11 @@ const CategoryScreen  = ({navigation}) => {
               <Text
                  style={
                    {
-                     fontSize : 20,
+                     fontSize : moderateScale(20),
                      color : '#A363A9',
                      alignSelf : 'center',
-                     marginTop : 5,
-                     marginBottom : 44, 
+                     marginTop : verticalScale(5),
+                     marginBottom : verticalScale(44), 
                    }
                  }
               >Logout</Text>
@@ -554,8 +603,8 @@ const CategoryScreen  = ({navigation}) => {
             color='#FFFFFF'
             actions={action}
             floatingIcon={question}
-            iconHeight={30}
-            iconWidth={30}
+            iconHeight={verticalScale(30)}
+            iconWidth={scale(30)}
             onPressItem={name=>{
                 if(name=="bt_contact")
                 {
@@ -588,7 +637,7 @@ const styles = StyleSheet.create({
 
   gridContainer: {
     flex: 1,
-    margin: 5,
+    //margin: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -606,31 +655,31 @@ const styles = StyleSheet.create({
 
   card: {
     backgroundColor: '#fff',
-    height: 500,
-    borderTopRightRadius : 40,
-    borderTopLeftRadius : 40,
+    height: verticalScale(370),
+    borderTopRightRadius : moderateScale(40),
+    borderTopLeftRadius : moderateScale(40),
   },
 
   viewGroup: {
     // borderWidth: 2,
     //borderColor: '#758283',
     //elevation : 4,
-    borderRadius : 15,
+    borderRadius : moderateScale(15),
 
-    marginTop: 30,
+    marginTop: verticalScale(30),
     backgroundColor : "#F5F5F5",
-    padding: 10,
+    padding: moderateScale(10),
     overflow: 'hidden',
     elevation : 3,
-    marginBottom : 20,
+    marginBottom : verticalScale(20),
 
 
   },
 
   image: {
-    height: 80,
-    width: 100,
-    margin: 10,
+    height: verticalScale(80),
+    width: scale(100),
+    margin: moderateScale(10),
     overflow: 'hidden',
     //padding : 30,
   },
@@ -639,8 +688,9 @@ const styles = StyleSheet.create({
 
   
   text: {
+    fontSize : moderateScale(18),
     textAlign: 'center',
-    marginBottom: 4,
+    marginBottom: verticalScale(4),
     color: '#000000',
     //padding: 5,
   },
