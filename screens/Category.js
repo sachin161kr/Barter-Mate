@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import LinearGradient from 'react-native-linear-gradient';
 import { FloatingAction } from "react-native-floating-action";
 import SplashScreen from 'react-native-splash-screen';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
-
 
 import {
   Text,
@@ -32,6 +31,7 @@ import paperIcon from '../assets/paperIcon.png';
 import electronicIcon from '../assets/electronicIcon.png';
 import question from "../assets/question.png";
 import new_banner from "../assets/new_banner.jpeg"
+import people from "../assets/people.jpg"
 
 const categoryList = [
   {
@@ -90,8 +90,47 @@ const categoryList = [
   // },
 ];
 
+
+
 const CategoryScreen  = ({navigation}) => {
 
+  const [loading,setLoading] = useState(true);
+  
+  const [images,setImages] = useState([
+
+  ]);
+  //var images = [];
+  
+
+  useEffect(() => {
+    try {
+      axios
+        .get(
+          'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/image'
+        )
+        .then((res) => 
+        {  
+          setLoading(false);
+          setImages(res.data.data.image);
+          //images = res.data.data.image,
+          
+        });
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  },[]);
+
+
+  console.log(images);
+  
+
+ 
+  
+
+
+
+ 
  
   //const sheetRef = React.useRef(null);
 
@@ -133,6 +172,8 @@ const CategoryScreen  = ({navigation}) => {
 
   getUser();
 
+  //loadBannerImage();
+
   const setUser = async () => {
     await AsyncStorage.setItem('loginStatus', 'false');
     await AsyncStorage.setItem('User', 'Guest');
@@ -160,28 +201,89 @@ const CategoryScreen  = ({navigation}) => {
          backgroundColor="#A363A9"
       />
       <ScrollView style={styles.container}>
-      <View 
-         style = {
-           {
+     <ScrollView
+        horizontal = {true}
+        style = {
+          {
             height: verticalScale(280),
-            width: scale(360),
-            alignSelf : "center",
-           }
+            
+            
+          }
+        }
+        
+     >
+    <View
+       style = {
+         {
+           justifyContent : "space-evenly",
+           flexDirection : "row",
+           
+           marginLeft : scale(25),
+           
          }
-      >
-      <Image
-              source={new_banner}
-              style={{
-                height: verticalScale(280),
-                width: 360,
-                marginTop : verticalScale(10),
-                resizeMode : "stretch",
-                alignSelf : "center",
-                borderRadius : moderateScale(15),
-                
-          }}
+       }
+    >
+
+
+
+     {  
+        loading==true?
+        <View
+        style = {
+          {
+           height: verticalScale(280),
+           width: scale(360),
+           justifyContent : "center",
+          
+          }
+        }
+        >
+          <ActivityIndicator
+             color="#A363A9"
+             size={'large'}
+
           />
-      </View>
+          </View>:
+        images.map(
+          (item)=>
+            <View 
+            style = {
+              {
+               height: verticalScale(250),
+               width: scale(360),
+               alignSelf : "center",
+               
+               
+              }
+            }
+         >
+         <Image
+            source={
+               {
+                 uri : `https://enigmatic-bayou-48428.herokuapp.com${item.image}`
+               }
+            } 
+            style = {
+              {
+                resizeMode : "stretch",
+                height: verticalScale(250),
+                width: scale(300),
+                borderRadius : moderateScale(10),
+              }
+            }
+         />
+         
+        
+         
+         </View>
+          
+        )
+     } 
+    
+     
+      
+    </View>
+     </ScrollView>
         <Text
           style={{
             fontSize: moderateScale(30),

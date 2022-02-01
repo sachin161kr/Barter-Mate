@@ -90,7 +90,7 @@ const GuestPickupScreen = ({route, navigation}) => {
     var data = JSON.stringify({
       name: `${name}`,
       email: `${email}`,
-      phone: `+91${phone}`,
+      phone: `${phone}`,
       address: `${address}`,
       landMark: `${landMark}`,
       pinCode: `${pincode}`,
@@ -343,18 +343,28 @@ const GuestPickupScreen = ({route, navigation}) => {
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'center',
-            marginLeft : scale(10),
+            justifyContent: 'flex-start',
+            alignSelf : "center",
+            borderColor: '#758283',
+            borderRadius: moderateScale(100),
+            borderWidth: 1,
+             padding: moderateScale(5),
+             
+              width : scale(310),
+              //marginLeft: scale(5),
+              marginTop: verticalScale(10),
+              //marginRight: scale(23),
+            
           }}>
           <Text
             style={{
               fontSize: moderateScale(20),
-              marginTop: verticalScale(23),
-              marginLeft : scale(15),
+              marginTop: verticalScale(8),
+              marginRight : scale(10),
+              marginLeft : scale(3),
               color : "#758283",
             }}>
-            +91
-          </Text>
+            +91</Text>
           <TextInput
             defaultValue={`${phone}`}
             keyboardType="number-pad"
@@ -363,14 +373,8 @@ const GuestPickupScreen = ({route, navigation}) => {
             }}
             style={{
               fontSize: moderateScale(20),
-              borderColor: '#758283',
-              borderRadius: moderateScale(100),
-              padding: moderateScale(15),
-              borderWidth: 1,
-              width : scale(270),
-              marginLeft: scale(5),
-              marginTop: verticalScale(10),
-              marginRight: scale(23),
+             
+              
               color: '#000000',
             }}
             placeholder="Enter Phone Number"

@@ -1,5 +1,5 @@
 {
-  "name": "trashtocash",
+  "name": "bartermate",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "axios": "^0.24.0",
+    "FormData": "^0.10.1",
     "react": "17.0.2",
     "react-native": "0.66.3",
     "react-native-axios": "^0.17.1",

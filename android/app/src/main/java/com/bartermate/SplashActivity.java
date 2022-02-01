@@ -1,4 +1,4 @@
-package com.trashtocash;
+package com.bartermate;
 
 import android.content.Intent;
 import android.os.Bundle;

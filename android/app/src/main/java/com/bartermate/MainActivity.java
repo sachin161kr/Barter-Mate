@@ -1,4 +1,4 @@
-package com.trashtocash;
+package com.bartermate;
 
 import com.facebook.react.ReactActivity;
 

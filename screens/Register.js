@@ -75,7 +75,7 @@ const RegisterScreen = ({navigation,route}) => {
     var data = JSON.stringify({
       name: `${fullName}`,
       email: `${email}`,
-      phone: `+91${phone}`,
+      phone: `${phone}`,
       address: `${address}`,
       landMark: `${landmark}`,
       pinCode: `${pincode}`,
@@ -149,45 +149,48 @@ const RegisterScreen = ({navigation,route}) => {
             placeholderTextColor="#758283"
             keyboardType="email-address"></TextInput>
 
-          <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                marginLeft : scale(10),
-              }}
-          >
+<View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignSelf : "center",
+            borderColor: '#758283',
+            borderRadius: moderateScale(100),
+            borderWidth: 1,
+             padding: moderateScale(5),
+             
+              width : scale(310),
+              //marginLeft: scale(5),
+              marginTop: verticalScale(10),
+              //marginRight: scale(23),
+            
+          }}>
           <Text
             style={{
               fontSize: moderateScale(20),
-              marginTop: verticalScale(23),
-              marginLeft : scale(15),
+              marginTop: verticalScale(8),
+              marginRight : scale(10),
+              marginLeft : scale(3),
+              //marginLeft : scale(15),
               color : "#758283",
             }}>
-            +91
-          </Text>  
+            +91 
+          </Text>
           <TextInput
-            onChangeText={text => {
-              setPhone(text);
+            defaultValue={`${phone}`}
+            keyboardType="number-pad"
+            onChangeText={tempPhone => {
+              setPhone(tempPhone);
             }}
-            style={
-              {
-                fontSize: moderateScale(20),
-                borderColor: '#758283',
-                borderRadius: moderateScale(100),
-                padding: moderateScale(15),
-                borderWidth: 1,
-                width : scale(270),
-                marginLeft: scale(5),
-                marginTop: verticalScale(10),
-                marginRight: scale(23),
-                color: '#000000',
-              }
-            }
-            placeholder="Phone"
-            placeholderTextColor="#758283"
-            keyboardType="phone-pad"></TextInput>
-          </View>
-
+            style={{
+              fontSize: moderateScale(20),
+             
+              
+              color: '#000000',
+            }}
+            placeholder="Enter Phone Number"
+            placeholderTextColor="#758283"></TextInput>
+        </View>
           <TextInput
             onChangeText={text => {
               setPassword(text);
