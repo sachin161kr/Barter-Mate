@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -18,7 +17,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import sweeper from '../assets/sweeper.png';
+import sweeper from '../assets/garbageCleaner.png';
 
 const GuestPickupScreen = ({route, navigation}) => {
   const [category, setCategory] = useState(`${route.params.itemSelected}`);
@@ -29,49 +28,22 @@ const GuestPickupScreen = ({route, navigation}) => {
   const [pincode, setPincode] = useState('Choose Pincode');
   const [name, setName] = useState('');
 
-  //setCategory(tempCategory);
-
-  //const [loginStatus,setLogin] = useState('');
-
-  // const getUser = async ()=>{
-  //     var tempLoginStatus = await AsyncStorage.getItem("loginStatus");
-  //     setLogin(tempLoginStatus);
-  // }
-
-  // getUser();
-
   const [address, setAddress] = useState(``);
 
   const [isLoading, setLoading] = useState(false);
 
-  // const setUser = async ()=>{
-  //   await AsyncStorage.setItem("loginStatus","false");
-  //   await AsyncStorage.setItem("User","Guest");
-
-  // }
-
-  const passCheck = () => {
-    console.log(password);
-    console.log(confirmPass);
-    if (password != confirmPass) {
-      Alert.alert('Password must be same as Confirmed Password');
-      return false;
-    } else if (password.length < 8) {
-      Alert.alert('Password length must be greater than 7');
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   const emailCheck = () => {
-    if(email.includes("@gmail.com") || email.includes("@yahoo.com") || email.includes("@rediff.com") || email.includes("@hotmail.com"))
-    {
-       return true;
+    if (
+      email.includes('@gmail.com') ||
+      email.includes('@yahoo.com') ||
+      email.includes('@rediff.com') ||
+      email.includes('@hotmail.com')
+    ) {
+      return true;
     }
 
     return false;
- }
+  };
 
   const phoneCheck = () => {
     var num = parseInt(phone, 10);
@@ -96,14 +68,6 @@ const GuestPickupScreen = ({route, navigation}) => {
       pinCode: `${pincode}`,
       category: `${category}`,
     });
-
-    console.log(`${name}`);
-    console.log(`${email}`);
-    console.log(`${phone}`);
-    console.log(`${address}`);
-    console.log(`${landMark}`);
-    console.log(`${pincode}`);
-    console.log(`${subCategory}`);
 
     var config = {
       method: 'post',
@@ -136,15 +100,16 @@ const GuestPickupScreen = ({route, navigation}) => {
         }}>
         <View
           style={{
-            height: verticalScale(180),
-            width: scale(180),
+            height: verticalScale(200),
+            width: scale(250),
             alignSelf: 'center',
             marginTop: verticalScale(12),
           }}>
           <Image
             style={{
-              height: 180,
-              width: 180,
+              height: 200,
+              width: 250,
+              alignSelf: 'center',
             }}
             source={sweeper}
           />
@@ -156,21 +121,11 @@ const GuestPickupScreen = ({route, navigation}) => {
             color: '#000000',
             fontWeight: 'bold',
             fontStyle: 'italic',
-            marginTop: verticalScale(10),
           }}>
           Hello! {name}
         </Text>
 
         <View style={styles.pickerStyle}>
-          {/* <Text
-            style={{
-              fontSize: 20,
-              textAlign: 'center',
-              color: '#758283', 
-              marginTop: 10,
-            }}>
-            Category Chosen
-          </Text> */}
           <Picker
             style={{
               color: '#A363A9',
@@ -191,137 +146,6 @@ const GuestPickupScreen = ({route, navigation}) => {
             <Picker.Item label="Electronics" value="Electronics" />
           </Picker>
         </View>
-
-        {/* <View style={styles.pickerStyle}>
-          
-
-          {category == 'Glass' ? (
-            <Picker
-              style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={subCategory}
-              onValueChange={itemValue => {
-                setSubCategory(itemValue);
-              }}>
-              <Picker.Item
-                label="Choose Sub-Category"
-                value="Choose Sub-Category"
-              />
-              <Picker.Item label="Bottles" value="Bottles" />
-              <Picker.Item label="Mirrors" value="Mirrors" />
-            </Picker>
-          ) : category == 'Metal' ? (
-            <Picker
-              style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={subCategory}
-              onValueChange={itemValue => {
-                setSubCategory(itemValue);
-              }}>
-              <Picker.Item
-                label="Choose Sub-Category"
-                value="Choose Sub-Category"
-              />
-              <Picker.Item label="Steel" value="Steel" />
-              <Picker.Item label="Brass" value="Brass" />
-              <Picker.Item label="Motor" value="Motor" />
-              <Picker.Item label="Aluminium" value="Aluminium" />
-              <Picker.Item label="Copper" value="Copper" />
-              <Picker.Item label="Iron" value="Iron" />
-              <Picker.Item
-                label="Beer/Beverage Cans"
-                value="Beer/Beverage Cans"
-              />
-            </Picker>
-          ) : category == 'Paper' ? (
-            <Picker
-              style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={subCategory}
-              onValueChange={itemValue => {
-                setSubCategory(itemValue);
-              }}>
-              <Picker.Item
-                label="Choose Sub-Category"
-                value="Choose Sub-Category"
-              />
-              <Picker.Item label="Mil Board" value="Mil Board" />
-              <Picker.Item label="Magazine" value="Magazine" />
-              <Picker.Item
-                label="Gatta/Corrugated Board"
-                value="Gatta/Corrugated Board"
-              />
-              <Picker.Item label="Newspaper" value="Newspaper" />
-              <Picker.Item label="Books" value="Books" />
-            </Picker>
-          ) : category == 'Plastic' ? (
-            <Picker
-              style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={subCategory}
-              onValueChange={itemValue => {
-                setSubCategory(itemValue);
-              }}>
-              <Picker.Item
-                label="Choose Sub-Category"
-                value="Choose Sub-Category"
-              />
-              <Picker.Item label="Milk Pouch" value="Milk Pouch" />
-              <Picker.Item label="Plastic Bottles" value="Plastic Bottles" />
-            </Picker>
-          ) : (
-            <Picker
-              style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={subCategory}
-              onValueChange={itemValue => {
-                setSubCategory(itemValue);
-              }}>
-              <Picker.Item
-                label="Choose Sub-Category"
-                value="Choose Sub-Category"
-              />
-              <Picker.Item label="Black Battery" value="Black Battery" />
-              <Picker.Item label="White Battery" value="White Battery" />
-              <Picker.Item
-                label="Single-Door Fridge"
-                value="Single-Door Fridge"
-              />
-              <Picker.Item
-                label="Double-Door Fridge"
-                value="Double-Door Fridge"
-              />
-              <Picker.Item label="Air Conditioner" value="Air Conditioner" />
-              <Picker.Item label="Washing Machine" value="Washing Machine" />
-            </Picker>
-          )}
-        </View> */}
-
         <TextInput
           defaultValue={`${name}`}
           onChangeText={tempName => {
@@ -344,27 +168,25 @@ const GuestPickupScreen = ({route, navigation}) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'flex-start',
-            alignSelf : "center",
+            alignSelf: 'center',
             borderColor: '#758283',
             borderRadius: moderateScale(100),
             borderWidth: 1,
-             padding: moderateScale(5),
-             
-              width : scale(310),
-              //marginLeft: scale(5),
-              marginTop: verticalScale(10),
-              //marginRight: scale(23),
-            
+            padding: moderateScale(5),
+
+            width: scale(310),
+            marginTop: verticalScale(10),
           }}>
           <Text
             style={{
               fontSize: moderateScale(20),
               marginTop: verticalScale(8),
-              marginRight : scale(10),
-              marginLeft : scale(3),
-              color : "#758283",
+              marginRight: scale(10),
+              marginLeft: scale(3),
+              color: '#758283',
             }}>
-            +91</Text>
+            +91
+          </Text>
           <TextInput
             defaultValue={`${phone}`}
             keyboardType="number-pad"
@@ -373,8 +195,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             }}
             style={{
               fontSize: moderateScale(20),
-             
-              
+
               color: '#000000',
             }}
             placeholder="Enter Phone Number"
@@ -409,15 +230,6 @@ const GuestPickupScreen = ({route, navigation}) => {
             margin: moderateScale(10),
             marginTop: verticalScale(10),
           }}>
-          {/* <Text
-            style={{
-              color: '#758283',
-              fontSize: 20,
-              textAlign: 'center',
-              marginTop : 15,
-            }}>
-            Choose Pincode
-          </Text> */}
           <Picker
             style={{
               color: '#A363A9',

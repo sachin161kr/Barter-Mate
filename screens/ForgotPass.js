@@ -70,6 +70,13 @@ const ForgotPassScreen = ({navigation}) => {
 
   return (
     <>
+      <View
+         style={
+           {
+             backgroundColor : "#FFFFFF",
+           }
+         }
+      >
       <View>
         <TextInput
           style={styles.textinput}
@@ -152,6 +159,7 @@ const ForgotPassScreen = ({navigation}) => {
        </LinearGradient>
        </TouchableOpacity>
       }
+      </View>
       
     </>
   );

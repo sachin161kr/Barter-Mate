@@ -51,7 +51,7 @@ const ResetPassScreen = ({route,navigation}) => {
       .then(function (response) {
         setLoading(false);  
         console.log(JSON.stringify(response.data));
-        Alert.alert('PassWord Updated Successfully');
+        Alert.alert('Password Updated Successfully');
         navigation.navigate('Category Screen');
       })
       .catch(function (error) {
@@ -65,12 +65,20 @@ const ResetPassScreen = ({route,navigation}) => {
   return (
     <>
       <View
+         style = {
+           {
+             backgroundColor : "#FFFFFF",
+           }
+         }
+      >
+      <View
         style={{
           marginTop: verticalScale(20),
         }}>
         <TextInput
           style={styles.textinput}
           placeholder="Enter New Password"
+          secureTextEntry = {true}
           placeholderTextColor="#758283"
           onChangeText={tempPass => {
             setPass(tempPass);
@@ -80,6 +88,7 @@ const ResetPassScreen = ({route,navigation}) => {
         <TextInput
           style={styles.textinput}
           placeholder="Confirm New Password"
+          secureTextEntry = {true}
           placeholderTextColor="#758283"
           onChangeText={tempPass => {
             setConfirmPass(tempPass);
@@ -151,6 +160,7 @@ const ResetPassScreen = ({route,navigation}) => {
        </LinearGradient>
        </TouchableOpacity>
       }
+      </View>
     </>
   );
 };

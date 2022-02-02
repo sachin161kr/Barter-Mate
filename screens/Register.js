@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -14,13 +14,9 @@ import {
   Alert,
   ScrollView,
   ActivityIndicator,
-  Image
 } from 'react-native';
 
-
-
-
-const RegisterScreen = ({navigation,route}) => {
+const RegisterScreen = ({navigation, route}) => {
   const [pincode, setSelectedPincode] = useState('Choose Pincode');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -35,15 +31,18 @@ const RegisterScreen = ({navigation,route}) => {
   const itemSelected = route.params.itemSelected;
   const subCategory = route.params.subCategory;
 
-
   const emailCheck = () => {
-     if(email.includes("@gmail.com") || email.includes("@yahoo.com") || email.includes("@rediff.com") || email.includes("@hotmail.com"))
-     {
-        return true;
-     }
+    if (
+      email.includes('@gmail.com') ||
+      email.includes('@yahoo.com') ||
+      email.includes('@rediff.com') ||
+      email.includes('@hotmail.com')
+    ) {
+      return true;
+    }
 
-     return false;
-  }
+    return false;
+  };
 
   const passCheck = () => {
     console.log(password);
@@ -96,9 +95,9 @@ const RegisterScreen = ({navigation,route}) => {
         console.log(JSON.stringify(response.data));
         setLoading(false);
         Alert.alert('Successfully Registered');
-        navigation.navigate('Login Screen',{
-          itemSelected : `${itemSelected}`,
-          subCategory : `${subCategory}`
+        navigation.navigate('Login Screen', {
+          itemSelected: `${itemSelected}`,
+          subCategory: `${subCategory}`,
         });
       })
       .catch(function (error) {
@@ -108,26 +107,20 @@ const RegisterScreen = ({navigation,route}) => {
 
   return (
     <>
-      <ScrollView  
-         style = {
-           {
-             backgroundColor : "#FFFFFF"
-           }
-         }
-      >
-      <Text 
-         style = {
-           {
+      <ScrollView
+        style={{
+          backgroundColor: '#FFFFFF',
+        }}>
+        <Text
+          style={{
             fontSize: moderateScale(30),
             textAlign: 'left',
             marginTop: verticalScale(10),
             color: '#000000',
             marginLeft: scale(30),
-           }
-         }
-      >
-        Sign Up
-      </Text>
+          }}>
+          Sign Up
+        </Text>
         <View
           style={{
             marginTop: verticalScale(10),
@@ -142,55 +135,50 @@ const RegisterScreen = ({navigation,route}) => {
 
           <TextInput
             onChangeText={text => {
-              setEmail(text); 
+              setEmail(text);
             }}
             style={styles.textinput}
             placeholder="Email"
             placeholderTextColor="#758283"
             keyboardType="email-address"></TextInput>
 
-<View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignSelf : "center",
-            borderColor: '#758283',
-            borderRadius: moderateScale(100),
-            borderWidth: 1,
-             padding: moderateScale(5),
-             
-              width : scale(310),
-              //marginLeft: scale(5),
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignSelf: 'center',
+              borderColor: '#758283',
+              borderRadius: moderateScale(100),
+              borderWidth: 1,
+              padding: moderateScale(5),
+
+              width: scale(310),
               marginTop: verticalScale(10),
-              //marginRight: scale(23),
-            
-          }}>
-          <Text
-            style={{
-              fontSize: moderateScale(20),
-              marginTop: verticalScale(8),
-              marginRight : scale(10),
-              marginLeft : scale(3),
-              //marginLeft : scale(15),
-              color : "#758283",
             }}>
-            +91 
-          </Text>
-          <TextInput
-            defaultValue={`${phone}`}
-            keyboardType="number-pad"
-            onChangeText={tempPhone => {
-              setPhone(tempPhone);
-            }}
-            style={{
-              fontSize: moderateScale(20),
-             
-              
-              color: '#000000',
-            }}
-            placeholder="Enter Phone Number"
-            placeholderTextColor="#758283"></TextInput>
-        </View>
+            <Text
+              style={{
+                fontSize: moderateScale(20),
+                marginTop: verticalScale(8),
+                marginRight: scale(10),
+                marginLeft: scale(3),
+                color: '#758283',
+              }}>
+              +91
+            </Text>
+            <TextInput
+              defaultValue={`${phone}`}
+              keyboardType="number-pad"
+              onChangeText={tempPhone => {
+                setPhone(tempPhone);
+              }}
+              style={{
+                fontSize: moderateScale(20),
+
+                color: '#000000',
+              }}
+              placeholder="Enter Phone Number"
+              placeholderTextColor="#758283"></TextInput>
+          </View>
           <TextInput
             onChangeText={text => {
               setPassword(text);
@@ -198,8 +186,7 @@ const RegisterScreen = ({navigation,route}) => {
             style={styles.textinput}
             placeholder="Password"
             secureTextEntry={true}
-            placeholderTextColor="#758283"
-           ></TextInput>
+            placeholderTextColor="#758283"></TextInput>
           <TextInput
             onChangeText={text => {
               setConfirmPass(text);
@@ -237,7 +224,7 @@ const RegisterScreen = ({navigation,route}) => {
               onValueChange={itemValue => {
                 setSelectedPincode(itemValue);
               }}>
-                <Picker.Item label="Choose Pincode" value="Choose Pincode" />
+              <Picker.Item label="Choose Pincode" value="Choose Pincode" />
               <Picker.Item label="201301" value="201301" />
               <Picker.Item label="201304" value="201304" />
             </Picker>
@@ -247,46 +234,44 @@ const RegisterScreen = ({navigation,route}) => {
             <View style={styles.registerBtn}>
               <TouchableOpacity
                 onPress={() => {
-                  //navigation.navigate('Category Screen');
                   if (
                     fullName &&
                     email &&
                     phone &&
                     password &&
                     confirmPass &&
-                    address 
-                  
+                    address
                   ) {
-                    if (passCheck() && phoneCheck() && pincode!="Choose Pincode" && emailCheck()) {
+                    if (
+                      passCheck() &&
+                      phoneCheck() &&
+                      pincode != 'Choose Pincode' &&
+                      emailCheck()
+                    ) {
                       handleSubmit();
                     }
                   } else {
                     Alert.alert('Enter Valid Details');
                   }
                 }}>
-                  <LinearGradient colors={['#A363A9', '#FAB06D']}
-                   style = {
-                     {
-                      borderRadius: moderateScale(100),
-                                        
-                     }
-                   }
-                   start={{x: 0, y: 0}} 
-                   end={{x: 1, y: 0}}
-                >
-
-<Text
+                <LinearGradient
+                  colors={['#A363A9', '#FAB06D']}
                   style={{
-                    fontSize: moderateScale(30),
-                    alignSelf: 'center',
-                    color: '#FFFFFF',
-                    margin: moderateScale(5),
-                    paddingBottom: verticalScale(10),
-                  }}>
-                  Register
-                </Text>
+                    borderRadius: moderateScale(100),
+                  }}
+                  start={{x: 0, y: 0}}
+                  end={{x: 1, y: 0}}>
+                  <Text
+                    style={{
+                      fontSize: moderateScale(30),
+                      alignSelf: 'center',
+                      color: '#FFFFFF',
+                      margin: moderateScale(5),
+                      paddingBottom: verticalScale(10),
+                    }}>
+                    Register
+                  </Text>
                 </LinearGradient>
-               
               </TouchableOpacity>
             </View>
           ) : (
@@ -314,7 +299,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(100),
     marginTop: verticalScale(15),
     marginLeft: scale(20),
-    padding : moderateScale(15),
+    padding: moderateScale(15),
     marginRight: scale(20),
     color: '#000000',
   },
@@ -325,16 +310,15 @@ const styles = StyleSheet.create({
     marginLeft: scale(20),
     marginRight: scale(20),
     borderRadius: moderateScale(100),
-    marginBottom : verticalScale(20),
-    //borderRadius: 10,
+    marginBottom: verticalScale(20),
   },
 
   pickerStyle: {
     marginLeft: scale(20),
     marginTop: verticalScale(15),
     marginRight: scale(20),
-    borderWidth : 1,
-    borderRadius : moderateScale(100),
-    borderColor : "#A363A9", 
+    borderWidth: 1,
+    borderRadius: moderateScale(100),
+    borderColor: '#A363A9',
   },
 });

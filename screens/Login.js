@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import { StackActions } from '@react-navigation/native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -18,26 +16,19 @@ import {
   Alert,
   ActivityIndicator,
   Image,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 
-import logo from '../assets/logo.png';
-
-const LoginScreen = ({navigation,route}) => {
-  // const [name,setName] = useState('');
+const LoginScreen = ({navigation, route}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [address,setAddress] = useState('');
-  // const [phone,setPhone] = useState('');
-  // const [landMark,setLandMark] = useState('');
-  // const [pinCode,setPincode] = useState('');
 
-  var name = "";
-  var address = "";
-  var phone = "";
-  var landmark = "";
-  var pincode = "";
-  
+  var name = '';
+  var address = '';
+  var phone = '';
+  var landmark = '';
+  var pincode = '';
+
   const itemSelected = route.params.itemSelected;
   const subCategory = route.params.subCategory;
 
@@ -50,15 +41,15 @@ const LoginScreen = ({navigation,route}) => {
     console.log(phone);
     console.log(landmark);
     console.log(pincode);
-    console.log("Done");
+    console.log('Done');
     await AsyncStorage.setItem('loginStatus', 'true');
     await AsyncStorage.setItem('User', `${name}`);
-    await AsyncStorage.setItem('email',`${email}`);
-    await AsyncStorage.setItem('address',`${address}`);
-    await AsyncStorage.setItem('phone',`${phone}`);
-    await AsyncStorage.setItem('landmark',`${landmark}`);
-    await AsyncStorage.setItem('pincode',`${pincode}`);
-   };
+    await AsyncStorage.setItem('email', `${email}`);
+    await AsyncStorage.setItem('address', `${address}`);
+    await AsyncStorage.setItem('phone', `${phone}`);
+    await AsyncStorage.setItem('landmark', `${landmark}`);
+    await AsyncStorage.setItem('pincode', `${pincode}`);
+  };
 
   const getCredentials = () => {
     if (email && password) {
@@ -84,20 +75,6 @@ const LoginScreen = ({navigation,route}) => {
           pincode = userData.data.userDetails.pinCode;
 
           setUser();
-          
-          // const pushAction = StackActions.push('Category Screen');
-          // navigation.dispatch(
-          //   pushAction,
-          //   StackActions.replace('Pickup Screen', {
-          //   name: `${name}`,
-          //   email: email,
-          //   phone: `${phone}`,
-          //   address: `${address}`,
-          //   landmark: `${landmark}`,
-          //   pincode: `${pincode}`,
-          //   itemSelected : `${itemSelected}`
-          //   })
-          // );
 
           navigation.navigate('Pickup Screen', {
             name: `${name}`,
@@ -106,8 +83,8 @@ const LoginScreen = ({navigation,route}) => {
             address: `${address}`,
             landmark: `${landmark}`,
             pincode: `${pincode}`,
-            itemSelected : `${itemSelected}`,
-            subCategory : `${subCategory}`,
+            itemSelected: `${itemSelected}`,
+            subCategory: `${subCategory}`,
           });
         })
         .catch(function (error) {
@@ -124,14 +101,13 @@ const LoginScreen = ({navigation,route}) => {
     <>
       <ScrollView
         style={{
-          //marginTop: 20,
-          backgroundColor : "#FFFFFF"
+          backgroundColor: '#FFFFFF',
         }}>
         <Text
           style={{
             fontSize: moderateScale(30),
             textAlign: 'left',
-            
+
             marginTop: verticalScale(30),
             marginBottom: verticalScale(30),
             color: '#000000',
@@ -162,28 +138,24 @@ const LoginScreen = ({navigation,route}) => {
               onPress={() => {
                 getCredentials();
               }}>
-              <LinearGradient colors={['#A363A9', '#FAB06D']}
-                   style = {
-                     {
-                      borderRadius: moderateScale(100),
-                      //marginTop : 10,
-                                        
-                     }
-                   }
-                   start={{x: 0, y: 0}} 
-                   end={{x: 1, y: 0}}
-                >
-              <Text
+              <LinearGradient
+                colors={['#A363A9', '#FAB06D']}
                 style={{
-                  fontSize: moderateScale(30),
-                  alignSelf: 'center',
-                  color: '#FFFFFF',
-                  margin: moderateScale(5),
-                  paddingBottom: verticalScale(10),
-                }}>
-                Login
-              </Text>
-              </LinearGradient>  
+                  borderRadius: moderateScale(100),
+                }}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}>
+                <Text
+                  style={{
+                    fontSize: moderateScale(30),
+                    alignSelf: 'center',
+                    color: '#FFFFFF',
+                    margin: moderateScale(5),
+                    paddingBottom: verticalScale(10),
+                  }}>
+                  Login
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
           </View>
         ) : (
@@ -195,38 +167,30 @@ const LoginScreen = ({navigation,route}) => {
             }}
           />
         )}
-        <View 
-           style ={
-             {
-               alignSelf : "center",
-               marginTop : verticalScale(20),
-             }
-           }
-        >
-        <TouchableOpacity
-            onPress={
-              ()=>{
-                navigation.navigate("Forgot Screen")
-              }
-            }
-        >
-          <Text
-            style = {
-              {
-                fontSize : moderateScale(15),
-                color : "#758283",
-              }
-            }
-          >Forgot Password?</Text>
-        </TouchableOpacity>
+        <View
+          style={{
+            alignSelf: 'center',
+            marginTop: verticalScale(20),
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Forgot Screen');
+            }}>
+            <Text
+              style={{
+                fontSize: moderateScale(15),
+                color: '#758283',
+              }}>
+              Forgot Password?
+            </Text>
+          </TouchableOpacity>
         </View>
         <Text
           style={{
             fontSize: moderateScale(18),
             alignSelf: 'center',
             marginTop: verticalScale(70),
-            color : "#758283",
-            
+            color: '#758283',
           }}>
           Not A Member Yet?
         </Text>
@@ -235,16 +199,16 @@ const LoginScreen = ({navigation,route}) => {
           <TouchableOpacity
             onPress={() => {
               console.log('Register Button Clicked');
-              navigation.navigate('Register Screen',{
-                itemSelected : `${itemSelected}`,
-                subCategory : `${subCategory}`,
+              navigation.navigate('Register Screen', {
+                itemSelected: `${itemSelected}`,
+                subCategory: `${subCategory}`,
               });
             }}>
             <Text
               style={{
                 fontSize: moderateScale(20),
                 alignSelf: 'center',
-                color : "#A363A9",
+                color: '#A363A9',
                 margin: moderateScale(5),
                 paddingBottom: verticalScale(5),
               }}>
@@ -267,7 +231,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(100),
     marginTop: verticalScale(15),
     marginLeft: scale(20),
-    padding : moderateScale(15),
+    padding: moderateScale(15),
     marginRight: scale(20),
     color: '#000000',
   },
@@ -283,11 +247,10 @@ const styles = StyleSheet.create({
   registerBtn: {
     marginTop: verticalScale(10),
     marginLeft: scale(20),
-    padding : moderateScale(8),
-    borderWidth : 1,
-    borderColor : "#A363A9",
+    padding: moderateScale(8),
+    borderWidth: 1,
+    borderColor: '#A363A9',
     marginRight: scale(20),
     borderRadius: moderateScale(100),
-    
   },
 });
