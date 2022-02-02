@@ -18,6 +18,8 @@ import PickupScreen from './screens/Pickup';
 import GuestScreen from './screens/Guest';
 import GuestPickupScreen from './screens/GuestPickup';
 import SubCategoryScreen from './screens/SubCategory';
+import ForgotPassScreen from './screens/ForgotPass';
+import ResetPassScreen from './screens/ResetPass';
 
 const MyStack = () => {
   return (
@@ -74,6 +76,24 @@ const MyStack = () => {
           component={GuestScreen}
           options={{
             title: '',
+          }
+           
+        }
+        />
+         <Stack.Screen
+          name="Reset Screen"
+          component={ResetPassScreen}
+          options={{
+            title: 'Change Password',
+          }
+           
+        }
+        />
+         <Stack.Screen
+          name="Forgot Screen"
+          component={ForgotPassScreen}
+          options={{
+            title: 'Recover Your Password',
           }
            
         }

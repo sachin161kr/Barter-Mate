@@ -195,6 +195,31 @@ const LoginScreen = ({navigation,route}) => {
             }}
           />
         )}
+        <View 
+           style ={
+             {
+               alignSelf : "center",
+               marginTop : verticalScale(20),
+             }
+           }
+        >
+        <TouchableOpacity
+            onPress={
+              ()=>{
+                navigation.navigate("Forgot Screen")
+              }
+            }
+        >
+          <Text
+            style = {
+              {
+                fontSize : moderateScale(15),
+                color : "#758283",
+              }
+            }
+          >Forgot Password?</Text>
+        </TouchableOpacity>
+        </View>
         <Text
           style={{
             fontSize: moderateScale(18),
