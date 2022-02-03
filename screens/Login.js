@@ -121,7 +121,9 @@ const LoginScreen = ({navigation, route}) => {
           }}
           style={styles.textinput}
           placeholder="Email"
-          placeholderTextColor="#758283"></TextInput>
+          placeholderTextColor="#758283"
+          
+          ></TextInput>
 
         <TextInput
           style={styles.textinput}

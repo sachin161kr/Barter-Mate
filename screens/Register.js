@@ -177,6 +177,7 @@ const RegisterScreen = ({navigation, route}) => {
                 color: '#000000',
               }}
               placeholder="Enter Phone Number"
+              maxLength={10}
               placeholderTextColor="#758283"></TextInput>
           </View>
           <TextInput

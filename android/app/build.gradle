@@ -131,11 +131,11 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.trashtocash"
+        applicationId "com.bartermate"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
-        versionName "2.0.1"
+        versionCode 1
+        versionName "1.0"
     }
     splits {
         abi {

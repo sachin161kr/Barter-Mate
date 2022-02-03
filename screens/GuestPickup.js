@@ -122,7 +122,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             fontWeight: 'bold',
             fontStyle: 'italic',
           }}>
-          Hello! {name}
+          Hello! User
         </Text>
 
         <View style={styles.pickerStyle}>
@@ -190,6 +190,7 @@ const GuestPickupScreen = ({route, navigation}) => {
           <TextInput
             defaultValue={`${phone}`}
             keyboardType="number-pad"
+            maxLength={10}
             onChangeText={tempPhone => {
               setPhone(tempPhone);
             }}
