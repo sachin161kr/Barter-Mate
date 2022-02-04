@@ -14,7 +14,6 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const ResetPassScreen = ({route,navigation}) => {
   var id = route.params.id;
-  console.log(id);
   const [pass, setPass] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [confirmPass, setConfirmPass] = useState('');
@@ -50,13 +49,11 @@ const ResetPassScreen = ({route,navigation}) => {
     axios(config)
       .then(function (response) {
         setLoading(false);  
-        console.log(JSON.stringify(response.data));
         Alert.alert('Password Updated Successfully');
         navigation.navigate('Category Screen');
       })
       .catch(function (error) {
         setLoading(false);  
-        console.log(error);
         Alert.alert('Something Went Wrong');
         navigation.navigate('Forgot Screen');
       });
@@ -130,7 +127,6 @@ const ResetPassScreen = ({route,navigation}) => {
                  else
                  {
                      Alert.alert("Enter Valid Password");
-                     console.log("false");
                      setLoading(false);
                  }
               }

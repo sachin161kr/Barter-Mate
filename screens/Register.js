@@ -45,8 +45,6 @@ const RegisterScreen = ({navigation, route}) => {
   };
 
   const passCheck = () => {
-    console.log(password);
-    console.log(confirmPass);
     if (password != confirmPass) {
       Alert.alert('Password must be same as Confirmed Password');
       return false;
@@ -92,7 +90,6 @@ const RegisterScreen = ({navigation, route}) => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         setLoading(false);
         Alert.alert('Successfully Registered');
         navigation.navigate('Login Screen', {
@@ -101,7 +98,6 @@ const RegisterScreen = ({navigation, route}) => {
         });
       })
       .catch(function (error) {
-        console.log(error);
       });
   };
 

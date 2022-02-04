@@ -35,13 +35,6 @@ const LoginScreen = ({navigation, route}) => {
   const [isLoading, setLoading] = useState(false);
 
   const setUser = async () => {
-    console.log(name);
-    console.log(email);
-    console.log(address);
-    console.log(phone);
-    console.log(landmark);
-    console.log(pincode);
-    console.log('Done');
     await AsyncStorage.setItem('loginStatus', 'true');
     await AsyncStorage.setItem('User', `${name}`);
     await AsyncStorage.setItem('email', `${email}`);
@@ -88,7 +81,6 @@ const LoginScreen = ({navigation, route}) => {
           });
         })
         .catch(function (error) {
-          console.log(error);
           setLoading(false);
           Alert.alert('Login Failed');
         });
@@ -200,7 +192,6 @@ const LoginScreen = ({navigation, route}) => {
         <View style={styles.registerBtn}>
           <TouchableOpacity
             onPress={() => {
-              console.log('Register Button Clicked');
               navigation.navigate('Register Screen', {
                 itemSelected: `${itemSelected}`,
                 subCategory: `${subCategory}`,

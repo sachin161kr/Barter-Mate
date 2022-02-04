@@ -80,13 +80,11 @@ const GuestPickupScreen = ({route, navigation}) => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         setLoading(false);
         Alert.alert('We will send our representatives soon. Thank You');
         navigation.navigate('Category Screen');
       })
       .catch(function (error) {
-        console.log(error);
         Alert.alert('Sorry, Something Went Wrong');
         setLoading(false);
       });

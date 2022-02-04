@@ -46,7 +46,6 @@ const ForgotPassScreen = ({navigation}) => {
       
       axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         
         
         id = response.data.data._id; 
@@ -56,10 +55,8 @@ const ForgotPassScreen = ({navigation}) => {
         navigation.navigate("Reset Screen",{
             id : `${id}`
         });
-        //console.log(id);
       })
       .catch(function (error) {
-        console.log(error);
         setLoading(false);
         Alert.alert("Email Not Found");
       });  
@@ -129,7 +126,6 @@ const ForgotPassScreen = ({navigation}) => {
                  else
                  {
                      Alert.alert("Enter Valid Email");
-                     console.log("false");
                      setLoading(false);
                  }
               }

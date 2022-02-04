@@ -86,11 +86,9 @@ const CategoryScreen = ({navigation}) => {
         });
     } catch (err) {
       setLoading(false);
-      console.log(err);
     }
   }, []);
 
-  console.log(images);
 
   const [visible, setVisible] = useState(false);
   function toggle() {
@@ -168,7 +166,7 @@ const CategoryScreen = ({navigation}) => {
                 }}>
                 <Image
                   source={{
-                    uri: `https://bartermate01.herokuapp.com${item.image}`,
+                    uri: `${item.image}`,
                   }}
                   style={{
                     resizeMode: 'stretch',
@@ -251,7 +249,6 @@ const CategoryScreen = ({navigation}) => {
                 <TouchableOpacity
                   onPress={() => {
                     toggle();
-                    console.log('Register Button Clicked');
                     navigation.navigate('Register Screen', {
                       itemSelected: `${itemSelected}`,
                       subCategory: `${subCategory}`,
@@ -336,7 +333,7 @@ const CategoryScreen = ({navigation}) => {
                   colors={['#A363A9', '#FAB06D']}
                   style={{
                     borderRadius: moderateScale(100),
-                    height: verticalScale(60),
+                    height: verticalScale(80),
                     width: scale(320),
                     marginLeft: scale(2),
                     marginBottom: verticalScale(25),
@@ -347,12 +344,11 @@ const CategoryScreen = ({navigation}) => {
                   <Text
                     style={{
                       color: '#FFFFFF',
-
                       fontSize: moderateScale(20),
-
-                      paddingTop: verticalScale(15),
                       textAlignVertical: 'center',
                       textAlign: 'center',
+                      height: verticalScale(80),
+                      width: scale(320),
                     }}>
                     Login As {username}
                   </Text>

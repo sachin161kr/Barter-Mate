@@ -31,7 +31,6 @@ const PickupScreen = ({route, navigation}) => {
   var tempSubCategory = route.params.subCategory;
   var tempAddress = route.params.address;
 
-  console.log(`${tempSubCategory}`);
 
   const [address, setAddress] = useState(`${tempAddress}`);
   const [category, setCategory] = useState(`${tempCategory}`);
@@ -76,13 +75,11 @@ const PickupScreen = ({route, navigation}) => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         setLoading(false);
         Alert.alert('We will send our representatives soon. Thank You');
         navigation.navigate('Category Screen');
       })
       .catch(function (error) {
-        console.log(error);
         Alert.alert('Sorry, Something Went Wrong');
         setLoading(false);
       });
@@ -136,7 +133,6 @@ const PickupScreen = ({route, navigation}) => {
             onValueChange={itemValue => {
               setCategory(itemValue);
               setSubCategory('Choose Sub-Category');
-              console.log(`${category}`);
             }}>
             <Picker.Item label="Glass" value="Glass" />
             <Picker.Item label="Metal" value="Metal" />
