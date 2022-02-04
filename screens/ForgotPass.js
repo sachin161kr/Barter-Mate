@@ -37,7 +37,7 @@ const ForgotPassScreen = ({navigation}) => {
       });
       var config = {
         method: 'post',
-        url: 'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/emailcheck',
+        url: 'https://bartermate01.herokuapp.com/admin/registration-api/emailcheck',
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -73,6 +73,7 @@ const ForgotPassScreen = ({navigation}) => {
       <View
          style={
            {
+             flex : 1,
              backgroundColor : "#FFFFFF",
            }
          }

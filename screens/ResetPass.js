@@ -40,7 +40,7 @@ const ResetPassScreen = ({route,navigation}) => {
 
     var config = {
       method: 'put',
-      url: 'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/updatePassword',
+      url: 'https://bartermate01.herokuapp.com/admin/registration-api/updatePassword',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -67,6 +67,7 @@ const ResetPassScreen = ({route,navigation}) => {
       <View
          style = {
            {
+             flex : 1,
              backgroundColor : "#FFFFFF",
            }
          }

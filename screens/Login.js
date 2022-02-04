@@ -57,7 +57,7 @@ const LoginScreen = ({navigation, route}) => {
       var data = JSON.stringify({email: `${email}`, password: `${password}`});
       var config = {
         method: 'post',
-        url: 'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/login',
+        url: 'https://bartermate01.herokuapp.com/admin/registration-api/login',
         headers: {
           'Content-Type': 'application/json',
         },

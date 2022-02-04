@@ -71,7 +71,7 @@ const GuestPickupScreen = ({route, navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/guest',
+      url: 'https://bartermate01.herokuapp.com/admin/registration-api/guest',
       headers: {
         'Content-Type': 'application/json',
       },

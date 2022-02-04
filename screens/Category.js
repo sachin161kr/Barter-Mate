@@ -78,7 +78,7 @@ const CategoryScreen = ({navigation}) => {
     try {
       axios
         .get(
-          'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/image',
+          'https://bartermate01.herokuapp.com/admin/registration-api/image',
         )
         .then(res => {
           setLoading(false);
@@ -168,7 +168,7 @@ const CategoryScreen = ({navigation}) => {
                 }}>
                 <Image
                   source={{
-                    uri: `https://enigmatic-bayou-48428.herokuapp.com${item.image}`,
+                    uri: `https://bartermate01.herokuapp.com${item.image}`,
                   }}
                   style={{
                     resizeMode: 'stretch',
@@ -217,7 +217,7 @@ const CategoryScreen = ({navigation}) => {
           <View style={styles.card}>
             <Text
               style={{
-                color: '#000000',
+                color: '#A363A9',
                 alignSelf: 'center',
                 fontSize: moderateScale(25),
                 fontWeight: 'bold',
@@ -229,9 +229,9 @@ const CategoryScreen = ({navigation}) => {
               style={{
                 fontSize: moderateScale(25),
                 height: verticalScale(120),
-                color: '#758283',
+                color: '#000000',
                 textAlign: 'center',
-
+                fontWeight : "bold",
                 marginTop: verticalScale(10),
                 paddingHorizontal: moderateScale(15),
                 fontSize: moderateScale(18),

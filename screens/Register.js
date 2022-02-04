@@ -83,7 +83,7 @@ const RegisterScreen = ({navigation, route}) => {
 
     var config = {
       method: 'post',
-      url: 'https://enigmatic-bayou-48428.herokuapp.com/admin/registration-api/registration',
+      url: 'https://bartermate01.herokuapp.com/admin/registration-api/registration',
       headers: {
         'Content-Type': 'application/json',
       },
