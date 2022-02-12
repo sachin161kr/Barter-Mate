@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-
 import LinearGradient from 'react-native-linear-gradient';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import {
   Text,
@@ -12,12 +12,14 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  Platform,
   ActivityIndicator,
   Image,
   ScrollView,
 } from 'react-native';
 
 import sweeper from '../assets/garbageCleaner.png';
+import calender from '../assets/calender.png';
 
 const GuestPickupScreen = ({route, navigation}) => {
   const [category, setCategory] = useState(`${route.params.itemSelected}`);
@@ -27,10 +29,35 @@ const GuestPickupScreen = ({route, navigation}) => {
   const [landMark, setLandmark] = useState('');
   const [pincode, setPincode] = useState('Choose Pincode');
   const [name, setName] = useState('');
+  const [feedback, setFeedback] = useState('');
+  const [remark, setRemark] = useState('');
 
   const [address, setAddress] = useState(``);
 
   const [isLoading, setLoading] = useState(false);
+
+  const [date, setDate] = useState(new Date());
+  const [show, setShow] = useState(false);
+
+  const [dateLabel, setDateLabel] = useState('Pick A Date');
+  const [shift, changeShift] = useState('First Shift');
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setShow(Platform.OS === 'ios');
+    //setDate(currentDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate =
+      tempDate.getDate() +
+      '/' +
+      (tempDate.getMonth() + 1) +
+      '/' +
+      tempDate.getFullYear();
+
+    console.log(fDate);
+    setDateLabel(fDate);
+  };
 
   const emailCheck = () => {
     if (
@@ -117,8 +144,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             fontSize: moderateScale(25),
             alignSelf: 'center',
             color: '#000000',
-            fontWeight: 'bold',
-            fontStyle: 'italic',
+            fontWeight: '600',
           }}>
           Hello! User
         </Text>
@@ -226,7 +252,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             borderColor: '#A363A9',
             borderWidth: 1,
             borderRadius: moderateScale(100),
-            margin: moderateScale(10),
+            marginHorizontal: moderateScale(10),
             marginTop: verticalScale(10),
           }}>
           <Picker
@@ -247,11 +273,124 @@ const GuestPickupScreen = ({route, navigation}) => {
           </Picker>
         </View>
 
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              setShow(true);
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                height: verticalScale(50),
+                borderRadius: moderateScale(100),
+                marginTop: verticalScale(10),
+                alignSelf: 'center',
+                //borderWidth: 1,
+                borderColor: '#000',
+                width: scale(180),
+              }}>
+              <Image
+                source={calender}
+                style={{
+                  height: verticalScale(50),
+                  width: scale(50),
+                  resizeMode: 'contain',
+                  marginLeft: scale(20),
+                  //marginTop: verticalScale(15),
+                }}
+              />
+
+              <View
+                style={{
+                  marginLeft: scale(15),
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  style={{
+                    fontSize: moderateScale(15),
+                    textAlign: 'center',
+                    color: '#000',
+                  }}>
+                  {`${dateLabel}`}
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <View
+            style={{
+              width: scale(150),
+              height: 60,
+              justifyContent: 'center',
+              borderColor: '#A363A9',
+              borderWidth: 1,
+              marginTop: verticalScale(10),
+              borderRadius: moderateScale(100),
+            }}>
+            <Picker
+              style={{
+                color: '#A363A9',
+              }}
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={shift}
+              onValueChange={itemValue => {
+                changeShift(itemValue);
+              }}>
+              <Picker.Item label="First Shift" value="First Shift" />
+              <Picker.Item label="Second Shift" value="Second Shift" />
+            </Picker>
+          </View>
+        </View>
+
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            minimumDate={date}
+            mode="date"
+            display="default"
+            onChange={onChange}
+          />
+        )}
+
+        <TextInput
+          defaultValue={`${remark}`}
+          onChangeText={tempRemark => {
+            setRemark(tempRemark);
+          }}
+          style={styles.textinput}
+          placeholder="Enter Remarks"
+          placeholderTextColor="#758283"></TextInput>
+
+        <TextInput
+          defaultValue={`${feedback}`}
+          onChangeText={tempFeedback => {
+            setFeedback(tempFeedback);
+          }}
+          style={styles.textinput}
+          placeholder="Put your feedback here."
+          placeholderTextColor="#758283"></TextInput>
+
         {isLoading == false ? (
           <View style={styles.pickupBtn}>
             <TouchableOpacity
               onPress={() => {
-                if (name && email && phone && address && emailCheck()) {
+                if (
+                  name &&
+                  email &&
+                  phone &&
+                  address &&
+                  shift &&
+                  dateLabel != 'Pick A Date' &&
+                  emailCheck()
+                ) {
                   if (phoneCheck()) {
                     if (pincode != 'Choose Pincode') {
                       handlePickeup();

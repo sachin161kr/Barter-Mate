@@ -5,6 +5,7 @@ import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {BackHandler} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import {
   Text,
   StyleSheet,
@@ -18,6 +19,7 @@ import {
 } from 'react-native';
 
 import sweeper from '../assets/garbageCleaner.png';
+import calender from '../assets/calender.png';
 
 const PickupScreen = ({route, navigation}) => {
   var name = route.params.name;
@@ -31,12 +33,37 @@ const PickupScreen = ({route, navigation}) => {
   var tempSubCategory = route.params.subCategory;
   var tempAddress = route.params.address;
 
-
   const [address, setAddress] = useState(`${tempAddress}`);
   const [category, setCategory] = useState(`${tempCategory}`);
   const [subCategory, setSubCategory] = useState(`${tempSubCategory}`);
 
   const [isLoading, setLoading] = useState(false);
+
+  const [feedback, setFeedback] = useState('');
+  const [remark, setRemark] = useState('');
+
+  const [date, setDate] = useState(new Date());
+  const [show, setShow] = useState(false);
+
+  const [dateLabel, setDateLabel] = useState('Pick A Date');
+  const [shift, changeShift] = useState('First Shift');
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setShow(Platform.OS === 'ios');
+    //setDate(currentDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate =
+      tempDate.getDate() +
+      '/' +
+      (tempDate.getMonth() + 1) +
+      '/' +
+      tempDate.getFullYear();
+
+    console.log(fDate);
+    setDateLabel(fDate);
+  };
 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
@@ -113,8 +140,7 @@ const PickupScreen = ({route, navigation}) => {
             fontSize: moderateScale(25),
             alignSelf: 'center',
             color: '#000000',
-            fontWeight: 'bold',
-            fontStyle: 'italic',
+            fontWeight: '600',
             marginBottom: verticalScale(20),
           }}>
           Hello! {name}
@@ -151,14 +177,123 @@ const PickupScreen = ({route, navigation}) => {
           placeholder="Enter Pickup Address"
           placeholderTextColor="#758283"></TextInput>
 
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              setShow(true);
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                height: verticalScale(50),
+                borderRadius: moderateScale(100),
+                marginTop: verticalScale(10),
+                alignSelf: 'center',
+                //borderWidth: 1,
+                borderColor: '#000',
+                width: scale(180),
+              }}>
+              <Image
+                source={calender}
+                style={{
+                  height: verticalScale(50),
+                  width: scale(50),
+                  resizeMode: 'contain',
+                  marginLeft: scale(20),
+                  //marginTop: verticalScale(15),
+                }}
+              />
+
+              <View
+                style={{
+                  marginLeft: scale(15),
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  style={{
+                    fontSize: moderateScale(15),
+                    textAlign: 'center',
+                    color: '#000',
+                  }}>
+                  {`${dateLabel}`}
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <View
+            style={{
+              width: scale(150),
+              height: 60,
+              justifyContent: 'center',
+              borderColor: '#A363A9',
+              borderWidth: 1,
+              marginTop: verticalScale(10),
+              borderRadius: moderateScale(100),
+            }}>
+            <Picker
+              style={{
+                color: '#A363A9',
+              }}
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={shift}
+              onValueChange={itemValue => {
+                changeShift(itemValue);
+              }}>
+              <Picker.Item label="First Shift" value="First Shift" />
+              <Picker.Item label="Second Shift" value="Second Shift" />
+            </Picker>
+          </View>
+        </View>
+
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            minimumDate={date}
+            mode="date"
+            display="default"
+            onChange={onChange}
+          />
+        )}
+
+        <TextInput
+          defaultValue={`${remark}`}
+          onChangeText={tempRemark => {
+            setRemark(tempRemark);
+          }}
+          style={styles.textinput}
+          placeholder="Enter Remarks"
+          placeholderTextColor="#758283"></TextInput>
+
+        <TextInput
+          defaultValue={`${feedback}`}
+          onChangeText={tempFeedback => {
+            setFeedback(tempFeedback);
+          }}
+          style={styles.textinput}
+          placeholder="Put your feedback here."
+          placeholderTextColor="#758283"></TextInput>
+
         {isLoading == false ? (
           <View style={styles.pickupBtn}>
             <TouchableOpacity
               onPress={() => {
-                if (address.length != 0) {
+                if (
+                  address.length != 0 &&
+                  shift &&
+                  dateLabel != 'Pick A Date'
+                ) {
                   handlePickeup();
                 } else {
-                  Alert.alert('Enter Valid Address');
+                  Alert.alert('Enter Valid Details');
                 }
               }}>
               <LinearGradient
@@ -205,7 +340,7 @@ const PickupScreen = ({route, navigation}) => {
                 textAlign: 'center',
                 marginTop: verticalScale(10),
                 color: '#A363A9',
-                paddingBottom: verticalScale(10),
+                paddingBottom: verticalScale(20),
                 alignSelf: 'center',
               }}>
               Logout
