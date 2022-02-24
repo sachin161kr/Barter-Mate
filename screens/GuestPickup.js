@@ -64,7 +64,8 @@ const GuestPickupScreen = ({route, navigation}) => {
       email.includes('@gmail.com') ||
       email.includes('@yahoo.com') ||
       email.includes('@rediff.com') ||
-      email.includes('@hotmail.com')
+      email.includes('@hotmail.com') ||
+      email.includes('.co.in')
     ) {
       return true;
     }
@@ -94,11 +95,15 @@ const GuestPickupScreen = ({route, navigation}) => {
       landMark: `${landMark}`,
       pinCode: `${pincode}`,
       category: `${category}`,
+      pickupDate: `${dateLabel}`,
+      shift: `${shift}`,
+      remark: `${remark}`,
+      feedback: `${feedback}`,
     });
 
     var config = {
       method: 'post',
-      url: 'https://bartermate01.herokuapp.com/admin/registration-api/guest',
+      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/guest',
       headers: {
         'Content-Type': 'application/json',
       },

@@ -25,6 +25,9 @@ import metalIcon from '../assets/metalIcon.png';
 import paperIcon from '../assets/paperIcon.png';
 import electronicIcon from '../assets/electronicIcon.png';
 import question from '../assets/question.png';
+import ProfileScreen from './Profile';
+import profileIcon from '../assets/profileIcon.png';
+import logo from '../assets/logo2.png';
 
 const categoryList = [
   {
@@ -77,9 +80,7 @@ const CategoryScreen = ({navigation}) => {
   useEffect(() => {
     try {
       axios
-        .get(
-          'https://bartermate01.herokuapp.com/admin/registration-api/image',
-        )
+        .get('https://bartermateapi.herokuapp.com/admin/registration-api/image')
         .then(res => {
           setLoading(false);
           setImages(res.data.data.image);
@@ -88,7 +89,6 @@ const CategoryScreen = ({navigation}) => {
       setLoading(false);
     }
   }, []);
-
 
   const [visible, setVisible] = useState(false);
   function toggle() {
@@ -127,6 +127,70 @@ const CategoryScreen = ({navigation}) => {
 
   getUser();
 
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      header: () => {
+        return (
+          <>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+              }}>
+              <Image
+                source={logo}
+                style={{
+                  height: verticalScale(75),
+                  width: scale(80),
+                  //marginLeft: scale(10),
+                }}
+              />
+              <Text
+                style={{
+                  fontSize: moderateScale(25),
+                  marginTop: verticalScale(19),
+                  marginLeft: scale(20),
+                  fontWeight: '700',
+                }}>
+                BarterMate
+              </Text>
+              <TouchableOpacity
+                onPress={async () => {
+                  var tempLoginStatus = await AsyncStorage.getItem(
+                    'loginStatus',
+                  );
+
+                  var tempUsername = await AsyncStorage.getItem('User');
+
+                  if (tempLoginStatus == 'true') {
+                    navigation.navigate('Profile Screen', {
+                      username: `${tempUsername}`,
+                    });
+                  } else {
+                    navigation.navigate('Login Screen', {
+                      itemSelected: `${itemSelected}`,
+                      subCategory: `${subCategory}`,
+                      location: 'Profile',
+                    });
+                  }
+                }}>
+                <Image
+                  source={profileIcon}
+                  style={{
+                    height: verticalScale(35),
+                    width: scale(35),
+                    marginTop: verticalScale(17),
+                    marginLeft: scale(40),
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+          </>
+        );
+      },
+    });
+  }, [navigation]);
+
   const setUser = async () => {
     await AsyncStorage.setItem('loginStatus', 'false');
     await AsyncStorage.setItem('User', 'Guest');
@@ -134,9 +198,9 @@ const CategoryScreen = ({navigation}) => {
 
   const action = [
     {
-      text: 'Contact',
+      text: 'Price Details',
       position: 1,
-      name: 'bt_contact',
+      name: 'bt_price',
       color: '#FFFFFF',
     },
   ];
@@ -229,7 +293,7 @@ const CategoryScreen = ({navigation}) => {
                 height: verticalScale(120),
                 color: '#000000',
                 textAlign: 'center',
-                fontWeight : "bold",
+                fontWeight: 'bold',
                 marginTop: verticalScale(10),
                 paddingHorizontal: moderateScale(15),
                 fontSize: moderateScale(18),
@@ -326,6 +390,7 @@ const CategoryScreen = ({navigation}) => {
                     navigation.navigate('Login Screen', {
                       itemSelected: `${itemSelected}`,
                       subCategory: `${subCategory}`,
+                      location: 'Category',
                     });
                   }
                 }}>
@@ -373,6 +438,7 @@ const CategoryScreen = ({navigation}) => {
                     navigation.navigate('Login Screen', {
                       itemSelected: `${itemSelected}`,
                       subCategory: `${subCategory}`,
+                      location: 'Category',
                     });
                   }
                 }}>
@@ -432,10 +498,12 @@ const CategoryScreen = ({navigation}) => {
           iconHeight={verticalScale(30)}
           iconWidth={scale(30)}
           onPressItem={name => {
-            if (name == 'bt_contact') {
-              Alert.alert(
-                'Phone - (+91)88-2626-7661\nEmail - info@bartermate.in',
-              );
+            // if (name == 'bt_contact') {
+            //   Alert.alert(
+            //     'Phone - (+91)88-2626-7661\nEmail - info@bartermate.in',
+            //   );
+            if (name == 'bt_price') {
+              navigation.navigate('Price Screen');
             } else {
               Alert.alert('Welcome To Barter-Mate');
             }

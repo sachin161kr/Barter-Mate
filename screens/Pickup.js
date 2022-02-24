@@ -89,11 +89,15 @@ const PickupScreen = ({route, navigation}) => {
       landMark: `${landmark}`,
       pinCode: `${pincode}`,
       category: `${category}`,
+      pickupDate: `${dateLabel}`,
+      shift: `${shift}`,
+      remark: `${remark}`,
+      feedback: `${feedback}`,
     });
 
     var config = {
       method: 'post',
-      url: 'https://bartermate01.herokuapp.com/admin/registration-api/addPickup',
+      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/addPickup',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -102,11 +106,13 @@ const PickupScreen = ({route, navigation}) => {
 
     axios(config)
       .then(function (response) {
+        console.log(JSON.stringify(response));
         setLoading(false);
         Alert.alert('We will send our representatives soon. Thank You');
         navigation.navigate('Category Screen');
       })
       .catch(function (error) {
+        console.log(error);
         Alert.alert('Sorry, Something Went Wrong');
         setLoading(false);
       });

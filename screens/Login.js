@@ -29,6 +29,8 @@ const LoginScreen = ({navigation, route}) => {
   var landmark = '';
   var pincode = '';
 
+  var location = route.params.location;
+
   const itemSelected = route.params.itemSelected;
   const subCategory = route.params.subCategory;
 
@@ -50,7 +52,7 @@ const LoginScreen = ({navigation, route}) => {
       var data = JSON.stringify({email: `${email}`, password: `${password}`});
       var config = {
         method: 'post',
-        url: 'https://bartermate01.herokuapp.com/admin/registration-api/login',
+        url: 'https://bartermateapi.herokuapp.com/admin/registration-api/login',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -69,16 +71,23 @@ const LoginScreen = ({navigation, route}) => {
 
           setUser();
 
-          navigation.navigate('Pickup Screen', {
-            name: `${name}`,
-            email: email,
-            phone: `${phone}`,
-            address: `${address}`,
-            landmark: `${landmark}`,
-            pincode: `${pincode}`,
-            itemSelected: `${itemSelected}`,
-            subCategory: `${subCategory}`,
-          });
+          if (location != 'Profile') {
+            navigation.navigate('Pickup Screen', {
+              name: `${name}`,
+              email: email,
+              phone: `${phone}`,
+              address: `${address}`,
+              landmark: `${landmark}`,
+              pincode: `${pincode}`,
+              itemSelected: `${itemSelected}`,
+              subCategory: `${subCategory}`,
+            });
+          } else {
+            //var tempUsername = await AsyncStorage.getItem('User');
+            navigation.navigate('Profile Screen', {
+              username: `${name}`,
+            });
+          }
         })
         .catch(function (error) {
           setLoading(false);
@@ -113,9 +122,7 @@ const LoginScreen = ({navigation, route}) => {
           }}
           style={styles.textinput}
           placeholder="Email"
-          placeholderTextColor="#758283"
-          
-          ></TextInput>
+          placeholderTextColor="#758283"></TextInput>
 
         <TextInput
           style={styles.textinput}

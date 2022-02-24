@@ -81,7 +81,7 @@ const RegisterScreen = ({navigation, route}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermate01.herokuapp.com/admin/registration-api/registration',
+      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/registration',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -95,9 +95,13 @@ const RegisterScreen = ({navigation, route}) => {
         navigation.navigate('Login Screen', {
           itemSelected: `${itemSelected}`,
           subCategory: `${subCategory}`,
+          location: 'Register',
         });
       })
-      .catch(function (error) {
+      .catch(error => {
+        setLoading(false);
+        //console.log(error.response.data.msg);
+        Alert.alert(error.response.data.msg);
       });
   };
 
