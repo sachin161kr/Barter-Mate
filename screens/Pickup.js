@@ -24,6 +24,8 @@ import calender from '../assets/calender.png';
 const PickupScreen = ({route, navigation}) => {
   var name = route.params.name;
 
+  var userId = route.params.userId;
+
   var email = route.params.email;
   var phone = route.params.phone;
   var landmark = route.params.landmark;
@@ -39,7 +41,6 @@ const PickupScreen = ({route, navigation}) => {
 
   const [isLoading, setLoading] = useState(false);
 
-  const [feedback, setFeedback] = useState('');
   const [remark, setRemark] = useState('');
 
   const [date, setDate] = useState(new Date());
@@ -47,6 +48,39 @@ const PickupScreen = ({route, navigation}) => {
 
   const [dateLabel, setDateLabel] = useState('Pick A Date');
   const [shift, changeShift] = useState('First Shift');
+
+  const [myAddresses, setMyaddresses] = useState([]);
+
+  const [currentAddress, setCurrentAddress] = useState('Choose Pickup Address');
+
+  const handleShowAddress = () => {
+    var data = JSON.stringify({
+      userId: `${userId}`,
+    });
+
+    var config = {
+      method: 'post',
+      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/listAddAddress',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        setLoading(false);
+        console.log(JSON.stringify(response.data.data));
+        var temp = JSON.stringify(response.data.data);
+        setMyaddresses(JSON.parse(temp));
+      })
+      .catch(function (error) {
+        console.log(error);
+        Alert.alert('Something Went Wrong');
+      });
+  };
+
+  useEffect(handleShowAddress, []);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -92,7 +126,6 @@ const PickupScreen = ({route, navigation}) => {
       pickupDate: `${dateLabel}`,
       shift: `${shift}`,
       remark: `${remark}`,
-      feedback: `${feedback}`,
     });
 
     var config = {
@@ -173,15 +206,6 @@ const PickupScreen = ({route, navigation}) => {
             <Picker.Item label="Electronics" value="Electronics" />
           </Picker>
         </View>
-
-        <TextInput
-          defaultValue={`${address}`}
-          onChangeText={tempAddress => {
-            setAddress(tempAddress);
-          }}
-          style={styles.textinput}
-          placeholder="Enter Pickup Address"
-          placeholderTextColor="#758283"></TextInput>
 
         <View
           style={{
@@ -279,14 +303,28 @@ const PickupScreen = ({route, navigation}) => {
           placeholder="Enter Remarks"
           placeholderTextColor="#758283"></TextInput>
 
-        <TextInput
-          defaultValue={`${feedback}`}
-          onChangeText={tempFeedback => {
-            setFeedback(tempFeedback);
-          }}
-          style={styles.textinput}
-          placeholder="Put your feedback here."
-          placeholderTextColor="#758283"></TextInput>
+        <View style={styles.pickerStyle}>
+          <Picker
+            style={{
+              color: '#A363A9',
+            }}
+            dropdownIconColor="#A363A9"
+            dropdownIconRippleColor="#A363A9"
+            onTouchCancel={true}
+            mode="dropdown"
+            selectedValue={currentAddress}
+            onValueChange={itemValue => {
+              setCurrentAddress(itemValue);
+            }}>
+            <Picker.Item
+              label="Choose Pickup Address"
+              value="Choose Pickup Address"
+            />
+            {myAddresses.map(key => (
+              <Picker.Item label={key.address1} value={key.address2} />
+            ))}
+          </Picker>
+        </View>
 
         {isLoading == false ? (
           <View style={styles.pickupBtn}>
@@ -385,6 +423,7 @@ const styles = StyleSheet.create({
 
   pickerStyle: {
     marginLeft: scale(20),
+    height: verticalScale(50),
     marginTop: verticalScale(10),
     borderColor: '#A363A9',
     marginRight: scale(20),

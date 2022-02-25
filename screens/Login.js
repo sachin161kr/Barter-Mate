@@ -30,6 +30,7 @@ const LoginScreen = ({navigation, route}) => {
   var pincode = '';
 
   var location = route.params.location;
+  var userId = route.params.userId;
 
   const itemSelected = route.params.itemSelected;
   const subCategory = route.params.subCategory;
@@ -44,6 +45,7 @@ const LoginScreen = ({navigation, route}) => {
     await AsyncStorage.setItem('phone', `${phone}`);
     await AsyncStorage.setItem('landmark', `${landmark}`);
     await AsyncStorage.setItem('pincode', `${pincode}`);
+    await AsyncStorage.setItem('userId', `${userId}`);
   };
 
   const getCredentials = () => {
@@ -61,6 +63,7 @@ const LoginScreen = ({navigation, route}) => {
 
       axios(config)
         .then(function (response) {
+          console.log(JSON.stringify(response.data));
           setLoading(false);
           const userData = response.data;
           name = userData.data.userDetails.name;
@@ -68,6 +71,7 @@ const LoginScreen = ({navigation, route}) => {
           address = userData.data.userDetails.address;
           landmark = userData.data.userDetails.landMark;
           pincode = userData.data.userDetails.pinCode;
+          userId = userData.data.userDetails._id;
 
           setUser();
 
@@ -81,6 +85,7 @@ const LoginScreen = ({navigation, route}) => {
               pincode: `${pincode}`,
               itemSelected: `${itemSelected}`,
               subCategory: `${subCategory}`,
+              userId: `${userId}`,
             });
           } else {
             //var tempUsername = await AsyncStorage.getItem('User');

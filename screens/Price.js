@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Alert,
+  StyleSheet,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
@@ -13,12 +14,15 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const PriceScreen = () => {
   const [pincode, setPincode] = useState('Choose Pincode');
+  const [fetch, setFetch] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [prices, setPrices] = useState([]);
 
   const handlePriceDetails = () => {
     setLoading(true);
     var data = JSON.stringify({
-      pincode: `${pincode}`,
+      pincode: '800024',
     });
 
     var config = {
@@ -33,7 +37,10 @@ const PriceScreen = () => {
     axios(config)
       .then(function (response) {
         setLoading(false);
-        console.log(JSON.stringify(response.data));
+        setFetch(true);
+        console.log(JSON.stringify(response.data.data));
+        var temp = JSON.stringify(response.data.data);
+        setPrices(JSON.parse(temp));
       })
       .catch(function (error) {
         setLoading(false);
@@ -117,9 +124,45 @@ const PriceScreen = () => {
             }}
           />
         )}
+        {fetch == true ? (
+          <View
+            style={{
+              alignSelf: 'center',
+              backgroundColor: '#FFF',
+              elevation: 5,
+              width: scale(300),
+              borderRadius: moderateScale(20),
+              padding: moderateScale(10),
+              marginTop: verticalScale(20),
+            }}>
+            <View>
+              <Text
+                style={{
+                  fontSize: moderateScale(16),
+                  fontWeight: 'bold',
+                }}>
+                Current Prices at Selected Pincode
+              </Text>
+              {prices.map(key => (
+                <Text style={styles.text}>
+                  {key.category} : {key.value}
+                </Text>
+              ))}
+            </View>
+          </View>
+        ) : (
+          <></>
+        )}
       </View>
     </>
   );
 };
 
 export default PriceScreen;
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: moderateScale(16),
+    marginTop: verticalScale(5),
+  },
+});

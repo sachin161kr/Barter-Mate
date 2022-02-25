@@ -107,6 +107,8 @@ const CategoryScreen = ({navigation}) => {
   const [pincode, setPincode] = useState('');
   const [address, setAddress] = useState('');
 
+  var userId = '';
+
   const getUser = async () => {
     var tempLoginStatus = await AsyncStorage.getItem('loginStatus');
     var tempUsername = await AsyncStorage.getItem('User');
@@ -115,6 +117,8 @@ const CategoryScreen = ({navigation}) => {
     var tempPhone = await AsyncStorage.getItem('phone');
     var tempLandmark = await AsyncStorage.getItem('landmark');
     var tempPincode = await AsyncStorage.getItem('pincode');
+
+    userId = await AsyncStorage.getItem('userId');
 
     setLogin(tempLoginStatus);
     setName(tempUsername);
@@ -385,12 +389,14 @@ const CategoryScreen = ({navigation}) => {
                       phone: `${phone}`,
                       landmark: `${landmark}`,
                       pincode: `${pincode}`,
+                      userId: `${userId}`,
                     });
                   } else {
                     navigation.navigate('Login Screen', {
                       itemSelected: `${itemSelected}`,
                       subCategory: `${subCategory}`,
                       location: 'Category',
+                      userId: `${userId}`,
                     });
                   }
                 }}>
@@ -433,12 +439,14 @@ const CategoryScreen = ({navigation}) => {
                       phone: `${phone}`,
                       landmark: `${landmark}`,
                       pincode: `${pincode}`,
+                      userId: `${userId}`,
                     });
                   } else {
                     navigation.navigate('Login Screen', {
                       itemSelected: `${itemSelected}`,
                       subCategory: `${subCategory}`,
                       location: 'Category',
+                      userId: `${userId}`,
                     });
                   }
                 }}>

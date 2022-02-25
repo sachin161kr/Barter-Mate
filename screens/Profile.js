@@ -18,26 +18,26 @@ import icon4 from '../assets/icon4.png';
 const ProfileScreen = ({route, navigation}) => {
   var username = route.params.username;
 
+  var userId = '';
+  var name = '';
+  var email = '';
+  var phone = '';
+  var landmark = '';
+
   const setUser = async () => {
     await AsyncStorage.setItem('loginStatus', 'false');
     await AsyncStorage.setItem('User', 'Guest');
   };
 
   const getUser = async () => {
-    var tempLoginStatus = await AsyncStorage.getItem('loginStatus');
-    var tempUsername = await AsyncStorage.getItem('User');
-    var tempAddress = await AsyncStorage.getItem('address');
-    var tempEmail = await AsyncStorage.getItem('email');
-    var tempPhone = await AsyncStorage.getItem('phone');
-    var tempLandmark = await AsyncStorage.getItem('landmark');
-    var tempPincode = await AsyncStorage.getItem('pincode');
-
-    navigation.navigate('My Profile Screen', {
-      name: `${tempUsername}`,
-      email: `${tempEmail}`,
-      phone: `${tempPhone}`,
-    });
+    name = await AsyncStorage.getItem('User');
+    email = await AsyncStorage.getItem('email');
+    phone = await AsyncStorage.getItem('phone');
+    userId = await AsyncStorage.getItem('userId');
+    landmark = await AsyncStorage.getItem('landmark');
   };
+
+  getUser();
 
   // BackHandler.addEventListener('hardwareBackPress', () => {
   //   navigation.navigate('Category Screen');
@@ -65,7 +65,14 @@ const ProfileScreen = ({route, navigation}) => {
             marginTop: verticalScale(15),
             marginRight: scale(40),
           }}>
-          <TouchableOpacity onPress={getUser}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('My Profile Screen', {
+                name: `${name}`,
+                email: `${email}`,
+                phone: `${phone}`,
+              });
+            }}>
             <View
               style={{
                 flexDirection: 'row',
@@ -88,7 +95,12 @@ const ProfileScreen = ({route, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Address Screen');
+              navigation.navigate('Address Screen', {
+                userId: `${userId}`,
+                email: `${email}`,
+                phone: `${phone}`,
+                landMark: `${landmark}`,
+              });
             }}>
             <View
               style={{
