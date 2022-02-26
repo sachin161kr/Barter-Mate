@@ -28,13 +28,15 @@ const PickupScreen = ({route, navigation}) => {
 
   var email = route.params.email;
   var phone = route.params.phone;
-  var landmark = route.params.landmark;
-  var pincode = route.params.pincode;
+  var tempLandmark = route.params.landmark;
+  var tempPincode = route.params.pincode;
 
   var tempCategory = route.params.itemSelected;
   var tempSubCategory = route.params.subCategory;
   var tempAddress = route.params.address;
 
+  const [landmark, setLandmark] = useState('');
+  const [pincode, setPincode] = useState(`${tempPincode}`);
   const [address, setAddress] = useState(`${tempAddress}`);
   const [category, setCategory] = useState(`${tempCategory}`);
   const [subCategory, setSubCategory] = useState(`${tempSubCategory}`);
@@ -171,7 +173,7 @@ const PickupScreen = ({route, navigation}) => {
       name: `${name}`,
       email: `${email}`,
       phone: `${phone}`,
-      address: `${currentAddress}`,
+      address: myAddresses.length == 0 ? `${address}` : `${currentAddress}`,
       landMark: `${landmark}`,
       pinCode: `${pincode}`,
       category: `${category}`,
@@ -279,7 +281,6 @@ const PickupScreen = ({route, navigation}) => {
             width: scale(300),
             flexWrap: 'wrap',
             height: verticalScale(55),
-            justifyContent: 'center',
             paddingTop: verticalScale(5),
             paddingLeft: scale(20),
             marginBottom: verticalScale(20),
@@ -398,9 +399,9 @@ const PickupScreen = ({route, navigation}) => {
                       marginRight: scale(5),
                     }}
                   />
+                  <Text style={styles.multiSelectText}>Plastic</Text>
                 </>
               )}
-              <Text style={styles.multiSelectText}>Plastic</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -570,40 +571,71 @@ const PickupScreen = ({route, navigation}) => {
           />
         )}
 
-        <View style={styles.pickerStyle}>
-          <Picker
-            style={{
-              color: '#A363A9',
+        {myAddresses.length == 0 ? (
+          <TextInput
+            defaultValue={`${address}`}
+            onChangeText={tempAddress => {
+              setAddress(tempAddress);
             }}
-            dropdownIconColor="#A363A9"
-            dropdownIconRippleColor="#A363A9"
-            onTouchCancel={true}
-            mode="dropdown"
-            selectedValue={currentAddress}
-            onValueChange={itemValue => {
-              setCurrentAddress(itemValue);
-            }}>
-            <Picker.Item
-              label="Choose Pickup Address"
-              value="Choose Pickup Address"
-            />
-            {myAddresses.map(key => (
-              <Picker.Item
-                label={key.address1 + ' , ' + key.address2}
-                value={key.address1 + ' , ' + key.address2}
-              />
-            ))}
-          </Picker>
-        </View>
+            style={styles.textinput}
+            placeholder="Enter Pickup Address"
+            placeholderTextColor="#758283"></TextInput>
+        ) : (
+          <>
+            <View style={styles.pickerStyle}>
+              <Picker
+                style={{
+                  color: '#A363A9',
+                }}
+                dropdownIconColor="#A363A9"
+                dropdownIconRippleColor="#A363A9"
+                onTouchCancel={true}
+                mode="dropdown"
+                selectedValue={currentAddress}
+                onValueChange={itemValue => {
+                  setCurrentAddress(itemValue);
+                }}>
+                <Picker.Item
+                  label="Choose Pickup Address"
+                  value="Choose Pickup Address"
+                />
+                {myAddresses.map(key => (
+                  <Picker.Item
+                    label={key.address1 + ' , ' + key.address2}
+                    value={key.address1 + ' , ' + key.address2}
+                  />
+                ))}
+              </Picker>
+            </View>
 
-        <TextInput
-          defaultValue={`${landmark}`}
-          onChangeText={tempLandmark => {
-            setLandmark(tempLandmark);
-          }}
-          style={styles.textinput}
-          placeholder="Enter Landmark"
-          placeholderTextColor="#758283"></TextInput>
+            <View
+              style={{
+                marginLeft: scale(20),
+                marginRight: scale(20),
+                borderColor: '#A363A9',
+                borderWidth: 1,
+                borderRadius: moderateScale(100),
+                marginHorizontal: moderateScale(10),
+                marginTop: verticalScale(10),
+              }}>
+              <Picker
+                style={{
+                  color: '#A363A9',
+                }}
+                dropdownIconColor="#A363A9"
+                dropdownIconRippleColor="#A363A9"
+                onTouchCancel={true}
+                mode="dropdown"
+                selectedValue={pincode}
+                onValueChange={itemValue => {
+                  setPincode(itemValue);
+                }}>
+                <Picker.Item label="201301" value="201301" />
+                <Picker.Item label="201304" value="201304" />
+              </Picker>
+            </View>
+          </>
+        )}
 
         {isLoading == false ? (
           <View style={styles.pickupBtn}>
@@ -618,7 +650,11 @@ const PickupScreen = ({route, navigation}) => {
                 // console.log(category);
                 // console.log(dateLabel);
                 // console.log(multiSelect);
-                if (address.length != 0 && dateLabel != 'Pick A Date') {
+                if (
+                  address.length != 0 &&
+                  dateLabel != 'Pick A Date' &&
+                  currentAddress != 'Choose Pickup Address'
+                ) {
                   handlePickeup();
                 } else {
                   Alert.alert('Enter Valid Details');
@@ -725,7 +761,7 @@ const styles = StyleSheet.create({
     marginRight: scale(5),
   },
   multiSelectText: {
-    fontSize: moderateScale(18),
-    marginRight: scale(25),
+    fontSize: moderateScale(16),
+    marginRight: scale(30),
   },
 });

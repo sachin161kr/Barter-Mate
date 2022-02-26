@@ -249,16 +249,43 @@ const CategoryScreen = ({navigation}) => {
               ))}
             </View>
           </ScrollView>
-          <Text
+          <View
             style={{
-              fontSize: moderateScale(30),
-              marginTop: verticalScale(30),
-              marginLeft: scale(30),
-              fontWeight: 'bold',
-              color: '#758283',
+              flexDirection: 'row',
+              height: verticalScale(50),
             }}>
-            Categories
-          </Text>
+            <Text
+              style={{
+                fontSize: moderateScale(30),
+                //marginTop: verticalScale(30),
+                marginLeft: scale(30),
+                fontWeight: 'bold',
+                color: '#758283',
+              }}>
+              Categories
+            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Price Screen');
+              }}>
+              <Text
+                style={{
+                  height: verticalScale(40),
+                  width: scale(100),
+                  textAlign: 'center',
+                  color: '#FFF',
+                  paddingTop: verticalScale(6),
+                  //marginTop: verticalScale(20),
+                  fontWeight: 'bold',
+                  marginLeft: scale(50),
+                  fontSize: moderateScale(20),
+                  backgroundColor: '#A363A9',
+                  borderRadius: moderateScale(6),
+                }}>
+                Rate Card
+              </Text>
+            </TouchableOpacity>
+          </View>
           <View style={styles.gridContainer}>
             {categoryList.map(key => (
               <TouchableOpacity
@@ -501,31 +528,6 @@ const CategoryScreen = ({navigation}) => {
               )}
             </View>
           </BottomSheet>
-          <View
-            style={{
-              width: '100%',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Price Screen');
-              }}>
-              <Text
-                style={{
-                  height: verticalScale(40),
-                  width: scale(100),
-                  paddingTop: verticalScale(10),
-                  marginLeft: scale(220),
-                  backgroundColor: '#FFF',
-                  elevation: 5,
-                  textAlign: 'center',
-                  color: '#000',
-                  fontWeight: 'bold',
-                  fontSize: moderateScale(20),
-                }}>
-                Rate Card
-              </Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </ScrollView>
     </>

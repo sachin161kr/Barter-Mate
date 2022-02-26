@@ -22,7 +22,7 @@ const PriceScreen = () => {
   const handlePriceDetails = () => {
     setLoading(true);
     var data = JSON.stringify({
-      pincode: '800024',
+      pincode: `${pincode}`,
     });
 
     var config = {
@@ -128,6 +128,7 @@ const PriceScreen = () => {
           <View
             style={{
               alignSelf: 'center',
+              borderRadius: moderateScale(6),
               backgroundColor: '#FFF',
               elevation: 5,
               width: scale(300),
@@ -141,12 +142,13 @@ const PriceScreen = () => {
                   fontSize: moderateScale(16),
                   fontWeight: 'bold',
                   marginBottom: verticalScale(10),
+                  color: '#E03B8B',
                 }}>
                 Current Prices at Selected Pincode
               </Text>
               {prices.map(key => (
                 <Text style={styles.text}>
-                  {key.category} : {key.value}
+                  {key.category} : Rs. {key.value}
                 </Text>
               ))}
             </View>
@@ -166,5 +168,6 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(16),
     marginTop: verticalScale(5),
     fontWeight: 'bold',
+    color: '#8D3DAF',
   },
 });
