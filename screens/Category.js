@@ -213,311 +213,320 @@ const CategoryScreen = ({navigation}) => {
   return (
     <>
       <StatusBar backgroundColor="#A363A9" />
-      <ScrollView style={styles.container}>
-        <ScrollView
-          horizontal={true}
-          style={{
-            height: verticalScale(280),
-          }}>
-          <View
+      <ScrollView>
+        <View style={styles.container}>
+          <ScrollView
+            horizontal={true}
             style={{
-              justifyContent: 'space-evenly',
-              flexDirection: 'row',
-
-              marginLeft: scale(25),
+              height: verticalScale(280),
             }}>
-            {images.map(item => (
-              <View
-                style={{
-                  height: verticalScale(250),
-                  width: scale(360),
-                  alignSelf: 'center',
-                }}>
-                <Image
-                  source={{
-                    uri: `${item.image}`,
-                  }}
-                  style={{
-                    resizeMode: 'stretch',
-                    height: verticalScale(250),
-                    width: scale(300),
-                    borderRadius: moderateScale(10),
-                  }}
-                />
-              </View>
-            ))}
-          </View>
-        </ScrollView>
-        <Text
-          style={{
-            fontSize: moderateScale(30),
-            marginTop: verticalScale(30),
-            marginLeft: scale(30),
-            fontWeight: 'bold',
-            color: '#758283',
-          }}>
-          Categories
-        </Text>
-        <View style={styles.gridContainer}>
-          {categoryList.map(key => (
-            <TouchableOpacity
-              key={key.key}
-              onPress={() => {
-                setItem(key.text);
-                setDescription(key.description);
-                toggle();
-                setSubCategory('Choose Sub-Category');
-              }}>
-              <View style={styles.viewGroup}>
-                <Image source={key.image} style={styles.image} />
-
-                <Text style={styles.text}>{key.text}</Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </View>
-
-        <BottomSheet
-          visible={visible}
-          onBackButtonPress={toggle}
-          onBackdropPress={toggle}>
-          <View style={styles.card}>
-            <Text
-              style={{
-                color: '#A363A9',
-                alignSelf: 'center',
-                fontSize: moderateScale(25),
-                fontWeight: 'bold',
-                marginTop: verticalScale(40),
-              }}>
-              {itemSelected}
-            </Text>
-            <Text
-              style={{
-                fontSize: moderateScale(25),
-                height: verticalScale(120),
-                color: '#000000',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                marginTop: verticalScale(10),
-                paddingHorizontal: moderateScale(15),
-                fontSize: moderateScale(18),
-                fontStyle: 'italic',
-              }}>
-              {description}
-            </Text>
-
             <View
               style={{
-                flex: 1,
-                flexDirection: 'row',
                 justifyContent: 'space-evenly',
-                marginTop: verticalScale(8),
-              }}>
-              <View style={styles.loginBtn}>
-                <TouchableOpacity
-                  onPress={() => {
-                    toggle();
-                    navigation.navigate('Register Screen', {
-                      itemSelected: `${itemSelected}`,
-                      subCategory: `${subCategory}`,
-                    });
-                  }}>
-                  {loginStatus == 'true' ? (
-                    <></>
-                  ) : (
-                    <Text
-                      style={{
-                        fontSize: moderateScale(27),
-                        height: verticalScale(60),
-                        width: scale(150),
-                        color: '#A363A9',
-                        borderColor: '#A363A9',
-                        borderWidth: 1,
-                        textAlign: 'center',
-                        paddingTop: verticalScale(10),
-                        borderRadius: moderateScale(100),
-                      }}>
-                      Sign-Up
-                    </Text>
-                  )}
-                </TouchableOpacity>
-              </View>
+                flexDirection: 'row',
 
-              {loginStatus == 'true' ? (
-                <></>
-              ) : (
-                <View style={styles.guestRegister}>
+                marginLeft: scale(25),
+              }}>
+              {images.map(item => (
+                <View
+                  style={{
+                    height: verticalScale(250),
+                    width: scale(360),
+                    alignSelf: 'center',
+                  }}>
+                  <Image
+                    source={{
+                      uri: `${item.image}`,
+                    }}
+                    style={{
+                      resizeMode: 'stretch',
+                      height: verticalScale(250),
+                      width: scale(300),
+                      borderRadius: moderateScale(10),
+                    }}
+                  />
+                </View>
+              ))}
+            </View>
+          </ScrollView>
+          <Text
+            style={{
+              fontSize: moderateScale(30),
+              marginTop: verticalScale(30),
+              marginLeft: scale(30),
+              fontWeight: 'bold',
+              color: '#758283',
+            }}>
+            Categories
+          </Text>
+          <View style={styles.gridContainer}>
+            {categoryList.map(key => (
+              <TouchableOpacity
+                key={key.key}
+                onPress={() => {
+                  setItem(key.text);
+                  setDescription(key.description);
+                  toggle();
+                  setSubCategory('Choose Sub-Category');
+                }}>
+                <View style={styles.viewGroup}>
+                  <Image source={key.image} style={styles.image} />
+
+                  <Text style={styles.text}>{key.text}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          <BottomSheet
+            visible={visible}
+            onBackButtonPress={toggle}
+            onBackdropPress={toggle}>
+            <View style={styles.card}>
+              <Text
+                style={{
+                  color: '#A363A9',
+                  alignSelf: 'center',
+                  fontSize: moderateScale(25),
+                  fontWeight: 'bold',
+                  marginTop: verticalScale(40),
+                }}>
+                {itemSelected}
+              </Text>
+              <Text
+                style={{
+                  fontSize: moderateScale(25),
+                  height: verticalScale(120),
+                  color: '#000000',
+                  textAlign: 'center',
+                  fontWeight: 'bold',
+                  marginTop: verticalScale(10),
+                  paddingHorizontal: moderateScale(15),
+                  fontSize: moderateScale(18),
+                  fontStyle: 'italic',
+                }}>
+                {description}
+              </Text>
+
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'space-evenly',
+                  marginTop: verticalScale(8),
+                }}>
+                <View style={styles.loginBtn}>
                   <TouchableOpacity
                     onPress={() => {
                       toggle();
-                      navigation.navigate('Guest Pickup Screen', {
+                      navigation.navigate('Register Screen', {
                         itemSelected: `${itemSelected}`,
                         subCategory: `${subCategory}`,
                       });
                     }}>
-                    <Text
-                      style={{
-                        fontSize: moderateScale(30),
-                        alignSelf: 'center',
-                        color: '#A363A9',
-                        borderWidth: 1,
-                        height: verticalScale(60),
-                        width: scale(150),
-                        textAlign: 'center',
-                        paddingTop: verticalScale(8),
-                        borderRadius: moderateScale(100),
-                        borderColor: '#A363A9',
-                        borderRadius: moderateScale(100),
-                      }}>
-                      Guest
-                    </Text>
+                    {loginStatus == 'true' ? (
+                      <></>
+                    ) : (
+                      <Text
+                        style={{
+                          fontSize: moderateScale(27),
+                          height: verticalScale(60),
+                          width: scale(150),
+                          color: '#A363A9',
+                          borderColor: '#A363A9',
+                          borderWidth: 1,
+                          textAlign: 'center',
+                          paddingTop: verticalScale(10),
+                          borderRadius: moderateScale(100),
+                        }}>
+                        Sign-Up
+                      </Text>
+                    )}
                   </TouchableOpacity>
                 </View>
-              )}
-            </View>
-            {loginStatus == 'true' ? (
-              <TouchableOpacity
-                onPress={() => {
-                  toggle();
-                  if (loginStatus == 'true') {
-                    navigation.navigate('Pickup Screen', {
-                      name: `${username}`,
-                      itemSelected: `${itemSelected}`,
-                      subCategory: `${subCategory}`,
-                      address: `${address}`,
-                      email: `${email}`,
-                      phone: `${phone}`,
-                      landmark: `${landmark}`,
-                      pincode: `${pincode}`,
-                      userId: `${userId}`,
-                    });
-                  } else {
-                    navigation.navigate('Login Screen', {
-                      itemSelected: `${itemSelected}`,
-                      subCategory: `${subCategory}`,
-                      location: 'Category',
-                      userId: `${userId}`,
-                    });
-                  }
-                }}>
-                <LinearGradient
-                  colors={['#A363A9', '#FAB06D']}
-                  style={{
-                    borderRadius: moderateScale(100),
-                    height: verticalScale(80),
-                    width: scale(320),
-                    marginLeft: scale(2),
-                    marginBottom: verticalScale(25),
-                    alignSelf: 'center',
-                  }}
-                  start={{x: 0, y: 0}}
-                  end={{x: 1, y: 0}}>
-                  <Text
+
+                {loginStatus == 'true' ? (
+                  <></>
+                ) : (
+                  <View style={styles.guestRegister}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        toggle();
+                        navigation.navigate('Guest Pickup Screen', {
+                          itemSelected: `${itemSelected}`,
+                          subCategory: `${subCategory}`,
+                        });
+                      }}>
+                      <Text
+                        style={{
+                          fontSize: moderateScale(30),
+                          alignSelf: 'center',
+                          color: '#A363A9',
+                          borderWidth: 1,
+                          height: verticalScale(60),
+                          width: scale(150),
+                          textAlign: 'center',
+                          paddingTop: verticalScale(8),
+                          borderRadius: moderateScale(100),
+                          borderColor: '#A363A9',
+                          borderRadius: moderateScale(100),
+                        }}>
+                        Guest
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>
+              {loginStatus == 'true' ? (
+                <TouchableOpacity
+                  onPress={() => {
+                    toggle();
+                    if (loginStatus == 'true') {
+                      navigation.navigate('Pickup Screen', {
+                        name: `${username}`,
+                        itemSelected: `${itemSelected}`,
+                        subCategory: `${subCategory}`,
+                        address: `${address}`,
+                        email: `${email}`,
+                        phone: `${phone}`,
+                        landmark: `${landmark}`,
+                        pincode: `${pincode}`,
+                        userId: `${userId}`,
+                      });
+                    } else {
+                      navigation.navigate('Login Screen', {
+                        itemSelected: `${itemSelected}`,
+                        subCategory: `${subCategory}`,
+                        location: 'Category',
+                        userId: `${userId}`,
+                      });
+                    }
+                  }}>
+                  <LinearGradient
+                    colors={['#A363A9', '#FAB06D']}
                     style={{
-                      color: '#FFFFFF',
-                      fontSize: moderateScale(20),
-                      textAlignVertical: 'center',
-                      textAlign: 'center',
+                      borderRadius: moderateScale(100),
                       height: verticalScale(80),
                       width: scale(320),
-                    }}>
-                    Login As {username}
-                  </Text>
-                </LinearGradient>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                onPress={() => {
-                  toggle();
-                  if (loginStatus == 'true') {
-                    navigation.navigate('Pickup Screen', {
-                      name: `${username}`,
-                      itemSelected: `${itemSelected}`,
-                      subCategory: `${subCategory}`,
-                      address: `${address}`,
-                      email: `${email}`,
-                      phone: `${phone}`,
-                      landmark: `${landmark}`,
-                      pincode: `${pincode}`,
-                      userId: `${userId}`,
-                    });
-                  } else {
-                    navigation.navigate('Login Screen', {
-                      itemSelected: `${itemSelected}`,
-                      subCategory: `${subCategory}`,
-                      location: 'Category',
-                      userId: `${userId}`,
-                    });
-                  }
-                }}>
-                <LinearGradient
-                  colors={['#A363A9', '#FAB06D']}
-                  style={{
-                    borderRadius: moderateScale(100),
-                    height: verticalScale(60),
-                    width: scale(320),
-                    marginLeft: scale(2),
-                    marginBottom: verticalScale(25),
-                    alignSelf: 'center',
-                  }}
-                  start={{x: 0, y: 0}}
-                  end={{x: 1, y: 0}}>
+                      marginLeft: scale(2),
+                      marginBottom: verticalScale(25),
+                      alignSelf: 'center',
+                    }}
+                    start={{x: 0, y: 0}}
+                    end={{x: 1, y: 0}}>
+                    <Text
+                      style={{
+                        color: '#FFFFFF',
+                        fontSize: moderateScale(20),
+                        textAlignVertical: 'center',
+                        textAlign: 'center',
+                        height: verticalScale(80),
+                        width: scale(320),
+                      }}>
+                      Login As {username}
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  onPress={() => {
+                    toggle();
+                    if (loginStatus == 'true') {
+                      navigation.navigate('Pickup Screen', {
+                        name: `${username}`,
+                        itemSelected: `${itemSelected}`,
+                        subCategory: `${subCategory}`,
+                        address: `${address}`,
+                        email: `${email}`,
+                        phone: `${phone}`,
+                        landmark: `${landmark}`,
+                        pincode: `${pincode}`,
+                        userId: `${userId}`,
+                      });
+                    } else {
+                      navigation.navigate('Login Screen', {
+                        itemSelected: `${itemSelected}`,
+                        subCategory: `${subCategory}`,
+                        location: 'Category',
+                        userId: `${userId}`,
+                      });
+                    }
+                  }}>
+                  <LinearGradient
+                    colors={['#A363A9', '#FAB06D']}
+                    style={{
+                      borderRadius: moderateScale(100),
+                      height: verticalScale(60),
+                      width: scale(320),
+                      marginLeft: scale(2),
+                      marginBottom: verticalScale(25),
+                      alignSelf: 'center',
+                    }}
+                    start={{x: 0, y: 0}}
+                    end={{x: 1, y: 0}}>
+                    <Text
+                      style={{
+                        color: '#FFFFFF',
+
+                        fontSize: moderateScale(30),
+                        paddingTop: verticalScale(7),
+                        textAlignVertical: 'center',
+                        textAlign: 'center',
+                      }}>
+                      Login
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              )}
+              {loginStatus == 'true' ? (
+                <TouchableOpacity
+                  onPress={() => {
+                    setUser();
+                    toggle();
+                    Alert.alert('You are logged out!');
+                  }}>
                   <Text
                     style={{
-                      color: '#FFFFFF',
-
-                      fontSize: moderateScale(30),
-                      paddingTop: verticalScale(7),
-                      textAlignVertical: 'center',
-                      textAlign: 'center',
+                      fontSize: moderateScale(20),
+                      color: '#A363A9',
+                      alignSelf: 'center',
+                      marginTop: verticalScale(5),
+                      marginBottom: verticalScale(44),
                     }}>
-                    Login
+                    Logout
                   </Text>
-                </LinearGradient>
-              </TouchableOpacity>
-            )}
-            {loginStatus == 'true' ? (
-              <TouchableOpacity
-                onPress={() => {
-                  setUser();
-                  toggle();
-                  Alert.alert('You are logged out!');
+                </TouchableOpacity>
+              ) : (
+                <></>
+              )}
+            </View>
+          </BottomSheet>
+          <View
+            style={{
+              width: '100%',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Price Screen');
+              }}>
+              <Text
+                style={{
+                  height: verticalScale(40),
+                  width: scale(100),
+                  paddingTop: verticalScale(10),
+                  marginLeft: scale(220),
+                  backgroundColor: '#FFF',
+                  elevation: 5,
+                  textAlign: 'center',
+                  color: '#000',
+                  fontWeight: 'bold',
+                  fontSize: moderateScale(20),
                 }}>
-                <Text
-                  style={{
-                    fontSize: moderateScale(20),
-                    color: '#A363A9',
-                    alignSelf: 'center',
-                    marginTop: verticalScale(5),
-                    marginBottom: verticalScale(44),
-                  }}>
-                  Logout
-                </Text>
-              </TouchableOpacity>
-            ) : (
-              <></>
-            )}
+                Rate Card
+              </Text>
+            </TouchableOpacity>
           </View>
-        </BottomSheet>
-        <FloatingAction
-          color="#FFFFFF"
-          actions={action}
-          floatingIcon={question}
-          iconHeight={verticalScale(30)}
-          iconWidth={scale(30)}
-          onPressItem={name => {
-            // if (name == 'bt_contact') {
-            //   Alert.alert(
-            //     'Phone - (+91)88-2626-7661\nEmail - info@bartermate.in',
-            //   );
-            if (name == 'bt_price') {
-              navigation.navigate('Price Screen');
-            } else {
-              Alert.alert('Welcome To Barter-Mate');
-            }
-          }}
-        />
+        </View>
       </ScrollView>
     </>
   );
@@ -529,6 +538,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+    paddingBottom: verticalScale(50),
   },
 
   gridContainer: {

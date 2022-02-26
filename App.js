@@ -94,7 +94,7 @@ const MyStack = ({navigation}) => {
           name="Forgot Screen"
           component={ForgotPassScreen}
           options={{
-            title: 'Recover Your Password',
+            title: 'Edit Your Password',
           }}
         />
         <Stack.Screen

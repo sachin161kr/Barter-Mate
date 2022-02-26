@@ -66,20 +66,6 @@ const PickupScreen = ({route, navigation}) => {
   const [plasticPicked, setPlasticPicked] = useState(false);
   const [paperPicked, setPaperPicked] = useState(false);
   const [electronicsPicked, setElectronicsPicked] = useState(false);
-
-  if (tempCategory == 'Glass') {
-    glassSelected = true;
-  } else if (tempCategory == 'Metal') {
-    metalSelected = true;
-  } else if (tempCategory == 'Plastic') {
-    plasticSelected = true;
-  } else if (tempCategory == 'Paper') {
-    paperSelected = true;
-  } else if (tempCategory == 'Electronics') {
-    electronicsSelected = true;
-  }
-  //var multiSelect = [];
-
   const [multiSelect, setMultiselect] = useState([]);
 
   const addToList = element => {
@@ -89,6 +75,24 @@ const PickupScreen = ({route, navigation}) => {
       setMultiselect(newArr);
     }
   };
+
+  if (tempCategory == 'Glass') {
+    glassSelected = true;
+    addToList('Glass');
+  } else if (tempCategory == 'Metal') {
+    metalSelected = true;
+    addToList('Metal');
+  } else if (tempCategory == 'Plastic') {
+    plasticSelected = true;
+    addToList('Plastic');
+  } else if (tempCategory == 'Paper') {
+    paperSelected = true;
+    addToList('Paper');
+  } else if (tempCategory == 'Electronics') {
+    electronicsSelected = true;
+    addToList('Electronics');
+  }
+  //var multiSelect = [];
 
   const removeFromList = element => {
     let newArr = [...multiSelect];
@@ -134,11 +138,11 @@ const PickupScreen = ({route, navigation}) => {
 
     let tempDate = new Date(currentDate);
     let fDate =
-      tempDate.getDate() +
-      '/' +
+      tempDate.getFullYear() +
+      '-' +
       (tempDate.getMonth() + 1) +
-      '/' +
-      tempDate.getFullYear();
+      '-' +
+      tempDate.getDate();
 
     console.log(fDate);
     setDateLabel(fDate);
@@ -167,11 +171,12 @@ const PickupScreen = ({route, navigation}) => {
       name: `${name}`,
       email: `${email}`,
       phone: `${phone}`,
-      address: `${address}`,
+      address: `${currentAddress}`,
       landMark: `${landmark}`,
       pinCode: `${pincode}`,
       category: `${category}`,
       pickupDate: `${dateLabel}`,
+      subcategory: multiSelect,
     });
 
     var config = {
@@ -185,7 +190,7 @@ const PickupScreen = ({route, navigation}) => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response));
+        console.log(JSON.stringify(response.data));
         setLoading(false);
         Alert.alert('We will send our representatives soon. Thank You');
         navigation.navigate('Category Screen');
@@ -591,16 +596,29 @@ const PickupScreen = ({route, navigation}) => {
           </Picker>
         </View>
 
+        <TextInput
+          defaultValue={`${landmark}`}
+          onChangeText={tempLandmark => {
+            setLandmark(tempLandmark);
+          }}
+          style={styles.textinput}
+          placeholder="Enter Landmark"
+          placeholderTextColor="#758283"></TextInput>
+
         {isLoading == false ? (
           <View style={styles.pickupBtn}>
             <TouchableOpacity
               onPress={() => {
+                // console.log(name);
+                // console.log(email);
+                // console.log(phone);
+                // console.log(currentAddress);
+                // console.log(landmark);
+                // console.log(pincode);
+                // console.log(category);
+                // console.log(dateLabel);
                 // console.log(multiSelect);
-                if (
-                  address.length != 0 &&
-                  shift &&
-                  dateLabel != 'Pick A Date'
-                ) {
+                if (address.length != 0 && dateLabel != 'Pick A Date') {
                   handlePickeup();
                 } else {
                   Alert.alert('Enter Valid Details');
