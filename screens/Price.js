@@ -140,6 +140,7 @@ const PriceScreen = () => {
                 style={{
                   fontSize: moderateScale(16),
                   fontWeight: 'bold',
+                  marginBottom: verticalScale(10),
                 }}>
                 Current Prices at Selected Pincode
               </Text>
@@ -164,5 +165,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: moderateScale(16),
     marginTop: verticalScale(5),
+    fontWeight: 'bold',
   },
 });
