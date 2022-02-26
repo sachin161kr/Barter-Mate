@@ -131,6 +131,7 @@ const MyStack = ({navigation}) => {
           component={ProfileScreen}
           options={{
             title: '',
+            headerBackVisible: false,
           }}
         />
         <Stack.Screen
