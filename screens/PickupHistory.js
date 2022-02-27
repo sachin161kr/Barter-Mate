@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   Alert,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import axios from 'axios';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
@@ -56,83 +57,86 @@ const PickupHistoryScreen = ({route, navigation}) => {
 
   return (
     <>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#FFF',
-        }}>
-        {loading == true ? (
-          <ActivityIndicator
-            size={'large'}
-            color="#A363A9"
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          />
-        ) : (
-          history.map(key => (
-            <View
+      <ScrollView>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: '#FFF',
+            paddingBottom: verticalScale(30),
+          }}>
+          {loading == true ? (
+            <ActivityIndicator
+              size={'large'}
+              color="#A363A9"
               style={{
-                height: verticalScale(83),
-                width: scale(292),
-                backgroundColor: '#FFF',
-                alignSelf: 'center',
-                marginTop: verticalScale(20),
-                borderRadius: moderateScale(10),
-                padding: moderateScale(10),
-                elevation: 6,
-              }}>
-              <Text
-                style={{
-                  fontSize: moderateScale(25),
-                  fontWeight: 'bold',
-                }}>
-                {key.category}
-              </Text>
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            />
+          ) : (
+            history.map(key => (
               <View
                 style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
+                  height: verticalScale(83),
+                  width: scale(292),
+                  backgroundColor: '#FFF',
+                  alignSelf: 'center',
+                  marginTop: verticalScale(20),
+                  borderRadius: moderateScale(10),
+                  padding: moderateScale(10),
+                  elevation: 6,
                 }}>
                 <Text
                   style={{
-                    marginTop: verticalScale(10),
-                    fontSize: moderateScale(16),
+                    fontSize: moderateScale(25),
+                    fontWeight: 'bold',
                   }}>
-                  {key.createdDate.substring(0, 10)}
+                  {key.category}
                 </Text>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('Order Details Screen', {
-                      orderStatus: `${key.isComplete}`,
-                      pickupAddress: `${key.address}`,
-                      pincode: `${key.pinCode}`,
-                      pickupTime: `${key.createdDate.substring(11, 16)}`,
-                    });
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
                   }}>
-                  <View
+                  <Text
                     style={{
-                      backgroundColor: '#A363A9',
-                      borderRadius: moderateScale(6),
+                      marginTop: verticalScale(10),
+                      fontSize: moderateScale(16),
                     }}>
-                    <Text
+                    {key.createdDate.substring(0, 10)}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('Order Details Screen', {
+                        orderStatus: `${key.isComplete}`,
+                        pickupAddress: `${key.address}`,
+                        pincode: `${key.pinCode}`,
+                        pickupTime: `${key.createdDate.substring(11, 16)}`,
+                      });
+                    }}>
+                    <View
                       style={{
-                        fontSize: moderateScale(20),
-                        color: '#FFF',
-
-                        padding: moderateScale(4),
+                        backgroundColor: '#A363A9',
+                        borderRadius: moderateScale(6),
                       }}>
-                      Details
-                    </Text>
-                  </View>
-                </TouchableOpacity>
+                      <Text
+                        style={{
+                          fontSize: moderateScale(20),
+                          color: '#FFF',
+
+                          padding: moderateScale(4),
+                        }}>
+                        Details
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
               </View>
-            </View>
-          ))
-        )}
-      </View>
+            ))
+          )}
+        </View>
+      </ScrollView>
     </>
   );
 };

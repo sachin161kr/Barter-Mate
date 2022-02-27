@@ -113,7 +113,7 @@ const AddressScreen = ({route}) => {
             style={{
               flex: 1,
               backgroundColor: '#FFF',
-              marginBottom: verticalScale(200),
+              paddingBottom: verticalScale(30),
             }}>
             <View>
               <TextInput

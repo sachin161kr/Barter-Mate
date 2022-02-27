@@ -280,9 +280,9 @@ const PickupScreen = ({route, navigation}) => {
             borderRadius: moderateScale(10),
             width: scale(300),
             flexWrap: 'wrap',
-            height: verticalScale(55),
+            height: verticalScale(60),
             paddingTop: verticalScale(5),
-            paddingLeft: scale(20),
+            paddingLeft: scale(62),
             marginBottom: verticalScale(20),
           }}>
           <TouchableOpacity
@@ -307,7 +307,14 @@ const PickupScreen = ({route, navigation}) => {
               {tempCategory == 'Glass' ? (
                 <></>
               ) : (
-                <>
+                <View
+                  style={{
+                    //borderWidth: 1,
+                    //borderColor: '#000',
+                    height: verticalScale(25),
+                    width: scale(100),
+                    flexDirection: 'row',
+                  }}>
                   <View
                     style={{
                       height: verticalScale(15),
@@ -321,7 +328,7 @@ const PickupScreen = ({route, navigation}) => {
                     }}
                   />
                   <Text style={styles.multiSelectText}>Glass</Text>
-                </>
+                </View>
               )}
             </View>
           </TouchableOpacity>
@@ -347,7 +354,14 @@ const PickupScreen = ({route, navigation}) => {
               {tempCategory == 'Metal' ? (
                 <></>
               ) : (
-                <>
+                <View
+                  style={{
+                    //borderWidth: 1,
+                    //borderColor: '#000',
+                    height: verticalScale(25),
+                    width: scale(100),
+                    flexDirection: 'row',
+                  }}>
                   <View
                     style={{
                       height: verticalScale(15),
@@ -361,7 +375,7 @@ const PickupScreen = ({route, navigation}) => {
                     }}
                   />
                   <Text style={styles.multiSelectText}>Metal</Text>
-                </>
+                </View>
               )}
             </View>
           </TouchableOpacity>
@@ -385,7 +399,14 @@ const PickupScreen = ({route, navigation}) => {
               {tempCategory == 'Plastic' ? (
                 <></>
               ) : (
-                <>
+                <View
+                  style={{
+                    //borderWidth: 1,
+                    //borderColor: '#000',
+                    height: verticalScale(25),
+                    width: scale(100),
+                    flexDirection: 'row',
+                  }}>
                   <View
                     style={{
                       height: verticalScale(15),
@@ -400,7 +421,7 @@ const PickupScreen = ({route, navigation}) => {
                     }}
                   />
                   <Text style={styles.multiSelectText}>Plastic</Text>
-                </>
+                </View>
               )}
             </View>
           </TouchableOpacity>
@@ -424,7 +445,14 @@ const PickupScreen = ({route, navigation}) => {
               {tempCategory == 'Paper' ? (
                 <></>
               ) : (
-                <>
+                <View
+                  style={{
+                    //borderWidth: 1,
+                    //borderColor: '#000',
+                    height: verticalScale(25),
+                    width: scale(100),
+                    flexDirection: 'row',
+                  }}>
                   <View
                     style={{
                       height: verticalScale(15),
@@ -438,7 +466,7 @@ const PickupScreen = ({route, navigation}) => {
                     }}
                   />
                   <Text style={styles.multiSelectText}>Paper</Text>
-                </>
+                </View>
               )}
             </View>
           </TouchableOpacity>
@@ -462,7 +490,14 @@ const PickupScreen = ({route, navigation}) => {
               {tempCategory == 'Electronics' ? (
                 <></>
               ) : (
-                <>
+                <View
+                  style={{
+                    //borderWidth: 1,
+                    //borderColor: '#000',
+                    height: verticalScale(25),
+                    width: scale(100),
+                    flexDirection: 'row',
+                  }}>
                   <View
                     style={{
                       height: verticalScale(15),
@@ -477,7 +512,7 @@ const PickupScreen = ({route, navigation}) => {
                     }}
                   />
                   <Text style={styles.multiSelectText}>Electronics</Text>
-                </>
+                </View>
               )}
             </View>
           </TouchableOpacity>

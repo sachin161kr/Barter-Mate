@@ -49,11 +49,11 @@ const GuestPickupScreen = ({route, navigation}) => {
 
     let tempDate = new Date(currentDate);
     let fDate =
-      tempDate.getDate() +
-      '/' +
+      tempDate.getFullYear() +
+      '-' +
       (tempDate.getMonth() + 1) +
-      '/' +
-      tempDate.getFullYear();
+      '-' +
+      tempDate.getDate();
 
     console.log(fDate);
     setDateLabel(fDate);
@@ -96,9 +96,6 @@ const GuestPickupScreen = ({route, navigation}) => {
       pinCode: `${pincode}`,
       category: `${category}`,
       pickupDate: `${dateLabel}`,
-      shift: `${shift}`,
-      remark: `${remark}`,
-      feedback: `${feedback}`,
     });
 
     var config = {
@@ -325,33 +322,6 @@ const GuestPickupScreen = ({route, navigation}) => {
               </View>
             </View>
           </TouchableOpacity>
-
-          <View
-            style={{
-              width: scale(150),
-              height: 60,
-              justifyContent: 'center',
-              borderColor: '#A363A9',
-              borderWidth: 1,
-              marginTop: verticalScale(10),
-              borderRadius: moderateScale(100),
-            }}>
-            <Picker
-              style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={shift}
-              onValueChange={itemValue => {
-                changeShift(itemValue);
-              }}>
-              <Picker.Item label="First Shift" value="First Shift" />
-              <Picker.Item label="Second Shift" value="Second Shift" />
-            </Picker>
-          </View>
         </View>
 
         {show && (
@@ -364,24 +334,6 @@ const GuestPickupScreen = ({route, navigation}) => {
             onChange={onChange}
           />
         )}
-
-        <TextInput
-          defaultValue={`${remark}`}
-          onChangeText={tempRemark => {
-            setRemark(tempRemark);
-          }}
-          style={styles.textinput}
-          placeholder="Enter Remarks"
-          placeholderTextColor="#758283"></TextInput>
-
-        <TextInput
-          defaultValue={`${feedback}`}
-          onChangeText={tempFeedback => {
-            setFeedback(tempFeedback);
-          }}
-          style={styles.textinput}
-          placeholder="Put your feedback here."
-          placeholderTextColor="#758283"></TextInput>
 
         {isLoading == false ? (
           <View style={styles.pickupBtn}>
