@@ -21,6 +21,7 @@ import PickupHistoryScreen from './screens/PickupHistory';
 import AddressScreen from './screens/Address';
 import MyProfileScreen from './screens/MyProfile';
 import OrderDetailsScreen from './screens/OrderDetails';
+import EditPhoneScreen from './screens/EditPhone';
 
 const MyStack = ({navigation}) => {
   return (
@@ -100,6 +101,13 @@ const MyStack = ({navigation}) => {
         <Stack.Screen
           name="Order Details Screen"
           component={OrderDetailsScreen}
+          options={{
+            title: '',
+          }}
+        />
+        <Stack.Screen
+          name="Edit Phone Screen"
+          component={EditPhoneScreen}
           options={{
             title: '',
           }}

@@ -8,6 +8,7 @@ const MyProfileScreen = ({route, navigation}) => {
   var name = route.params.name;
   var email = route.params.email;
   var phone = route.params.phone;
+  var userId = route.params.userId;
 
   return (
     <>
@@ -55,6 +56,33 @@ const MyProfileScreen = ({route, navigation}) => {
                 color: '#A363A9',
               }}>
               Edit Password
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Edit Phone Screen', {
+              phone: `${phone}`,
+              userId: `${userId}`,
+            });
+          }}>
+          <View
+            style={{
+              alignSelf: 'center',
+              borderColor: '#A363A9',
+              borderWidth: 2,
+              width: scale(280),
+              marginTop: verticalScale(20),
+              borderRadius: moderateScale(100),
+              padding: moderateScale(10),
+            }}>
+            <Text
+              style={{
+                fontSize: moderateScale(20),
+                textAlign: 'center',
+                color: '#A363A9',
+              }}>
+              Edit Phone Number
             </Text>
           </View>
         </TouchableOpacity>

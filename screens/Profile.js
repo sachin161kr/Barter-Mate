@@ -85,6 +85,7 @@ const ProfileScreen = ({route, navigation}) => {
                   name: `${name}`,
                   email: `${email}`,
                   phone: `${phone}`,
+                  userId: `${userId}`,
                 });
               }}>
               <View
