@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-import Moment from 'react-moment';
 
 const PickupHistoryScreen = ({route, navigation}) => {
   var email = route.params.email;
@@ -65,15 +64,14 @@ const PickupHistoryScreen = ({route, navigation}) => {
             paddingBottom: verticalScale(30),
           }}>
           {loading == true ? (
-            <ActivityIndicator
-              size={'large'}
-              color="#A363A9"
+            <View
               style={{
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
-              }}
-            />
+              }}>
+              <ActivityIndicator size={'large'} color="#A363A9" />
+            </View>
           ) : (
             history.map(key => (
               <View
@@ -91,6 +89,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
                   style={{
                     fontSize: moderateScale(25),
                     fontWeight: 'bold',
+                    color: '#000',
                   }}>
                   {key.category}
                 </Text>

@@ -22,6 +22,7 @@ import AddressScreen from './screens/Address';
 import MyProfileScreen from './screens/MyProfile';
 import OrderDetailsScreen from './screens/OrderDetails';
 import EditPhoneScreen from './screens/EditPhone';
+import RedeemScreen from './screens/redeem';
 
 const MyStack = ({navigation}) => {
   return (
@@ -122,6 +123,13 @@ const MyStack = ({navigation}) => {
         <Stack.Screen
           name="Register Screen"
           component={RegisterScreen}
+          options={{
+            title: '',
+          }}
+        />
+        <Stack.Screen
+          name="Redeem Screen"
+          component={RedeemScreen}
           options={{
             title: '',
           }}

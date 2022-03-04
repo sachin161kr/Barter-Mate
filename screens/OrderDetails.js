@@ -25,8 +25,7 @@ const OrderDetailsScreen = ({route}) => {
             alignSelf: 'center',
             width: scale(300),
             marginTop: verticalScale(30),
-            backgroundColor:
-              orderStatus == 'Not Completed' ? '#E21717' : 'green',
+            backgroundColor: '#FFF',
             elevation: 5,
             padding: moderateScale(10),
             borderRadius: moderateScale(20),
@@ -48,6 +47,6 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(18),
     marginBottom: verticalScale(10),
     fontWeight: 'bold',
-    color: '#FFF',
+    color: '#000',
   },
 });
