@@ -20,8 +20,8 @@ import {
   Platform,
 } from 'react-native';
 
-import sweeper from '../assets/garbageCleaner.png';
 import calender from '../assets/calender.png';
+import pickup from '../assets/pickup.png';
 
 const GuestPickupScreen = ({route, navigation}) => {
   var tempCategory = route.params.itemSelected;
@@ -177,10 +177,10 @@ const GuestPickupScreen = ({route, navigation}) => {
           <Image
             style={{
               height: 200,
-              width: 250,
+              width: 300,
               alignSelf: 'center',
             }}
-            source={sweeper}
+            source={pickup}
           />
         </View>
         <Text
