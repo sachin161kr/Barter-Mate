@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import LinearGradient from 'react-native-linear-gradient';
 
 const OrderDetailsScreen = ({route}) => {
   var orderStatus = route.params.orderStatus;
@@ -20,7 +21,10 @@ const OrderDetailsScreen = ({route}) => {
           flex: 1,
           backgroundColor: '#FFF',
         }}>
-        <View
+        <LinearGradient
+          colors={['#A363A9', '#FAB06D']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}
           style={{
             alignSelf: 'center',
             width: scale(300),
@@ -34,7 +38,7 @@ const OrderDetailsScreen = ({route}) => {
           <Text style={styles.text}>Pickup Address : {pickupAddress}</Text>
           <Text style={styles.text}>Pickup Time 24 hrs : {pickupTime}</Text>
           <Text style={styles.text}>Pincode : {pincode}</Text>
-        </View>
+        </LinearGradient>
       </View>
     </>
   );
@@ -47,6 +51,6 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(18),
     marginBottom: verticalScale(10),
     fontWeight: 'bold',
-    color: '#000',
+    color: '#FFf',
   },
 });

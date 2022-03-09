@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import LinearGradient from 'react-native-linear-gradient';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, Image} from 'react-native';
+
+import offer from '../assets/offers.png';
 
 const RedeemScreen = ({route, navigation}) => {
   var userId = route.params.userId;
@@ -81,50 +84,99 @@ const RedeemScreen = ({route, navigation}) => {
               Alert.alert('You Have Redeemed this service for now');
             }
           }}>
-          <View
+          <LinearGradient
+            colors={['#A363A9', '#FAB06D']}
             style={{
-              backgroundColor: '#FFF',
               height: verticalScale(135),
-              width: scale(135),
+              width: scale(315),
+              alignSelf: 'center',
               elevation: 5,
-              marginLeft: scale(15),
               marginTop: verticalScale(20),
               borderRadius: moderateScale(15),
-            }}>
-            <Text
-              style={{
-                color: '#000000',
-                marginLeft: verticalScale(15),
-                marginTop: verticalScale(15),
-                fontSize: moderateScale(18),
-              }}>
-              AC Service
-            </Text>
+            }}
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}>
             <View
               style={{
                 flexDirection: 'row',
               }}>
               <Text
                 style={{
-                  color: '#5E5E5E',
+                  color: '#FFF',
+                  marginLeft: verticalScale(15),
+                  marginTop: verticalScale(15),
+                  fontSize: moderateScale(23),
+                  fontWeight: 'bold',
+                }}>
+                AC Services
+              </Text>
+              <Text
+                style={{
+                  color: '#FFF',
+                  marginLeft: verticalScale(8),
+                  marginTop: verticalScale(18),
+                  fontSize: moderateScale(20),
+                }}>
+                starting at :
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+              }}>
+              <Text
+                style={{
+                  color: '#FFF',
                   marginLeft: verticalScale(15),
                   marginTop: verticalScale(18),
                   fontSize: moderateScale(14),
                   textDecorationLine: 'line-through',
                 }}>
-                399
+                499
               </Text>
               <Text
                 style={{
-                  color: '#000000',
+                  color: '#FFF',
                   marginLeft: verticalScale(15),
                   marginTop: verticalScale(15),
                   fontSize: moderateScale(18),
                 }}>
-                299
+                349 for Window AC
               </Text>
             </View>
-          </View>
+            <View
+              style={{
+                flexDirection: 'row',
+              }}>
+              <Text
+                style={{
+                  color: '#FFF',
+                  marginLeft: verticalScale(15),
+                  marginTop: verticalScale(18),
+                  fontSize: moderateScale(14),
+                  textDecorationLine: 'line-through',
+                }}>
+                599
+              </Text>
+              <Text
+                style={{
+                  color: '#FFF',
+                  marginLeft: verticalScale(15),
+                  marginTop: verticalScale(15),
+                  fontSize: moderateScale(18),
+                }}>
+                449 for Split AC
+              </Text>
+              <Image
+                source={offer}
+                style={{
+                  height: verticalScale(45),
+                  width: scale(45),
+                  marginLeft: scale(80),
+                }}
+              />
+            </View>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
       <TouchableOpacity
