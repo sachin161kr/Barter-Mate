@@ -688,9 +688,9 @@ const PickupScreen = ({route, navigation}) => {
                 // console.log(dateLabel);
                 // console.log(multiSelect);
                 if (
-                  address.length != 0 &&
-                  dateLabel != 'Pick A Date' &&
-                  currentAddress != 'Choose Pickup Address'
+                  (address.length != 0 ||
+                    currentAddress != 'Choose Pickup Address') &&
+                  dateLabel != 'Pick A Date'
                 ) {
                   handlePickeup();
                 } else {
@@ -799,6 +799,5 @@ const styles = StyleSheet.create({
   },
   multiSelectText: {
     fontSize: moderateScale(16),
-    marginRight: scale(30),
   },
 });
