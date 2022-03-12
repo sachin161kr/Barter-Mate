@@ -73,9 +73,6 @@ const RegisterScreen = ({navigation, route}) => {
       name: `${fullName}`,
       email: `${email}`,
       phone: `${phone}`,
-      address: `${address}`,
-      landMark: `${landmark}`,
-      pinCode: `${pincode}`,
       password: `${password}`,
     });
 
@@ -196,23 +193,8 @@ const RegisterScreen = ({navigation, route}) => {
             placeholder="Confirm Password"
             secureTextEntry={true}
             placeholderTextColor="#758283"></TextInput>
-          <TextInput
-            onChangeText={text => {
-              setAddress(text);
-            }}
-            style={styles.textinput}
-            placeholder="Address"
-            placeholderTextColor="#758283"></TextInput>
 
-          <TextInput
-            onChangeText={text => {
-              setLankmark(text);
-            }}
-            style={styles.textinput}
-            placeholder="Lankmark"
-            placeholderTextColor="#758283"></TextInput>
-
-          <View style={styles.pickerStyle}>
+          {/* <View style={styles.pickerStyle}>
             <Picker
               style={{
                 color: '#A363A9',
@@ -229,25 +211,17 @@ const RegisterScreen = ({navigation, route}) => {
               <Picker.Item label="201301" value="201301" />
               <Picker.Item label="201304" value="201304" />
             </Picker>
-          </View>
+          </View> */}
 
           {isLoading == false ? (
             <View style={styles.registerBtn}>
               <TouchableOpacity
                 onPress={() => {
-                  if (
-                    fullName &&
-                    email &&
-                    phone &&
-                    password &&
-                    confirmPass &&
-                    address
-                  ) {
+                  if (fullName && email && phone && password && confirmPass) {
                     if (
                       passCheck() &&
                       phoneCheck() &&
-                      pincode != 'Choose Pincode' &&
-                      emailCheck()
+                      pincode != 'Choose Pincode'
                     ) {
                       handleSubmit();
                     }

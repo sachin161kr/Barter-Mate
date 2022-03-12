@@ -26,6 +26,8 @@ import pickup from '../assets/pickup.png';
 const GuestPickupScreen = ({route, navigation}) => {
   var tempCategory = route.params.itemSelected;
 
+  var userId = route.params.userId;
+
   const [category, setCategory] = useState(`${route.params.itemSelected}`);
   const [subCategory, setSubCategory] = useState(`${route.params.subCategory}`);
   const [email, setEmail] = useState('');
@@ -151,8 +153,10 @@ const GuestPickupScreen = ({route, navigation}) => {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         setLoading(false);
-        Alert.alert('We will send our representatives soon. Thank You');
-        navigation.navigate('Category Screen');
+        //Alert.alert('We will send our representatives soon. Thank You');
+        navigation.navigate('Redeem Screen', {
+          userId: `${userId}`,
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -646,8 +650,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                   email &&
                   phone &&
                   address &&
-                  dateLabel != 'Pick A Date' &&
-                  emailCheck()
+                  dateLabel != 'Pick A Date'
                 ) {
                   if (phoneCheck()) {
                     if (pincode != 'Choose Pincode') {

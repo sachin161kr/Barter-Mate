@@ -128,13 +128,13 @@ const ResetPassScreen = ({route, navigation}) => {
               end={{x: 1, y: 0}}>
               <Text
                 style={{
-                  fontSize: moderateScale(25),
+                  fontSize: moderateScale(20),
                   alignSelf: 'center',
                   color: '#FFFFFF',
                   margin: moderateScale(5),
-                  paddingBottom: verticalScale(10),
+                  paddingTop: verticalScale(5),
                 }}>
-                Continue
+                Save New Password
               </Text>
             </LinearGradient>
           </TouchableOpacity>

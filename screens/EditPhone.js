@@ -138,7 +138,7 @@ const EditPhoneScreen = ({route, navigation}) => {
                   textAlign: 'center',
                   color: '#A363A9',
                 }}>
-                Edit Phone Number
+                Save Phone Number
               </Text>
             </View>
           </TouchableOpacity>

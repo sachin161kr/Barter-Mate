@@ -382,6 +382,7 @@ const CategoryScreen = ({navigation}) => {
                         navigation.navigate('Guest Pickup Screen', {
                           itemSelected: `${itemSelected}`,
                           subCategory: `${subCategory}`,
+                          userId: `${userId}`,
                         });
                       }}>
                       <Text

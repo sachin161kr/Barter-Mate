@@ -56,7 +56,11 @@ const PickupHistoryScreen = ({route, navigation}) => {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView
+        style={{
+          flex: 1,
+          backgroundColor: '#FFF',
+        }}>
         <View
           style={{
             flex: 1,
@@ -69,6 +73,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
+                marginTop: verticalScale(100),
               }}>
               <ActivityIndicator size={'large'} color="#A363A9" />
             </View>
@@ -105,7 +110,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
                     }}>
                     {key.createdDate.substring(0, 10)}
                   </Text>
-                  <TouchableOpacity
+                  {/* <TouchableOpacity
                     onPress={() => {
                       navigation.navigate('Order Details Screen', {
                         orderStatus: `${key.isComplete}`,
@@ -129,7 +134,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
                         Details
                       </Text>
                     </View>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                 </View>
               </View>
             ))
@@ -141,9 +146,3 @@ const PickupHistoryScreen = ({route, navigation}) => {
 };
 
 export default PickupHistoryScreen;
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: moderateScale(20),
-  },
-});
