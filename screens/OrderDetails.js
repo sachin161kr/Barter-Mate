@@ -36,7 +36,7 @@ const OrderDetailsScreen = ({route}) => {
           }}>
           <Text style={styles.text}>Order Status : {orderStatus}</Text>
           <Text style={styles.text}>Pickup Address : {pickupAddress}</Text>
-          <Text style={styles.text}>Pickup Time 24 hrs : {pickupTime}</Text>
+          {/* <Text style={styles.text}>Pickup Time 24 hrs : {pickupTime}</Text> */}
           <Text style={styles.text}>Pincode : {pincode}</Text>
         </LinearGradient>
       </View>

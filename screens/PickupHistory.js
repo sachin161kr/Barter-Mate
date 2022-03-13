@@ -110,7 +110,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
                     }}>
                     {key.createdDate.substring(0, 10)}
                   </Text>
-                  {/* <TouchableOpacity
+                  <TouchableOpacity
                     onPress={() => {
                       navigation.navigate('Order Details Screen', {
                         orderStatus: `${key.isComplete}`,
@@ -134,7 +134,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
                         Details
                       </Text>
                     </View>
-                  </TouchableOpacity> */}
+                  </TouchableOpacity>
                 </View>
               </View>
             ))
