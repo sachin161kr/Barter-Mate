@@ -25,6 +25,7 @@ const AddressScreen = ({route}) => {
   var phone = route.params.phone;
   var landmark = route.params.landmark;
   const [pincode, setPincode] = useState('Choose Pincode');
+  const [addressType, setAddressType] = useState('Choose Address Type');
 
   const [myAddresses, setMyaddresses] = useState([]);
 
@@ -52,6 +53,7 @@ const AddressScreen = ({route}) => {
       .catch(function (error) {
         console.log(error);
         Alert.alert('Something Went Wrong');
+        setLoading(false);
       });
   };
 
@@ -69,6 +71,7 @@ const AddressScreen = ({route}) => {
       pinCode: `${pincode}`,
       city: `${city}`,
       state: `${state}`,
+      tags: `${addressType}`,
     });
 
     var config = {
@@ -175,6 +178,37 @@ const AddressScreen = ({route}) => {
                   <Picker.Item label="201304" value="201304" />
                 </Picker>
               </View>
+              <View
+                style={{
+                  marginLeft: scale(25),
+                  marginRight: scale(25),
+                  borderColor: '#A363A9',
+                  borderWidth: 1,
+                  borderRadius: moderateScale(100),
+                  marginHorizontal: moderateScale(10),
+                  marginTop: verticalScale(20),
+                }}>
+                <Picker
+                  style={{
+                    color: '#A363A9',
+                  }}
+                  dropdownIconColor="#A363A9"
+                  dropdownIconRippleColor="#A363A9"
+                  onTouchCancel={true}
+                  mode="dropdown"
+                  selectedValue={addressType}
+                  onValueChange={itemValue => {
+                    setAddressType(itemValue);
+                  }}>
+                  <Picker.Item
+                    label="Choose Address Type"
+                    value="Choose Address Type"
+                  />
+                  <Picker.Item label="HOME" value="HOME" />
+                  <Picker.Item label="OFFICE" value="OFFICE" />
+                  <Picker.Item label="OTHER" value="OTHER" />
+                </Picker>
+              </View>
             </View>
             {loading == true ? (
               <ActivityIndicator
@@ -192,6 +226,7 @@ const AddressScreen = ({route}) => {
                     pincode != 'Choose Pincode' &&
                     address1 &&
                     address2 &&
+                    addressType &&
                     city &&
                     state
                   ) {
@@ -247,7 +282,7 @@ const AddressScreen = ({route}) => {
               {myAddresses.map(key => (
                 <View
                   style={{
-                    height: verticalScale(200),
+                    height: verticalScale(250),
                     width: scale(300),
                     alignSelf: 'center',
                     marginTop: verticalScale(20),
@@ -256,6 +291,14 @@ const AddressScreen = ({route}) => {
                     borderRadius: moderateScale(20),
                     padding: moderateScale(10),
                   }}>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      fontSize: moderateScale(25),
+                    }}>
+                    {' '}
+                    {key.tags}{' '}
+                  </Text>
                   <Text style={styles.text}> {key.address1} </Text>
                   <Text style={styles.text}> {key.address2} </Text>
                   <Text style={styles.text}> {key.city} </Text>

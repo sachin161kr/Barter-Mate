@@ -218,11 +218,7 @@ const RegisterScreen = ({navigation, route}) => {
               <TouchableOpacity
                 onPress={() => {
                   if (fullName && email && phone && password && confirmPass) {
-                    if (
-                      passCheck() &&
-                      phoneCheck() &&
-                      pincode != 'Choose Pincode'
-                    ) {
+                    if (passCheck() && phoneCheck()) {
                       handleSubmit();
                     }
                   } else {

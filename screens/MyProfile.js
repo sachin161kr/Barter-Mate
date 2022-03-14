@@ -22,15 +22,23 @@ const MyProfileScreen = ({route, navigation}) => {
             alignSelf: 'center',
             marginTop: verticalScale(30),
           }}>
-          <Image
-            source={icon1}
+          <Text
+            //source={icon1}
             style={{
               height: verticalScale(80),
-              width: scale(100),
+              width: scale(85),
+              backgroundColor: '#A363A9',
               alignSelf: 'center',
+              fontWeight: 'bold',
+              color: '#FFF',
+              fontSize: moderateScale(35),
+              textAlign: 'center',
+              paddingTop: verticalScale(18),
+              borderRadius: moderateScale(300),
               marginBottom: verticalScale(20),
-            }}
-          />
+            }}>
+            {name.substring(0, 1)}
+          </Text>
           <Text style={styles.text}>Name : {name}</Text>
           <Text style={styles.text}>Email : {email}</Text>
           <Text style={styles.text}>Phone : {phone}</Text>

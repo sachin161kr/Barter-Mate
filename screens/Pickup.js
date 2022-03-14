@@ -173,7 +173,7 @@ const PickupScreen = ({route, navigation}) => {
       name: `${name}`,
       email: `${email}`,
       phone: `${phone}`,
-      address: myAddresses.length == 0 ? `${address}` : `${currentAddress}`,
+      address: `${currentAddress}`,
       landMark: `${landmark}`,
       pinCode: `${pincode}`,
       category: `${category}`,
@@ -520,6 +520,129 @@ const PickupScreen = ({route, navigation}) => {
           </TouchableOpacity>
         </View>
 
+        {/* <View
+            style={{
+              width: scale(150),
+              height: 60,
+              justifyContent: 'center',
+              borderColor: '#A363A9',
+              borderWidth: 1,
+              marginTop: verticalScale(10),
+              borderRadius: moderateScale(100),
+            }}>
+            <Picker
+              style={{
+                color: '#A363A9',
+              }}
+              dropdownIconColor="#A363A9"
+              dropdownIconRippleColor="#A363A9"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={shift}
+              onValueChange={itemValue => {
+                changeShift(itemValue);
+              }}>
+              <Picker.Item label="First Shift" value="First Shift" />
+              <Picker.Item label="Second Shift" value="Second Shift" />
+            </Picker>
+          </View> */}
+
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            minimumDate={date}
+            mode="date"
+            display="default"
+            onChange={onChange}
+          />
+        )}
+
+        <View style={styles.pickerStyle}>
+          <Picker
+            style={{
+              color: '#A363A9',
+            }}
+            dropdownIconColor="#A363A9"
+            dropdownIconRippleColor="#A363A9"
+            onTouchCancel={true}
+            mode="dropdown"
+            selectedValue={currentAddress}
+            onValueChange={itemValue => {
+              setCurrentAddress(itemValue);
+            }}>
+            <Picker.Item
+              label="Choose Pickup Address"
+              value="Choose Pickup Address"
+            />
+            {myAddresses.map(key => (
+              <Picker.Item
+                label={key.tags + ' , ' + key.address1}
+                value={key.tags + ' , ' + key.address1}
+              />
+            ))}
+          </Picker>
+        </View>
+
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Address Screen', {
+              userId: `${userId}`,
+              email: `${email}`,
+              phone: `${phone}`,
+              landMark: `${tempLandmark}}`,
+            });
+          }}>
+          <View
+            style={{
+              marginLeft: scale(20),
+              height: verticalScale(50),
+              marginRight: scale(20),
+              borderColor: '#A363A9',
+              borderWidth: 1,
+              borderRadius: moderateScale(100),
+              marginHorizontal: moderateScale(10),
+              marginTop: verticalScale(10),
+              paddingTop: verticalScale(10),
+            }}>
+            <Text
+              style={{
+                fontSize: moderateScale(20),
+                textAlign: 'center',
+                color: '#A363A9',
+              }}>
+              Add New Address
+            </Text>
+          </View>
+        </TouchableOpacity>
+
+        <View
+          style={{
+            marginLeft: scale(20),
+            marginRight: scale(20),
+            borderColor: '#A363A9',
+            borderWidth: 1,
+            borderRadius: moderateScale(100),
+            marginHorizontal: moderateScale(10),
+            marginTop: verticalScale(10),
+          }}>
+          <Picker
+            style={{
+              color: '#A363A9',
+            }}
+            dropdownIconColor="#A363A9"
+            dropdownIconRippleColor="#A363A9"
+            onTouchCancel={true}
+            mode="dropdown"
+            selectedValue={pincode}
+            onValueChange={itemValue => {
+              setPincode(itemValue);
+            }}>
+            <Picker.Item label="201301" value="201301" />
+            <Picker.Item label="201304" value="201304" />
+          </Picker>
+        </View>
+
         <View
           style={{
             flexDirection: 'row',
@@ -568,111 +691,7 @@ const PickupScreen = ({route, navigation}) => {
               </View>
             </View>
           </TouchableOpacity>
-
-          {/* <View
-            style={{
-              width: scale(150),
-              height: 60,
-              justifyContent: 'center',
-              borderColor: '#A363A9',
-              borderWidth: 1,
-              marginTop: verticalScale(10),
-              borderRadius: moderateScale(100),
-            }}>
-            <Picker
-              style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={shift}
-              onValueChange={itemValue => {
-                changeShift(itemValue);
-              }}>
-              <Picker.Item label="First Shift" value="First Shift" />
-              <Picker.Item label="Second Shift" value="Second Shift" />
-            </Picker>
-          </View> */}
         </View>
-
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            minimumDate={date}
-            mode="date"
-            display="default"
-            onChange={onChange}
-          />
-        )}
-
-        {myAddresses.length == 0 ? (
-          <TextInput
-            defaultValue={`${address}`}
-            onChangeText={tempAddress => {
-              setAddress(tempAddress);
-            }}
-            style={styles.textinput}
-            placeholder="Enter Pickup Address"
-            placeholderTextColor="#758283"></TextInput>
-        ) : (
-          <>
-            <View style={styles.pickerStyle}>
-              <Picker
-                style={{
-                  color: '#A363A9',
-                }}
-                dropdownIconColor="#A363A9"
-                dropdownIconRippleColor="#A363A9"
-                onTouchCancel={true}
-                mode="dropdown"
-                selectedValue={currentAddress}
-                onValueChange={itemValue => {
-                  setCurrentAddress(itemValue);
-                }}>
-                <Picker.Item
-                  label="Choose Pickup Address"
-                  value="Choose Pickup Address"
-                />
-                {myAddresses.map(key => (
-                  <Picker.Item
-                    label={key.address1 + ' , ' + key.address2}
-                    value={key.address1 + ' , ' + key.address2}
-                  />
-                ))}
-              </Picker>
-            </View>
-
-            <View
-              style={{
-                marginLeft: scale(20),
-                marginRight: scale(20),
-                borderColor: '#A363A9',
-                borderWidth: 1,
-                borderRadius: moderateScale(100),
-                marginHorizontal: moderateScale(10),
-                marginTop: verticalScale(10),
-              }}>
-              <Picker
-                style={{
-                  color: '#A363A9',
-                }}
-                dropdownIconColor="#A363A9"
-                dropdownIconRippleColor="#A363A9"
-                onTouchCancel={true}
-                mode="dropdown"
-                selectedValue={pincode}
-                onValueChange={itemValue => {
-                  setPincode(itemValue);
-                }}>
-                <Picker.Item label="201301" value="201301" />
-                <Picker.Item label="201304" value="201304" />
-              </Picker>
-            </View>
-          </>
-        )}
 
         {isLoading == false ? (
           <View style={styles.pickupBtn}>

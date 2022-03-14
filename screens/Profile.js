@@ -99,8 +99,8 @@ const ProfileScreen = ({route, navigation}) => {
                 <Image
                   source={icon1}
                   style={{
-                    height: verticalScale(40),
-                    width: scale(40),
+                    height: verticalScale(35),
+                    width: scale(35),
                     marginTop: verticalScale(5),
                     marginRight: scale(4),
                   }}
@@ -127,8 +127,8 @@ const ProfileScreen = ({route, navigation}) => {
                 <Image
                   source={icon2}
                   style={{
-                    height: verticalScale(40),
-                    width: scale(50),
+                    height: verticalScale(35),
+                    width: scale(45),
                     marginTop: verticalScale(5),
                   }}
                 />
@@ -152,8 +152,8 @@ const ProfileScreen = ({route, navigation}) => {
                 <Image
                   source={icon3}
                   style={{
-                    height: verticalScale(40),
-                    width: scale(50),
+                    height: verticalScale(35),
+                    width: scale(40),
                     marginTop: verticalScale(5),
                   }}
                 />
@@ -176,8 +176,8 @@ const ProfileScreen = ({route, navigation}) => {
                 <Image
                   source={icon4}
                   style={{
-                    height: verticalScale(40),
-                    width: scale(50),
+                    height: verticalScale(35),
+                    width: scale(40),
                     marginTop: verticalScale(5),
                   }}
                 />

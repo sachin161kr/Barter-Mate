@@ -64,8 +64,8 @@ const RedeemScreen = ({route, navigation}) => {
             marginTop: verticalScale(10),
             color: '#5E5E5E',
           }}>
-          BarterMate associates will attend you soon. Please go to my account to
-          view order details.
+          BarterMate associates will attend you soon. Please tap on the profile
+          icon and see your pickup history. Thank you for your request.
         </Text>
         <Text
           style={{
@@ -81,7 +81,7 @@ const RedeemScreen = ({route, navigation}) => {
             if (isRedeemAc == false) {
               handleRedeem();
             } else {
-              Alert.alert('You Have Redeemed this service for now');
+              Alert.alert('You Have Already Redeemed this service.');
             }
           }}>
           <LinearGradient
@@ -132,7 +132,7 @@ const RedeemScreen = ({route, navigation}) => {
                   fontSize: moderateScale(14),
                   textDecorationLine: 'line-through',
                 }}>
-                499
+                ₹499
               </Text>
               <Text
                 style={{
@@ -141,7 +141,7 @@ const RedeemScreen = ({route, navigation}) => {
                   marginTop: verticalScale(15),
                   fontSize: moderateScale(18),
                 }}>
-                349 for Window AC
+                ₹349 for Window AC
               </Text>
             </View>
             <View
@@ -156,7 +156,7 @@ const RedeemScreen = ({route, navigation}) => {
                   fontSize: moderateScale(14),
                   textDecorationLine: 'line-through',
                 }}>
-                599
+                ₹599
               </Text>
               <Text
                 style={{
@@ -165,14 +165,14 @@ const RedeemScreen = ({route, navigation}) => {
                   marginTop: verticalScale(15),
                   fontSize: moderateScale(18),
                 }}>
-                449 for Split AC
+                ₹449 for Split AC
               </Text>
               <Image
                 source={offer}
                 style={{
                   height: verticalScale(45),
                   width: scale(45),
-                  marginLeft: scale(80),
+                  marginLeft: scale(70),
                 }}
               />
             </View>
