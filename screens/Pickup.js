@@ -18,6 +18,8 @@ import {
   ScrollView,
 } from 'react-native';
 
+import CheckBox from '@react-native-community/checkbox';
+
 import calender from '../assets/calender.png';
 import pickup from '../assets/pickup.png';
 
@@ -68,41 +70,48 @@ const PickupScreen = ({route, navigation}) => {
   const [plasticPicked, setPlasticPicked] = useState(false);
   const [paperPicked, setPaperPicked] = useState(false);
   const [electronicsPicked, setElectronicsPicked] = useState(false);
-  const [multiSelect, setMultiselect] = useState([]);
 
-  const addToList = element => {
-    let newArr = [...multiSelect];
-    if (!newArr.includes(element)) {
-      newArr.push(element);
-      setMultiselect(newArr);
+  //const [multiSelect, setMultiselect] = useState([]);
+
+  var multiSelect = [];
+
+  const addToList = () => {
+    //let newArr = [...multiSelect];
+    if (glassPicked) {
+      //newArr.push('Glass');
+      multiSelect.push('Glass');
     }
+    if (metalPicked) {
+      //newArr.push('Metal');
+      multiSelect.push('Metal');
+    }
+    if (plasticPicked) {
+      //newArr.push('Plastic');
+      multiSelect.push('Plastic');
+    }
+    if (paperPicked) {
+      //newArr.push('Paper');
+      multiSelect.push('Paper');
+    }
+    if (electronicsPicked) {
+      //newArr.push('Electronics');
+      multiSelect.push('Electronics');
+    }
+
+    console.log(multiSelect);
+
+    //setMultiselect(newArr);
   };
 
-  if (tempCategory == 'Glass') {
-    glassSelected = true;
-    addToList('Glass');
-  } else if (tempCategory == 'Metal') {
-    metalSelected = true;
-    addToList('Metal');
-  } else if (tempCategory == 'Plastic') {
-    plasticSelected = true;
-    addToList('Plastic');
-  } else if (tempCategory == 'Paper') {
-    paperSelected = true;
-    addToList('Paper');
-  } else if (tempCategory == 'Electronics') {
-    electronicsSelected = true;
-    addToList('Electronics');
-  }
   //var multiSelect = [];
 
-  const removeFromList = element => {
-    let newArr = [...multiSelect];
-    var index = newArr.indexOf(element);
-    newArr.splice(index, 1);
-    console.log(newArr);
-    setMultiselect(newArr);
-  };
+  // const removeFromList = element => {
+  //   let newArr = [...multiSelect];
+  //   var index = newArr.indexOf(element);
+  //   newArr.splice(index, 1);
+  //   console.log(newArr);
+  //   setMultiselect(newArr);
+  // };
 
   const handleShowAddress = () => {
     var data = JSON.stringify({
@@ -167,6 +176,7 @@ const PickupScreen = ({route, navigation}) => {
   };
 
   const handlePickeup = () => {
+    addToList();
     setLoading(true);
 
     var data = JSON.stringify({
@@ -240,28 +250,6 @@ const PickupScreen = ({route, navigation}) => {
           {tempCategory} Picked!
         </Text>
 
-        {/* <View style={styles.pickerStyle}>
-          <Picker
-            style={{
-              color: '#A363A9',
-            }}
-            dropdownIconColor="#A363A9"
-            dropdownIconRippleColor="#A363A9"
-            onTouchCancel={true}
-            mode="dropdown"
-            selectedValue={category}
-            onValueChange={itemValue => {
-              setCategory(itemValue);
-              setSubCategory('Choose Sub-Category');
-            }}>
-            <Picker.Item label="Glass" value="Glass" />
-            <Picker.Item label="Metal" value="Metal" />
-            <Picker.Item label="Plastic" value="Plastic" />
-            <Picker.Item label="Paper" value="Paper" />
-            <Picker.Item label="Electronics" value="Electronics" />
-          </Picker>
-        </View> */}
-
         <Text
           style={{
             fontSize: moderateScale(20),
@@ -287,237 +275,135 @@ const PickupScreen = ({route, navigation}) => {
             paddingLeft: scale(62),
             marginBottom: verticalScale(20),
           }}>
-          <TouchableOpacity
-            onPress={() => {
-              if (glassSelected == false) {
-                addToList('Glass');
-                setGlassPicked(true);
-              }
-              // else {
-              //   removeFromList('Glass');
-              // }
-              //multiSelect.push('Glass');
-              //setGlass(!glassSelected);
-              //glassSelected = !glassSelected;
-              //setGlassPicked(!glassPicked);
-              //console.log(multiSelect);
+          <View
+            style={{
+              flexDirection: 'row',
             }}>
-            <View
-              style={{
-                flexDirection: 'row',
-              }}>
-              {tempCategory == 'Glass' ? (
-                <></>
-              ) : (
-                <View
-                  style={{
-                    //borderWidth: 1,
-                    //borderColor: '#000',
-                    height: verticalScale(25),
-                    width: scale(100),
-                    flexDirection: 'row',
-                  }}>
-                  <View
-                    style={{
-                      height: verticalScale(15),
-                      width: scale(15),
-                      borderWidth: 1,
-                      borderRadius: moderateScale(3),
-                      borderColor: '#000',
-                      backgroundColor: glassPicked == true ? '#A363A9' : '#FFF',
-                      marginTop: verticalScale(4),
-                      marginRight: scale(5),
-                    }}
-                  />
-                  <Text style={styles.multiSelectText}>Glass</Text>
-                </View>
-              )}
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              if (metalSelected == false) {
-                addToList('Metal');
-                setMetalPicked(true);
-              }
-              // else {
-              //   removeFromList('Metal');
-              // }
-              //multiSelect.push('Metal');
-              // setMetal(!metalSelected);
-              // metalSelected = !metalSelected;
-              // setMetalPicked(!metalPicked);
-              //console.log(multiSelect);
+            {tempCategory == 'Glass' ? (
+              <></>
+            ) : (
+              <View
+                style={{
+                  //borderWidth: 1,
+                  //borderColor: '#000',
+                  height: verticalScale(25),
+                  width: scale(100),
+                  flexDirection: 'row',
+                }}>
+                <CheckBox
+                  disabled={false}
+                  value={glassPicked}
+                  onCheckColor={'#A363A9'}
+                  onValueChange={newValue => setGlassPicked(newValue)}
+                />
+                <Text style={styles.multiSelectText}>Glass</Text>
+              </View>
+            )}
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
             }}>
-            <View
-              style={{
-                flexDirection: 'row',
-              }}>
-              {tempCategory == 'Metal' ? (
-                <></>
-              ) : (
-                <View
-                  style={{
-                    //borderWidth: 1,
-                    //borderColor: '#000',
-                    height: verticalScale(25),
-                    width: scale(100),
-                    flexDirection: 'row',
-                  }}>
-                  <View
-                    style={{
-                      height: verticalScale(15),
-                      width: scale(15),
-                      borderWidth: 1,
-                      borderRadius: moderateScale(3),
-                      borderColor: '#000',
-                      backgroundColor: metalPicked == true ? '#A363A9' : '#FFF',
-                      marginTop: verticalScale(4),
-                      marginRight: scale(5),
-                    }}
-                  />
-                  <Text style={styles.multiSelectText}>Metal</Text>
-                </View>
-              )}
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              if (plasticSelected == false) {
-                addToList('Plastic');
-                setPlasticPicked(true);
-              }
-              //  else {
-              //   removeFromList('Plastic');
-              // }
-              // plasticSelected = !plasticSelected;
-              // setPlasticPicked(!plasticPicked);
-              //console.log(multiSelect);
+            {tempCategory == 'Metal' ? (
+              <></>
+            ) : (
+              <View
+                style={{
+                  //borderWidth: 1,
+                  //borderColor: '#000',
+                  height: verticalScale(25),
+                  width: scale(100),
+                  flexDirection: 'row',
+                }}>
+                <CheckBox
+                  disabled={false}
+                  value={metalPicked}
+                  onCheckColor={'#A363A9'}
+                  onValueChange={newValue => setMetalPicked(newValue)}
+                />
+                <Text style={styles.multiSelectText}>Metal</Text>
+              </View>
+            )}
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
             }}>
-            <View
-              style={{
-                flexDirection: 'row',
-              }}>
-              {tempCategory == 'Plastic' ? (
-                <></>
-              ) : (
-                <View
-                  style={{
-                    //borderWidth: 1,
-                    //borderColor: '#000',
-                    height: verticalScale(25),
-                    width: scale(100),
-                    flexDirection: 'row',
-                  }}>
-                  <View
-                    style={{
-                      height: verticalScale(15),
-                      width: scale(15),
-                      borderWidth: 1,
-                      borderRadius: moderateScale(3),
-                      borderColor: '#000',
-                      backgroundColor:
-                        plasticPicked == true ? '#A363A9' : '#FFF',
-                      marginTop: verticalScale(4),
-                      marginRight: scale(5),
-                    }}
-                  />
-                  <Text style={styles.multiSelectText}>Plastic</Text>
-                </View>
-              )}
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              if (paperSelected == false) {
-                addToList('Paper');
-                setPaperPicked(true);
-              }
-              // else {
-              //   removeFromList('Paper');
-              // }
-              // paperSelected = !paperSelected;
-              // setPaperPicked(!paperPicked);
-              //console.log(multiSelect);
+            {tempCategory == 'Plastic' ? (
+              <></>
+            ) : (
+              <View
+                style={{
+                  //borderWidth: 1,
+                  //borderColor: '#000',
+                  height: verticalScale(25),
+                  width: scale(100),
+                  flexDirection: 'row',
+                }}>
+                <CheckBox
+                  disabled={false}
+                  value={plasticPicked}
+                  onCheckColor={'#A363A9'}
+                  onValueChange={newValue => setPlasticPicked(newValue)}
+                />
+                <Text style={styles.multiSelectText}>Plastic</Text>
+              </View>
+            )}
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
             }}>
-            <View
-              style={{
-                flexDirection: 'row',
-              }}>
-              {tempCategory == 'Paper' ? (
-                <></>
-              ) : (
-                <View
-                  style={{
-                    //borderWidth: 1,
-                    //borderColor: '#000',
-                    height: verticalScale(25),
-                    width: scale(100),
-                    flexDirection: 'row',
-                  }}>
-                  <View
-                    style={{
-                      height: verticalScale(15),
-                      width: scale(15),
-                      borderWidth: 1,
-                      borderRadius: moderateScale(3),
-                      borderColor: '#000',
-                      backgroundColor: paperPicked == true ? '#A363A9' : '#FFF',
-                      marginTop: verticalScale(4),
-                      marginRight: scale(5),
-                    }}
-                  />
-                  <Text style={styles.multiSelectText}>Paper</Text>
-                </View>
-              )}
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              if (electronicsSelected == false) {
-                addToList('Electronics');
-                setElectronicsPicked(true);
-              }
-              // else {
-              //   removeFromList('Electronics');
-              // }
-              // electronicsSelected = !electronicsSelected;
-              // setElectronicsPicked(!electronicsPicked);
-              //console.log(multiSelect);
+            {tempCategory == 'Paper' ? (
+              <></>
+            ) : (
+              <View
+                style={{
+                  //borderWidth: 1,
+                  //borderColor: '#000',
+                  height: verticalScale(25),
+                  width: scale(100),
+                  flexDirection: 'row',
+                }}>
+                <CheckBox
+                  disabled={false}
+                  value={paperPicked}
+                  onCheckColor={'#A363A9'}
+                  onValueChange={newValue => setPaperPicked(newValue)}
+                />
+                <Text style={styles.multiSelectText}>Paper</Text>
+              </View>
+            )}
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
             }}>
-            <View
-              style={{
-                flexDirection: 'row',
-              }}>
-              {tempCategory == 'Electronics' ? (
-                <></>
-              ) : (
-                <View
-                  style={{
-                    //borderWidth: 1,
-                    //borderColor: '#000',
-                    height: verticalScale(25),
-                    width: scale(100),
-                    flexDirection: 'row',
-                  }}>
-                  <View
-                    style={{
-                      height: verticalScale(15),
-                      width: scale(15),
-                      borderWidth: 1,
-                      borderRadius: moderateScale(3),
-                      borderColor: '#000',
-                      backgroundColor:
-                        electronicsPicked == true ? '#A363A9' : '#FFF',
-                      marginTop: verticalScale(4),
-                      marginRight: scale(5),
-                    }}
-                  />
-                  <Text style={styles.multiSelectText}>Electronics</Text>
-                </View>
-              )}
-            </View>
-          </TouchableOpacity>
+            {tempCategory == 'Electronics' ? (
+              <></>
+            ) : (
+              <View
+                style={{
+                  //borderWidth: 1,
+                  //borderColor: '#000',
+                  height: verticalScale(25),
+                  width: scale(100),
+                  flexDirection: 'row',
+                }}>
+                <CheckBox
+                  disabled={false}
+                  value={electronicsPicked}
+                  onCheckColor={'#A363A9'}
+                  onValueChange={newValue => setElectronicsPicked(newValue)}
+                />
+                <Text style={styles.multiSelectText}>Electronics</Text>
+              </View>
+            )}
+          </View>
         </View>
 
         {/* <View
@@ -697,18 +583,9 @@ const PickupScreen = ({route, navigation}) => {
           <View style={styles.pickupBtn}>
             <TouchableOpacity
               onPress={() => {
-                // console.log(name);
-                // console.log(email);
-                // console.log(phone);
-                // console.log(currentAddress);
-                // console.log(landmark);
-                // console.log(pincode);
-                // console.log(category);
-                // console.log(dateLabel);
-                // console.log(multiSelect);
+                //addToList();
                 if (
-                  (address.length != 0 ||
-                    currentAddress != 'Choose Pickup Address') &&
+                  currentAddress != 'Choose Pickup Address' &&
                   dateLabel != 'Pick A Date'
                 ) {
                   handlePickeup();
@@ -818,5 +695,6 @@ const styles = StyleSheet.create({
   },
   multiSelectText: {
     fontSize: moderateScale(16),
+    paddingTop: verticalScale(3),
   },
 });
