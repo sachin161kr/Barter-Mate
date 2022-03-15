@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(100),
     marginTop: verticalScale(35),
     marginLeft: scale(20),
-    padding: moderateScale(15),
+    paddingLeft: moderateScale(15),
     marginRight: scale(20),
     color: '#000000',
   },

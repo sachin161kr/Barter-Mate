@@ -422,6 +422,7 @@ const CategoryScreen = ({navigation}) => {
                         landmark: `${landmark}`,
                         pincode: `${pincode}`,
                         userId: `${userId}`,
+                        loadAgain: `${false}`,
                       });
                     } else {
                       navigation.navigate('Login Screen', {
@@ -471,6 +472,7 @@ const CategoryScreen = ({navigation}) => {
                         landmark: `${landmark}`,
                         pincode: `${pincode}`,
                         userId: `${userId}`,
+                        loadAgain: `${false}`,
                       });
                     } else {
                       navigation.navigate('Login Screen', {
@@ -498,7 +500,7 @@ const CategoryScreen = ({navigation}) => {
                         color: '#FFFFFF',
 
                         fontSize: moderateScale(30),
-                        //paddingTop: verticalScale(7),
+                        paddingTop: verticalScale(3),
                         textAlignVertical: 'center',
                         textAlign: 'center',
                       }}>

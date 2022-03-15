@@ -95,6 +95,7 @@ const PriceScreen = () => {
                 borderRadius: moderateScale(100),
                 marginTop: verticalScale(15),
                 marginLeft: scale(15),
+                height: verticalScale(45),
                 marginRight: scale(15),
                 marginBottom: verticalScale(30),
               }}
@@ -106,9 +107,8 @@ const PriceScreen = () => {
                   alignSelf: 'center',
                   color: '#FFFFFF',
                   margin: moderateScale(5),
-                  paddingTop: verticalScale(10),
-
-                  paddingBottom: verticalScale(15),
+                  paddingTop: verticalScale(3),
+                  //paddingBottom: verticalScale(15),
                 }}>
                 Get Price Details
               </Text>

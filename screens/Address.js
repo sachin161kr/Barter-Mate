@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
-const AddressScreen = ({route}) => {
+const AddressScreen = ({route, navigation}) => {
   const [loading, setLoading] = useState(true);
   const [address1, setAddress1] = useState('');
   const [address2, setAddress2] = useState('');
@@ -24,6 +24,11 @@ const AddressScreen = ({route}) => {
   var email = route.params.email;
   var phone = route.params.phone;
   var landmark = route.params.landmark;
+  var pickupScreen = route.params.pickupScreen;
+  var itemSelected = route.params.itemSelected;
+  var name = route.params.name;
+  var pincodeRoute = route.params.pincode;
+
   const [pincode, setPincode] = useState('Choose Pincode');
   const [addressType, setAddressType] = useState('Choose Address Type');
 
@@ -58,6 +63,7 @@ const AddressScreen = ({route}) => {
   };
 
   useEffect(handleShowAddress, []);
+
   //handleShowAddress();
 
   const handleAddress = () => {
@@ -89,6 +95,23 @@ const AddressScreen = ({route}) => {
         console.log(JSON.stringify(response.data));
         Alert.alert('Address Successfully Added.');
         handleShowAddress();
+
+        if (pickupScreen) {
+          navigation.navigate('Category Screen');
+        }
+
+        // if (pickupScreen) {
+        //   navigation.navigate('Pickup Screen', {
+        //     userId: `${userId}`,
+        //     email: `${email}`,
+        //     phone: `${phone}`,
+        //     landMark: `${landmark}`,
+        //     itemSelected: `${itemSelected}`,
+        //     name: `${name}`,
+        //     pincode: `${pincodeRoute}`,
+        //     loadAgain: `${true}`,
+        //   });
+        // }
         //history = JSON.parse(temp);
       })
       .catch(function (error) {
@@ -210,6 +233,7 @@ const AddressScreen = ({route}) => {
                 </Picker>
               </View>
             </View>
+
             {loading == true ? (
               <ActivityIndicator
                 size={'large'}
@@ -260,6 +284,7 @@ const AddressScreen = ({route}) => {
                 </View>
               </TouchableOpacity>
             )}
+
             <Text
               style={{
                 borderBottomWidth: 1,

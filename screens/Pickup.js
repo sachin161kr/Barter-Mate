@@ -34,16 +34,18 @@ const PickupScreen = ({route, navigation}) => {
   var tempPincode = route.params.pincode;
 
   var tempCategory = route.params.itemSelected;
-  var tempSubCategory = route.params.subCategory;
-  var tempAddress = route.params.address;
+  //var tempSubCategory = route.params.subCategory;
+  //var tempAddress = route.params.address;
 
   const [landmark, setLandmark] = useState('');
   const [pincode, setPincode] = useState(`${tempPincode}`);
-  const [address, setAddress] = useState(`${tempAddress}`);
+  //const [address, setAddress] = useState(`${tempAddress}`);
   const [category, setCategory] = useState(`${tempCategory}`);
-  const [subCategory, setSubCategory] = useState(`${tempSubCategory}`);
+  //const [subCategory, setSubCategory] = useState(`${tempSubCategory}`);
 
   const [isLoading, setLoading] = useState(false);
+
+  const [addressLoading, setAddressLoading] = useState(false);
 
   const [remark, setRemark] = useState('');
 
@@ -59,11 +61,6 @@ const PickupScreen = ({route, navigation}) => {
 
   // const [glassSelected, setGlass] = useState(false);
   // const [metalSelected, setMetal] = useState(false);
-  var glassSelected = false;
-  var metalSelected = false;
-  var plasticSelected = false;
-  var paperSelected = false;
-  var electronicsSelected = false;
 
   const [glassPicked, setGlassPicked] = useState(false);
   const [metalPicked, setMetalPicked] = useState(false);
@@ -114,6 +111,7 @@ const PickupScreen = ({route, navigation}) => {
   // };
 
   const handleShowAddress = () => {
+    setAddressLoading(true);
     var data = JSON.stringify({
       userId: `${userId}`,
     });
@@ -129,18 +127,21 @@ const PickupScreen = ({route, navigation}) => {
 
     axios(config)
       .then(function (response) {
-        setLoading(false);
+        setAddressLoading(false);
         //console.log(JSON.stringify(response.data.data));
         var temp = JSON.stringify(response.data.data);
         setMyaddresses(JSON.parse(temp));
       })
       .catch(function (error) {
         console.log(error);
+        setAddressLoading(false);
         Alert.alert('Something Went Wrong');
       });
   };
 
   useEffect(handleShowAddress, []);
+
+  //handleShowAddress();
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -216,7 +217,17 @@ const PickupScreen = ({route, navigation}) => {
       });
   };
 
-  return (
+  return addressLoading == true ? (
+    <>
+      <ActivityIndicator
+        color={'#A363A9'}
+        size={'large'}
+        style={{
+          marginTop: verticalScale(30),
+        }}
+      />
+    </>
+  ) : (
     <>
       <ScrollView
         style={{
@@ -449,7 +460,11 @@ const PickupScreen = ({route, navigation}) => {
               userId: `${userId}`,
               email: `${email}`,
               phone: `${phone}`,
-              landMark: `${tempLandmark}}`,
+              landMark: `${tempLandmark}`,
+              pickupScreen: `${true}`,
+              itemSelected: `${tempCategory}`,
+              name: `${name}`,
+              pincode: `${pincode}`,
             });
           }}>
           <View
@@ -633,7 +648,7 @@ const styles = StyleSheet.create({
     height: verticalScale(45),
     borderColor: '#A363A9',
     borderRadius: moderateScale(100),
-    padding: moderateScale(15),
+    paddingLeft: moderateScale(15),
     justifyContent: 'center',
     borderWidth: 1,
     marginTop: verticalScale(10),

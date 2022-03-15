@@ -62,7 +62,7 @@ const ProfileScreen = ({route, navigation}) => {
           style={{
             flex: 1,
             backgroundColor: '#FFF',
-            marginBottom: verticalScale(30),
+            paddingBottom: verticalScale(30),
           }}>
           <Text
             style={{
@@ -115,6 +115,7 @@ const ProfileScreen = ({route, navigation}) => {
                   email: `${email}`,
                   phone: `${phone}`,
                   landMark: `${landmark}`,
+                  pickupScreen: `${false}`,
                 });
               }}>
               <View
