@@ -105,7 +105,7 @@ const ForgotPassScreen = ({navigation}) => {
               colors={['#A363A9', '#FAB06D']}
               style={{
                 borderRadius: moderateScale(100),
-                height: verticalScale(50),
+                height: verticalScale(45),
                 width: scale(310),
                 marginTop: verticalScale(15),
                 alignSelf: 'center',
@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(20),
     borderColor: '#758283',
     borderWidth: 1,
+    height: verticalScale(45),
     borderRadius: moderateScale(100),
     marginTop: verticalScale(35),
     marginLeft: scale(20),
@@ -149,6 +150,7 @@ const styles = StyleSheet.create({
     marginLeft: scale(20),
     padding: moderateScale(8),
     borderWidth: 1,
+    height: verticalScale(45),
     borderColor: '#A363A9',
     marginRight: scale(20),
     borderRadius: moderateScale(100),

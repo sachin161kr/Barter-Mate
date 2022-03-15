@@ -6,6 +6,7 @@ import {BackHandler} from 'react-native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import CheckBox from '@react-native-community/checkbox';
 
 import {
   Text,
@@ -54,34 +55,38 @@ const GuestPickupScreen = ({route, navigation}) => {
   const [plasticPicked, setPlasticPicked] = useState(false);
   const [paperPicked, setPaperPicked] = useState(false);
   const [electronicsPicked, setElectronicsPicked] = useState(false);
-  const [multiSelect, setMultiselect] = useState([]);
+  //const [multiSelect, setMultiselect] = useState([]);
+  var multiSelect = [];
 
   const [dateLabel, setDateLabel] = useState('Pick A Date');
 
-  const addToList = element => {
-    let newArr = [...multiSelect];
-    if (!newArr.includes(element)) {
-      newArr.push(element);
-      setMultiselect(newArr);
+  const addToList = () => {
+    //let newArr = [...multiSelect];
+    if (glassPicked) {
+      //newArr.push('Glass');
+      multiSelect.push('Glass');
     }
-  };
+    if (metalPicked) {
+      //newArr.push('Metal');
+      multiSelect.push('Metal');
+    }
+    if (plasticPicked) {
+      //newArr.push('Plastic');
+      multiSelect.push('Plastic');
+    }
+    if (paperPicked) {
+      //newArr.push('Paper');
+      multiSelect.push('Paper');
+    }
+    if (electronicsPicked) {
+      //newArr.push('Electronics');
+      multiSelect.push('Electronics');
+    }
 
-  if (tempCategory == 'Glass') {
-    glassSelected = true;
-    addToList('Glass');
-  } else if (tempCategory == 'Metal') {
-    metalSelected = true;
-    addToList('Metal');
-  } else if (tempCategory == 'Plastic') {
-    plasticSelected = true;
-    addToList('Plastic');
-  } else if (tempCategory == 'Paper') {
-    paperSelected = true;
-    addToList('Paper');
-  } else if (tempCategory == 'Electronics') {
-    electronicsSelected = true;
-    addToList('Electronics');
-  }
+    console.log(multiSelect);
+
+    //setMultiselect(newArr);
+  };
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -126,6 +131,7 @@ const GuestPickupScreen = ({route, navigation}) => {
   };
 
   const handlePickeup = () => {
+    addToList();
     setLoading(true);
 
     var data = JSON.stringify({
@@ -242,7 +248,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             flexWrap: 'wrap',
             height: verticalScale(60),
             paddingTop: verticalScale(5),
-            paddingLeft: scale(62),
+            paddingLeft: scale(45),
             marginBottom: verticalScale(20),
           }}>
           <TouchableOpacity
@@ -275,17 +281,11 @@ const GuestPickupScreen = ({route, navigation}) => {
                     width: scale(100),
                     flexDirection: 'row',
                   }}>
-                  <View
-                    style={{
-                      height: verticalScale(15),
-                      width: scale(15),
-                      borderWidth: 1,
-                      borderRadius: moderateScale(3),
-                      borderColor: '#000',
-                      backgroundColor: glassPicked == true ? '#A363A9' : '#FFF',
-                      marginTop: verticalScale(4),
-                      marginRight: scale(5),
-                    }}
+                  <CheckBox
+                    disabled={false}
+                    value={glassPicked}
+                    onCheckColor={'#A363A9'}
+                    onValueChange={newValue => setGlassPicked(newValue)}
                   />
                   <Text style={styles.multiSelectText}>Glass</Text>
                 </View>
@@ -322,17 +322,11 @@ const GuestPickupScreen = ({route, navigation}) => {
                     width: scale(100),
                     flexDirection: 'row',
                   }}>
-                  <View
-                    style={{
-                      height: verticalScale(15),
-                      width: scale(15),
-                      borderWidth: 1,
-                      borderRadius: moderateScale(3),
-                      borderColor: '#000',
-                      backgroundColor: metalPicked == true ? '#A363A9' : '#FFF',
-                      marginTop: verticalScale(4),
-                      marginRight: scale(5),
-                    }}
+                  <CheckBox
+                    disabled={false}
+                    value={metalPicked}
+                    onCheckColor={'#A363A9'}
+                    onValueChange={newValue => setMetalPicked(newValue)}
                   />
                   <Text style={styles.multiSelectText}>Metal</Text>
                 </View>
@@ -367,18 +361,11 @@ const GuestPickupScreen = ({route, navigation}) => {
                     width: scale(100),
                     flexDirection: 'row',
                   }}>
-                  <View
-                    style={{
-                      height: verticalScale(15),
-                      width: scale(15),
-                      borderWidth: 1,
-                      borderRadius: moderateScale(3),
-                      borderColor: '#000',
-                      backgroundColor:
-                        plasticPicked == true ? '#A363A9' : '#FFF',
-                      marginTop: verticalScale(4),
-                      marginRight: scale(5),
-                    }}
+                  <CheckBox
+                    disabled={false}
+                    value={plasticPicked}
+                    onCheckColor={'#A363A9'}
+                    onValueChange={newValue => setPlasticPicked(newValue)}
                   />
                   <Text style={styles.multiSelectText}>Plastic</Text>
                 </View>
@@ -413,17 +400,11 @@ const GuestPickupScreen = ({route, navigation}) => {
                     width: scale(100),
                     flexDirection: 'row',
                   }}>
-                  <View
-                    style={{
-                      height: verticalScale(15),
-                      width: scale(15),
-                      borderWidth: 1,
-                      borderRadius: moderateScale(3),
-                      borderColor: '#000',
-                      backgroundColor: paperPicked == true ? '#A363A9' : '#FFF',
-                      marginTop: verticalScale(4),
-                      marginRight: scale(5),
-                    }}
+                  <CheckBox
+                    disabled={false}
+                    value={paperPicked}
+                    onCheckColor={'#A363A9'}
+                    onValueChange={newValue => setPaperPicked(newValue)}
                   />
                   <Text style={styles.multiSelectText}>Paper</Text>
                 </View>
@@ -458,18 +439,11 @@ const GuestPickupScreen = ({route, navigation}) => {
                     width: scale(100),
                     flexDirection: 'row',
                   }}>
-                  <View
-                    style={{
-                      height: verticalScale(15),
-                      width: scale(15),
-                      borderWidth: 1,
-                      borderRadius: moderateScale(3),
-                      borderColor: '#000',
-                      backgroundColor:
-                        electronicsPicked == true ? '#A363A9' : '#FFF',
-                      marginTop: verticalScale(4),
-                      marginRight: scale(5),
-                    }}
+                  <CheckBox
+                    disabled={false}
+                    value={electronicsPicked}
+                    onCheckColor={'#A363A9'}
+                    onValueChange={newValue => setElectronicsPicked(newValue)}
                   />
                   <Text style={styles.multiSelectText}>Electronics</Text>
                 </View>
@@ -667,6 +641,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 colors={['#A363A9', '#FAB06D']}
                 style={{
                   borderRadius: moderateScale(100),
+                  height: verticalScale(45),
                 }}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}>
@@ -676,9 +651,9 @@ const GuestPickupScreen = ({route, navigation}) => {
                     alignSelf: 'center',
                     color: '#FFFFFF',
                     margin: moderateScale(5),
-                    paddingTop: verticalScale(10),
+                    paddingTop: verticalScale(3),
 
-                    paddingBottom: verticalScale(15),
+                    //paddingBottom: verticalScale(15),
                   }}>
                   Send Pickup Request
                 </Text>
@@ -708,6 +683,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(100),
     padding: moderateScale(15),
     borderWidth: 1,
+    height: verticalScale(45),
     marginTop: verticalScale(10),
     marginLeft: scale(20),
     marginRight: scale(20),
@@ -721,6 +697,11 @@ const styles = StyleSheet.create({
     padding: moderateScale(6),
     marginBottom: verticalScale(30),
     borderRadius: moderateScale(100),
+  },
+
+  multiSelectText: {
+    fontSize: moderateScale(16),
+    paddingTop: verticalScale(3),
   },
 
   pickerStyle: {

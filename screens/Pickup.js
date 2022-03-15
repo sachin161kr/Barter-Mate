@@ -272,7 +272,7 @@ const PickupScreen = ({route, navigation}) => {
             flexWrap: 'wrap',
             height: verticalScale(60),
             paddingTop: verticalScale(5),
-            paddingLeft: scale(62),
+            paddingLeft: scale(45),
             marginBottom: verticalScale(20),
           }}>
           <View
@@ -406,33 +406,6 @@ const PickupScreen = ({route, navigation}) => {
           </View>
         </View>
 
-        {/* <View
-            style={{
-              width: scale(150),
-              height: 60,
-              justifyContent: 'center',
-              borderColor: '#A363A9',
-              borderWidth: 1,
-              marginTop: verticalScale(10),
-              borderRadius: moderateScale(100),
-            }}>
-            <Picker
-              style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={shift}
-              onValueChange={itemValue => {
-                changeShift(itemValue);
-              }}>
-              <Picker.Item label="First Shift" value="First Shift" />
-              <Picker.Item label="Second Shift" value="Second Shift" />
-            </Picker>
-          </View> */}
-
         {show && (
           <DateTimePicker
             testID="dateTimePicker"
@@ -482,18 +455,19 @@ const PickupScreen = ({route, navigation}) => {
           <View
             style={{
               marginLeft: scale(20),
-              height: verticalScale(50),
+              height: verticalScale(45),
               marginRight: scale(20),
               borderColor: '#A363A9',
               borderWidth: 1,
               borderRadius: moderateScale(100),
               marginHorizontal: moderateScale(10),
               marginTop: verticalScale(10),
-              paddingTop: verticalScale(10),
+              paddingTop: verticalScale(5),
             }}>
             <Text
               style={{
-                fontSize: moderateScale(20),
+                fontSize: moderateScale(18),
+                paddingTop: verticalScale(5),
                 textAlign: 'center',
                 color: '#A363A9',
               }}>
@@ -597,6 +571,7 @@ const PickupScreen = ({route, navigation}) => {
                 colors={['#A363A9', '#FAB06D']}
                 style={{
                   borderRadius: moderateScale(100),
+                  height: verticalScale(45),
                 }}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}>
@@ -606,8 +581,9 @@ const PickupScreen = ({route, navigation}) => {
                     alignSelf: 'center',
                     color: '#FFFFFF',
                     margin: moderateScale(5),
-                    paddingTop: verticalScale(10),
-                    paddingBottom: verticalScale(15),
+                    height: verticalScale(45),
+                    paddingTop: verticalScale(4),
+                    //paddingBottom: verticalScale(15),
                   }}>
                   Send Pickup Request
                 </Text>
@@ -654,6 +630,7 @@ export default PickupScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: moderateScale(20),
+    height: verticalScale(45),
     borderColor: '#A363A9',
     borderRadius: moderateScale(100),
     padding: moderateScale(15),
@@ -676,7 +653,7 @@ const styles = StyleSheet.create({
 
   pickerStyle: {
     marginLeft: scale(20),
-    height: verticalScale(50),
+    height: verticalScale(45),
     marginTop: verticalScale(10),
     borderColor: '#A363A9',
     marginRight: scale(20),

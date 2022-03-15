@@ -98,7 +98,7 @@ const EditPhoneScreen = ({route, navigation}) => {
             }}
             style={{
               fontSize: moderateScale(20),
-
+              height: verticalScale(45),
               color: '#000000',
             }}
             placeholder="Enter Phone Number"
@@ -128,6 +128,7 @@ const EditPhoneScreen = ({route, navigation}) => {
                 borderColor: '#A363A9',
                 borderWidth: 2,
                 width: scale(280),
+                height: verticalScale(45),
                 marginTop: verticalScale(20),
                 borderRadius: moderateScale(100),
                 padding: moderateScale(10),

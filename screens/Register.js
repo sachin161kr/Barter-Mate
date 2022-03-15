@@ -229,16 +229,17 @@ const RegisterScreen = ({navigation, route}) => {
                   colors={['#A363A9', '#FAB06D']}
                   style={{
                     borderRadius: moderateScale(100),
+                    height: verticalScale(45),
                   }}
                   start={{x: 0, y: 0}}
                   end={{x: 1, y: 0}}>
                   <Text
                     style={{
-                      fontSize: moderateScale(30),
+                      fontSize: moderateScale(20),
                       alignSelf: 'center',
                       color: '#FFFFFF',
                       margin: moderateScale(5),
-                      paddingBottom: verticalScale(10),
+                      paddingTop: verticalScale(3),
                     }}>
                     Register
                   </Text>
@@ -265,6 +266,7 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
   textinput: {
     fontSize: moderateScale(20),
+    height: verticalScale(45),
     borderColor: '#758283',
     borderWidth: 1,
     borderRadius: moderateScale(100),
@@ -277,11 +279,12 @@ const styles = StyleSheet.create({
 
   registerBtn: {
     marginTop: verticalScale(15),
+    height: verticalScale(45),
     backgroundColor: '#c4c4c4',
     marginLeft: scale(20),
     marginRight: scale(20),
     borderRadius: moderateScale(100),
-    marginBottom: verticalScale(20),
+    //marginBottom: verticalScale(20),
   },
 
   pickerStyle: {

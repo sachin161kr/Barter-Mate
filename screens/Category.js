@@ -218,7 +218,7 @@ const CategoryScreen = ({navigation}) => {
           <ScrollView
             horizontal={true}
             style={{
-              height: verticalScale(280),
+              height: verticalScale(300),
             }}>
             <View
               style={{
@@ -230,8 +230,9 @@ const CategoryScreen = ({navigation}) => {
               {images.map(item => (
                 <View
                   style={{
-                    height: verticalScale(250),
+                    height: verticalScale(280),
                     width: scale(360),
+                    borderRadius: moderateScale(10),
                     alignSelf: 'center',
                   }}>
                   <Image
@@ -253,12 +254,13 @@ const CategoryScreen = ({navigation}) => {
             style={{
               flexDirection: 'row',
               height: verticalScale(50),
+              alignSelf: 'center',
             }}>
             <Text
               style={{
-                fontSize: moderateScale(30),
+                fontSize: moderateScale(25),
                 //marginTop: verticalScale(30),
-                marginLeft: scale(30),
+                //marginLeft: scale(30),
                 fontWeight: 'bold',
                 color: '#758283',
               }}>
@@ -324,13 +326,13 @@ const CategoryScreen = ({navigation}) => {
                 style={{
                   fontSize: moderateScale(25),
                   height: verticalScale(120),
-                  color: '#000000',
+                  color: '#758283',
                   textAlign: 'center',
                   fontWeight: 'bold',
                   marginTop: verticalScale(10),
                   paddingHorizontal: moderateScale(15),
                   fontSize: moderateScale(18),
-                  fontStyle: 'italic',
+                  //fontStyle: 'italic',
                 }}>
                 {description}
               </Text>
@@ -356,8 +358,8 @@ const CategoryScreen = ({navigation}) => {
                     ) : (
                       <Text
                         style={{
-                          fontSize: moderateScale(27),
-                          height: verticalScale(60),
+                          fontSize: moderateScale(20),
+                          height: verticalScale(50),
                           width: scale(150),
                           color: '#A363A9',
                           borderColor: '#A363A9',
@@ -387,14 +389,14 @@ const CategoryScreen = ({navigation}) => {
                       }}>
                       <Text
                         style={{
-                          fontSize: moderateScale(30),
+                          fontSize: moderateScale(20),
                           alignSelf: 'center',
                           color: '#A363A9',
                           borderWidth: 1,
-                          height: verticalScale(60),
+                          height: verticalScale(50),
                           width: scale(150),
                           textAlign: 'center',
-                          paddingTop: verticalScale(8),
+                          paddingTop: verticalScale(10),
                           borderRadius: moderateScale(100),
                           borderColor: '#A363A9',
                           borderRadius: moderateScale(100),
@@ -434,10 +436,9 @@ const CategoryScreen = ({navigation}) => {
                     colors={['#A363A9', '#FAB06D']}
                     style={{
                       borderRadius: moderateScale(100),
-                      height: verticalScale(80),
+                      height: verticalScale(45),
                       width: scale(320),
-                      marginLeft: scale(2),
-                      marginBottom: verticalScale(25),
+                      marginBottom: verticalScale(10),
                       alignSelf: 'center',
                     }}
                     start={{x: 0, y: 0}}
@@ -448,10 +449,10 @@ const CategoryScreen = ({navigation}) => {
                         fontSize: moderateScale(20),
                         textAlignVertical: 'center',
                         textAlign: 'center',
-                        height: verticalScale(80),
+                        height: verticalScale(45),
                         width: scale(320),
                       }}>
-                      Login As {username}
+                      Login As {username.substring(0, 10)}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -484,7 +485,7 @@ const CategoryScreen = ({navigation}) => {
                     colors={['#A363A9', '#FAB06D']}
                     style={{
                       borderRadius: moderateScale(100),
-                      height: verticalScale(60),
+                      height: verticalScale(50),
                       width: scale(320),
                       marginLeft: scale(2),
                       marginBottom: verticalScale(25),
@@ -497,7 +498,7 @@ const CategoryScreen = ({navigation}) => {
                         color: '#FFFFFF',
 
                         fontSize: moderateScale(30),
-                        paddingTop: verticalScale(7),
+                        //paddingTop: verticalScale(7),
                         textAlignVertical: 'center',
                         textAlign: 'center',
                       }}>
@@ -518,7 +519,7 @@ const CategoryScreen = ({navigation}) => {
                       fontSize: moderateScale(20),
                       color: '#A363A9',
                       alignSelf: 'center',
-                      marginTop: verticalScale(5),
+                      //marginTop: verticalScale(5),
                       marginBottom: verticalScale(44),
                     }}>
                     Logout
@@ -563,7 +564,7 @@ const styles = StyleSheet.create({
 
   card: {
     backgroundColor: '#fff',
-    height: verticalScale(370),
+    height: verticalScale(345),
     borderTopRightRadius: moderateScale(40),
     borderTopLeftRadius: moderateScale(40),
   },
@@ -580,8 +581,9 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    height: verticalScale(80),
-    width: scale(100),
+    height: verticalScale(50),
+    width: scale(70),
+    marginRight: scale(20),
     margin: moderateScale(10),
     overflow: 'hidden',
   },

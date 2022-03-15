@@ -148,16 +148,17 @@ const LoginScreen = ({navigation, route}) => {
                 colors={['#A363A9', '#FAB06D']}
                 style={{
                   borderRadius: moderateScale(100),
+                  height: verticalScale(48),
                 }}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}>
                 <Text
                   style={{
-                    fontSize: moderateScale(30),
+                    fontSize: moderateScale(25),
                     alignSelf: 'center',
                     color: '#FFFFFF',
                     margin: moderateScale(5),
-                    paddingBottom: verticalScale(10),
+                    //paddingBottom: verticalScale(10),
                   }}>
                   Login
                 </Text>
@@ -215,7 +216,7 @@ const LoginScreen = ({navigation, route}) => {
                 alignSelf: 'center',
                 color: '#A363A9',
                 margin: moderateScale(5),
-                paddingBottom: verticalScale(5),
+                paddingTop: verticalScale(2),
               }}>
               Register Now
             </Text>
@@ -233,6 +234,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(20),
     borderColor: '#c4c4c4',
     borderWidth: 1,
+    height: verticalScale(45),
     borderRadius: moderateScale(100),
     marginTop: verticalScale(15),
     marginLeft: scale(20),
@@ -252,8 +254,9 @@ const styles = StyleSheet.create({
   registerBtn: {
     marginTop: verticalScale(10),
     marginLeft: scale(20),
-    padding: moderateScale(8),
+    //padding: moderateScale(8),
     borderWidth: 1,
+    height: verticalScale(45),
     borderColor: '#A363A9',
     marginRight: scale(20),
     borderRadius: moderateScale(100),

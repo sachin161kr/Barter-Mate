@@ -172,7 +172,7 @@ const RedeemScreen = ({route, navigation}) => {
                 style={{
                   height: verticalScale(45),
                   width: scale(45),
-                  marginLeft: scale(70),
+                  marginLeft: scale(50),
                 }}
               />
             </View>

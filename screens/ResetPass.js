@@ -119,7 +119,7 @@ const ResetPassScreen = ({route, navigation}) => {
               colors={['#A363A9', '#FAB06D']}
               style={{
                 borderRadius: moderateScale(100),
-                height: verticalScale(50),
+                height: verticalScale(45),
                 width: scale(310),
                 marginTop: verticalScale(15),
                 alignSelf: 'center',
@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
     padding: moderateScale(15),
     marginRight: scale(20),
     color: '#000000',
+    height: verticalScale(45),
   },
 });
 
