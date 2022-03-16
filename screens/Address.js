@@ -24,10 +24,11 @@ const AddressScreen = ({route, navigation}) => {
   var email = route.params.email;
   var phone = route.params.phone;
   var landmark = route.params.landmark;
-  var pickupScreen = route.params.pickupScreen;
   var itemSelected = route.params.itemSelected;
   var name = route.params.name;
   var pincodeRoute = route.params.pincode;
+
+  var loadAgain = route.params.loadAgain;
 
   const [pincode, setPincode] = useState('Choose Pincode');
   const [addressType, setAddressType] = useState('Choose Address Type');
@@ -51,7 +52,7 @@ const AddressScreen = ({route, navigation}) => {
     axios(config)
       .then(function (response) {
         setLoading(false);
-        console.log(JSON.stringify(response.data.data));
+        //console.log(JSON.stringify(response.data.data));
         var temp = JSON.stringify(response.data.data);
         setMyaddresses(JSON.parse(temp));
       })
@@ -62,7 +63,10 @@ const AddressScreen = ({route, navigation}) => {
       });
   };
 
-  useEffect(handleShowAddress, []);
+  useEffect(() => {
+    console.log(loadAgain, 'Address');
+    handleShowAddress();
+  }, []);
 
   //handleShowAddress();
 
@@ -92,26 +96,33 @@ const AddressScreen = ({route, navigation}) => {
     axios(config)
       .then(function (response) {
         //setLoading(false);
-        console.log(JSON.stringify(response.data));
+        //console.log(JSON.stringify(response.data));
         Alert.alert('Address Successfully Added.');
         handleShowAddress();
 
-        if (pickupScreen) {
-          navigation.navigate('Category Screen');
-        }
-
         // if (pickupScreen) {
-        //   navigation.navigate('Pickup Screen', {
-        //     userId: `${userId}`,
-        //     email: `${email}`,
-        //     phone: `${phone}`,
-        //     landMark: `${landmark}`,
-        //     itemSelected: `${itemSelected}`,
-        //     name: `${name}`,
-        //     pincode: `${pincodeRoute}`,
-        //     loadAgain: `${true}`,
-        //   });
+        //   navigation.navigate('Category Screen');
         // }
+
+        if (loadAgain) {
+          if (loadAgain == 'true') {
+            loadAgain = 'false';
+            console.log(loadAgain, 'changed');
+          } else {
+            loadAgain = 'true';
+            console.log(loadAgain, 'changed');
+          }
+          navigation.navigate('Pickup Screen', {
+            userId: `${userId}`,
+            email: `${email}`,
+            phone: `${phone}`,
+            landMark: `${landmark}`,
+            itemSelected: `${itemSelected}`,
+            name: `${name}`,
+            pincode: `${pincodeRoute}`,
+            loadAgain: `${loadAgain}`,
+          });
+        }
         //history = JSON.parse(temp);
       })
       .catch(function (error) {

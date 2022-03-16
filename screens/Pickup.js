@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {Component, useEffect, useMemo, useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
@@ -33,6 +33,8 @@ const PickupScreen = ({route, navigation}) => {
   var tempLandmark = route.params.landmark;
   var tempPincode = route.params.pincode;
 
+  var loadAgain = route.params.loadAgain;
+
   var tempCategory = route.params.itemSelected;
   //var tempSubCategory = route.params.subCategory;
   //var tempAddress = route.params.address;
@@ -47,20 +49,14 @@ const PickupScreen = ({route, navigation}) => {
 
   const [addressLoading, setAddressLoading] = useState(false);
 
-  const [remark, setRemark] = useState('');
-
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
   const [dateLabel, setDateLabel] = useState('Pick A Date');
-  const [shift, changeShift] = useState('First Shift');
 
   const [myAddresses, setMyaddresses] = useState([]);
 
   const [currentAddress, setCurrentAddress] = useState('Choose Pickup Address');
-
-  // const [glassSelected, setGlass] = useState(false);
-  // const [metalSelected, setMetal] = useState(false);
 
   const [glassPicked, setGlassPicked] = useState(false);
   const [metalPicked, setMetalPicked] = useState(false);
@@ -110,6 +106,8 @@ const PickupScreen = ({route, navigation}) => {
   //   setMultiselect(newArr);
   // };
 
+  //console.log(loadAgain);
+
   const handleShowAddress = () => {
     setAddressLoading(true);
     var data = JSON.stringify({
@@ -139,7 +137,11 @@ const PickupScreen = ({route, navigation}) => {
       });
   };
 
-  useEffect(handleShowAddress, []);
+  console.log(loadAgain, 'Pickup');
+
+  useEffect(() => {
+    handleShowAddress();
+  }, [loadAgain]);
 
   //handleShowAddress();
 
@@ -203,7 +205,7 @@ const PickupScreen = ({route, navigation}) => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        //console.log(JSON.stringify(response.data));
         setLoading(false);
         //Alert.alert('We will send our representatives soon. Thank You');
         navigation.navigate('Redeem Screen', {
@@ -461,7 +463,7 @@ const PickupScreen = ({route, navigation}) => {
               email: `${email}`,
               phone: `${phone}`,
               landMark: `${tempLandmark}`,
-              pickupScreen: `${true}`,
+              loadAgain: `${loadAgain}`,
               itemSelected: `${tempCategory}`,
               name: `${name}`,
               pincode: `${pincode}`,
