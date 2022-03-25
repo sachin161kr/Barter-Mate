@@ -28,6 +28,7 @@ const LoginScreen = ({navigation, route}) => {
   var phone = '';
   var landmark = '';
   var pincode = '';
+  var email2 = '';
 
   var location = route.params.location;
   var userId = route.params.userId;
@@ -35,12 +36,14 @@ const LoginScreen = ({navigation, route}) => {
   const itemSelected = route.params.itemSelected;
   const subCategory = route.params.subCategory;
 
+  //const [email2, setemail2] = useState('');
+
   const [isLoading, setLoading] = useState(false);
 
   const setUser = async () => {
     await AsyncStorage.setItem('loginStatus', 'true');
     await AsyncStorage.setItem('User', `${name}`);
-    await AsyncStorage.setItem('email', `${email}`);
+    await AsyncStorage.setItem('email', `${email2}`);
     await AsyncStorage.setItem('address', `${address}`);
     await AsyncStorage.setItem('phone', `${phone}`);
     await AsyncStorage.setItem('landmark', `${landmark}`);
@@ -48,10 +51,30 @@ const LoginScreen = ({navigation, route}) => {
     await AsyncStorage.setItem('userId', `${userId}`);
   };
 
+  const phoneCheck = phone => {
+    var num = parseInt(phone, 10);
+    var tempNum = num.toString(10);
+    if (phone.length == 10 && phone.length === tempNum.length) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const getCredentials = () => {
     if (email && password) {
       setLoading(true);
-      var data = JSON.stringify({email: `${email}`, password: `${password}`});
+
+      var type = 'email';
+      if (phoneCheck(email) == true) {
+        type = 'number';
+      }
+      var data = JSON.stringify({
+        email: `${email}`,
+        password: `${password}`,
+        type: `${type}`,
+      });
+
       var config = {
         method: 'post',
         url: 'https://bartermateapi.herokuapp.com/admin/registration-api/login',
@@ -68,6 +91,7 @@ const LoginScreen = ({navigation, route}) => {
           const userData = response.data;
           name = userData.data.userDetails.name;
           phone = userData.data.userDetails.phone;
+          email2 = userData.data.userDetails.email;
           address = userData.data.userDetails.address;
           landmark = userData.data.userDetails.landMark;
           pincode = userData.data.userDetails.pinCode;
@@ -78,7 +102,7 @@ const LoginScreen = ({navigation, route}) => {
           if (location != 'Profile') {
             navigation.navigate('Pickup Screen', {
               name: `${name}`,
-              email: email,
+              email: email2,
               phone: `${phone}`,
               address: `${address}`,
               landmark: `${landmark}`,
@@ -98,6 +122,7 @@ const LoginScreen = ({navigation, route}) => {
         .catch(function (error) {
           setLoading(false);
           Alert.alert('Login Failed');
+          console.log(error);
         });
     } else {
       Alert.alert('Enter Valid Credentials');
@@ -127,7 +152,7 @@ const LoginScreen = ({navigation, route}) => {
             setEmail(tempEmail);
           }}
           style={styles.textinput}
-          placeholder="Email"
+          placeholder="Email or Phone"
           placeholderTextColor="#758283"></TextInput>
 
         <TextInput

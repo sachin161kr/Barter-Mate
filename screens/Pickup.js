@@ -40,7 +40,7 @@ const PickupScreen = ({route, navigation}) => {
   //var tempAddress = route.params.address;
 
   const [landmark, setLandmark] = useState('');
-  const [pincode, setPincode] = useState(`${tempPincode}`);
+  const [pincode, setPincode] = useState('Choose Pincode');
   //const [address, setAddress] = useState(`${tempAddress}`);
   const [category, setCategory] = useState(`${tempCategory}`);
   //const [subCategory, setSubCategory] = useState(`${tempSubCategory}`);
@@ -515,6 +515,7 @@ const PickupScreen = ({route, navigation}) => {
             onValueChange={itemValue => {
               setPincode(itemValue);
             }}>
+            <Picker.Item label="Choose Pincode" value="Choose Pincode" />
             <Picker.Item label="201301" value="201301" />
             <Picker.Item label="201304" value="201304" />
           </Picker>
@@ -577,7 +578,8 @@ const PickupScreen = ({route, navigation}) => {
                 //addToList();
                 if (
                   currentAddress != 'Choose Pickup Address' &&
-                  dateLabel != 'Pick A Date'
+                  dateLabel != 'Pick A Date' &&
+                  pincode != 'Choose Pincode'
                 ) {
                   handlePickeup();
                 } else {

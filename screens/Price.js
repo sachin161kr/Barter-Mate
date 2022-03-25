@@ -127,12 +127,7 @@ const PriceScreen = () => {
         {fetch == true ? (
           <View
             style={{
-              alignSelf: 'center',
-              borderRadius: moderateScale(6),
-              backgroundColor: '#FFF',
-              elevation: 5,
-              width: scale(300),
-              borderRadius: moderateScale(20),
+              marginLeft: verticalScale(25),
               padding: moderateScale(10),
               marginTop: verticalScale(20),
             }}>
@@ -166,6 +161,13 @@ export default PriceScreen;
 const styles = StyleSheet.create({
   text: {
     fontSize: moderateScale(16),
+    backgroundColor: '#FFF',
+    elevation: 5,
+    marginBottom: verticalScale(10),
+    height: verticalScale(30),
+    paddingLeft: verticalScale(5),
+    paddingTop: verticalScale(5),
+    width: scale(270),
     marginTop: verticalScale(5),
     fontWeight: 'bold',
     color: '#8D3DAF',

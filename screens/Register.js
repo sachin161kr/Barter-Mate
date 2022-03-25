@@ -62,18 +62,25 @@ const RegisterScreen = ({navigation, route}) => {
     if (phone.length == 10 && phone.length === tempNum.length) {
       return true;
     } else {
-      Alert.alert('Enter Valid Phone Number');
+      Alert.alert('Enter Valid Number');
       return false;
     }
   };
 
   const handleSubmit = () => {
     setLoading(true);
+
+    // var type = 'email';
+    // if (phoneCheck1(email) == true) {
+    //   type = 'number';
+    // }
+
     var data = JSON.stringify({
       name: `${fullName}`,
       email: `${email}`,
       phone: `${phone}`,
       password: `${password}`,
+      // type: `${type}`,
     });
 
     var config = {

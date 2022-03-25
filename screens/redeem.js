@@ -36,6 +36,7 @@ const RedeemScreen = ({route, navigation}) => {
         Alert.alert('You have successfully redeemed this service');
       })
       .catch(function (error) {
+        Alert.alert('You have already redeemed this service');
         console.log(error);
       });
   };
