@@ -65,8 +65,17 @@ const RedeemScreen = ({route, navigation}) => {
             marginTop: verticalScale(10),
             color: '#5E5E5E',
           }}>
-          BarterMate associates will attend you soon. Please tap on the profile
-          icon and see your pickup history. Thank you for your request.
+          Awesome!! Your pickup has been scheduled. Our associate will attend to
+          you!!
+        </Text>
+        <Text
+          style={{
+            margin: moderateScale(15),
+            fontSize: moderateScale(14),
+            color: '#5E5E5E',
+          }}>
+          You can check your booking in the order history under your profile
+          section.
         </Text>
         <Text
           style={{

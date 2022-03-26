@@ -156,6 +156,7 @@ const ProfileScreen = ({route, navigation}) => {
                     height: verticalScale(35),
                     width: scale(40),
                     marginTop: verticalScale(5),
+                    marginRight: scale(5),
                   }}
                 />
                 <Text style={styles.options}>Pickup History</Text>
@@ -180,6 +181,7 @@ const ProfileScreen = ({route, navigation}) => {
                     height: verticalScale(35),
                     width: scale(40),
                     marginTop: verticalScale(5),
+                    marginRight: scale(5),
                   }}
                 />
                 <Text style={styles.options}>Support</Text>

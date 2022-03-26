@@ -143,7 +143,7 @@ const PriceScreen = () => {
               </Text>
               {prices.map(key => (
                 <Text style={styles.text}>
-                  {key.category} : Rs. {key.value}
+                  {key.category} : ₹{key.value}
                 </Text>
               ))}
             </View>

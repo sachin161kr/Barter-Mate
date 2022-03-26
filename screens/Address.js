@@ -97,7 +97,7 @@ const AddressScreen = ({route, navigation}) => {
       .then(function (response) {
         //setLoading(false);
         //console.log(JSON.stringify(response.data));
-        Alert.alert('Address Successfully Added.');
+        Alert.alert('Address added successfully.');
         handleShowAddress();
 
         // if (pickupScreen) {
