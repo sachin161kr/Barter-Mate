@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@gurukumparan/react-native-android-inapp-updates": "^1.0.23",
     "@react-native-async-storage/async-storage": "^1.15.14",
     "@react-native-community/checkbox": "^0.5.12",
     "@react-native-community/datetimepicker": "^5.1.0",

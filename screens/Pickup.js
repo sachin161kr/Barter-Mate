@@ -64,6 +64,8 @@ const PickupScreen = ({route, navigation}) => {
   const [paperPicked, setPaperPicked] = useState(false);
   const [electronicsPicked, setElectronicsPicked] = useState(false);
 
+  const [allPincodes, setAllPincodes] = useState([]);
+
   //const [multiSelect, setMultiselect] = useState([]);
 
   var multiSelect = [];
@@ -139,8 +141,17 @@ const PickupScreen = ({route, navigation}) => {
 
   console.log(loadAgain, 'Pickup');
 
+  const getPincode = async () => {
+    const {data} = await axios.get(
+      'https://bartermateapi.herokuapp.com/admin/registration-api/pincode',
+    );
+    setAllPincodes(data.data);
+    console.log(allPincodes);
+  };
+
   useEffect(() => {
     handleShowAddress();
+    getPincode();
   }, [loadAgain]);
 
   //handleShowAddress();
@@ -516,8 +527,9 @@ const PickupScreen = ({route, navigation}) => {
               setPincode(itemValue);
             }}>
             <Picker.Item label="Choose Pincode" value="Choose Pincode" />
-            <Picker.Item label="201301" value="201301" />
-            <Picker.Item label="201304" value="201304" />
+            {allPincodes.map(key => (
+              <Picker.Item label={key} value={key} />
+            ))}
           </Picker>
         </View>
 

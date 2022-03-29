@@ -53,25 +53,18 @@ const RedeemScreen = ({route, navigation}) => {
             fontWeight: 'bold',
             color: 'green',
             alignSelf: 'center',
+            textAlign: 'center',
+            marginHorizontal: scale(30),
             marginTop: verticalScale(30),
-            fontSize: moderateScale(18),
-          }}>
-          Your Pickup has been scheduled
-        </Text>
-        <Text
-          style={{
-            margin: moderateScale(15),
-            fontSize: moderateScale(16),
-            marginTop: verticalScale(10),
-            color: '#5E5E5E',
+            fontSize: moderateScale(20),
           }}>
           Awesome!! Your pickup has been scheduled. Our associate will attend to
           you!!
         </Text>
         <Text
           style={{
-            margin: moderateScale(15),
-            fontSize: moderateScale(14),
+            margin: moderateScale(30),
+            fontSize: moderateScale(17),
             color: '#5E5E5E',
           }}>
           You can check your booking in the order history under your profile
@@ -79,7 +72,7 @@ const RedeemScreen = ({route, navigation}) => {
         </Text>
         <Text
           style={{
-            marginLeft: scale(15),
+            marginLeft: scale(20),
             fontSize: moderateScale(20),
             color: '#000000',
             marginTop: verticalScale(12),
@@ -102,7 +95,7 @@ const RedeemScreen = ({route, navigation}) => {
               alignSelf: 'center',
               elevation: 5,
               marginTop: verticalScale(20),
-              borderRadius: moderateScale(15),
+              //borderRadius: moderateScale(15),
             }}
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}>

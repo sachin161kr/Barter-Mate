@@ -3,6 +3,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {FloatingAction} from 'react-native-floating-action';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {FAB} from 'react-native-elements';
+import {startUpdateFlow} from '@gurukumparan/react-native-android-inapp-updates';
 
 import {
   Text,
@@ -76,7 +77,18 @@ const CategoryScreen = ({navigation}) => {
   const [loading, setLoading] = useState(true);
 
   const [images, setImages] = useState([]);
+  const updateModes = 'flexible';
   //var images = [];
+
+  const update = async () => {
+    try {
+      const result = await startUpdateFlow(updateModes);
+    } catch (e) {
+      console.log('error:', e);
+    }
+  };
+
+  update();
 
   useEffect(() => {
     try {
@@ -175,7 +187,8 @@ const CategoryScreen = ({navigation}) => {
                     navigation.navigate('Login Screen', {
                       itemSelected: `${itemSelected}`,
                       subCategory: `${subCategory}`,
-                      location: 'Profile',
+                      // location: 'Profile',
+                      profile: 'true',
                     });
                   }
                 }}>
@@ -351,6 +364,7 @@ const CategoryScreen = ({navigation}) => {
                       navigation.navigate('Register Screen', {
                         itemSelected: `${itemSelected}`,
                         subCategory: `${subCategory}`,
+                        profile: `false`,
                       });
                     }}>
                     {loginStatus == 'true' ? (
@@ -428,7 +442,9 @@ const CategoryScreen = ({navigation}) => {
                       navigation.navigate('Login Screen', {
                         itemSelected: `${itemSelected}`,
                         subCategory: `${subCategory}`,
-                        location: 'Category',
+                        // location: 'Category',
+                        // profile: 'false',
+                        profile: 'false',
                         userId: `${userId}`,
                       });
                     }

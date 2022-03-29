@@ -30,7 +30,8 @@ const LoginScreen = ({navigation, route}) => {
   var pincode = '';
   var email2 = '';
 
-  var location = route.params.location;
+  //var location = route.params.location;
+  var profile = route.params.profile;
   var userId = route.params.userId;
 
   const itemSelected = route.params.itemSelected;
@@ -99,7 +100,12 @@ const LoginScreen = ({navigation, route}) => {
 
           setUser();
 
-          if (location != 'Profile') {
+          if (profile == 'true') {
+            navigation.navigate('Profile Screen', {
+              username: `${name}`,
+            });
+          } else {
+            //var tempUsername = await AsyncStorage.getItem('User');
             navigation.navigate('Pickup Screen', {
               name: `${name}`,
               email: email2,
@@ -111,11 +117,6 @@ const LoginScreen = ({navigation, route}) => {
               subCategory: `${subCategory}`,
               userId: `${userId}`,
               loadAgain: `${false}`,
-            });
-          } else {
-            //var tempUsername = await AsyncStorage.getItem('User');
-            navigation.navigate('Profile Screen', {
-              username: `${name}`,
             });
           }
         })
@@ -234,6 +235,7 @@ const LoginScreen = ({navigation, route}) => {
               navigation.navigate('Register Screen', {
                 itemSelected: `${itemSelected}`,
                 subCategory: `${subCategory}`,
+                profile: `${profile}`,
               });
             }}>
             <Text

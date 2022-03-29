@@ -31,6 +31,8 @@ const RegisterScreen = ({navigation, route}) => {
   const itemSelected = route.params.itemSelected;
   const subCategory = route.params.subCategory;
 
+  var profile = route.params.profile;
+
   const emailCheck = () => {
     if (
       email.includes('@gmail.com') ||
@@ -96,10 +98,11 @@ const RegisterScreen = ({navigation, route}) => {
       .then(function (response) {
         setLoading(false);
         Alert.alert('Successfully Registered');
+        //navigation.navigate('Category Screen');
         navigation.navigate('Login Screen', {
           itemSelected: `${itemSelected}`,
           subCategory: `${subCategory}`,
-          location: 'Register',
+          profile: `${profile}`,
         });
       })
       .catch(error => {
