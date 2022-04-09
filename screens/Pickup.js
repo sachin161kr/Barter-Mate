@@ -63,6 +63,7 @@ const PickupScreen = ({route, navigation}) => {
   const [plasticPicked, setPlasticPicked] = useState(false);
   const [paperPicked, setPaperPicked] = useState(false);
   const [electronicsPicked, setElectronicsPicked] = useState(false);
+  const [boxPicked, setBoxPicked] = useState(false);
 
   const [allPincodes, setAllPincodes] = useState([]);
 
@@ -91,6 +92,10 @@ const PickupScreen = ({route, navigation}) => {
     if (electronicsPicked) {
       //newArr.push('Electronics');
       multiSelect.push('Electronics');
+    }
+
+    if (boxPicked) {
+      multiSelect.push('Corrugated Box');
     }
 
     console.log(multiSelect);
@@ -294,7 +299,7 @@ const PickupScreen = ({route, navigation}) => {
             borderRadius: moderateScale(10),
             width: scale(300),
             flexWrap: 'wrap',
-            height: verticalScale(60),
+            height: verticalScale(90),
             paddingTop: verticalScale(5),
             paddingLeft: scale(45),
             marginBottom: verticalScale(20),
@@ -425,6 +430,32 @@ const PickupScreen = ({route, navigation}) => {
                   onValueChange={newValue => setElectronicsPicked(newValue)}
                 />
                 <Text style={styles.multiSelectText}>Electronics</Text>
+              </View>
+            )}
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            {tempCategory == 'Corrugated Box' ? (
+              <></>
+            ) : (
+              <View
+                style={{
+                  //borderWidth: 1,
+                  //borderColor: '#000',
+                  height: verticalScale(25),
+                  width: scale(100),
+                  flexDirection: 'row',
+                }}>
+                <CheckBox
+                  disabled={false}
+                  value={boxPicked}
+                  onCheckColor={'#A363A9'}
+                  onValueChange={newValue => setBoxPicked(newValue)}
+                />
+                <Text style={styles.multiSelectText}>Corrugated box</Text>
               </View>
             )}
           </View>

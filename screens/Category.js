@@ -31,6 +31,8 @@ import ProfileScreen from './Profile';
 import profileIcon from '../assets/profileIcon.png';
 import logo from '../assets/logo2.png';
 
+import box from '../assets/box.png';
+
 const categoryList = [
   {
     key: 0,
@@ -71,6 +73,14 @@ const categoryList = [
     description:
       'E-waste is electronic products that are unwanted and nearing or at the end of their “useful life.” Computers, televisions, VCRs, stereos, etc',
   },
+
+  {
+    key: 5,
+    image: box,
+    text: 'Corrugated Box',
+    description:
+      'Corrugated box design is the process of matching design factors for corrugated fiberboard boxes with the functional physical, processing and end-use requirements.',
+  },
 ];
 
 const CategoryScreen = ({navigation}) => {
@@ -88,7 +98,7 @@ const CategoryScreen = ({navigation}) => {
     }
   };
 
-  update();
+  //update();
 
   useEffect(() => {
     try {
@@ -167,6 +177,7 @@ const CategoryScreen = ({navigation}) => {
                   fontSize: moderateScale(25),
                   marginTop: verticalScale(19),
                   marginLeft: scale(20),
+                  color: '#5A2D94',
                   fontWeight: '700',
                 }}>
                 BarterMate
@@ -195,9 +206,9 @@ const CategoryScreen = ({navigation}) => {
                 <Image
                   source={profileIcon}
                   style={{
-                    height: verticalScale(35),
-                    width: scale(35),
-                    marginTop: verticalScale(17),
+                    height: verticalScale(45),
+                    width: scale(45),
+                    marginTop: verticalScale(15),
                     marginLeft: scale(40),
                   }}
                 />
@@ -231,22 +242,20 @@ const CategoryScreen = ({navigation}) => {
           <ScrollView
             horizontal={true}
             style={{
-              height: verticalScale(300),
+              height: verticalScale(240),
             }}>
             <View
               style={{
                 justifyContent: 'space-evenly',
                 flexDirection: 'row',
-
-                marginLeft: scale(25),
               }}>
               {images.map(item => (
                 <View
                   style={{
-                    height: verticalScale(280),
+                    height: verticalScale(240),
                     width: scale(360),
                     borderRadius: moderateScale(10),
-                    alignSelf: 'center',
+                    marginBottom: verticalScale(20),
                   }}>
                   <Image
                     source={{
@@ -254,9 +263,10 @@ const CategoryScreen = ({navigation}) => {
                     }}
                     style={{
                       resizeMode: 'stretch',
-                      height: verticalScale(250),
-                      width: scale(300),
+                      height: verticalScale(240),
+                      width: scale(320),
                       borderRadius: moderateScale(10),
+                      marginLeft: verticalScale(15),
                     }}
                   />
                 </View>
@@ -266,40 +276,19 @@ const CategoryScreen = ({navigation}) => {
           <View
             style={{
               flexDirection: 'row',
-              height: verticalScale(50),
-              alignSelf: 'center',
+              height: verticalScale(40),
+              marginLeft: scale(25),
             }}>
             <Text
               style={{
-                fontSize: moderateScale(25),
-                //marginTop: verticalScale(30),
+                fontSize: moderateScale(18),
+                marginTop: verticalScale(10),
                 //marginLeft: scale(30),
-                fontWeight: 'bold',
-                color: '#758283',
+                //fontWeight: 'bold',
+                color: '#5A2D94',
               }}>
-              Categories
+              Choose Your Category
             </Text>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Price Screen');
-              }}>
-              <Text
-                style={{
-                  height: verticalScale(40),
-                  width: scale(100),
-                  textAlign: 'center',
-                  color: '#FFF',
-                  paddingTop: verticalScale(6),
-                  //marginTop: verticalScale(20),
-                  fontWeight: 'bold',
-                  marginLeft: scale(50),
-                  fontSize: moderateScale(20),
-                  backgroundColor: '#A363A9',
-                  borderRadius: moderateScale(6),
-                }}>
-                Rate Card
-              </Text>
-            </TouchableOpacity>
           </View>
           <View style={styles.gridContainer}>
             {categoryList.map(key => (
@@ -311,11 +300,61 @@ const CategoryScreen = ({navigation}) => {
                   toggle();
                   setSubCategory('Choose Sub-Category');
                 }}>
-                <View style={styles.viewGroup}>
-                  <Image source={key.image} style={styles.image} />
-
-                  <Text style={styles.text}>{key.text}</Text>
-                </View>
+                <LinearGradient
+                  colors={['#9b38d9', '#f2748e']}
+                  start={{x: 0, y: 0}}
+                  end={{x: 0, y: 1}}
+                  style={{
+                    borderRadius: moderateScale(15),
+                    flexDirection: 'row',
+                    height: verticalScale(80),
+                    backgroundColor: '#F5F5F5',
+                    paddingVertical: moderateScale(10),
+                    overflow: 'hidden',
+                    elevation: 3,
+                    marginBottom: verticalScale(20),
+                  }}>
+                  <View
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      height: verticalScale(10),
+                      width: scale(30),
+                      marginRight: scale(10),
+                      marginTop: verticalScale(14),
+                    }}
+                  />
+                  <View>
+                    <Text
+                      style={{
+                        fontSize: moderateScale(16),
+                        marginBottom: verticalScale(4),
+                        marginTop: verticalScale(8),
+                        color: '#FFFFFF',
+                        //fontWeight: '900',
+                        width: scale(120),
+                      }}>
+                      {key.text}
+                    </Text>
+                    <Text
+                      style={{
+                        color: '#FFFFFF',
+                      }}>
+                      By BarterMate
+                    </Text>
+                  </View>
+                  <Image
+                    source={key.image}
+                    style={{
+                      height: verticalScale(55),
+                      width: scale(75),
+                      marginTop: verticalScale(5),
+                      marginLeft: scale(60),
+                      marginRight: scale(20),
+                      margin: moderateScale(10),
+                      overflow: 'hidden',
+                    }}
+                  />
+                </LinearGradient>
               </TouchableOpacity>
             ))}
           </View>
@@ -565,9 +604,10 @@ const styles = StyleSheet.create({
 
   gridContainer: {
     flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    paddingHorizontal: scale(20),
     justifyContent: 'space-around',
+    marginTop: verticalScale(10),
+    paddingBottom: verticalScale(50),
   },
 
   pickerStyle: {
@@ -585,31 +625,5 @@ const styles = StyleSheet.create({
     height: verticalScale(345),
     borderTopRightRadius: moderateScale(40),
     borderTopLeftRadius: moderateScale(40),
-  },
-
-  viewGroup: {
-    borderRadius: moderateScale(15),
-
-    marginTop: verticalScale(30),
-    backgroundColor: '#F5F5F5',
-    padding: moderateScale(10),
-    overflow: 'hidden',
-    elevation: 3,
-    marginBottom: verticalScale(20),
-  },
-
-  image: {
-    height: verticalScale(50),
-    width: scale(70),
-    marginRight: scale(20),
-    margin: moderateScale(10),
-    overflow: 'hidden',
-  },
-
-  text: {
-    fontSize: moderateScale(18),
-    textAlign: 'center',
-    marginBottom: verticalScale(4),
-    color: '#000000',
   },
 });

@@ -44,17 +44,12 @@ const GuestPickupScreen = ({route, navigation}) => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
-  var glassSelected = false;
-  var metalSelected = false;
-  var plasticSelected = false;
-  var paperSelected = false;
-  var electronicsSelected = false;
-
   const [glassPicked, setGlassPicked] = useState(false);
   const [metalPicked, setMetalPicked] = useState(false);
   const [plasticPicked, setPlasticPicked] = useState(false);
   const [paperPicked, setPaperPicked] = useState(false);
   const [electronicsPicked, setElectronicsPicked] = useState(false);
+  const [boxPicked, setBoxPicked] = useState(false);
   //const [multiSelect, setMultiselect] = useState([]);
   var multiSelect = [];
 
@@ -81,6 +76,9 @@ const GuestPickupScreen = ({route, navigation}) => {
     if (electronicsPicked) {
       //newArr.push('Electronics');
       multiSelect.push('Electronics');
+    }
+    if (boxPicked) {
+      multiSelect.push('Corrugated Box');
     }
 
     console.log(multiSelect);
@@ -246,7 +244,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             borderRadius: moderateScale(10),
             width: scale(300),
             flexWrap: 'wrap',
-            height: verticalScale(60),
+            height: verticalScale(90),
             paddingTop: verticalScale(5),
             paddingLeft: scale(45),
             marginBottom: verticalScale(20),
@@ -377,6 +375,32 @@ const GuestPickupScreen = ({route, navigation}) => {
                   onValueChange={newValue => setElectronicsPicked(newValue)}
                 />
                 <Text style={styles.multiSelectText}>Electronics</Text>
+              </View>
+            )}
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            {tempCategory == 'Corrugated Box' ? (
+              <></>
+            ) : (
+              <View
+                style={{
+                  //borderWidth: 1,
+                  //borderColor: '#000',
+                  height: verticalScale(25),
+                  width: scale(100),
+                  flexDirection: 'row',
+                }}>
+                <CheckBox
+                  disabled={false}
+                  value={boxPicked}
+                  onCheckColor={'#A363A9'}
+                  onValueChange={newValue => setBoxPicked(newValue)}
+                />
+                <Text style={styles.multiSelectText}>Corrugated box</Text>
               </View>
             )}
           </View>

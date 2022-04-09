@@ -1,8 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-import {View, Text, TouchableOpacity, Alert, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Image,
+  BackHandler,
+} from 'react-native';
 
 import offer from '../assets/offers.png';
 
@@ -10,6 +17,17 @@ const RedeemScreen = ({route, navigation}) => {
   var userId = route.params.userId;
 
   var symbol = '<';
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      () => {
+        navigation.navigate('Category Screen');
+        return true;
+      },
+    );
+    return () => backHandler.remove();
+  }, []);
 
   const [isRedeemAc, setRedeemAC] = useState(false);
   const handleRedeem = () => {
