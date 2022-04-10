@@ -136,120 +136,152 @@ const LoginScreen = ({navigation, route}) => {
         style={{
           backgroundColor: '#FFFFFF',
         }}>
-        <Text
+        <LinearGradient
+          colors={['#5A2D94', '#f2748e']}
+          start={{x: 0, y: 0}}
+          end={{x: 0, y: 1}}
           style={{
-            fontSize: moderateScale(30),
-            textAlign: 'left',
-
-            marginTop: verticalScale(30),
-            marginBottom: verticalScale(30),
-            color: '#000000',
-            marginLeft: scale(30),
+            margin: verticalScale(15),
+            borderRadius: moderateScale(15),
           }}>
-          Login
-        </Text>
-        <TextInput
-          onChangeText={tempEmail => {
-            setEmail(tempEmail);
-          }}
-          style={styles.textinput}
-          placeholder="Email or Phone"
-          placeholderTextColor="#758283"></TextInput>
+          <Text
+            style={{
+              fontSize: moderateScale(30),
+              textAlign: 'left',
+              alignSelf: 'center',
+              marginTop: verticalScale(40),
+              color: '#FFF',
+            }}>
+            Login
+          </Text>
+          <Text
+            style={{
+              fontSize: moderateScale(15),
+              textAlign: 'center',
+              alignSelf: 'center',
+              width: scale(250),
+              fontWeight: '300',
+              marginHorizontal: scale(10),
+              marginTop: verticalScale(30),
+              marginBottom: verticalScale(30),
+              color: '#FFF',
+            }}>
+            Please enter your email & phone number to Login
+          </Text>
+          <TextInput
+            onChangeText={tempEmail => {
+              setEmail(tempEmail);
+            }}
+            style={styles.textinput}
+            placeholder="Email or phone number"
+            placeholderTextColor="#FFF"></TextInput>
 
-        <TextInput
-          style={styles.textinput}
-          placeholder="Password"
-          placeholderTextColor="#758283"
-          secureTextEntry={true}
-          onChangeText={tempPassword => {
-            setPassword(tempPassword);
-          }}></TextInput>
+          <TextInput
+            style={styles.textinput}
+            placeholder="Password"
+            placeholderTextColor="#FFFF"
+            secureTextEntry={true}
+            onChangeText={tempPassword => {
+              setPassword(tempPassword);
+            }}></TextInput>
 
-        {isLoading == false ? (
-          <View style={styles.loginBtn}>
+          <View
+            style={{
+              alignSelf: 'flex-end',
+              marginRight: scale(25),
+              marginTop: verticalScale(20),
+            }}>
             <TouchableOpacity
               onPress={() => {
-                getCredentials();
+                navigation.navigate('Forgot Screen');
               }}>
-              <LinearGradient
-                colors={['#A363A9', '#FAB06D']}
+              <Text
                 style={{
-                  borderRadius: moderateScale(100),
-                  height: verticalScale(48),
-                }}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}>
-                <Text
-                  style={{
-                    fontSize: moderateScale(25),
-                    alignSelf: 'center',
-                    color: '#FFFFFF',
-                    margin: moderateScale(5),
-                    //paddingBottom: verticalScale(10),
-                  }}>
-                  Login
-                </Text>
-              </LinearGradient>
+                  fontSize: moderateScale(12),
+                  color: '#FFF',
+                }}>
+                Forgot Password?
+              </Text>
             </TouchableOpacity>
           </View>
-        ) : (
-          <ActivityIndicator
-            color="#A363A9"
-            size={'large'}
+
+          {isLoading == false ? (
+            <View style={styles.loginBtn}>
+              <TouchableOpacity
+                onPress={() => {
+                  getCredentials();
+                }}>
+                <View
+                  style={{
+                    height: verticalScale(68),
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: moderateScale(18),
+                      alignSelf: 'center',
+                      paddingTop: verticalScale(14),
+                      color: '#FFFFFF',
+                      margin: moderateScale(5),
+                      //paddingBottom: verticalScale(10),
+                    }}>
+                    Login
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <ActivityIndicator
+              color="#A363A9"
+              size={'large'}
+              style={{
+                marginTop: verticalScale(30),
+              }}
+            />
+          )}
+
+          <View
             style={{
+              flexDirection: 'row',
               marginTop: verticalScale(30),
-            }}
-          />
-        )}
-        <View
-          style={{
-            alignSelf: 'center',
-            marginTop: verticalScale(20),
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Forgot Screen');
+              marginBottom: verticalScale(30),
+              marginLeft: scale(70),
             }}>
             <Text
               style={{
                 fontSize: moderateScale(15),
-                color: '#758283',
-              }}>
-              Forgot Password?
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <Text
-          style={{
-            fontSize: moderateScale(18),
-            alignSelf: 'center',
-            marginTop: verticalScale(70),
-            color: '#758283',
-          }}>
-          Not A Member Yet?
-        </Text>
-
-        <View style={styles.registerBtn}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Register Screen', {
-                itemSelected: `${itemSelected}`,
-                subCategory: `${subCategory}`,
-                profile: `${profile}`,
-              });
-            }}>
-            <Text
-              style={{
-                fontSize: moderateScale(20),
                 alignSelf: 'center',
-                color: '#A363A9',
-                margin: moderateScale(5),
-                paddingTop: verticalScale(2),
+                marginTop: verticalScale(10),
+                color: '#FFF',
               }}>
-              Register Now
+              Don't have account?
             </Text>
-          </TouchableOpacity>
-        </View>
+
+            <View
+              style={{
+                //padding: moderateScale(8)
+                width: scale(100),
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Register Screen', {
+                    itemSelected: `${itemSelected}`,
+                    subCategory: `${subCategory}`,
+                    profile: `${profile}`,
+                  });
+                }}>
+                <Text
+                  style={{
+                    fontSize: moderateScale(15),
+                    color: '#2827CC',
+                    paddingTop: verticalScale(10),
+                    marginLeft: scale(5),
+                  }}>
+                  Sign Up
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </LinearGradient>
       </ScrollView>
     </>
   );
@@ -259,34 +291,25 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   textinput: {
-    fontSize: moderateScale(20),
-    borderColor: '#c4c4c4',
-    borderWidth: 1,
+    fontSize: moderateScale(12),
+    borderColor: '#FFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#faf0f7',
+    //borderWidth: 1,
     height: verticalScale(45),
-    borderRadius: moderateScale(100),
+    //borderRadius: moderateScale(100),
     marginTop: verticalScale(15),
     marginLeft: scale(20),
     paddingLeft: moderateScale(15),
     marginRight: scale(20),
-    color: '#000000',
+    color: '#FFF',
   },
 
   loginBtn: {
     marginTop: verticalScale(25),
-    backgroundColor: '#c4c4c4',
+    backgroundColor: '#000',
     marginLeft: scale(20),
     marginRight: scale(20),
-    borderRadius: moderateScale(100),
-  },
-
-  registerBtn: {
-    marginTop: verticalScale(10),
-    marginLeft: scale(20),
-    //padding: moderateScale(8),
-    borderWidth: 1,
-    height: verticalScale(45),
-    borderColor: '#A363A9',
-    marginRight: scale(20),
-    borderRadius: moderateScale(100),
+    borderRadius: moderateScale(10),
   },
 });

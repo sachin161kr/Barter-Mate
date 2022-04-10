@@ -76,7 +76,7 @@ const PriceScreen = () => {
           <ScrollView
             horizontal={true}
             style={{
-              height: verticalScale(240),
+              height: verticalScale(280),
             }}>
             <View
               style={{
@@ -86,7 +86,7 @@ const PriceScreen = () => {
               {images.map(item => (
                 <View
                   style={{
-                    height: verticalScale(240),
+                    height: verticalScale(280),
                     width: scale(360),
                     borderRadius: moderateScale(10),
                     marginBottom: verticalScale(20),
@@ -96,8 +96,8 @@ const PriceScreen = () => {
                       uri: `${item.image}`,
                     }}
                     style={{
-                      resizeMode: 'stretch',
-                      height: verticalScale(240),
+                      resizeMode: 'contain',
+                      height: verticalScale(280),
                       width: scale(320),
                       borderRadius: moderateScale(10),
                       marginLeft: verticalScale(15),
@@ -110,74 +110,80 @@ const PriceScreen = () => {
 
           <View
             style={{
-              marginLeft: scale(20),
-              marginRight: scale(20),
-              borderColor: '#A363A9',
-              borderWidth: 1,
-              marginTop: verticalScale(20),
-              borderRadius: moderateScale(100),
-              marginHorizontal: moderateScale(10),
+              flexDirection: 'row',
             }}>
-            <Picker
+            <View
               style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={pincode}
-              onValueChange={itemValue => {
-                setPincode(itemValue);
+                borderRadius: moderateScale(20),
+                borderWidth: 1,
+                height: verticalScale(50),
+                width: scale(170),
+                marginTop: verticalScale(15),
+                marginLeft: scale(15),
+                borderColor: '#9b38d9',
               }}>
-              <Picker.Item label="Choose Pincode" value="Choose Pincode" />
-              <Picker.Item label="201301" value="201301" />
-              <Picker.Item label="201304" value="201304" />
-            </Picker>
+              <Picker
+                style={{
+                  color: '#A363A9',
+                  width: scale(170),
+                  height: verticalScale(35),
+                }}
+                dropdownIconColor="#A363A9"
+                dropdownIconRippleColor="#A363A9"
+                onTouchCancel={true}
+                mode="dropdown"
+                selectedValue={pincode}
+                onValueChange={itemValue => {
+                  setPincode(itemValue);
+                }}>
+                <Picker.Item label="Choose Pincode" value="Choose Pincode" />
+                <Picker.Item label="201301" value="201301" />
+                <Picker.Item label="201304" value="201304" />
+              </Picker>
+            </View>
+
+            {loading == false ? (
+              <TouchableOpacity
+                onPress={() => {
+                  if (pincode != 'Choose Pincode') {
+                    handlePriceDetails();
+                  }
+                }}>
+                <View
+                  style={{
+                    borderRadius: moderateScale(100),
+                    marginTop: verticalScale(20),
+                    marginLeft: scale(10),
+                    height: verticalScale(35),
+                    width: scale(130),
+                    backgroundColor: '#EF6563',
+                    marginBottom: verticalScale(10),
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: moderateScale(15),
+                      alignSelf: 'center',
+                      color: '#FFF',
+                      margin: moderateScale(5),
+                      paddingTop: verticalScale(3),
+                      //paddingBottom: verticalScale(15),
+                    }}>
+                    Get Price Details
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ) : (
+              <ActivityIndicator
+                size={'large'}
+                color="#A363A9"
+                style={{
+                  alignSelf: 'center',
+                  marginTop: verticalScale(10),
+                }}
+              />
+            )}
           </View>
 
-          {loading == false ? (
-            <TouchableOpacity
-              onPress={() => {
-                if (pincode != 'Choose Pincode') {
-                  handlePriceDetails();
-                }
-              }}>
-              <LinearGradient
-                colors={['#A363A9', '#FAB06D']}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
-                style={{
-                  borderRadius: moderateScale(100),
-                  marginTop: verticalScale(15),
-                  marginLeft: scale(15),
-                  height: verticalScale(45),
-                  marginRight: scale(15),
-                  marginBottom: verticalScale(30),
-                }}>
-                <Text
-                  style={{
-                    fontSize: moderateScale(20),
-                    alignSelf: 'center',
-                    color: '#FFFFFF',
-                    margin: moderateScale(5),
-                    paddingTop: verticalScale(3),
-                    //paddingBottom: verticalScale(15),
-                  }}>
-                  Get Price Details
-                </Text>
-              </LinearGradient>
-            </TouchableOpacity>
-          ) : (
-            <ActivityIndicator
-              size={'large'}
-              color="#A363A9"
-              style={{
-                alignSelf: 'center',
-                marginTop: verticalScale(10),
-              }}
-            />
-          )}
           {fetch == true ? (
             <View
               style={{
@@ -203,23 +209,75 @@ const PriceScreen = () => {
                     style={{
                       fontSize: moderateScale(16),
                       fontWeight: 'bold',
-                      marginBottom: verticalScale(10),
+                      marginBottom: verticalScale(30),
                       color: '#E03B8B',
-                      marginLeft: verticalScale(96),
+                      marginLeft: verticalScale(110),
                     }}>
                     Price
                   </Text>
                 </View>
                 {prices.map(key => (
-                  <Text style={styles.text}>
-                    {key.category} : ₹{key.value}
-                  </Text>
+                  <View>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        backgroundColor: '#FFF',
+                      }}>
+                      <Text
+                        style={{
+                          color: '#8D3DAF',
+                          width: scale(205),
+                          marginBottom: verticalScale(10),
+                        }}>
+                        {key.category}
+                      </Text>
+                      <Text
+                        style={{
+                          color: '#8D3DAF',
+                        }}>
+                        ₹{key.value}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        height: verticalScale(1),
+                        width: scale(280),
+                        backgroundColor: '#CAD5E2',
+                        marginBottom: verticalScale(10),
+                      }}
+                    />
+                    <View
+                      style={{
+                        height: verticalScale(1),
+                        width: scale(280),
+                        backgroundColor: '#CAD5E2',
+                        marginBottom: verticalScale(15),
+                      }}
+                    />
+                  </View>
                 ))}
               </View>
             </View>
           ) : (
             <></>
           )}
+          <View
+            style={{
+              marginLeft: scale(20),
+            }}>
+            <Text
+              style={{
+                color: '#000',
+              }}>
+              + Price is showing for selected Pincode*
+            </Text>
+            <Text
+              style={{
+                color: '#000',
+              }}>
+              + All prices are according to 1kg weight.
+            </Text>
+          </View>
         </View>
       </ScrollView>
     </>
