@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(12),
     borderColor: '#FFF',
     borderBottomWidth: 1,
-    borderBottomColor: '#faf0f7',
+    borderBottomColor: '#FFFFFF80',
     //borderWidth: 1,
     height: verticalScale(45),
     //borderRadius: moderateScale(100),

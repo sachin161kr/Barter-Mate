@@ -118,154 +118,144 @@ const RegisterScreen = ({navigation, route}) => {
         style={{
           backgroundColor: '#FFFFFF',
         }}>
-        <Text
+        <LinearGradient
+          colors={['#5A2D94', '#f2748e']}
+          start={{x: 0, y: 0}}
+          end={{x: 0, y: 1}}
           style={{
-            fontSize: moderateScale(30),
-            textAlign: 'left',
-            marginTop: verticalScale(10),
-            color: '#000000',
-            marginLeft: scale(30),
+            margin: verticalScale(15),
+            borderRadius: moderateScale(15),
           }}>
-          Sign Up
-        </Text>
-        <View
-          style={{
-            marginTop: verticalScale(10),
-          }}>
-          <TextInput
-            style={styles.textinput}
-            placeholder="Full Name"
-            placeholderTextColor="#758283"
-            onChangeText={text => {
-              setFullName(text);
-            }}></TextInput>
-
-          <TextInput
-            onChangeText={text => {
-              setEmail(text);
-            }}
-            style={styles.textinput}
-            placeholder="Email"
-            placeholderTextColor="#758283"
-            keyboardType="email-address"></TextInput>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-              alignSelf: 'center',
-              borderColor: '#758283',
-              borderRadius: moderateScale(100),
-              borderWidth: 1,
-              padding: moderateScale(5),
-
-              width: scale(310),
-              marginTop: verticalScale(10),
-            }}>
+          <View>
             <Text
               style={{
-                fontSize: moderateScale(20),
-                marginTop: verticalScale(8),
-                marginRight: scale(10),
-                marginLeft: scale(3),
-                color: '#758283',
+                fontSize: moderateScale(16),
+                alignSelf: 'center',
+                color: '#FFF',
+                marginTop: verticalScale(20),
               }}>
-              +91
+              Welcome
             </Text>
-            <TextInput
-              defaultValue={`${phone}`}
-              keyboardType="number-pad"
-              onChangeText={tempPhone => {
-                setPhone(tempPhone);
-              }}
+            <Text
               style={{
-                fontSize: moderateScale(20),
-
-                color: '#000000',
-              }}
-              placeholder="Enter Phone Number"
-              maxLength={10}
-              placeholderTextColor="#758283"></TextInput>
-          </View>
-          <TextInput
-            onChangeText={text => {
-              setPassword(text);
-            }}
-            style={styles.textinput}
-            placeholder="Password"
-            secureTextEntry={true}
-            placeholderTextColor="#758283"></TextInput>
-          <TextInput
-            onChangeText={text => {
-              setConfirmPass(text);
-            }}
-            style={styles.textinput}
-            placeholder="Confirm Password"
-            secureTextEntry={true}
-            placeholderTextColor="#758283"></TextInput>
-
-          {/* <View style={styles.pickerStyle}>
-            <Picker
-              style={{
-                color: '#A363A9',
-              }}
-              dropdownIconColor="#A363A9"
-              dropdownIconRippleColor="#A363A9"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={pincode}
-              onValueChange={itemValue => {
-                setSelectedPincode(itemValue);
-              }}>
-              <Picker.Item label="Choose Pincode" value="Choose Pincode" />
-              <Picker.Item label="201301" value="201301" />
-              <Picker.Item label="201304" value="201304" />
-            </Picker>
-          </View> */}
-
-          {isLoading == false ? (
-            <View style={styles.registerBtn}>
-              <TouchableOpacity
-                onPress={() => {
-                  if (fullName && email && phone && password && confirmPass) {
-                    if (passCheck() && phoneCheck()) {
-                      handleSubmit();
-                    }
-                  } else {
-                    Alert.alert('Enter Valid Details');
-                  }
-                }}>
-                <LinearGradient
-                  colors={['#A363A9', '#FAB06D']}
-                  style={{
-                    borderRadius: moderateScale(100),
-                    height: verticalScale(45),
-                  }}
-                  start={{x: 0, y: 0}}
-                  end={{x: 1, y: 0}}>
-                  <Text
-                    style={{
-                      fontSize: moderateScale(20),
-                      alignSelf: 'center',
-                      color: '#FFFFFF',
-                      margin: moderateScale(5),
-                      paddingTop: verticalScale(3),
-                    }}>
-                    Register
-                  </Text>
-                </LinearGradient>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <ActivityIndicator
-              color="#A363A9"
-              size={'large'}
-              style={{
+                fontSize: moderateScale(28),
+                textAlign: 'center',
                 marginTop: verticalScale(10),
+                color: '#FFF',
+              }}>
+              Register to Access
+            </Text>
+          </View>
+          <View
+            style={{
+              marginTop: verticalScale(10),
+            }}>
+            <TextInput
+              style={styles.textinput}
+              placeholder="Full Name"
+              placeholderTextColor="#FFF"
+              onChangeText={text => {
+                setFullName(text);
+              }}></TextInput>
+
+            <TextInput
+              onChangeText={text => {
+                setEmail(text);
               }}
-            />
-          )}
-        </View>
+              style={styles.textinput}
+              placeholder="Email"
+              placeholderTextColor="#FFF"
+              keyboardType="email-address"></TextInput>
+
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                alignSelf: 'center',
+                padding: moderateScale(5),
+                borderBottomWidth: 1,
+                borderBottomColor: '#FFFFFF80',
+                width: scale(280),
+                marginTop: verticalScale(10),
+              }}>
+              <Text
+                style={{
+                  fontSize: moderateScale(12),
+                  marginTop: verticalScale(13),
+                  marginRight: scale(10),
+                  marginLeft: scale(3),
+                  color: '#FFF',
+                }}>
+                +91
+              </Text>
+              <TextInput
+                defaultValue={`${phone}`}
+                keyboardType="number-pad"
+                onChangeText={tempPhone => {
+                  setPhone(tempPhone);
+                }}
+                style={{
+                  fontSize: moderateScale(12),
+                  color: '#FFF',
+                }}
+                placeholder="Enter Phone Number"
+                maxLength={10}
+                placeholderTextColor="#FFF"></TextInput>
+            </View>
+            <TextInput
+              onChangeText={text => {
+                setPassword(text);
+              }}
+              style={styles.textinput}
+              placeholder="Password"
+              secureTextEntry={true}
+              placeholderTextColor="#FFF"></TextInput>
+            <TextInput
+              onChangeText={text => {
+                setConfirmPass(text);
+              }}
+              style={styles.textinput}
+              placeholder="Confirm Password"
+              secureTextEntry={true}
+              placeholderTextColor="#FFF"></TextInput>
+
+            {isLoading == false ? (
+              <View style={styles.registerBtn}>
+                <TouchableOpacity
+                  onPress={() => {
+                    if (fullName && email && phone && password && confirmPass) {
+                      if (passCheck() && phoneCheck()) {
+                        handleSubmit();
+                      }
+                    } else {
+                      Alert.alert('Enter Valid Details');
+                    }
+                  }}>
+                  <View>
+                    <Text
+                      style={{
+                        fontSize: moderateScale(20),
+                        alignSelf: 'center',
+                        color: '#FFF',
+                        margin: moderateScale(5),
+                        paddingTop: verticalScale(13),
+                      }}>
+                      Sign Up
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <ActivityIndicator
+                color="#A363A9"
+                size={'large'}
+                style={{
+                  marginTop: verticalScale(10),
+                }}
+              />
+            )}
+          </View>
+        </LinearGradient>
       </ScrollView>
     </>
   );
@@ -275,25 +265,27 @@ export default RegisterScreen;
 
 const styles = StyleSheet.create({
   textinput: {
-    fontSize: moderateScale(20),
+    fontSize: moderateScale(12),
+    borderColor: '#FFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ffffff80',
+    //borderWidth: 1,
     height: verticalScale(45),
-    borderColor: '#758283',
-    borderWidth: 1,
-    borderRadius: moderateScale(100),
+    //borderRadius: moderateScale(100),
     marginTop: verticalScale(15),
     marginLeft: scale(20),
     paddingLeft: moderateScale(15),
     marginRight: scale(20),
-    color: '#000000',
+    color: '#FFF',
   },
 
   registerBtn: {
-    marginTop: verticalScale(15),
-    height: verticalScale(45),
-    backgroundColor: '#c4c4c4',
-    marginLeft: scale(20),
-    marginRight: scale(20),
-    borderRadius: moderateScale(100),
+    marginTop: verticalScale(25),
+    height: verticalScale(68),
+    marginBottom: verticalScale(20),
+    backgroundColor: '#000',
+    borderRadius: moderateScale(10),
+    marginHorizontal: scale(20),
     //marginBottom: verticalScale(20),
   },
 
