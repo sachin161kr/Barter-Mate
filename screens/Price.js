@@ -22,6 +22,8 @@ const PriceScreen = () => {
   const [prices, setPrices] = useState([]);
   const [images, setImages] = useState([]);
 
+  const arrow = '=>';
+
   useEffect(() => {
     try {
       axios
@@ -117,7 +119,7 @@ const PriceScreen = () => {
                 borderRadius: moderateScale(20),
                 borderWidth: 1,
                 height: verticalScale(50),
-                width: scale(170),
+                width: scale(260),
                 marginTop: verticalScale(15),
                 marginLeft: scale(15),
                 borderColor: '#9b38d9',
@@ -125,8 +127,8 @@ const PriceScreen = () => {
               <Picker
                 style={{
                   color: '#A363A9',
-                  width: scale(170),
-                  height: verticalScale(35),
+                  width: scale(260),
+                  height: verticalScale(50),
                 }}
                 dropdownIconColor="#A363A9"
                 dropdownIconRippleColor="#A363A9"
@@ -151,11 +153,11 @@ const PriceScreen = () => {
                 }}>
                 <View
                   style={{
-                    borderRadius: moderateScale(100),
+                    borderRadius: moderateScale(15),
                     marginTop: verticalScale(20),
                     marginLeft: scale(10),
-                    height: verticalScale(35),
-                    width: scale(130),
+                    height: verticalScale(40),
+                    width: scale(50),
                     backgroundColor: '#EF6563',
                     marginBottom: verticalScale(10),
                   }}>
@@ -165,10 +167,10 @@ const PriceScreen = () => {
                       alignSelf: 'center',
                       color: '#FFF',
                       margin: moderateScale(5),
-                      paddingTop: verticalScale(3),
+                      paddingTop: verticalScale(5),
                       //paddingBottom: verticalScale(15),
                     }}>
-                    Get Price Details
+                    GO
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -179,6 +181,7 @@ const PriceScreen = () => {
                 style={{
                   alignSelf: 'center',
                   marginTop: verticalScale(10),
+                  marginLeft: scale(15),
                 }}
               />
             )}
@@ -235,7 +238,7 @@ const PriceScreen = () => {
                         style={{
                           color: '#8D3DAF',
                         }}>
-                        ₹{key.value}
+                        ₹ {key.value}
                       </Text>
                     </View>
                     <View
@@ -259,7 +262,14 @@ const PriceScreen = () => {
               </View>
             </View>
           ) : (
-            <></>
+            <>
+              <View
+                style={{
+                  height: verticalScale(60),
+                  backgroundColor: '#FFF',
+                }}
+              />
+            </>
           )}
           <View
             style={{

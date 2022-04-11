@@ -97,7 +97,7 @@ const MainStackNavigator = () => {
         name="Forgot Screen"
         component={ForgotPassScreen}
         options={{
-          title: 'Edit Your Password',
+          title: '',
         }}
       />
       <Stack.Screen

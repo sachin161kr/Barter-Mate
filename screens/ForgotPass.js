@@ -10,7 +10,14 @@ import {
   StyleSheet,
   ActivityIndicator,
   Alert,
+  Image,
 } from 'react-native';
+
+import reset from '../assets/reset.png';
+import confused from '../assets/confused.png';
+import ellipse from '../assets/ellipse.png';
+import forget from '../assets/forget.png';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const ForgotPassScreen = ({navigation}) => {
   const [isloading, setLoading] = useState(false);
@@ -60,72 +67,143 @@ const ForgotPassScreen = ({navigation}) => {
 
   return (
     <>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#FFFFFF',
-        }}>
-        <View>
-          <TextInput
-            style={styles.textinput}
-            placeholder="Enter Registered Email"
-            placeholderTextColor="#758283"
-            onChangeText={tempEmail => {
-              setEmail(tempEmail);
-            }}></TextInput>
-        </View>
-        {isloading == true ? (
-          <View
+      <ScrollView>
+        <LinearGradient
+          colors={['#5A2D94', '#f2748e']}
+          start={{x: 0, y: 0}}
+          end={{x: 0, y: 1}}
+          style={{
+            margin: verticalScale(15),
+            borderRadius: moderateScale(15),
+            paddingBottom: verticalScale(80),
+          }}>
+          <Image
+            source={forget}
             style={{
-              height: verticalScale(50),
-              width: scale(310),
-              marginTop: verticalScale(15),
+              height: verticalScale(30),
+              width: scale(200),
               alignSelf: 'center',
-            }}>
-            <ActivityIndicator
-              color="#A363A9"
-              size={'large'}
+              marginTop: verticalScale(40),
+            }}
+          />
+          <Image
+            source={ellipse}
+            style={{
+              height: verticalScale(150),
+              width: scale(150),
+              position: 'relative',
+              alignSelf: 'center',
+              resizeMode: 'contain',
+              marginTop: verticalScale(20),
+            }}
+          />
+          <Image
+            source={confused}
+            style={{
+              height: verticalScale(80),
+              width: scale(100),
+              position: 'absolute',
+              resizeMode: 'contain',
+              marginTop: verticalScale(125),
+              marginLeft: scale(113),
+            }}
+          />
+          <View>
+            <Text
               style={{
                 alignSelf: 'center',
-              }}
-            />
-          </View>
-        ) : (
-          <TouchableOpacity
-            onPress={() => {
-              if (email.length >= 10 && emailCheck()) {
-                setLoading(true);
-                getId();
-              } else {
-                Alert.alert('Enter Valid Email');
-                setLoading(false);
-              }
-            }}>
-            <LinearGradient
-              colors={['#A363A9', '#FAB06D']}
+                color: '#F4BE2C',
+              }}>
+              Did someone forget their password?
+            </Text>
+            <Text
               style={{
-                borderRadius: moderateScale(100),
-                height: verticalScale(45),
+                alignSelf: 'center',
+                color: '#FFF',
+                marginTop: verticalScale(10),
+              }}>
+              That's okay...
+            </Text>
+            <Text
+              style={{
+                alignSelf: 'center',
+                color: '#FFF',
+                marginTop: verticalScale(10),
+              }}>
+              Just enter the email address you've used to
+            </Text>
+            <Text
+              style={{
+                alignSelf: 'center',
+                color: '#FFF',
+                marginTop: verticalScale(10),
+              }}>
+              register with us and we'll reset it.
+            </Text>
+          </View>
+          <View>
+            <TextInput
+              style={styles.textinput}
+              placeholder="Enter Registered Email"
+              placeholderTextColor="#FFF"
+              onChangeText={tempEmail => {
+                setEmail(tempEmail);
+              }}></TextInput>
+          </View>
+          {isloading == true ? (
+            <View
+              style={{
+                height: verticalScale(50),
                 width: scale(310),
                 marginTop: verticalScale(15),
                 alignSelf: 'center',
-              }}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}>
-              <Text
+              }}>
+              <ActivityIndicator
+                color="#FFF"
+                size={'large'}
                 style={{
-                  fontSize: moderateScale(25),
                   alignSelf: 'center',
-                  color: '#FFFFFF',
-                  margin: moderateScale(5),
-                  paddingBottom: verticalScale(10),
+                }}
+              />
+            </View>
+          ) : (
+            <TouchableOpacity
+              onPress={() => {
+                if (email.length >= 10 && emailCheck()) {
+                  setLoading(true);
+                  getId();
+                } else {
+                  Alert.alert('Enter Valid Email');
+                  setLoading(false);
+                }
+              }}>
+              <View
+                style={{
+                  marginTop: verticalScale(45),
+                  alignSelf: 'center',
+                  height: verticalScale(68),
+                  width: scale(250),
+                  marginBottom: verticalScale(30),
+                  backgroundColor: '#000',
+                  marginLeft: scale(20),
+                  marginRight: scale(20),
+                  borderRadius: moderateScale(10),
                 }}>
-                Continue
-              </Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        )}
-      </View>
+                <Text
+                  style={{
+                    fontSize: moderateScale(16),
+                    alignSelf: 'center',
+                    paddingTop: verticalScale(16),
+                    color: '#FFFFFF',
+                    margin: moderateScale(5),
+                  }}>
+                  Submit
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
+        </LinearGradient>
+      </ScrollView>
     </>
   );
 };
@@ -134,16 +212,19 @@ export default ForgotPassScreen;
 
 const styles = StyleSheet.create({
   textinput: {
-    fontSize: moderateScale(20),
-    borderColor: '#758283',
-    borderWidth: 1,
+    fontSize: moderateScale(12),
+    borderColor: '#FFF',
+    borderBottomWidth: 1,
+
+    borderBottomColor: '#FFFFFF80',
+    //borderWidth: 1,
     height: verticalScale(45),
-    borderRadius: moderateScale(100),
-    marginTop: verticalScale(35),
+    //borderRadius: moderateScale(100),
+    marginTop: verticalScale(25),
     marginLeft: scale(20),
     paddingLeft: moderateScale(15),
     marginRight: scale(20),
-    color: '#000000',
+    color: '#FFF',
   },
   forgotBtn: {
     marginTop: verticalScale(10),

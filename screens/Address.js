@@ -150,8 +150,33 @@ const AddressScreen = ({route, navigation}) => {
             style={{
               flex: 1,
               backgroundColor: '#FFF',
-              paddingBottom: verticalScale(30),
+              paddingBottom: verticalScale(100),
             }}>
+            <Picker
+              style={{
+                color: '#000',
+                width: scale(300),
+                fontSize: moderateScale(12),
+                marginLeft: scale(14),
+                marginTop: verticalScale(20),
+              }}
+              dropdownIconColor="#000"
+              dropdownIconRippleColor="#000"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={addressType}
+              onValueChange={itemValue => {
+                setAddressType(itemValue);
+              }}>
+              <Picker.Item
+                label="Choose Address Type"
+                value="Choose Address Type"
+              />
+              <Picker.Item label="HOME" value="HOME" />
+              <Picker.Item label="OFFICE" value="OFFICE" />
+              <Picker.Item label="OTHER" value="OTHER" />
+            </Picker>
+
             <View>
               <TextInput
                 defaultValue=""
@@ -169,38 +194,38 @@ const AddressScreen = ({route, navigation}) => {
                 style={styles.textinput}
                 placeholder="Enter Address Line 2"
                 placeholderTextColor="#758283"></TextInput>
-              <TextInput
-                defaultValue="Noida"
-                onChangeText={text => {
-                  setCity(text);
-                }}
-                style={styles.textinput}
-                placeholder="Enter City"
-                placeholderTextColor="#758283"></TextInput>
-              <TextInput
-                defaultValue="Uttar Pradesh"
-                onChangeText={text => {
-                  setState(text);
-                }}
-                style={styles.textinput}
-                placeholder="Enter State"
-                placeholderTextColor="#758283"></TextInput>
               <View
                 style={{
+                  flexDirection: 'row',
                   marginLeft: scale(25),
-                  marginRight: scale(25),
-                  borderColor: '#A363A9',
-                  borderWidth: 1,
-                  borderRadius: moderateScale(100),
-                  marginHorizontal: moderateScale(10),
-                  marginTop: verticalScale(20),
                 }}>
+                <TextInput
+                  defaultValue="Noida"
+                  onChangeText={text => {
+                    setCity(text);
+                  }}
+                  style={{
+                    fontSize: moderateScale(12),
+                    borderBottomColor: '#CAD5E2',
+                    borderBottomWidth: 1,
+                    marginTop: verticalScale(10),
+                    marginRight: scale(20),
+                    color: '#000000',
+                    height: verticalScale(50),
+                    width: scale(100),
+                  }}
+                  placeholder="Enter City"
+                  placeholderTextColor="#758283"></TextInput>
                 <Picker
                   style={{
-                    color: '#A363A9',
+                    color: '#000',
+                    width: scale(180),
+                    marginLeft: scale(10),
+                    marginTop: verticalScale(15),
+                    fontSize: moderateScale(12),
                   }}
-                  dropdownIconColor="#A363A9"
-                  dropdownIconRippleColor="#A363A9"
+                  dropdownIconColor="#000"
+                  dropdownIconRippleColor="#000"
                   onTouchCancel={true}
                   mode="dropdown"
                   selectedValue={pincode}
@@ -214,34 +239,39 @@ const AddressScreen = ({route, navigation}) => {
               </View>
               <View
                 style={{
-                  marginLeft: scale(25),
-                  marginRight: scale(25),
-                  borderColor: '#A363A9',
-                  borderWidth: 1,
-                  borderRadius: moderateScale(100),
-                  marginHorizontal: moderateScale(10),
-                  marginTop: verticalScale(20),
+                  flexDirection: 'row',
                 }}>
-                <Picker
-                  style={{
-                    color: '#A363A9',
+                <TextInput
+                  defaultValue="Uttar Pradesh"
+                  onChangeText={text => {
+                    setState(text);
                   }}
-                  dropdownIconColor="#A363A9"
-                  dropdownIconRippleColor="#A363A9"
-                  onTouchCancel={true}
-                  mode="dropdown"
-                  selectedValue={addressType}
-                  onValueChange={itemValue => {
-                    setAddressType(itemValue);
+                  style={{
+                    alignSelf: 'center',
+                    fontSize: moderateScale(12),
+                    borderBottomColor: '#CAD5E2',
+                    borderBottomWidth: 1,
+                    marginTop: verticalScale(10),
+                    marginRight: scale(20),
+                    color: '#000000',
+                    height: verticalScale(50),
+                    width: scale(100),
+                    marginLeft: scale(25),
+                  }}
+                  placeholder="Enter State"
+                  placeholderTextColor="#758283"></TextInput>
+                <Text
+                  style={{
+                    fontSize: moderateScale(12),
+                    marginTop: verticalScale(27),
+                    marginLeft: scale(60),
+                    borderBottomColor: '#CAD5E2',
+                    borderBottomWidth: 1,
+                    width: scale(100),
+                    color: '#000',
                   }}>
-                  <Picker.Item
-                    label="Choose Address Type"
-                    value="Choose Address Type"
-                  />
-                  <Picker.Item label="HOME" value="HOME" />
-                  <Picker.Item label="OFFICE" value="OFFICE" />
-                  <Picker.Item label="OTHER" value="OTHER" />
-                </Picker>
+                  India
+                </Text>
               </View>
             </View>
 
@@ -271,26 +301,27 @@ const AddressScreen = ({route, navigation}) => {
                 }}
                 style={{
                   height: verticalScale(40),
-                  width: scale(300),
+                  width: scale(150),
                   marginLeft: scale(30),
                   marginRight: scale(30),
                   alignSelf: 'center',
                   marginTop: verticalScale(20),
-                  borderRadius: moderateScale(100),
-                  borderWidth: 2,
-                  borderColor: '#A363A9',
+                  backgroundColor: '#5A2D94',
+                  borderRadius: moderateScale(10),
                 }}>
                 <View>
                   <Text
                     style={{
-                      fontSize: moderateScale(20),
+                      fontSize: moderateScale(12),
                       marginTop: verticalScale(3),
-                      color: '#A363A9',
+                      color: '#FFF',
                       textAlign: 'center',
+                      fontWeight: 'bold',
+                      paddingTop: verticalScale(7),
                       // paddingTop: verticalScale(10),
                       // paddingBottom: verticalScale(10),
                     }}>
-                    Add To My Addresses
+                    Save Addresses
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -308,38 +339,47 @@ const AddressScreen = ({route, navigation}) => {
             <View>
               <Text
                 style={{
-                  fontSize: moderateScale(20),
-                  fontWeight: 'bold',
+                  fontSize: moderateScale(14),
+                  fontWeight: '400',
+                  color: '#5A2D94',
                   marginLeft: scale(30),
                   marginTop: verticalScale(20),
                 }}>
-                My Saved Addresses
+                MY SAVED ADDRESSES :
               </Text>
               {myAddresses.map(key => (
                 <View
                   style={{
-                    height: verticalScale(250),
+                    flexDirection: 'row',
+                    height: verticalScale(60),
                     width: scale(300),
+                    borderColor: '#FFF',
+                    borderBottomWidth: 1,
+                    borderBottomColor: '#CAD5E2',
                     alignSelf: 'center',
-                    marginTop: verticalScale(20),
-                    backgroundColor: '#FFF',
-                    elevation: 5,
-                    borderRadius: moderateScale(20),
-                    padding: moderateScale(10),
+                    marginTop: verticalScale(10),
                   }}>
                   <Text
                     style={{
                       fontWeight: 'bold',
-                      fontSize: moderateScale(25),
+                      marginLeft: scale(10),
+                      marginTop: verticalScale(12),
+                      fontSize: moderateScale(18),
+                      color: '#5A2D94',
+                      width: scale(60),
                     }}>
-                    {' '}
-                    {key.tags}{' '}
+                    {key.tags}
                   </Text>
-                  <Text style={styles.text}> {key.address1} </Text>
-                  <Text style={styles.text}> {key.address2} </Text>
-                  <Text style={styles.text}> {key.city} </Text>
-                  <Text style={styles.text}> {key.state} </Text>
-                  <Text style={styles.text}> {key.pinCode} </Text>
+                  <Text
+                    style={{
+                      width: scale(200),
+                      marginLeft: scale(20),
+                      marginRight: scale(20),
+                      marginTop: verticalScale(10),
+                    }}>
+                    {key.address1},{key.address2},{key.city},{key.state},{' '}
+                    {key.pinCode}
+                  </Text>
                 </View>
               ))}
             </View>
@@ -355,17 +395,14 @@ export default AddressScreen;
 const styles = StyleSheet.create({
   textinput: {
     alignSelf: 'center',
-    fontSize: moderateScale(18),
-    borderColor: '#758283',
-    borderWidth: 1,
-    borderRadius: moderateScale(100),
-    marginTop: verticalScale(15),
-    marginLeft: scale(20),
-    padding: moderateScale(15),
+    fontSize: moderateScale(12),
+    borderBottomColor: '#CAD5E2',
+    borderBottomWidth: 1,
+    marginTop: verticalScale(10),
     marginRight: scale(20),
     color: '#000000',
     height: verticalScale(50),
-    width: scale(300),
+    width: scale(280),
   },
   text: {
     fontSize: moderateScale(18),

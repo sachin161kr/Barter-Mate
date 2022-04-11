@@ -3,6 +3,7 @@ import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 import icon1 from '../assets/icon1.png';
+import edit from '../assets/edit.png';
 
 const MyProfileScreen = ({route, navigation}) => {
   var name = route.params.name;
@@ -19,81 +20,90 @@ const MyProfileScreen = ({route, navigation}) => {
         }}>
         <View
           style={{
-            alignSelf: 'center',
             marginTop: verticalScale(30),
+            alignSelf: 'center',
           }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              marginTop: verticalScale(30),
+            }}>
+            <Text
+              style={{
+                height: verticalScale(80),
+                width: scale(85),
+                backgroundColor: '#A363A9',
+                fontWeight: 'bold',
+                color: '#FFF',
+                fontSize: moderateScale(35),
+                textAlign: 'center',
+
+                paddingTop: verticalScale(18),
+                marginBottom: verticalScale(20),
+              }}>
+              {name.substring(0, 1)}
+            </Text>
+            <Text
+              style={{
+                marginLeft: scale(30),
+                fontSize: moderateScale(20),
+                color: '#5A2D94',
+                fontWeight: '700',
+                marginTop: verticalScale(30),
+              }}>
+              {name}
+            </Text>
+          </View>
           <Text
-            //source={icon1}
             style={{
-              height: verticalScale(80),
-              width: scale(85),
-              backgroundColor: '#A363A9',
-              alignSelf: 'center',
-              fontWeight: 'bold',
-              color: '#FFF',
-              fontSize: moderateScale(35),
-              textAlign: 'center',
-              paddingTop: verticalScale(18),
-              borderRadius: moderateScale(300),
+              color: '#5A2D94',
               marginBottom: verticalScale(20),
+              fontWeight: 'bold',
+              marginTop: verticalScale(30),
             }}>
-            {name.substring(0, 1)}
+            PERSONAL DETAILS :
           </Text>
-          <Text style={styles.text}>Name : {name}</Text>
-          <Text style={styles.text}>Email : {email}</Text>
-          <Text style={styles.text}>Phone : {phone}</Text>
+          <Text style={styles.text}>{name}</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            <Text style={styles.text}>{email}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Forgot Screen');
+              }}>
+              <Image
+                source={edit}
+                style={{
+                  marginTop: verticalScale(10),
+                  marginLeft: scale(30),
+                }}
+              />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            <Text style={styles.text}>{phone}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Edit Phone Screen', {
+                  phone: `${phone}`,
+                  userId: `${userId}`,
+                });
+              }}>
+              <Image
+                source={edit}
+                style={{
+                  marginTop: verticalScale(10),
+                  marginLeft: scale(30),
+                }}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Forgot Screen');
-          }}>
-          <View
-            style={{
-              alignSelf: 'center',
-              borderColor: '#A363A9',
-              borderWidth: 2,
-              width: scale(280),
-              marginTop: verticalScale(20),
-              borderRadius: moderateScale(100),
-              padding: moderateScale(10),
-            }}>
-            <Text
-              style={{
-                fontSize: moderateScale(20),
-                textAlign: 'center',
-                color: '#A363A9',
-              }}>
-              Edit Password
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Edit Phone Screen', {
-              phone: `${phone}`,
-              userId: `${userId}`,
-            });
-          }}>
-          <View
-            style={{
-              alignSelf: 'center',
-              borderColor: '#A363A9',
-              borderWidth: 2,
-              width: scale(280),
-              marginTop: verticalScale(20),
-              borderRadius: moderateScale(100),
-              padding: moderateScale(10),
-            }}>
-            <Text
-              style={{
-                fontSize: moderateScale(20),
-                textAlign: 'center',
-                color: '#A363A9',
-              }}>
-              Edit Phone Number
-            </Text>
-          </View>
-        </TouchableOpacity>
       </View>
     </>
   );
@@ -103,7 +113,13 @@ export default MyProfileScreen;
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(12),
     marginBottom: verticalScale(10),
+    color: '#000',
+    paddingBottom: verticalScale(10),
+    width: scale(220),
+    marginTop: verticalScale(10),
+    borderBottomColor: '#CAD5E2',
+    borderBottomWidth: 1,
   },
 });

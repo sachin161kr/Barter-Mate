@@ -132,6 +132,7 @@ const RegisterScreen = ({navigation, route}) => {
                 fontSize: moderateScale(16),
                 alignSelf: 'center',
                 color: '#FFF',
+                fontWeight: '300',
                 marginTop: verticalScale(20),
               }}>
               Welcome
@@ -140,6 +141,7 @@ const RegisterScreen = ({navigation, route}) => {
               style={{
                 fontSize: moderateScale(28),
                 textAlign: 'center',
+                fontWeight: '600',
                 marginTop: verticalScale(10),
                 color: '#FFF',
               }}>

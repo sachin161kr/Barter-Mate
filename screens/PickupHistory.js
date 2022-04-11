@@ -97,6 +97,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
                     color: '#000',
                   }}>
                   {key.category}
+                  {key.subcategory}
                 </Text>
                 <View
                   style={{

@@ -148,6 +148,7 @@ const LoginScreen = ({navigation, route}) => {
             style={{
               fontSize: moderateScale(30),
               textAlign: 'left',
+              fontWeight: '600',
               alignSelf: 'center',
               marginTop: verticalScale(40),
               color: '#FFF',
@@ -231,7 +232,7 @@ const LoginScreen = ({navigation, route}) => {
             </View>
           ) : (
             <ActivityIndicator
-              color="#A363A9"
+              color="#FFF"
               size={'large'}
               style={{
                 marginTop: verticalScale(30),
@@ -273,7 +274,7 @@ const LoginScreen = ({navigation, route}) => {
                   style={{
                     fontSize: moderateScale(15),
                     color: '#2827CC',
-                    paddingTop: verticalScale(10),
+                    paddingTop: verticalScale(11),
                     marginLeft: scale(5),
                   }}>
                   Sign Up
@@ -295,9 +296,7 @@ const styles = StyleSheet.create({
     borderColor: '#FFF',
     borderBottomWidth: 1,
     borderBottomColor: '#FFFFFF80',
-    //borderWidth: 1,
     height: verticalScale(45),
-    //borderRadius: moderateScale(100),
     marginTop: verticalScale(15),
     marginLeft: scale(20),
     paddingLeft: moderateScale(15),

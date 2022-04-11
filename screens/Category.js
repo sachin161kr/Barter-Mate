@@ -412,14 +412,15 @@ const CategoryScreen = ({navigation}) => {
                           color: '#EB4D4B',
                           backgroundColor: '#FFF',
                           fontSize: moderateScale(20),
-                          height: verticalScale(40),
+                          height: verticalScale(35),
                           marginBottom: verticalScale(10),
                           width: scale(200),
+                          fontWeight: '800',
                           textAlign: 'center',
                           alignSelf: 'center',
-                          paddingTop: verticalScale(5),
+                          paddingTop: verticalScale(3),
                         }}>
-                        Sign-Up
+                        Sign Up
                       </Text>
                     )}
                   </TouchableOpacity>
@@ -444,10 +445,12 @@ const CategoryScreen = ({navigation}) => {
                           alignSelf: 'center',
                           color: '#EB4D4B',
                           backgroundColor: '#FFF',
-                          height: verticalScale(40),
+                          height: verticalScale(35),
                           width: scale(200),
+                          fontWeight: '800',
                           textAlign: 'center',
-                          paddingTop: verticalScale(5),
+                          paddingTop: verticalScale(3),
+                          marginTop: verticalScale(15),
                         }}>
                         Guest
                       </Text>
@@ -486,18 +489,19 @@ const CategoryScreen = ({navigation}) => {
                   <View
                     style={{
                       height: verticalScale(45),
-                      width: scale(320),
+                      width: scale(280),
                       marginBottom: verticalScale(10),
                       backgroundColor: '#000',
+                      borderRadius: moderateScale(10),
                       alignSelf: 'center',
                     }}>
                     <Text
                       style={{
                         color: '#FFF',
-                        fontSize: moderateScale(20),
-                        textAlignVertical: 'center',
-                        textAlign: 'center',
+                        fontSize: moderateScale(18),
                         height: verticalScale(45),
+                        paddingLeft: scale(60),
+                        paddingTop: verticalScale(10),
                         width: scale(320),
                       }}>
                       Login As {username.substring(0, 10)} ...
@@ -537,6 +541,7 @@ const CategoryScreen = ({navigation}) => {
                       width: scale(280),
                       marginBottom: verticalScale(25),
                       alignSelf: 'center',
+                      borderRadius: moderateScale(10),
                       marginHorizontal: scale(10),
                     }}>
                     <Text
@@ -610,10 +615,12 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    backgroundColor: '#EB4D4B',
+    backgroundColor: '#EF6563',
     height: verticalScale(400),
     marginHorizontal: scale(20),
-    borderTopRightRadius: moderateScale(20),
-    borderTopLeftRadius: moderateScale(20),
+    borderTopRightRadius: moderateScale(10),
+    borderTopLeftRadius: moderateScale(10),
   },
 });
+
+//<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="105" height="90" viewBox="0 0 105 90">
