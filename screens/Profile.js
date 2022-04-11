@@ -57,174 +57,151 @@ const ProfileScreen = ({route, navigation}) => {
 
   return (
     <>
-      <ScrollView>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#FFF',
+          paddingBottom: verticalScale(380),
+        }}>
+        <Text
+          style={{
+            fontSize: moderateScale(20),
+            fontWeight: 'bold',
+            marginLeft: scale(35),
+            marginTop: verticalScale(15),
+            color: '#5A2D94',
+          }}>
+          Hey! {username}
+        </Text>
         <View
           style={{
-            flex: 1,
-            backgroundColor: '#FFF',
-            paddingBottom: verticalScale(30),
+            marginLeft: scale(30.17),
+            marginTop: verticalScale(25),
+            marginRight: scale(40),
           }}>
-          <Text
-            style={{
-              fontSize: moderateScale(20),
-              fontWeight: 'bold',
-              marginLeft: scale(35),
-              marginTop: verticalScale(15),
-            }}>
-            Hey! {username}
-          </Text>
-          <View
-            style={{
-              marginLeft: scale(30.17),
-              marginTop: verticalScale(15),
-              marginRight: scale(40),
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('My Profile Screen', {
-                  name: `${name}`,
-                  email: `${email}`,
-                  phone: `${phone}`,
-                  userId: `${userId}`,
-                });
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#E7E7E7',
-                  marginLeft: scale(5),
-                  height: verticalScale(53.1),
-                }}>
-                <Image
-                  source={icon1}
-                  style={{
-                    height: verticalScale(35),
-                    width: scale(35),
-                    marginTop: verticalScale(5),
-                    marginRight: scale(4),
-                  }}
-                />
-                <Text style={styles.options}>My Profile</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Address Screen', {
-                  userId: `${userId}`,
-                  email: `${email}`,
-                  phone: `${phone}`,
-                  landMark: `${landmark}`,
-                  pickupScreen: `${false}`,
-                });
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#E7E7E7',
-                  height: verticalScale(53.1),
-                }}>
-                <Image
-                  source={icon2}
-                  style={{
-                    height: verticalScale(35),
-                    width: scale(45),
-                    marginTop: verticalScale(5),
-                  }}
-                />
-                <Text style={styles.options}>My Addresses</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={async () => {
-                var tempEmail = await AsyncStorage.getItem('email');
-                navigation.navigate('Pickup History Screen', {
-                  email: `${tempEmail}`,
-                });
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#E7E7E7',
-                  height: verticalScale(53.1),
-                }}>
-                <Image
-                  source={icon3}
-                  style={{
-                    height: verticalScale(35),
-                    width: scale(40),
-                    marginTop: verticalScale(5),
-                    marginRight: scale(5),
-                  }}
-                />
-                <Text style={styles.options}>Pickup History</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                Alert.alert(
-                  'Phone - (+91)88-2626-7661\nEmail - info@bartermate.in',
-                );
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#E7E7E7',
-                  height: verticalScale(53.1),
-                }}>
-                <Image
-                  source={icon4}
-                  style={{
-                    height: verticalScale(35),
-                    width: scale(40),
-                    marginTop: verticalScale(5),
-                    marginRight: scale(5),
-                  }}
-                />
-                <Text style={styles.options}>Support</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
           <TouchableOpacity
-            style={{
-              height: verticalScale(40),
-              width: scale(300),
-              marginLeft: scale(30),
-              marginRight: scale(30),
-              alignSelf: 'center',
-              marginTop: verticalScale(290),
-              borderRadius: moderateScale(100),
-              borderWidth: 2,
-              borderColor: '#A363A9',
-              // marginLeft: scale(15),
-              // marginRight: scale(15),
-              // padding: moderateScale(6),
-              // marginBottom: verticalScale(30),
-            }}
             onPress={() => {
-              setUser();
-              navigation.navigate('Category Screen');
-              Alert.alert('You are logged out!');
+              navigation.navigate('My Profile Screen', {
+                name: `${name}`,
+                email: `${email}`,
+                phone: `${phone}`,
+                userId: `${userId}`,
+              });
             }}>
-            <View>
-              <Text
+            <View
+              style={{
+                flexDirection: 'row',
+                borderBottomWidth: 1,
+                borderBottomColor: '#E7E7E7',
+                marginLeft: scale(5),
+                height: verticalScale(53.1),
+              }}>
+              <Image
+                source={icon1}
                 style={{
-                  fontSize: moderateScale(20),
-                  marginTop: verticalScale(3),
-                  color: '#A363A9',
-                  textAlign: 'center',
-                  // paddingTop: verticalScale(10),
-                  // paddingBottom: verticalScale(10),
-                }}>
-                LogOut
-              </Text>
+                  height: verticalScale(35),
+                  width: scale(35),
+                  marginTop: verticalScale(5),
+                  marginRight: scale(4),
+                }}
+              />
+              <Text style={styles.options}>My Profile</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Address Screen', {
+                userId: `${userId}`,
+                email: `${email}`,
+                phone: `${phone}`,
+                landMark: `${landmark}`,
+                pickupScreen: `${false}`,
+              });
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                borderBottomWidth: 1,
+                borderBottomColor: '#E7E7E7',
+                height: verticalScale(53.1),
+              }}>
+              <Image
+                source={icon2}
+                style={{
+                  height: verticalScale(35),
+                  width: scale(45),
+                  marginTop: verticalScale(5),
+                }}
+              />
+              <Text style={styles.options}>My Addresses</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={async () => {
+              var tempEmail = await AsyncStorage.getItem('email');
+              navigation.navigate('Pickup History Screen', {
+                email: `${tempEmail}`,
+              });
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                borderBottomWidth: 1,
+                borderBottomColor: '#E7E7E7',
+                height: verticalScale(53.1),
+              }}>
+              <Image
+                source={icon3}
+                style={{
+                  height: verticalScale(35),
+                  width: scale(40),
+                  marginTop: verticalScale(5),
+                  marginRight: scale(5),
+                }}
+              />
+              <Text style={styles.options}>Pickup History</Text>
             </View>
           </TouchableOpacity>
         </View>
-      </ScrollView>
+        <TouchableOpacity
+          style={{
+            height: verticalScale(40),
+            width: scale(300),
+            marginLeft: scale(30),
+            marginRight: scale(30),
+            alignSelf: 'center',
+            width: scale(220),
+            backgroundColor: '#000',
+            marginTop: verticalScale(20),
+            borderRadius: moderateScale(10),
+            borderColor: '#A363A9',
+            // marginLeft: scale(15),
+            // marginRight: scale(15),
+            // padding: moderateScale(6),
+            // marginBottom: verticalScale(30),
+          }}
+          onPress={() => {
+            setUser();
+            navigation.navigate('Category Screen');
+            Alert.alert('You are logged out!');
+          }}>
+          <View>
+            <Text
+              style={{
+                fontSize: moderateScale(15),
+                marginTop: verticalScale(3),
+                paddingTop: verticalScale(5),
+                color: '#FFF',
+
+                textAlign: 'center',
+                // paddingTop: verticalScale(10),
+                // paddingBottom: verticalScale(10),
+              }}>
+              LogOut
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </>
   );
 };
@@ -234,7 +211,7 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
   options: {
     height: verticalScale(20),
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(12),
     marginLeft: scale(16.17),
     marginBottom: verticalScale(30),
     marginTop: verticalScale(16),

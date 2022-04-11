@@ -129,7 +129,6 @@ const PickupHistoryScreen = ({route, navigation}) => {
                         style={{
                           fontSize: moderateScale(20),
                           color: '#FFF',
-
                           padding: moderateScale(4),
                         }}>
                         Details

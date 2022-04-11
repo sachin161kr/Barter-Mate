@@ -247,74 +247,109 @@ const PickupScreen = ({route, navigation}) => {
     </>
   ) : (
     <>
-      <ScrollView
-        style={{
-          backgroundColor: '#FFFFFF',
-        }}>
+      <ScrollView>
         <View
           style={{
-            height: verticalScale(200),
-            width: scale(250),
-            alignSelf: 'center',
-            marginTop: verticalScale(12),
+            backgroundColor: '#FFFFFF',
+            paddingBottom: verticalScale(80),
           }}>
-          <Image
+          <View>
+            <Text
+              style={{
+                backgroundColor: '#EF6563',
+                width: scale(40),
+                height: verticalScale(40),
+                color: '#FFF',
+                fontSize: moderateScale(30),
+                marginLeft: scale(30),
+                fontWeight: 'bold',
+                textAlign: 'center',
+                textAlignVertical: 'center',
+                borderRadius: moderateScale(7),
+                marginTop: verticalScale(30),
+              }}>
+              {name.substring(0, 1)}
+            </Text>
+            <Text
+              style={{
+                color: '#5A2D94',
+                marginLeft: scale(30),
+                marginTop: verticalScale(10),
+              }}>
+              Hello {name} !
+            </Text>
+            <Text
+              style={{
+                marginLeft: scale(30),
+                marginTop: verticalScale(10),
+                color: '#000',
+                fontWeight: '300',
+                fontSize: moderateScale(18),
+              }}>
+              More Productive
+            </Text>
+            <Text
+              style={{
+                marginLeft: scale(30),
+                marginTop: verticalScale(5),
+                color: '#000',
+                fontWeight: '300',
+                fontSize: moderateScale(18),
+              }}>
+              with Comfortable Place
+            </Text>
+          </View>
+          <Text
             style={{
-              height: 200,
-              width: 300,
+              fontSize: moderateScale(25),
               alignSelf: 'center',
-            }}
-            source={pickup}
-          />
-        </View>
+              color: '#5A2D94',
+              fontWeight: '600',
+              marginTop: verticalScale(30),
+              marginBottom: verticalScale(20),
+            }}>
+            {tempCategory} Picked!
+          </Text>
 
-        <Text
-          style={{
-            fontSize: moderateScale(25),
-            alignSelf: 'center',
-            color: '#000000',
-            fontWeight: '600',
-            marginBottom: verticalScale(20),
-          }}>
-          {tempCategory} Picked!
-        </Text>
+          <View>
+            <Text
+              style={{
+                fontSize: moderateScale(14),
+                fontWeight: '300',
+                color: '#5A2D94',
+                //borderWidth: 1,
+                width: scale(150),
+                textAlign: 'center',
+                //position: 'absolute',
+                //borderColor: '#000',
+                backgroundColor: '#FFF',
+                alignSelf: 'center',
+              }}>
+              Add More Categories
+            </Text>
+          </View>
 
-        <Text
-          style={{
-            fontSize: moderateScale(20),
-            fontWeight: '300',
-            color: '#A363A9',
-            marginLeft: scale(25),
-          }}>
-          Add More Categories
-        </Text>
-
-        <View
-          style={{
-            alignSelf: 'center',
-            marginTop: verticalScale(10),
-            backgroundColor: '#FFF',
-            flexDirection: 'row',
-            elevation: 5,
-            borderRadius: moderateScale(10),
-            width: scale(300),
-            flexWrap: 'wrap',
-            height: verticalScale(90),
-            paddingTop: verticalScale(5),
-            paddingLeft: scale(45),
-            marginBottom: verticalScale(20),
-          }}>
           <View
             style={{
+              alignSelf: 'center',
+              marginTop: verticalScale(10),
+              backgroundColor: '#FFF',
               flexDirection: 'row',
+              borderRadius: moderateScale(10),
+              width: scale(300),
+              flexWrap: 'wrap',
+              borderWidth: 2,
+              borderColor: '#5A2D94',
+              height: verticalScale(150),
+              paddingTop: verticalScale(12),
+              paddingLeft: scale(25),
+              marginBottom: verticalScale(20),
             }}>
             {tempCategory == 'Glass' ? (
               <></>
             ) : (
               <View
                 style={{
-                  //borderWidth: 1,
-                  //borderColor: '#000',
                   height: verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
@@ -328,12 +363,7 @@ const PickupScreen = ({route, navigation}) => {
                 <Text style={styles.multiSelectText}>Glass</Text>
               </View>
             )}
-          </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
             {tempCategory == 'Metal' ? (
               <></>
             ) : (
@@ -343,6 +373,7 @@ const PickupScreen = ({route, navigation}) => {
                   //borderColor: '#000',
                   height: verticalScale(25),
                   width: scale(100),
+                  marginRight: scale(30),
                   flexDirection: 'row',
                 }}>
                 <CheckBox
@@ -354,12 +385,7 @@ const PickupScreen = ({route, navigation}) => {
                 <Text style={styles.multiSelectText}>Metal</Text>
               </View>
             )}
-          </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
             {tempCategory == 'Plastic' ? (
               <></>
             ) : (
@@ -380,21 +406,18 @@ const PickupScreen = ({route, navigation}) => {
                 <Text style={styles.multiSelectText}>Plastic</Text>
               </View>
             )}
-          </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
             {tempCategory == 'Paper' ? (
               <></>
             ) : (
               <View
                 style={{
-                  //borderWidth: 1,
-                  //borderColor: '#000',
+                  // borderWidth: 1,
+                  // borderColor: '#000',
+                  marginRight: scale(30),
                   height: verticalScale(25),
                   width: scale(100),
+                  marginTop: verticalScale(20),
                   flexDirection: 'row',
                 }}>
                 <CheckBox
@@ -406,22 +429,18 @@ const PickupScreen = ({route, navigation}) => {
                 <Text style={styles.multiSelectText}>Paper</Text>
               </View>
             )}
-          </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
             {tempCategory == 'Electronics' ? (
               <></>
             ) : (
               <View
                 style={{
-                  //borderWidth: 1,
-                  //borderColor: '#000',
+                  // borderWidth: 1,
+                  // borderColor: '#000',
                   height: verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
+                  marginTop: verticalScale(20),
                 }}>
                 <CheckBox
                   disabled={false}
@@ -432,21 +451,17 @@ const PickupScreen = ({route, navigation}) => {
                 <Text style={styles.multiSelectText}>Electronics</Text>
               </View>
             )}
-          </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
             {tempCategory == 'Corrugated Box' ? (
               <></>
             ) : (
               <View
                 style={{
-                  //borderWidth: 1,
-                  //borderColor: '#000',
+                  // borderWidth: 1,
+                  // borderColor: '#000',
                   height: verticalScale(25),
-                  width: scale(100),
+                  width: scale(200),
+                  marginTop: verticalScale(20),
                   flexDirection: 'row',
                 }}>
                 <CheckBox
@@ -459,228 +474,225 @@ const PickupScreen = ({route, navigation}) => {
               </View>
             )}
           </View>
-        </View>
 
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            minimumDate={date}
-            mode="date"
-            display="default"
-            onChange={onChange}
-          />
-        )}
-
-        <View style={styles.pickerStyle}>
-          <Picker
-            style={{
-              color: '#A363A9',
-            }}
-            dropdownIconColor="#A363A9"
-            dropdownIconRippleColor="#A363A9"
-            onTouchCancel={true}
-            mode="dropdown"
-            selectedValue={currentAddress}
-            onValueChange={itemValue => {
-              setCurrentAddress(itemValue);
-            }}>
-            <Picker.Item
-              label="Choose Pickup Address"
-              value="Choose Pickup Address"
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              minimumDate={date}
+              mode="date"
+              display="default"
+              onChange={onChange}
             />
-            {myAddresses.map(key => (
-              <Picker.Item
-                label={key.tags + ' , ' + key.address1}
-                value={key.tags + ' , ' + key.address1}
-              />
-            ))}
-          </Picker>
-        </View>
+          )}
 
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Address Screen', {
-              userId: `${userId}`,
-              email: `${email}`,
-              phone: `${phone}`,
-              landMark: `${tempLandmark}`,
-              loadAgain: `${loadAgain}`,
-              itemSelected: `${tempCategory}`,
-              name: `${name}`,
-              pincode: `${pincode}`,
-            });
-          }}>
-          <View
-            style={{
-              marginLeft: scale(20),
-              height: verticalScale(45),
-              marginRight: scale(20),
-              borderColor: '#A363A9',
-              borderWidth: 1,
-              borderRadius: moderateScale(100),
-              marginHorizontal: moderateScale(10),
-              marginTop: verticalScale(10),
-              paddingTop: verticalScale(5),
-            }}>
-            <Text
+          <View style={styles.pickerStyle}>
+            <Picker
               style={{
-                fontSize: moderateScale(18),
-                paddingTop: verticalScale(5),
-                textAlign: 'center',
-                color: '#A363A9',
+                color: '#5A2D94',
+              }}
+              dropdownIconColor="#5A2D94"
+              dropdownIconRippleColor="#5A2D94"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={currentAddress}
+              onValueChange={itemValue => {
+                setCurrentAddress(itemValue);
               }}>
-              Add New Address
-            </Text>
+              <Picker.Item
+                label="Choose Pickup Address"
+                value="Choose Pickup Address"
+              />
+              {myAddresses.map(key => (
+                <Picker.Item
+                  label={key.tags + ' , ' + key.address1}
+                  value={key.tags + ' , ' + key.address1}
+                />
+              ))}
+            </Picker>
           </View>
-        </TouchableOpacity>
 
-        <View
-          style={{
-            marginLeft: scale(20),
-            marginRight: scale(20),
-            borderColor: '#A363A9',
-            borderWidth: 1,
-            borderRadius: moderateScale(100),
-            marginHorizontal: moderateScale(10),
-            marginTop: verticalScale(10),
-          }}>
-          <Picker
-            style={{
-              color: '#A363A9',
-            }}
-            dropdownIconColor="#A363A9"
-            dropdownIconRippleColor="#A363A9"
-            onTouchCancel={true}
-            mode="dropdown"
-            selectedValue={pincode}
-            onValueChange={itemValue => {
-              setPincode(itemValue);
-            }}>
-            <Picker.Item label="Choose Pincode" value="Choose Pincode" />
-            {allPincodes.map(key => (
-              <Picker.Item label={key} value={key} />
-            ))}
-          </Picker>
-        </View>
-
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginLeft: scale(10),
-          }}>
           <TouchableOpacity
             onPress={() => {
-              setShow(true);
+              navigation.navigate('Address Screen', {
+                userId: `${userId}`,
+                email: `${email}`,
+                phone: `${phone}`,
+                landMark: `${tempLandmark}`,
+                loadAgain: `${loadAgain}`,
+                itemSelected: `${tempCategory}`,
+                name: `${name}`,
+                pincode: `${pincode}`,
+              });
             }}>
             <View
               style={{
-                flexDirection: 'row',
-                height: verticalScale(50),
-                borderRadius: moderateScale(100),
-                marginTop: verticalScale(10),
                 alignSelf: 'center',
-                //borderWidth: 1,
-                borderColor: '#000',
-                width: scale(180),
+                width: scale(200),
+                height: verticalScale(30),
+                borderColor: '#5A2D94',
+                borderWidth: 1,
+                borderRadius: moderateScale(10),
+                marginHorizontal: moderateScale(10),
+                marginTop: verticalScale(10),
+                paddingTop: verticalScale(5),
               }}>
-              <Image
-                source={calender}
+              <Text
                 style={{
-                  height: verticalScale(50),
-                  width: scale(50),
-                  resizeMode: 'contain',
-                  marginLeft: scale(20),
-                  //marginTop: verticalScale(15),
-                }}
-              />
-
-              <View
-                style={{
-                  marginLeft: scale(15),
-                  justifyContent: 'center',
+                  fontSize: moderateScale(14),
+                  textAlign: 'center',
+                  color: '#5A2D94',
                 }}>
-                <Text
-                  style={{
-                    fontSize: moderateScale(15),
-                    textAlign: 'center',
-                    color: '#000',
-                  }}>
-                  {`${dateLabel}`}
-                </Text>
-              </View>
+                Add New Address
+              </Text>
             </View>
           </TouchableOpacity>
-        </View>
 
-        {isLoading == false ? (
-          <View style={styles.pickupBtn}>
+          <View
+            style={{
+              marginLeft: scale(20),
+              marginRight: scale(20),
+              borderRadius: moderateScale(100),
+              marginHorizontal: moderateScale(10),
+              marginTop: verticalScale(10),
+            }}>
+            <Picker
+              style={{
+                color: '#5A2D94',
+              }}
+              dropdownIconColor="#5A2D94"
+              dropdownIconRippleColor="#5A2D94"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={pincode}
+              onValueChange={itemValue => {
+                setPincode(itemValue);
+              }}>
+              <Picker.Item label="Choose Pincode" value="Choose Pincode" />
+              {allPincodes.map(key => (
+                <Picker.Item label={key} value={key} />
+              ))}
+            </Picker>
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginLeft: scale(10),
+            }}>
             <TouchableOpacity
               onPress={() => {
-                //addToList();
-                if (
-                  currentAddress != 'Choose Pickup Address' &&
-                  dateLabel != 'Pick A Date' &&
-                  pincode != 'Choose Pincode'
-                ) {
-                  handlePickeup();
-                } else {
-                  Alert.alert('Enter Valid Details');
-                }
+                setShow(true);
               }}>
-              <LinearGradient
-                colors={['#A363A9', '#FAB06D']}
+              <View
                 style={{
+                  flexDirection: 'row',
+                  height: verticalScale(50),
                   borderRadius: moderateScale(100),
-                  height: verticalScale(45),
-                }}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}>
-                <Text
+                  marginTop: verticalScale(10),
+                  alignSelf: 'center',
+                  //borderWidth: 1,
+                  borderColor: '#000',
+                  width: scale(180),
+                }}>
+                <Image
+                  source={calender}
                   style={{
-                    fontSize: moderateScale(20),
-                    alignSelf: 'center',
-                    color: '#FFFFFF',
-                    margin: moderateScale(5),
-                    height: verticalScale(45),
-                    paddingTop: verticalScale(4),
-                    //paddingBottom: verticalScale(15),
+                    height: verticalScale(50),
+                    width: scale(50),
+                    resizeMode: 'contain',
+                    marginLeft: scale(20),
+                    //marginTop: verticalScale(15),
+                  }}
+                />
+
+                <View
+                  style={{
+                    marginLeft: scale(15),
+                    justifyContent: 'center',
                   }}>
-                  Send Pickup Request
-                </Text>
-              </LinearGradient>
+                  <Text
+                    style={{
+                      fontSize: moderateScale(15),
+                      textAlign: 'center',
+                      color: '#5A2D94',
+                    }}>
+                    {`${dateLabel}`}
+                  </Text>
+                </View>
+              </View>
             </TouchableOpacity>
           </View>
-        ) : (
-          <ActivityIndicator
-            color="#A363A9"
-            size={'large'}
-            style={{
-              marginTop: verticalScale(30),
-            }}
-          />
-        )}
 
-        <View>
-          <TouchableOpacity
-            onPress={() => {
-              setUser();
-              navigation.navigate('Category Screen');
-              Alert.alert('You are logged out!');
-            }}>
-            <Text
+          {isLoading == false ? (
+            <View style={styles.pickupBtn}>
+              <TouchableOpacity
+                onPress={() => {
+                  //addToList();
+                  if (
+                    currentAddress != 'Choose Pickup Address' &&
+                    dateLabel != 'Pick A Date' &&
+                    pincode != 'Choose Pincode'
+                  ) {
+                    handlePickeup();
+                  } else {
+                    Alert.alert('Enter Valid Details');
+                  }
+                }}>
+                <View
+                  style={{
+                    borderRadius: moderateScale(10),
+                    height: verticalScale(45),
+                    backgroundColor: '#000',
+                    width: scale(220),
+                    alignSelf: 'center',
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: moderateScale(12),
+                      alignSelf: 'center',
+                      color: '#FFFFFF',
+                      margin: moderateScale(5),
+                      height: verticalScale(45),
+                      paddingTop: verticalScale(8),
+                      //paddingBottom: verticalScale(15),
+                    }}>
+                    Send Pickup Request
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <ActivityIndicator
+              color="#A363A9"
+              size={'large'}
               style={{
-                fontSize: moderateScale(20),
-                textAlign: 'center',
-                marginTop: verticalScale(10),
-                color: '#A363A9',
-                paddingBottom: verticalScale(20),
-                alignSelf: 'center',
+                marginTop: verticalScale(30),
+              }}
+            />
+          )}
+
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                setUser();
+                navigation.navigate('Category Screen');
+                Alert.alert('You are logged out!');
               }}>
-              Logout
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  fontSize: moderateScale(18),
+                  textAlign: 'center',
+                  marginTop: verticalScale(2),
+                  color: '#A363A9',
+                  paddingBottom: verticalScale(20),
+                  alignSelf: 'center',
+                }}>
+                Logout
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </>
@@ -716,24 +728,16 @@ const styles = StyleSheet.create({
   pickerStyle: {
     marginLeft: scale(20),
     height: verticalScale(45),
-    marginTop: verticalScale(10),
-    borderColor: '#A363A9',
+    //borderColor: '#A363A9',
     marginRight: scale(20),
-    borderRadius: moderateScale(100),
-    borderWidth: 1,
+    // borderRadius: moderateScale(100),
+    //borderWidth: 1,
   },
-  multiSelectView: {
-    height: verticalScale(15),
-    width: scale(15),
-    borderWidth: 1,
-    borderRadius: moderateScale(3),
-    borderColor: '#000',
-    backgroundColor: '#FFF',
-    marginTop: verticalScale(4),
-    marginRight: scale(5),
-  },
+
   multiSelectText: {
-    fontSize: moderateScale(16),
-    paddingTop: verticalScale(3),
+    fontSize: moderateScale(13),
+    paddingTop: verticalScale(5),
+    color: '#00000080',
+    marginLeft: scale(10),
   },
 });

@@ -376,6 +376,7 @@ const AddressScreen = ({route, navigation}) => {
                       marginLeft: scale(20),
                       marginRight: scale(20),
                       marginTop: verticalScale(10),
+                      color: '#000',
                     }}>
                     {key.address1},{key.address2},{key.city},{key.state},{' '}
                     {key.pinCode}

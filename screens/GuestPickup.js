@@ -171,95 +171,109 @@ const GuestPickupScreen = ({route, navigation}) => {
 
   return (
     <>
-      <ScrollView
-        style={{
-          backgroundColor: '#FFFFFF',
-        }}>
+      <ScrollView>
         <View
           style={{
-            height: verticalScale(200),
-            width: scale(250),
-            alignSelf: 'center',
-            marginTop: verticalScale(12),
+            backgroundColor: '#FFFFFF',
+            paddingBottom: verticalScale(80),
           }}>
-          <Image
+          <View>
+            <Text
+              style={{
+                backgroundColor: '#EF6563',
+                width: scale(40),
+                height: verticalScale(40),
+                color: '#FFF',
+                fontSize: moderateScale(30),
+                marginLeft: scale(30),
+                fontWeight: 'bold',
+                textAlign: 'center',
+                textAlignVertical: 'center',
+                borderRadius: moderateScale(7),
+                marginTop: verticalScale(30),
+              }}>
+              G
+            </Text>
+            <Text
+              style={{
+                color: '#5A2D94',
+                marginLeft: scale(30),
+                marginTop: verticalScale(10),
+              }}>
+              Hello Guest !
+            </Text>
+            <Text
+              style={{
+                marginLeft: scale(30),
+                marginTop: verticalScale(10),
+                color: '#000',
+                fontWeight: '300',
+                fontSize: moderateScale(18),
+              }}>
+              More Productive
+            </Text>
+            <Text
+              style={{
+                marginLeft: scale(30),
+                marginTop: verticalScale(5),
+                color: '#000',
+                fontWeight: '300',
+                fontSize: moderateScale(18),
+              }}>
+              with Comfortable Place
+            </Text>
+          </View>
+          <Text
             style={{
-              height: 200,
-              width: 300,
+              fontSize: moderateScale(25),
               alignSelf: 'center',
-            }}
-            source={pickup}
-          />
-        </View>
-        <Text
-          style={{
-            fontSize: moderateScale(25),
-            alignSelf: 'center',
-            color: '#000000',
-            fontWeight: '600',
-            marginBottom: verticalScale(20),
-          }}>
-          {tempCategory} Picked!
-        </Text>
-
-        {/* <View style={styles.pickerStyle}>
-          <Picker
-            style={{
-              color: '#A363A9',
-            }}
-            dropdownIconColor="#A363A9"
-            dropdownIconRippleColor="#A363A9"
-            onTouchCancel={true}
-            mode="dropdown"
-            selectedValue={category}
-            onValueChange={itemValue => {
-              setCategory(itemValue);
-              setSubCategory('Choose Sub-Category');
+              color: '#5A2D94',
+              fontWeight: '600',
+              marginTop: verticalScale(30),
+              marginBottom: verticalScale(20),
             }}>
-            <Picker.Item label="Glass" value="Glass" />
-            <Picker.Item label="Metal" value="Metal" />
-            <Picker.Item label="Plastic" value="Plastic" />
-            <Picker.Item label="Paper" value="Paper" />
-            <Picker.Item label="Electronics" value="Electronics" />
-          </Picker>
-        </View> */}
+            {tempCategory} Picked!
+          </Text>
 
-        <Text
-          style={{
-            fontSize: moderateScale(20),
-            fontWeight: '300',
-            color: '#A363A9',
-            marginLeft: scale(25),
-          }}>
-          Add More Categories
-        </Text>
+          <View>
+            <Text
+              style={{
+                fontSize: moderateScale(14),
+                fontWeight: '300',
+                color: '#5A2D94',
+                //borderWidth: 1,
+                width: scale(150),
+                textAlign: 'center',
+                //position: 'absolute',
+                //borderColor: '#000',
+                backgroundColor: '#FFF',
+                alignSelf: 'center',
+              }}>
+              Add More Categories
+            </Text>
+          </View>
 
-        <View
-          style={{
-            alignSelf: 'center',
-            marginTop: verticalScale(10),
-            backgroundColor: '#FFF',
-            flexDirection: 'row',
-            elevation: 5,
-            borderRadius: moderateScale(10),
-            width: scale(300),
-            flexWrap: 'wrap',
-            height: verticalScale(90),
-            paddingTop: verticalScale(5),
-            paddingLeft: scale(45),
-            marginBottom: verticalScale(20),
-          }}>
           <View
             style={{
+              alignSelf: 'center',
+              marginTop: verticalScale(10),
+              backgroundColor: '#FFF',
               flexDirection: 'row',
+              borderRadius: moderateScale(10),
+              width: scale(300),
+              flexWrap: 'wrap',
+              borderWidth: 2,
+              borderColor: '#5A2D94',
+              height: verticalScale(150),
+              paddingTop: verticalScale(12),
+              paddingLeft: scale(25),
+              marginBottom: verticalScale(20),
             }}>
             {tempCategory == 'Glass' ? (
               <></>
             ) : (
               <View
                 style={{
-                  //borderWidth: 1,
-                  //borderColor: '#000',
                   height: verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
@@ -273,12 +287,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 <Text style={styles.multiSelectText}>Glass</Text>
               </View>
             )}
-          </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
             {tempCategory == 'Metal' ? (
               <></>
             ) : (
@@ -288,6 +297,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                   //borderColor: '#000',
                   height: verticalScale(25),
                   width: scale(100),
+                  marginRight: scale(30),
                   flexDirection: 'row',
                 }}>
                 <CheckBox
@@ -299,12 +309,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 <Text style={styles.multiSelectText}>Metal</Text>
               </View>
             )}
-          </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
             {tempCategory == 'Plastic' ? (
               <></>
             ) : (
@@ -325,21 +330,18 @@ const GuestPickupScreen = ({route, navigation}) => {
                 <Text style={styles.multiSelectText}>Plastic</Text>
               </View>
             )}
-          </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
             {tempCategory == 'Paper' ? (
               <></>
             ) : (
               <View
                 style={{
-                  //borderWidth: 1,
-                  //borderColor: '#000',
+                  // borderWidth: 1,
+                  // borderColor: '#000',
+                  marginRight: scale(30),
                   height: verticalScale(25),
                   width: scale(100),
+                  marginTop: verticalScale(20),
                   flexDirection: 'row',
                 }}>
                 <CheckBox
@@ -351,22 +353,18 @@ const GuestPickupScreen = ({route, navigation}) => {
                 <Text style={styles.multiSelectText}>Paper</Text>
               </View>
             )}
-          </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
             {tempCategory == 'Electronics' ? (
               <></>
             ) : (
               <View
                 style={{
-                  //borderWidth: 1,
-                  //borderColor: '#000',
+                  // borderWidth: 1,
+                  // borderColor: '#000',
                   height: verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
+                  marginTop: verticalScale(20),
                 }}>
                 <CheckBox
                   disabled={false}
@@ -377,21 +375,17 @@ const GuestPickupScreen = ({route, navigation}) => {
                 <Text style={styles.multiSelectText}>Electronics</Text>
               </View>
             )}
-          </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
             {tempCategory == 'Corrugated Box' ? (
               <></>
             ) : (
               <View
                 style={{
-                  //borderWidth: 1,
-                  //borderColor: '#000',
+                  // borderWidth: 1,
+                  // borderColor: '#000',
                   height: verticalScale(25),
-                  width: scale(100),
+                  width: scale(200),
+                  marginTop: verticalScale(20),
                   flexDirection: 'row',
                 }}>
                 <CheckBox
@@ -404,225 +398,224 @@ const GuestPickupScreen = ({route, navigation}) => {
               </View>
             )}
           </View>
-        </View>
 
-        <TextInput
-          defaultValue={`${name}`}
-          onChangeText={tempName => {
-            setName(tempName);
-          }}
-          style={styles.textinput}
-          placeholder="Enter Name"
-          placeholderTextColor="#758283"></TextInput>
-
-        <TextInput
-          defaultValue={`${email}`}
-          onChangeText={tempEmail => {
-            setEmail(tempEmail);
-          }}
-          style={styles.textinput}
-          placeholder="Enter Email"
-          placeholderTextColor="#758283"></TextInput>
-
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignSelf: 'center',
-            borderColor: '#758283',
-            borderRadius: moderateScale(100),
-            borderWidth: 1,
-            padding: moderateScale(5),
-
-            width: scale(310),
-            marginTop: verticalScale(10),
-          }}>
-          <Text
-            style={{
-              fontSize: moderateScale(20),
-              marginTop: verticalScale(8),
-              marginRight: scale(10),
-              marginLeft: scale(3),
-              color: '#758283',
-            }}>
-            +91
-          </Text>
           <TextInput
-            defaultValue={`${phone}`}
-            keyboardType="number-pad"
-            maxLength={10}
-            onChangeText={tempPhone => {
-              setPhone(tempPhone);
+            defaultValue={`${name}`}
+            onChangeText={tempName => {
+              setName(tempName);
             }}
-            style={{
-              fontSize: moderateScale(20),
-
-              color: '#000000',
-            }}
-            placeholder="Enter Phone Number"
+            style={styles.textinput}
+            placeholder="Enter Name"
             placeholderTextColor="#758283"></TextInput>
-        </View>
 
-        <TextInput
-          defaultValue={`${address}`}
-          onChangeText={tempAddress => {
-            setAddress(tempAddress);
-          }}
-          style={styles.textinput}
-          placeholder="Enter Pickup Address"
-          placeholderTextColor="#758283"></TextInput>
-
-        <TextInput
-          defaultValue={`${landMark}`}
-          onChangeText={tempLandmark => {
-            setLandmark(tempLandmark);
-          }}
-          style={styles.textinput}
-          placeholder="Enter Landmark"
-          placeholderTextColor="#758283"></TextInput>
-
-        <View
-          style={{
-            marginLeft: scale(20),
-            marginRight: scale(20),
-            borderColor: '#A363A9',
-            borderWidth: 1,
-            borderRadius: moderateScale(100),
-            marginHorizontal: moderateScale(10),
-            marginTop: verticalScale(10),
-          }}>
-          <Picker
-            style={{
-              color: '#A363A9',
+          <TextInput
+            defaultValue={`${email}`}
+            onChangeText={tempEmail => {
+              setEmail(tempEmail);
             }}
-            dropdownIconColor="#A363A9"
-            dropdownIconRippleColor="#A363A9"
-            onTouchCancel={true}
-            mode="dropdown"
-            selectedValue={pincode}
-            onValueChange={itemValue => {
-              setPincode(itemValue);
-            }}>
-            <Picker.Item label="Choose Pincode" value="Choose Pincode" />
-            <Picker.Item label="201301" value="201301" />
-            <Picker.Item label="201304" value="201304" />
-          </Picker>
-        </View>
+            style={styles.textinput}
+            placeholder="Enter Email"
+            placeholderTextColor="#758283"></TextInput>
 
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              setShow(true);
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignSelf: 'center',
+
+              padding: moderateScale(5),
+              borderBottomColor: '#CAD5E2',
+              borderBottomWidth: 1,
+              width: scale(310),
+              marginTop: verticalScale(10),
             }}>
-            <View
+            <Text
               style={{
-                flexDirection: 'row',
-                height: verticalScale(50),
-                borderRadius: moderateScale(100),
-                marginTop: verticalScale(10),
-                alignSelf: 'center',
-                //borderWidth: 1,
-                borderColor: '#000',
-                width: scale(180),
+                fontSize: moderateScale(12),
+                marginTop: verticalScale(13),
+                marginRight: scale(10),
+                marginLeft: scale(3),
+                color: '#758283',
               }}>
-              <Image
-                source={calender}
-                style={{
-                  height: verticalScale(50),
-                  width: scale(50),
-                  resizeMode: 'contain',
-                  marginLeft: scale(20),
-                  //marginTop: verticalScale(15),
-                }}
-              />
+              +91
+            </Text>
+            <TextInput
+              defaultValue={`${phone}`}
+              keyboardType="number-pad"
+              maxLength={10}
+              onChangeText={tempPhone => {
+                setPhone(tempPhone);
+              }}
+              style={{
+                fontSize: moderateScale(12),
 
-              <View
-                style={{
-                  marginLeft: scale(15),
-                  justifyContent: 'center',
-                }}>
-                <Text
-                  style={{
-                    fontSize: moderateScale(15),
-                    textAlign: 'center',
-                    color: '#000',
-                  }}>
-                  {`${dateLabel}`}
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </View>
+                color: '#000000',
+              }}
+              placeholder="Contact Number*"
+              placeholderTextColor="#758283"></TextInput>
+          </View>
 
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            minimumDate={date}
-            mode="date"
-            display="default"
-            onChange={onChange}
-          />
-        )}
+          <TextInput
+            defaultValue={`${address}`}
+            onChangeText={tempAddress => {
+              setAddress(tempAddress);
+            }}
+            style={styles.textinput}
+            placeholder="Enter Pickup Address"
+            placeholderTextColor="#758283"></TextInput>
 
-        {isLoading == false ? (
-          <View style={styles.pickupBtn}>
+          <TextInput
+            defaultValue={`${landMark}`}
+            onChangeText={tempLandmark => {
+              setLandmark(tempLandmark);
+            }}
+            style={styles.textinput}
+            placeholder="Enter Landmark"
+            placeholderTextColor="#758283"></TextInput>
+
+          <View
+            style={{
+              marginLeft: scale(20),
+              marginRight: scale(20),
+              borderColor: '#A363A9',
+
+              marginHorizontal: moderateScale(10),
+              marginTop: verticalScale(10),
+            }}>
+            <Picker
+              style={{
+                color: '#5A2D94',
+              }}
+              dropdownIconColor="#5A2D94"
+              dropdownIconRippleColor="#5A2D94"
+              onTouchCancel={true}
+              mode="dropdown"
+              selectedValue={pincode}
+              onValueChange={itemValue => {
+                setPincode(itemValue);
+              }}>
+              <Picker.Item label="Choose Pincode" value="Choose Pincode" />
+              <Picker.Item label="201301" value="201301" />
+              <Picker.Item label="201304" value="201304" />
+            </Picker>
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
             <TouchableOpacity
               onPress={() => {
-                if (
-                  name &&
-                  email &&
-                  phone &&
-                  address &&
-                  dateLabel != 'Pick A Date'
-                ) {
-                  if (phoneCheck()) {
-                    if (pincode != 'Choose Pincode') {
-                      handlePickeup();
-                    } else {
-                      Alert.alert('Choose Pincode');
-                    }
-                  }
-                } else {
-                  Alert.alert('Enter Valid Details');
-                }
+                setShow(true);
               }}>
-              <LinearGradient
-                colors={['#A363A9', '#FAB06D']}
+              <View
                 style={{
+                  flexDirection: 'row',
+                  height: verticalScale(50),
                   borderRadius: moderateScale(100),
-                  height: verticalScale(45),
-                }}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}>
-                <Text
+                  marginTop: verticalScale(10),
+                  alignSelf: 'center',
+                  //borderWidth: 1,
+                  borderColor: '#000',
+                  width: scale(180),
+                }}>
+                <Image
+                  source={calender}
                   style={{
-                    fontSize: moderateScale(20),
-                    alignSelf: 'center',
-                    color: '#FFFFFF',
-                    margin: moderateScale(5),
-                    paddingTop: verticalScale(3),
+                    height: verticalScale(50),
+                    width: scale(50),
+                    resizeMode: 'contain',
+                    marginLeft: scale(20),
+                    //marginTop: verticalScale(15),
+                  }}
+                />
 
-                    //paddingBottom: verticalScale(15),
+                <View
+                  style={{
+                    marginLeft: scale(15),
+                    justifyContent: 'center',
                   }}>
-                  Send Pickup Request
-                </Text>
-              </LinearGradient>
+                  <Text
+                    style={{
+                      fontSize: moderateScale(12),
+                      textAlign: 'center',
+                      color: '#5A2D94',
+                    }}>
+                    {`${dateLabel}`}
+                  </Text>
+                </View>
+              </View>
             </TouchableOpacity>
           </View>
-        ) : (
-          <ActivityIndicator
-            color="#A363A9"
-            size={'large'}
-            style={{
-              marginTop: verticalScale(10),
-            }}
-          />
-        )}
+
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              minimumDate={date}
+              mode="date"
+              display="default"
+              onChange={onChange}
+            />
+          )}
+
+          {isLoading == false ? (
+            <View style={styles.pickupBtn}>
+              <TouchableOpacity
+                onPress={() => {
+                  if (
+                    name &&
+                    email &&
+                    phone &&
+                    address &&
+                    dateLabel != 'Pick A Date'
+                  ) {
+                    if (phoneCheck()) {
+                      if (pincode != 'Choose Pincode') {
+                        handlePickeup();
+                      } else {
+                        Alert.alert('Choose Pincode');
+                      }
+                    }
+                  } else {
+                    Alert.alert('Enter Valid Details');
+                  }
+                }}>
+                <View
+                  style={{
+                    borderRadius: moderateScale(10),
+                    height: verticalScale(45),
+                    backgroundColor: '#000',
+                    alignSelf: 'center',
+                    marginTop: verticalScale(10),
+                    width: scale(220),
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: moderateScale(12),
+                      alignSelf: 'center',
+                      color: '#FFFFFF',
+                      margin: moderateScale(5),
+                      paddingTop: verticalScale(7),
+
+                      //paddingBottom: verticalScale(15),
+                    }}>
+                    Send Pickup Request
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <ActivityIndicator
+              color="#A363A9"
+              size={'large'}
+              style={{
+                marginTop: verticalScale(10),
+              }}
+            />
+          )}
+        </View>
       </ScrollView>
     </>
   );
@@ -632,16 +625,15 @@ export default GuestPickupScreen;
 
 const styles = StyleSheet.create({
   textinput: {
-    fontSize: moderateScale(20),
-    borderColor: '#758283',
-    borderRadius: moderateScale(100),
-    paddingLeft: moderateScale(15),
-    borderWidth: 1,
-    height: verticalScale(45),
+    alignSelf: 'center',
+    fontSize: moderateScale(12),
+    borderBottomColor: '#CAD5E2',
+    borderBottomWidth: 1,
     marginTop: verticalScale(10),
-    marginLeft: scale(20),
     marginRight: scale(20),
     color: '#000000',
+    height: verticalScale(50),
+    width: scale(280),
   },
 
   pickupBtn: {
@@ -654,8 +646,10 @@ const styles = StyleSheet.create({
   },
 
   multiSelectText: {
-    fontSize: moderateScale(16),
-    paddingTop: verticalScale(3),
+    fontSize: moderateScale(13),
+    paddingTop: verticalScale(5),
+    color: '#00000080',
+    marginLeft: scale(10),
   },
 
   pickerStyle: {
