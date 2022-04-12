@@ -11,11 +11,14 @@ import {
   BackHandler,
 } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import offer from '../assets/offers.png';
 import awesome from '../assets/awesome.png';
 import awesomeFont from '../assets/awesomeFont.png';
 import track from '../assets/track.png';
 import {ScrollView} from 'react-native-gesture-handler';
+import service from '../assets/service.png';
 
 const RedeemScreen = ({route, navigation}) => {
   var userId = route.params.userId;
@@ -115,15 +118,24 @@ const RedeemScreen = ({route, navigation}) => {
             You can check your booking in the order history under your profile
             section.
           </Text>
-          <Image
-            source={track}
-            style={{
-              height: verticalScale(40),
-              width: scale(80),
-              alignSelf: 'center',
-              marginTop: verticalScale(30),
-            }}
-          />
+          <TouchableOpacity
+            onPress={async () => {
+              var tempEmail = await AsyncStorage.getItem('email');
+              navigation.navigate('Pickup History Screen', {
+                email: `${tempEmail}`,
+              });
+            }}>
+            <Image
+              source={track}
+              style={{
+                height: verticalScale(40),
+                width: scale(80),
+                resizeMode: 'contain',
+                alignSelf: 'center',
+                marginTop: verticalScale(30),
+              }}
+            />
+          </TouchableOpacity>
           <Text
             style={{
               alignSelf: 'center',
@@ -143,9 +155,9 @@ const RedeemScreen = ({route, navigation}) => {
               }
             }}>
             <LinearGradient
-              colors={['#9b38d9', '#f2748e']}
+              colors={['#5A2D94', '#f2748e']}
               style={{
-                height: verticalScale(135),
+                height: verticalScale(100),
                 width: scale(315),
                 alignSelf: 'center',
                 elevation: 5,
@@ -154,86 +166,15 @@ const RedeemScreen = ({route, navigation}) => {
               }}
               start={{x: 0, y: 0}}
               end={{x: 1, y: 0}}>
-              <View
+              <Image
+                source={service}
                 style={{
-                  flexDirection: 'row',
-                }}>
-                <Text
-                  style={{
-                    color: '#FFF',
-                    marginLeft: verticalScale(15),
-                    marginTop: verticalScale(15),
-                    fontSize: moderateScale(23),
-                    fontWeight: 'bold',
-                  }}>
-                  AC Services
-                </Text>
-                <Text
-                  style={{
-                    color: '#FFF',
-                    marginLeft: verticalScale(8),
-                    marginTop: verticalScale(18),
-                    fontSize: moderateScale(18),
-                  }}>
-                  starting at :
-                </Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                }}>
-                <Text
-                  style={{
-                    color: '#FFF',
-                    marginLeft: verticalScale(15),
-                    marginTop: verticalScale(18),
-                    fontSize: moderateScale(12),
-                    textDecorationLine: 'line-through',
-                  }}>
-                  ₹499
-                </Text>
-                <Text
-                  style={{
-                    color: '#FFF',
-                    marginLeft: verticalScale(15),
-                    marginTop: verticalScale(15),
-                    fontSize: moderateScale(16),
-                  }}>
-                  ₹349 for Window AC
-                </Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                }}>
-                <Text
-                  style={{
-                    color: '#FFF',
-                    marginLeft: verticalScale(15),
-                    marginTop: verticalScale(18),
-                    fontSize: moderateScale(12),
-                    textDecorationLine: 'line-through',
-                  }}>
-                  ₹599
-                </Text>
-                <Text
-                  style={{
-                    color: '#FFF',
-                    marginLeft: verticalScale(15),
-                    marginTop: verticalScale(15),
-                    fontSize: moderateScale(18),
-                  }}>
-                  ₹449 for Split AC
-                </Text>
-                <Image
-                  source={offer}
-                  style={{
-                    height: verticalScale(45),
-                    width: scale(45),
-                    marginLeft: scale(50),
-                  }}
-                />
-              </View>
+                  resizeMode: 'contain',
+                  height: verticalScale(100),
+                  width: scale(280),
+                  alignSelf: 'center',
+                }}
+              />
             </LinearGradient>
           </TouchableOpacity>
         </View>

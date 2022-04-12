@@ -294,11 +294,29 @@ const CategoryScreen = ({navigation}) => {
             {categoryList.map(key => (
               <TouchableOpacity
                 key={key.key}
-                onPress={() => {
-                  setItem(key.text);
-                  setDescription(key.description);
-                  toggle();
-                  setSubCategory('Choose Sub-Category');
+                onPress={async () => {
+                  var tempLoginStatus = await AsyncStorage.getItem(
+                    'loginStatus',
+                  );
+                  if (tempLoginStatus == 'false') {
+                    setItem(key.text);
+                    setDescription(key.description);
+                    toggle();
+                    setSubCategory('Choose Sub-Category');
+                  } else if (tempLoginStatus == 'true') {
+                    navigation.navigate('Pickup Screen', {
+                      name: `${username}`,
+                      itemSelected: `${itemSelected}`,
+                      subCategory: `${subCategory}`,
+                      address: `${address}`,
+                      email: `${email}`,
+                      phone: `${phone}`,
+                      landmark: `${landmark}`,
+                      pincode: `${pincode}`,
+                      userId: `${userId}`,
+                      loadAgain: `${false}`,
+                    });
+                  }
                 }}>
                 <LinearGradient
                   colors={['#9b38d9', '#f2748e']}
