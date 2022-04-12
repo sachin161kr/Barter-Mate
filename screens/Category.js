@@ -498,9 +498,9 @@ const CategoryScreen = ({navigation}) => {
                     <Text
                       style={{
                         color: '#FFF',
-                        fontSize: moderateScale(18),
+                        fontSize: moderateScale(16),
                         height: verticalScale(45),
-                        paddingTop: verticalScale(10),
+                        paddingTop: verticalScale(12),
                         width: scale(280),
                         textAlign: 'center',
                       }}>
@@ -567,7 +567,7 @@ const CategoryScreen = ({navigation}) => {
                   }}>
                   <Text
                     style={{
-                      fontSize: moderateScale(20),
+                      fontSize: moderateScale(14),
                       color: '#FFF',
                       alignSelf: 'center',
                       //marginTop: verticalScale(5),

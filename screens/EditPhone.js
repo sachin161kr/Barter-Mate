@@ -7,10 +7,14 @@ import {
   TouchableOpacity,
   Alert,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import {scale, moderateScale, verticalScale} from 'react-native-size-matters';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
+
+import confused from '../assets/confused.png';
+import ellipse from '../assets/ellipse.png';
 
 const EditPhoneScreen = ({route, navigation}) => {
   var userId = route.params.userId;
@@ -73,6 +77,38 @@ const EditPhoneScreen = ({route, navigation}) => {
           borderRadius: moderateScale(15),
           paddingBottom: verticalScale(80),
         }}>
+        <Text
+          style={{
+            color: '#FFF',
+            fontSize: moderateScale(20),
+            alignSelf: 'center',
+            fontWeight: '300',
+            marginTop: verticalScale(30),
+          }}>
+          Reset Phone Number
+        </Text>
+        <Image
+          source={ellipse}
+          style={{
+            height: verticalScale(150),
+            width: scale(150),
+            position: 'relative',
+            alignSelf: 'center',
+            resizeMode: 'contain',
+            marginTop: verticalScale(20),
+          }}
+        />
+        <Image
+          source={confused}
+          style={{
+            height: verticalScale(80),
+            width: scale(100),
+            position: 'absolute',
+            resizeMode: 'contain',
+            marginTop: verticalScale(105),
+            marginLeft: scale(113),
+          }}
+        />
         <View
           style={{
             flexDirection: 'row',

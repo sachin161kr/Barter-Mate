@@ -81,6 +81,7 @@ const ResetPassScreen = ({route, navigation}) => {
             style={{
               height: verticalScale(30),
               width: scale(200),
+              resizeMode: 'contain',
               alignSelf: 'center',
               marginTop: verticalScale(40),
             }}
