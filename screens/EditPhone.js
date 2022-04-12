@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {scale, moderateScale, verticalScale} from 'react-native-size-matters';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LinearGradient from 'react-native-linear-gradient';
 
 const EditPhoneScreen = ({route, navigation}) => {
   var userId = route.params.userId;
@@ -62,52 +63,56 @@ const EditPhoneScreen = ({route, navigation}) => {
 
   return (
     <>
-      <View
+      <LinearGradient
+        colors={['#5A2D94', '#f2748e']}
+        start={{x: 0, y: 0}}
+        end={{x: 0, y: 1}}
         style={{
-          flex: 1,
           backgroundColor: '#FFF',
+          margin: verticalScale(15),
+          borderRadius: moderateScale(15),
+          paddingBottom: verticalScale(80),
         }}>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignSelf: 'center',
-            borderColor: '#758283',
-            borderRadius: moderateScale(100),
-            borderWidth: 1,
-            padding: moderateScale(5),
 
-            width: scale(310),
-            marginTop: verticalScale(20),
+            padding: moderateScale(5),
+            borderBottomColor: '#CAD5E2',
+            borderBottomWidth: 1,
+            width: scale(280),
+            marginTop: verticalScale(60),
           }}>
           <Text
             style={{
-              fontSize: moderateScale(20),
-              marginTop: verticalScale(8),
+              fontSize: moderateScale(12),
+              marginTop: verticalScale(13),
               marginRight: scale(10),
               marginLeft: scale(3),
-              color: '#758283',
+              color: '#FFF',
             }}>
             +91
           </Text>
           <TextInput
             defaultValue={`${phone}`}
             keyboardType="number-pad"
+            maxLength={10}
             onChangeText={tempPhone => {
               setPhone(tempPhone);
             }}
             style={{
-              fontSize: moderateScale(20),
-              height: verticalScale(45),
-              color: '#000000',
+              fontSize: moderateScale(12),
+
+              color: '#FFF',
             }}
-            placeholder="Enter Phone Number"
-            maxLength={10}
-            placeholderTextColor="#758283"></TextInput>
+            placeholder="Contact Number*"
+            placeholderTextColor="#FFF"></TextInput>
         </View>
         {loading == true ? (
           <ActivityIndicator
-            color="#A363A9"
+            color="#FFF"
             size={'large'}
             style={{
               marginTop: verticalScale(10),
@@ -125,26 +130,28 @@ const EditPhoneScreen = ({route, navigation}) => {
             <View
               style={{
                 alignSelf: 'center',
-                borderColor: '#A363A9',
-                borderWidth: 2,
+
                 width: scale(280),
                 height: verticalScale(45),
                 marginTop: verticalScale(20),
-                borderRadius: moderateScale(100),
+                backgroundColor: '#000',
+                borderRadius: moderateScale(10),
                 padding: moderateScale(10),
+                width: scale(220),
               }}>
               <Text
                 style={{
-                  fontSize: moderateScale(20),
+                  fontSize: moderateScale(14),
                   textAlign: 'center',
-                  color: '#A363A9',
+                  paddingTop: verticalScale(3),
+                  color: '#FFF',
                 }}>
                 Save Phone Number
               </Text>
             </View>
           </TouchableOpacity>
         )}
-      </View>
+      </LinearGradient>
     </>
   );
 };

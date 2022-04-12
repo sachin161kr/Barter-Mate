@@ -6,11 +6,17 @@ import {
   TextInput,
   StyleSheet,
   Alert,
+  Image,
   ActivityIndicator,
 } from 'react-native';
 import {scale, moderateScale, verticalScale} from 'react-native-size-matters';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
+
+import confused from '../assets/confused.png';
+import ellipse from '../assets/ellipse.png';
+import reset from '../assets/reset.png';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const ResetPassScreen = ({route, navigation}) => {
   var id = route.params.id;
@@ -60,102 +66,140 @@ const ResetPassScreen = ({route, navigation}) => {
 
   return (
     <>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#FFFFFF',
-        }}>
-        <View
+      <ScrollView>
+        <LinearGradient
+          colors={['#5A2D94', '#f2748e']}
+          start={{x: 0, y: 0}}
+          end={{x: 0, y: 1}}
           style={{
-            marginTop: verticalScale(20),
+            margin: verticalScale(15),
+            borderRadius: moderateScale(15),
+            paddingBottom: verticalScale(180),
           }}>
-          <TextInput
-            style={styles.textinput}
-            placeholder="Enter New Password"
-            secureTextEntry={true}
-            placeholderTextColor="#758283"
-            onChangeText={tempPass => {
-              setPass(tempPass);
-            }}></TextInput>
-        </View>
-        <View>
-          <TextInput
-            style={styles.textinput}
-            placeholder="Confirm New Password"
-            secureTextEntry={true}
-            placeholderTextColor="#758283"
-            onChangeText={tempPass => {
-              setConfirmPass(tempPass);
-            }}></TextInput>
-        </View>
-        {isLoading == true ? (
+          <Image
+            source={reset}
+            style={{
+              height: verticalScale(30),
+              width: scale(200),
+              alignSelf: 'center',
+              marginTop: verticalScale(40),
+            }}
+          />
+          <Image
+            source={ellipse}
+            style={{
+              height: verticalScale(150),
+              width: scale(150),
+              position: 'relative',
+              alignSelf: 'center',
+              resizeMode: 'contain',
+              marginTop: verticalScale(20),
+            }}
+          />
+          <Image
+            source={confused}
+            style={{
+              height: verticalScale(80),
+              width: scale(100),
+              position: 'absolute',
+              resizeMode: 'contain',
+              marginTop: verticalScale(125),
+              marginLeft: scale(113),
+            }}
+          />
           <View
             style={{
-              height: verticalScale(50),
-              width: scale(310),
-              marginTop: verticalScale(15),
-              alignSelf: 'center',
+              marginTop: verticalScale(20),
             }}>
-            <ActivityIndicator
-              color="#A363A9"
-              size={'large'}
-              style={{
-                alignSelf: 'center',
-              }}
-            />
+            <TextInput
+              style={styles.textinput}
+              placeholder="Enter New Password"
+              secureTextEntry={true}
+              placeholderTextColor="#FFF"
+              onChangeText={tempPass => {
+                setPass(tempPass);
+              }}></TextInput>
           </View>
-        ) : (
-          <TouchableOpacity
-            onPress={() => {
-              if (passCheck()) {
-                setLoading(true);
-                resetPass();
-              } else {
-                Alert.alert('Enter Valid Password');
-                setLoading(false);
-              }
-            }}>
-            <LinearGradient
-              colors={['#A363A9', '#FAB06D']}
+          <View>
+            <TextInput
+              style={styles.textinput}
+              placeholder="Confirm New Password"
+              secureTextEntry={true}
+              placeholderTextColor="#FFF"
+              onChangeText={tempPass => {
+                setConfirmPass(tempPass);
+              }}></TextInput>
+          </View>
+          {isLoading == true ? (
+            <View
               style={{
-                borderRadius: moderateScale(100),
-                height: verticalScale(45),
+                height: verticalScale(50),
                 width: scale(310),
                 marginTop: verticalScale(15),
                 alignSelf: 'center',
-              }}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}>
-              <Text
+              }}>
+              <ActivityIndicator
+                color="#FFF"
+                size={'large'}
                 style={{
-                  fontSize: moderateScale(20),
                   alignSelf: 'center',
-                  color: '#FFFFFF',
-                  margin: moderateScale(5),
-                  paddingTop: verticalScale(5),
+                }}
+              />
+            </View>
+          ) : (
+            <TouchableOpacity
+              onPress={() => {
+                if (passCheck()) {
+                  setLoading(true);
+                  resetPass();
+                } else {
+                  Alert.alert('Enter Valid Password');
+                  setLoading(false);
+                }
+              }}>
+              <View
+                style={{
+                  borderRadius: moderateScale(10),
+                  height: verticalScale(45),
+                  width: scale(220),
+                  backgroundColor: '#000',
+                  marginTop: verticalScale(15),
+                  alignSelf: 'center',
                 }}>
-                Save New Password
-              </Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        )}
-      </View>
+                <Text
+                  style={{
+                    fontSize: moderateScale(14),
+                    alignSelf: 'center',
+                    color: '#FFFFFF',
+                    margin: moderateScale(5),
+                    paddingTop: verticalScale(7),
+                  }}>
+                  Save New Password
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
+        </LinearGradient>
+      </ScrollView>
     </>
   );
 };
 
 const styles = StyleSheet.create({
   textinput: {
-    fontSize: moderateScale(20),
-    borderColor: '#758283',
-    borderWidth: 1,
-    borderRadius: moderateScale(100),
-    marginTop: verticalScale(10),
+    fontSize: moderateScale(12),
+    borderColor: '#FFF',
+    borderBottomWidth: 1,
+
+    borderBottomColor: '#FFFFFF80',
+    //borderWidth: 1,
+    height: verticalScale(45),
+    //borderRadius: moderateScale(100),
+    marginTop: verticalScale(25),
     marginLeft: scale(20),
     paddingLeft: moderateScale(15),
     marginRight: scale(20),
-    color: '#000000',
-    height: verticalScale(45),
+    color: '#FFF',
   },
 });
 
