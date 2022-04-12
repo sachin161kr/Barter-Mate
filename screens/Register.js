@@ -249,7 +249,7 @@ const RegisterScreen = ({navigation, route}) => {
               </View>
             ) : (
               <ActivityIndicator
-                color="#A363A9"
+                color="#FFF"
                 size={'large'}
                 style={{
                   marginTop: verticalScale(10),

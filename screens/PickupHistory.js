@@ -61,85 +61,136 @@ const PickupHistoryScreen = ({route, navigation}) => {
           flex: 1,
           backgroundColor: '#FFF',
         }}>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: '#FFF',
-            paddingBottom: verticalScale(30),
-          }}>
-          {loading == true ? (
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginTop: verticalScale(100),
-              }}>
-              <ActivityIndicator size={'large'} color="#A363A9" />
-            </View>
-          ) : (
-            history.map(key => (
+        {history.length == 0 ? (
+          <Text
+            style={{
+              fontSize: moderateScale(16),
+              fontWeight: '400',
+              color: '#5A2D94',
+              alignSelf: 'center',
+              marginTop: verticalScale(40),
+            }}>
+            You have'nt placed any order yet.
+          </Text>
+        ) : (
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: '#FFF',
+              paddingBottom: verticalScale(100),
+            }}>
+            {loading == true ? (
               <View
                 style={{
-                  height: verticalScale(83),
-                  width: scale(292),
-                  backgroundColor: '#FFF',
-                  alignSelf: 'center',
-                  marginTop: verticalScale(20),
-                  borderRadius: moderateScale(10),
-                  padding: moderateScale(10),
-                  elevation: 6,
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginTop: verticalScale(100),
                 }}>
-                <Text
-                  style={{
-                    fontSize: moderateScale(25),
-                    fontWeight: 'bold',
-                    color: '#000',
-                  }}>
-                  {key.category}
-                  {key.subcategory}
-                </Text>
+                <ActivityIndicator size={'large'} color="#A363A9" />
+              </View>
+            ) : (
+              history.map(key => (
                 <View
                   style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
+                    height: verticalScale(210),
+                    width: scale(292),
+                    borderBottomWidth: 1,
+                    borderBottomColor: '#CAD5E2',
+                    alignSelf: 'center',
+                    marginTop: verticalScale(20),
+                    borderRadius: moderateScale(10),
+                    paddingHorizontal: moderateScale(10),
+                    paddingTop: verticalScale(20),
+                    marginHorizontal: scale(10),
                   }}>
-                  <Text
+                  <View
                     style={{
-                      marginTop: verticalScale(10),
-                      fontSize: moderateScale(16),
+                      flexDirection: 'row',
                     }}>
-                    {key.createdDate.substring(0, 10)}
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate('Order Details Screen', {
-                        orderStatus: `${key.isComplete}`,
-                        pickupAddress: `${key.address}`,
-                        pincode: `${key.pinCode}`,
-                        pickupTime: `${key.createdDate.substring(11, 16)}`,
-                      });
-                    }}>
-                    <View
-                      style={{
-                        backgroundColor: '#A363A9',
-                        borderRadius: moderateScale(6),
-                      }}>
+                    <View>
                       <Text
                         style={{
-                          fontSize: moderateScale(20),
-                          color: '#FFF',
-                          padding: moderateScale(4),
+                          fontSize: moderateScale(16),
+                          fontWeight: 'bold',
+                          color: '#5A2D94',
+
+                          width: scale(120),
                         }}>
-                        Details
+                        {key.category} ,
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: moderateScale(16),
+                          fontWeight: 'bold',
+                          color: '#5A2D94',
+
+                          width: scale(120),
+                        }}>
+                        {key.subcategory}
                       </Text>
                     </View>
-                  </TouchableOpacity>
+                    {key.isComplete == true ? (
+                      <Text
+                        style={{
+                          marginTop: verticalScale(10),
+                          fontSize: moderateScale(14),
+                          color: 'green',
+                          fontWeight: '400',
+                        }}>
+                        Order Status : Completed
+                      </Text>
+                    ) : (
+                      <Text
+                        style={{
+                          marginTop: verticalScale(10),
+                          fontSize: moderateScale(12),
+                          color: 'red',
+                          fontWeight: '400',
+                          width: scale(180),
+                          marginLeft: scale(15),
+                        }}>
+                        Order Status : Not Completed
+                      </Text>
+                    )}
+                  </View>
+                  <View
+                    style={{
+                      justifyContent: 'space-between',
+                    }}>
+                    <Text
+                      style={{
+                        marginTop: verticalScale(10),
+                        fontSize: moderateScale(14),
+                        color: '#000',
+                        fontWeight: '400',
+                      }}>
+                      Order date : {key.createdDate.substring(0, 10)}
+                    </Text>
+                    <Text
+                      style={{
+                        marginTop: verticalScale(10),
+                        fontSize: moderateScale(14),
+                        color: '#000',
+                        fontWeight: '400',
+                      }}>
+                      Pickup date : {key.pickupDate.substring(0, 10)}
+                    </Text>
+                    <Text
+                      style={{
+                        marginTop: verticalScale(10),
+                        fontSize: moderateScale(14),
+                        color: '#000',
+                        fontWeight: '400',
+                      }}>
+                      Pickup Address : {key.address}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-            ))
-          )}
-        </View>
+              ))
+            )}
+          </View>
+        )}
       </ScrollView>
     </>
   );

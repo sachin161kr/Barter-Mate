@@ -500,9 +500,9 @@ const CategoryScreen = ({navigation}) => {
                         color: '#FFF',
                         fontSize: moderateScale(18),
                         height: verticalScale(45),
-                        paddingLeft: scale(60),
                         paddingTop: verticalScale(10),
-                        width: scale(320),
+                        width: scale(280),
+                        textAlign: 'center',
                       }}>
                       Login As {username.substring(0, 10)} ...
                     </Text>

@@ -133,6 +133,7 @@ const MainStackNavigator = () => {
         component={RedeemScreen}
         options={{
           title: '',
+          headerBackVisible: false,
         }}
       />
       <Stack.Screen

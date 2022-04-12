@@ -293,7 +293,8 @@ const AddressScreen = ({route, navigation}) => {
                     address2 &&
                     addressType &&
                     city &&
-                    state
+                    state &&
+                    addressType != 'Choose Address Type'
                   ) {
                     setLoading(true);
                     handleAddress();
@@ -366,7 +367,7 @@ const AddressScreen = ({route, navigation}) => {
                       marginTop: verticalScale(12),
                       fontSize: moderateScale(18),
                       color: '#5A2D94',
-                      width: scale(60),
+                      width: scale(80),
                     }}>
                     {key.tags}
                   </Text>

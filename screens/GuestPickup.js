@@ -264,9 +264,10 @@ const GuestPickupScreen = ({route, navigation}) => {
               flexWrap: 'wrap',
               borderWidth: 2,
               borderColor: '#5A2D94',
-              height: verticalScale(150),
+              justifyContent: 'space-between',
+              height: verticalScale(110),
               paddingTop: verticalScale(12),
-              paddingLeft: scale(25),
+              paddingHorizontal: scale(25),
               marginBottom: verticalScale(20),
             }}>
             {tempCategory == 'Glass' ? (
@@ -277,6 +278,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                   height: verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
+                  //marginRight: scale(30),
                 }}>
                 <CheckBox
                   disabled={false}
@@ -297,7 +299,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                   //borderColor: '#000',
                   height: verticalScale(25),
                   width: scale(100),
-                  marginRight: scale(30),
+                  //marginRight: scale(30),
                   flexDirection: 'row',
                 }}>
                 <CheckBox
@@ -320,6 +322,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                   height: verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
+                  //marginRight: scale(30),
                 }}>
                 <CheckBox
                   disabled={false}
@@ -338,11 +341,11 @@ const GuestPickupScreen = ({route, navigation}) => {
                 style={{
                   // borderWidth: 1,
                   // borderColor: '#000',
-                  marginRight: scale(30),
+                  //marginRight: scale(30),
                   height: verticalScale(25),
                   width: scale(100),
-                  marginTop: verticalScale(20),
                   flexDirection: 'row',
+                  //marginTop: verticalScale(20),
                 }}>
                 <CheckBox
                   disabled={false}
@@ -364,7 +367,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                   height: verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
-                  marginTop: verticalScale(20),
+                  //marginTop: verticalScale(20),
                 }}>
                 <CheckBox
                   disabled={false}
@@ -385,8 +388,8 @@ const GuestPickupScreen = ({route, navigation}) => {
                   // borderColor: '#000',
                   height: verticalScale(25),
                   width: scale(200),
-                  marginTop: verticalScale(20),
                   flexDirection: 'row',
+                  //marginTop: verticalScale(20),
                 }}>
                 <CheckBox
                   disabled={false}

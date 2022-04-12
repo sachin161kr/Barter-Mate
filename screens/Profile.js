@@ -215,5 +215,6 @@ const styles = StyleSheet.create({
     marginLeft: scale(16.17),
     marginBottom: verticalScale(30),
     marginTop: verticalScale(16),
+    color: '#000',
   },
 });
