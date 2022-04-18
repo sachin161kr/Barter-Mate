@@ -132,7 +132,7 @@ const RegisterScreen = ({navigation, route}) => {
                 fontSize: moderateScale(16),
                 alignSelf: 'center',
                 color: '#FFF',
-                fontWeight: '300',
+                fontFamily: 'Ubuntu-Regular',
                 marginTop: verticalScale(20),
               }}>
               Welcome
@@ -141,9 +141,9 @@ const RegisterScreen = ({navigation, route}) => {
               style={{
                 fontSize: moderateScale(28),
                 textAlign: 'center',
-                fontWeight: '600',
                 marginTop: verticalScale(10),
                 color: '#FFF',
+                fontFamily: 'Ubuntu-Bold',
               }}>
               Register to Access
             </Text>
@@ -199,6 +199,7 @@ const RegisterScreen = ({navigation, route}) => {
                 style={{
                   fontSize: moderateScale(12),
                   color: '#FFF',
+                  width: scale(280),
                 }}
                 placeholder="Enter Phone Number"
                 maxLength={10}
@@ -240,7 +241,8 @@ const RegisterScreen = ({navigation, route}) => {
                         alignSelf: 'center',
                         color: '#FFF',
                         margin: moderateScale(5),
-                        paddingTop: verticalScale(13),
+                        paddingTop: verticalScale(15),
+                        fontFamily: 'Ubuntu-Regular',
                       }}>
                       Sign Up
                     </Text>
@@ -279,6 +281,7 @@ const styles = StyleSheet.create({
     paddingLeft: moderateScale(15),
     marginRight: scale(20),
     color: '#FFF',
+    fontFamily: 'Ubuntu-Regular',
   },
 
   registerBtn: {

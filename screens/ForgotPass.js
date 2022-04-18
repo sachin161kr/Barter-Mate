@@ -114,6 +114,7 @@ const ForgotPassScreen = ({navigation}) => {
               style={{
                 alignSelf: 'center',
                 color: '#F4BE2C',
+                fontFamily: 'Ubuntu-Regular',
               }}>
               Did someone forget their password?
             </Text>
@@ -122,6 +123,7 @@ const ForgotPassScreen = ({navigation}) => {
                 alignSelf: 'center',
                 color: '#FFF',
                 marginTop: verticalScale(10),
+                fontFamily: 'Ubuntu-Regular',
               }}>
               That's okay...
             </Text>
@@ -130,6 +132,7 @@ const ForgotPassScreen = ({navigation}) => {
                 alignSelf: 'center',
                 color: '#FFF',
                 marginTop: verticalScale(10),
+                fontFamily: 'Ubuntu-Regular',
               }}>
               Just enter the email address you've used to
             </Text>
@@ -138,6 +141,7 @@ const ForgotPassScreen = ({navigation}) => {
                 alignSelf: 'center',
                 color: '#FFF',
                 marginTop: verticalScale(10),
+                fontFamily: 'Ubuntu-Regular',
               }}>
               register with us and we'll reset it.
             </Text>
@@ -194,9 +198,10 @@ const ForgotPassScreen = ({navigation}) => {
                   style={{
                     fontSize: moderateScale(16),
                     alignSelf: 'center',
-                    paddingTop: verticalScale(16),
+                    paddingTop: verticalScale(18),
                     color: '#FFFFFF',
                     margin: moderateScale(5),
+                    fontFamily: 'Ubuntu-Regular',
                   }}>
                   Submit
                 </Text>
@@ -216,7 +221,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(12),
     borderColor: '#FFF',
     borderBottomWidth: 1,
-
+    fontFamily: 'Ubuntu-Regular',
     borderBottomColor: '#FFFFFF80',
     //borderWidth: 1,
     height: verticalScale(45),

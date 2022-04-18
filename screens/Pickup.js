@@ -31,7 +31,6 @@ const PickupScreen = ({route, navigation}) => {
   var email = route.params.email;
   var phone = route.params.phone;
   var tempLandmark = route.params.landmark;
-  var tempPincode = route.params.pincode;
 
   var loadAgain = route.params.loadAgain;
 
@@ -68,6 +67,14 @@ const PickupScreen = ({route, navigation}) => {
   const [allPincodes, setAllPincodes] = useState([]);
 
   //const [multiSelect, setMultiselect] = useState([]);
+
+  const checkName = () => {
+    if (name == 'Guest') {
+      navigation.navigate('Category Screen');
+    }
+  };
+
+  checkName();
 
   var multiSelect = [];
 
@@ -117,6 +124,7 @@ const PickupScreen = ({route, navigation}) => {
 
   const handleShowAddress = () => {
     setAddressLoading(true);
+    console.log(userId);
     var data = JSON.stringify({
       userId: `${userId}`,
     });
@@ -139,6 +147,7 @@ const PickupScreen = ({route, navigation}) => {
       })
       .catch(function (error) {
         console.log(error);
+        console.log('address error');
         setAddressLoading(false);
         Alert.alert('Something Went Wrong');
       });
@@ -226,6 +235,7 @@ const PickupScreen = ({route, navigation}) => {
         //Alert.alert('We will send our representatives soon. Thank You');
         navigation.navigate('Redeem Screen', {
           userId: userId,
+          username: `${name}`,
         });
       })
       .catch(function (error) {
@@ -262,7 +272,7 @@ const PickupScreen = ({route, navigation}) => {
                 color: '#FFF',
                 fontSize: moderateScale(30),
                 marginLeft: scale(30),
-                fontWeight: 'bold',
+                fontFamily: 'Ubuntu-Bold',
                 textAlign: 'center',
                 textAlignVertical: 'center',
                 borderRadius: moderateScale(7),
@@ -275,6 +285,7 @@ const PickupScreen = ({route, navigation}) => {
                 color: '#5A2D94',
                 marginLeft: scale(30),
                 marginTop: verticalScale(10),
+                fontFamily: 'Ubuntu-Regular',
               }}>
               Hello {name} !
             </Text>
@@ -282,8 +293,8 @@ const PickupScreen = ({route, navigation}) => {
               style={{
                 marginLeft: scale(30),
                 marginTop: verticalScale(10),
-                color: '#000',
-                fontWeight: '300',
+                color: '#00000090',
+                fontFamily: 'Ubuntu-Regular',
                 fontSize: moderateScale(18),
               }}>
               More Productive
@@ -292,8 +303,8 @@ const PickupScreen = ({route, navigation}) => {
               style={{
                 marginLeft: scale(30),
                 marginTop: verticalScale(5),
-                color: '#000',
-                fontWeight: '300',
+                color: '#00000090',
+                fontFamily: 'Ubuntu-Regular',
                 fontSize: moderateScale(18),
               }}>
               with Comfortable Place
@@ -304,7 +315,7 @@ const PickupScreen = ({route, navigation}) => {
               fontSize: moderateScale(25),
               alignSelf: 'center',
               color: '#5A2D94',
-              fontWeight: '600',
+              fontFamily: 'Ubuntu-Bold',
               marginTop: verticalScale(30),
               marginBottom: verticalScale(20),
             }}>
@@ -315,7 +326,7 @@ const PickupScreen = ({route, navigation}) => {
             <Text
               style={{
                 fontSize: moderateScale(14),
-                fontWeight: '300',
+                fontFamily: 'Ubuntu-Regular',
                 color: '#5A2D94',
                 //borderWidth: 1,
                 width: scale(150),
@@ -545,6 +556,7 @@ const PickupScreen = ({route, navigation}) => {
                   fontSize: moderateScale(14),
                   textAlign: 'center',
                   color: '#5A2D94',
+                  fontFamily: 'Ubuntu-Regular',
                 }}>
                 Add New Address
               </Text>
@@ -620,6 +632,7 @@ const PickupScreen = ({route, navigation}) => {
                       fontSize: moderateScale(15),
                       textAlign: 'center',
                       color: '#5A2D94',
+                      fontFamily: 'Ubuntu-Regular',
                     }}>
                     {`${dateLabel}`}
                   </Text>
@@ -656,6 +669,7 @@ const PickupScreen = ({route, navigation}) => {
                       fontSize: moderateScale(12),
                       alignSelf: 'center',
                       color: '#FFFFFF',
+                      fontFamily: 'Ubuntu-Regular',
                       margin: moderateScale(5),
                       height: verticalScale(45),
                       paddingTop: verticalScale(8),
@@ -689,6 +703,7 @@ const PickupScreen = ({route, navigation}) => {
                   textAlign: 'center',
                   marginTop: verticalScale(2),
                   color: '#A363A9',
+                  fontFamily: 'Ubuntu-Regular',
                   paddingBottom: verticalScale(20),
                   alignSelf: 'center',
                 }}>
@@ -739,8 +754,9 @@ const styles = StyleSheet.create({
 
   multiSelectText: {
     fontSize: moderateScale(13),
-    paddingTop: verticalScale(5),
-    color: '#00000080',
+    paddingTop: verticalScale(6),
+    fontFamily: 'Ubuntu-Regular',
+    color: '#000000',
     marginLeft: scale(10),
   },
 });

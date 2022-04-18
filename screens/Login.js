@@ -41,15 +41,22 @@ const LoginScreen = ({navigation, route}) => {
 
   const [isLoading, setLoading] = useState(false);
 
-  const setUser = async () => {
-    await AsyncStorage.setItem('loginStatus', 'true');
-    await AsyncStorage.setItem('User', `${name}`);
-    await AsyncStorage.setItem('email', `${email2}`);
-    await AsyncStorage.setItem('address', `${address}`);
-    await AsyncStorage.setItem('phone', `${phone}`);
-    await AsyncStorage.setItem('landmark', `${landmark}`);
-    await AsyncStorage.setItem('pincode', `${pincode}`);
-    await AsyncStorage.setItem('userId', `${userId}`);
+  const setMyUser = async () => {
+    const setUser = async () => {
+      await AsyncStorage.setItem('loginStatus', 'true');
+      await AsyncStorage.setItem('User', `${name}`);
+      await AsyncStorage.setItem('email', `${email2}`);
+      await AsyncStorage.setItem('address', `${address}`);
+      await AsyncStorage.setItem('phone', `${phone}`);
+      await AsyncStorage.setItem('landmark', `${landmark}`);
+      await AsyncStorage.setItem('pincode', `${pincode}`);
+      await AsyncStorage.setItem('userId', `${userId}`);
+    };
+
+    await setUser();
+    console.log(name);
+    console.log(email2);
+    console.log(phone);
   };
 
   const phoneCheck = phone => {
@@ -98,11 +105,14 @@ const LoginScreen = ({navigation, route}) => {
           pincode = userData.data.userDetails.pinCode;
           userId = userData.data.userDetails._id;
 
-          setUser();
+          setMyUser();
 
           if (profile == 'true') {
             navigation.navigate('Profile Screen', {
               username: `${name}`,
+              phone: `${phone}`,
+              email: email2,
+              userId: `${userId}`,
             });
           } else {
             //var tempUsername = await AsyncStorage.getItem('User');
@@ -148,7 +158,7 @@ const LoginScreen = ({navigation, route}) => {
             style={{
               fontSize: moderateScale(30),
               textAlign: 'left',
-              fontWeight: '600',
+              fontFamily: 'Ubuntu-Bold',
               alignSelf: 'center',
               marginTop: verticalScale(40),
               color: '#FFF',
@@ -161,7 +171,7 @@ const LoginScreen = ({navigation, route}) => {
               textAlign: 'center',
               alignSelf: 'center',
               width: scale(250),
-              fontWeight: '300',
+              fontFamily: 'Ubuntu-Regular',
               marginHorizontal: scale(10),
               marginTop: verticalScale(30),
               marginBottom: verticalScale(30),
@@ -200,6 +210,7 @@ const LoginScreen = ({navigation, route}) => {
                 style={{
                   fontSize: moderateScale(12),
                   color: '#FFF',
+                  fontFamily: 'Ubuntu-Regular',
                 }}>
                 Forgot Password?
               </Text>
@@ -220,9 +231,10 @@ const LoginScreen = ({navigation, route}) => {
                     style={{
                       fontSize: moderateScale(18),
                       alignSelf: 'center',
-                      paddingTop: verticalScale(14),
+                      paddingTop: verticalScale(16),
                       color: '#FFFFFF',
                       margin: moderateScale(5),
+                      fontFamily: 'Ubuntu-Regular',
                       //paddingBottom: verticalScale(10),
                     }}>
                     Login
@@ -252,6 +264,7 @@ const LoginScreen = ({navigation, route}) => {
                 fontSize: moderateScale(15),
                 alignSelf: 'center',
                 marginTop: verticalScale(10),
+                fontFamily: 'Ubuntu-Regular',
                 color: '#FFF',
               }}>
               Don't have account?
@@ -276,6 +289,7 @@ const LoginScreen = ({navigation, route}) => {
                     color: '#2827CC',
                     paddingTop: verticalScale(11),
                     marginLeft: scale(5),
+                    fontFamily: 'Ubuntu-Regular',
                   }}>
                   Sign Up
                 </Text>
@@ -302,6 +316,7 @@ const styles = StyleSheet.create({
     paddingLeft: moderateScale(15),
     marginRight: scale(20),
     color: '#FFF',
+    fontFamily: 'Ubuntu-Regular',
   },
 
   loginBtn: {

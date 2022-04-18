@@ -154,9 +154,9 @@ const PriceScreen = () => {
                 <View
                   style={{
                     borderRadius: moderateScale(15),
-                    marginTop: verticalScale(20),
+                    marginTop: verticalScale(17),
                     marginLeft: scale(10),
-                    height: verticalScale(40),
+                    height: verticalScale(45),
                     width: scale(50),
                     backgroundColor: '#EF6563',
                     marginBottom: verticalScale(10),
@@ -167,7 +167,8 @@ const PriceScreen = () => {
                       alignSelf: 'center',
                       color: '#FFF',
                       margin: moderateScale(5),
-                      paddingTop: verticalScale(5),
+                      paddingTop: verticalScale(8),
+                      fontFamily: 'Ubuntu-Regular',
                       //paddingBottom: verticalScale(15),
                     }}>
                     GO
@@ -202,7 +203,7 @@ const PriceScreen = () => {
                   <Text
                     style={{
                       fontSize: moderateScale(16),
-                      fontWeight: 'bold',
+                      fontFamily: 'Ubuntu-Bold',
                       marginBottom: verticalScale(10),
                       color: '#E03B8B',
                     }}>
@@ -211,10 +212,10 @@ const PriceScreen = () => {
                   <Text
                     style={{
                       fontSize: moderateScale(16),
-                      fontWeight: 'bold',
                       marginBottom: verticalScale(30),
                       color: '#E03B8B',
                       marginLeft: verticalScale(110),
+                      fontFamily: 'Ubuntu-Bold',
                     }}>
                     Price
                   </Text>
@@ -231,12 +232,14 @@ const PriceScreen = () => {
                           color: '#8D3DAF',
                           width: scale(205),
                           marginBottom: verticalScale(10),
+                          fontFamily: 'Ubuntu-Regular',
                         }}>
                         {key.category}
                       </Text>
                       <Text
                         style={{
                           color: '#8D3DAF',
+                          fontFamily: 'Ubuntu-Regular',
                         }}>
                         ₹ {key.value}
                       </Text>
@@ -245,7 +248,7 @@ const PriceScreen = () => {
                       style={{
                         height: verticalScale(1),
                         width: scale(280),
-                        backgroundColor: '#CAD5E2',
+                        backgroundColor: '#CAD5E280',
                         marginBottom: verticalScale(10),
                       }}
                     />
@@ -253,7 +256,7 @@ const PriceScreen = () => {
                       style={{
                         height: verticalScale(1),
                         width: scale(280),
-                        backgroundColor: '#CAD5E2',
+                        backgroundColor: '#CAD5E280',
                         marginBottom: verticalScale(15),
                       }}
                     />
@@ -278,12 +281,14 @@ const PriceScreen = () => {
             <Text
               style={{
                 color: '#000',
+                fontFamily: 'Ubuntu-Regular',
               }}>
               + Price is showing for selected Pincode*
             </Text>
             <Text
               style={{
                 color: '#000',
+                fontFamily: 'Ubuntu-Regular',
               }}>
               + All prices are according to 1kg weight.
             </Text>

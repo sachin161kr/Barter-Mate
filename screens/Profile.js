@@ -19,10 +19,10 @@ import icon4 from '../assets/icon4.png';
 const ProfileScreen = ({route, navigation}) => {
   var username = route.params.username;
 
-  var userId = '';
+  var userId = route.params.userId;
   var name = '';
-  var email = '';
-  var phone = '';
+  var email = route.params.email;
+  var phone = route.params.phone;
   var landmark = '';
 
   const setUser = async () => {
@@ -30,15 +30,21 @@ const ProfileScreen = ({route, navigation}) => {
     await AsyncStorage.setItem('User', 'Guest');
   };
 
-  const getUser = async () => {
-    name = await AsyncStorage.getItem('User');
-    email = await AsyncStorage.getItem('email');
-    phone = await AsyncStorage.getItem('phone');
-    userId = await AsyncStorage.getItem('userId');
-    landmark = await AsyncStorage.getItem('landmark');
-  };
+  // useEffect(async () => {
+  //   const getUser = async () => {
+  //     name = await AsyncStorage.getItem('User');
+  //     email = await AsyncStorage.getItem('email');
+  //     phone = await AsyncStorage.getItem('phone');
+  //     userId = await AsyncStorage.getItem('userId');
+  //     landmark = await AsyncStorage.getItem('landmark');
+  //   };
 
-  getUser();
+  //   await getUser();
+  //   console.log(name);
+  //   console.log(email);
+  //   console.log(phone);
+  //   console.log('Called');
+  // });
 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
@@ -66,10 +72,10 @@ const ProfileScreen = ({route, navigation}) => {
         <Text
           style={{
             fontSize: moderateScale(20),
-            fontWeight: 'bold',
             marginLeft: scale(35),
             marginTop: verticalScale(15),
             color: '#5A2D94',
+            fontFamily: 'Ubuntu-Bold',
           }}>
           Hey! {username}
         </Text>
@@ -82,7 +88,7 @@ const ProfileScreen = ({route, navigation}) => {
           <TouchableOpacity
             onPress={() => {
               navigation.navigate('My Profile Screen', {
-                name: `${name}`,
+                name: `${username}`,
                 email: `${email}`,
                 phone: `${phone}`,
                 userId: `${userId}`,
@@ -180,8 +186,8 @@ const ProfileScreen = ({route, navigation}) => {
             // padding: moderateScale(6),
             // marginBottom: verticalScale(30),
           }}
-          onPress={() => {
-            setUser();
+          onPress={async () => {
+            await setUser();
             navigation.navigate('Category Screen');
             Alert.alert('You are logged out!');
           }}>
@@ -190,9 +196,9 @@ const ProfileScreen = ({route, navigation}) => {
               style={{
                 fontSize: moderateScale(15),
                 marginTop: verticalScale(3),
-                paddingTop: verticalScale(5),
+                paddingTop: verticalScale(7),
                 color: '#FFF',
-
+                fontFamily: 'Ubuntu-Regular',
                 textAlign: 'center',
                 // paddingTop: verticalScale(10),
                 // paddingBottom: verticalScale(10),
@@ -215,6 +221,7 @@ const styles = StyleSheet.create({
     marginLeft: scale(16.17),
     marginBottom: verticalScale(30),
     marginTop: verticalScale(16),
+    fontFamily: 'Ubuntu-Regular',
     color: '#000',
   },
 });

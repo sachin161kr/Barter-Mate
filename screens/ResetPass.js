@@ -173,7 +173,8 @@ const ResetPassScreen = ({route, navigation}) => {
                     alignSelf: 'center',
                     color: '#FFFFFF',
                     margin: moderateScale(5),
-                    paddingTop: verticalScale(7),
+                    paddingTop: verticalScale(8),
+                    fontFamily: 'Ubuntu-Regular',
                   }}>
                   Save New Password
                 </Text>
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(12),
     borderColor: '#FFF',
     borderBottomWidth: 1,
-
+    fontFamily: 'Ubuntu-Regular',
     borderBottomColor: '#FFFFFF80',
     //borderWidth: 1,
     height: verticalScale(45),

@@ -21,9 +21,13 @@ const EditPhoneScreen = ({route, navigation}) => {
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const setUser = async () => {
-    await AsyncStorage.setItem('phone', `${phone}`);
-    navigation.navigate('Category Screen');
+  const setMyUser = async () => {
+    const setUser = async () => {
+      await AsyncStorage.setItem('phone', `${phone}`);
+      navigation.navigate('Category Screen');
+    };
+
+    await setUser();
   };
 
   const phoneCheck = () => {
@@ -58,7 +62,7 @@ const EditPhoneScreen = ({route, navigation}) => {
         console.log(JSON.stringify(response.data));
         setLoading(false);
         Alert.alert('Phone No. Successfully Changed');
-        setUser();
+        setMyUser();
       })
       .catch(function (error) {
         console.log(error);
@@ -82,7 +86,7 @@ const EditPhoneScreen = ({route, navigation}) => {
             color: '#FFF',
             fontSize: moderateScale(20),
             alignSelf: 'center',
-            fontWeight: '300',
+            fontFamily: 'Ubuntu-Bold',
             marginTop: verticalScale(30),
           }}>
           Reset Phone Number
@@ -95,7 +99,7 @@ const EditPhoneScreen = ({route, navigation}) => {
             position: 'relative',
             alignSelf: 'center',
             resizeMode: 'contain',
-            marginTop: verticalScale(20),
+            marginTop: verticalScale(50),
           }}
         />
         <Image
@@ -105,7 +109,7 @@ const EditPhoneScreen = ({route, navigation}) => {
             width: scale(100),
             position: 'absolute',
             resizeMode: 'contain',
-            marginTop: verticalScale(105),
+            marginTop: verticalScale(135),
             marginLeft: scale(113),
           }}
         />
@@ -127,6 +131,7 @@ const EditPhoneScreen = ({route, navigation}) => {
               marginTop: verticalScale(13),
               marginRight: scale(10),
               marginLeft: scale(3),
+              fontFamily: 'Ubuntu-Regular',
               color: '#FFF',
             }}>
             +91
@@ -140,7 +145,8 @@ const EditPhoneScreen = ({route, navigation}) => {
             }}
             style={{
               fontSize: moderateScale(12),
-
+              fontFamily: 'Ubuntu-Regular',
+              width: scale(300),
               color: '#FFF',
             }}
             placeholder="Contact Number*"
@@ -179,7 +185,8 @@ const EditPhoneScreen = ({route, navigation}) => {
                 style={{
                   fontSize: moderateScale(14),
                   textAlign: 'center',
-                  paddingTop: verticalScale(3),
+                  paddingTop: verticalScale(5),
+                  fontFamily: 'Ubuntu-Regular',
                   color: '#FFF',
                 }}>
                 Save Phone Number

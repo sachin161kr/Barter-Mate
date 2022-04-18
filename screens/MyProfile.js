@@ -33,7 +33,7 @@ const MyProfileScreen = ({route, navigation}) => {
                 height: verticalScale(80),
                 width: scale(85),
                 backgroundColor: '#A363A9',
-                fontWeight: 'bold',
+                fontFamily: 'Ubuntu-Bold',
                 color: '#FFF',
                 fontSize: moderateScale(35),
                 textAlign: 'center',
@@ -48,7 +48,7 @@ const MyProfileScreen = ({route, navigation}) => {
                 marginLeft: scale(30),
                 fontSize: moderateScale(20),
                 color: '#5A2D94',
-                fontWeight: '700',
+                fontFamily: 'Ubuntu-Bold',
                 marginTop: verticalScale(30),
               }}>
               {name}
@@ -58,8 +58,8 @@ const MyProfileScreen = ({route, navigation}) => {
             style={{
               color: '#5A2D94',
               marginBottom: verticalScale(20),
-              fontWeight: 'bold',
               marginTop: verticalScale(30),
+              fontFamily: 'Ubuntu-Bold',
             }}>
             PERSONAL DETAILS :
           </Text>
@@ -121,5 +121,6 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(10),
     borderBottomColor: '#CAD5E2',
     borderBottomWidth: 1,
+    fontFamily: 'Ubuntu-Regular',
   },
 });

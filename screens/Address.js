@@ -159,6 +159,7 @@ const AddressScreen = ({route, navigation}) => {
                 fontSize: moderateScale(12),
                 marginLeft: scale(14),
                 marginTop: verticalScale(20),
+                fontFamily: 'Ubuntu-Regular',
               }}
               dropdownIconColor="#000"
               dropdownIconRippleColor="#000"
@@ -213,6 +214,7 @@ const AddressScreen = ({route, navigation}) => {
                     color: '#000000',
                     height: verticalScale(50),
                     width: scale(100),
+                    fontFamily: 'Ubuntu-Regular',
                   }}
                   placeholder="Enter City"
                   placeholderTextColor="#758283"></TextInput>
@@ -257,6 +259,7 @@ const AddressScreen = ({route, navigation}) => {
                     height: verticalScale(50),
                     width: scale(100),
                     marginLeft: scale(25),
+                    fontFamily: 'Ubuntu-Regular',
                   }}
                   placeholder="Enter State"
                   placeholderTextColor="#758283"></TextInput>
@@ -269,6 +272,7 @@ const AddressScreen = ({route, navigation}) => {
                     borderBottomWidth: 1,
                     width: scale(100),
                     color: '#000',
+                    fontFamily: 'Ubuntu-Regular',
                   }}>
                   India
                 </Text>
@@ -317,8 +321,8 @@ const AddressScreen = ({route, navigation}) => {
                       marginTop: verticalScale(3),
                       color: '#FFF',
                       textAlign: 'center',
-                      fontWeight: 'bold',
-                      paddingTop: verticalScale(7),
+                      fontFamily: 'Ubuntu-Bold',
+                      paddingTop: verticalScale(10),
                       // paddingTop: verticalScale(10),
                       // paddingBottom: verticalScale(10),
                     }}>
@@ -341,7 +345,7 @@ const AddressScreen = ({route, navigation}) => {
               <Text
                 style={{
                   fontSize: moderateScale(14),
-                  fontWeight: '400',
+                  fontFamily: 'Ubuntu-Regular',
                   color: '#5A2D94',
                   marginLeft: scale(30),
                   marginTop: verticalScale(20),
@@ -362,12 +366,12 @@ const AddressScreen = ({route, navigation}) => {
                   }}>
                   <Text
                     style={{
-                      fontWeight: 'bold',
                       marginLeft: scale(10),
                       marginTop: verticalScale(12),
                       fontSize: moderateScale(18),
                       color: '#5A2D94',
                       width: scale(80),
+                      fontFamily: 'Ubuntu-Bold',
                     }}>
                     {key.tags}
                   </Text>
@@ -378,6 +382,7 @@ const AddressScreen = ({route, navigation}) => {
                       marginRight: scale(20),
                       marginTop: verticalScale(10),
                       color: '#000',
+                      fontFamily: 'Ubuntu-Regular',
                     }}>
                     {key.address1},{key.address2},{key.city},{key.state},{' '}
                     {key.pinCode}
@@ -397,6 +402,7 @@ export default AddressScreen;
 const styles = StyleSheet.create({
   textinput: {
     alignSelf: 'center',
+    fontFamily: 'Ubuntu-Regular',
     fontSize: moderateScale(12),
     borderBottomColor: '#CAD5E2',
     borderBottomWidth: 1,
@@ -408,6 +414,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: moderateScale(18),
+    fontFamily: 'Ubuntu-Regular',
     marginTop: verticalScale(8),
     marginBottom: verticalScale(5),
   },

@@ -41,6 +41,7 @@ const MainStackNavigator = () => {
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'center',
+                    backgroundColor: '#FFF',
                   }}>
                   <Image
                     source={logo}
@@ -198,6 +199,7 @@ const RateStackNavigator = () => {
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'center',
+                    backgroundColor: '#FFF',
                   }}>
                   <Image
                     source={logo}
@@ -210,9 +212,10 @@ const RateStackNavigator = () => {
                   <Text
                     style={{
                       fontSize: moderateScale(25),
-                      marginTop: verticalScale(19),
+                      marginTop: verticalScale(24),
                       marginLeft: scale(20),
-                      fontWeight: '700',
+                      color: '#5A2D94',
+                      fontFamily: 'Ubuntu-Bold',
                     }}>
                     BarterMate
                   </Text>
@@ -223,10 +226,11 @@ const RateStackNavigator = () => {
                     <Image
                       source={profileIcon}
                       style={{
-                        height: verticalScale(45),
-                        width: scale(45),
-                        marginTop: verticalScale(15),
-                        marginLeft: scale(40),
+                        height: verticalScale(55),
+                        width: scale(55),
+                        resizeMode: 'contain',
+                        marginTop: verticalScale(10),
+                        marginLeft: scale(25),
                       }}
                     />
                   </TouchableOpacity>

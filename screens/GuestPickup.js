@@ -160,6 +160,7 @@ const GuestPickupScreen = ({route, navigation}) => {
         //Alert.alert('We will send our representatives soon. Thank You');
         navigation.navigate('Redeem Screen', {
           userId: `${userId}`,
+          username: `${name}`,
         });
       })
       .catch(function (error) {
@@ -186,7 +187,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 color: '#FFF',
                 fontSize: moderateScale(30),
                 marginLeft: scale(30),
-                fontWeight: 'bold',
+                fontFamily: 'Ubuntu-Bold',
                 textAlign: 'center',
                 textAlignVertical: 'center',
                 borderRadius: moderateScale(7),
@@ -199,6 +200,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 color: '#5A2D94',
                 marginLeft: scale(30),
                 marginTop: verticalScale(10),
+                fontFamily: 'Ubuntu-Regular',
               }}>
               Hello Guest !
             </Text>
@@ -206,8 +208,8 @@ const GuestPickupScreen = ({route, navigation}) => {
               style={{
                 marginLeft: scale(30),
                 marginTop: verticalScale(10),
-                color: '#000',
-                fontWeight: '300',
+                color: '#00000090',
+                fontFamily: 'Ubuntu-Regular',
                 fontSize: moderateScale(18),
               }}>
               More Productive
@@ -216,8 +218,8 @@ const GuestPickupScreen = ({route, navigation}) => {
               style={{
                 marginLeft: scale(30),
                 marginTop: verticalScale(5),
-                color: '#000',
-                fontWeight: '300',
+                color: '#00000080',
+                fontFamily: 'Ubuntu-Regular',
                 fontSize: moderateScale(18),
               }}>
               with Comfortable Place
@@ -228,7 +230,7 @@ const GuestPickupScreen = ({route, navigation}) => {
               fontSize: moderateScale(25),
               alignSelf: 'center',
               color: '#5A2D94',
-              fontWeight: '600',
+              fontFamily: 'Ubuntu-Bold',
               marginTop: verticalScale(30),
               marginBottom: verticalScale(20),
             }}>
@@ -239,7 +241,7 @@ const GuestPickupScreen = ({route, navigation}) => {
             <Text
               style={{
                 fontSize: moderateScale(14),
-                fontWeight: '300',
+                fontFamily: 'Ubuntu-Regular',
                 color: '#5A2D94',
                 //borderWidth: 1,
                 width: scale(150),
@@ -438,6 +440,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 marginTop: verticalScale(13),
                 marginRight: scale(10),
                 marginLeft: scale(3),
+                fontFamily: 'Ubuntu-Regular',
                 color: '#758283',
               }}>
               +91
@@ -451,8 +454,9 @@ const GuestPickupScreen = ({route, navigation}) => {
               }}
               style={{
                 fontSize: moderateScale(12),
-
+                width: scale(300),
                 color: '#000000',
+                fontFamily: 'Ubuntu-Regular',
               }}
               placeholder="Contact Number*"
               placeholderTextColor="#758283"></TextInput>
@@ -544,6 +548,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                       fontSize: moderateScale(12),
                       textAlign: 'center',
                       color: '#5A2D94',
+                      fontFamily: 'Ubuntu-Regular',
                     }}>
                     {`${dateLabel}`}
                   </Text>
@@ -600,8 +605,8 @@ const GuestPickupScreen = ({route, navigation}) => {
                       alignSelf: 'center',
                       color: '#FFFFFF',
                       margin: moderateScale(5),
-                      paddingTop: verticalScale(7),
-
+                      paddingTop: verticalScale(9),
+                      fontFamily: 'Ubuntu-Regular',
                       //paddingBottom: verticalScale(15),
                     }}>
                     Send Pickup Request
@@ -635,6 +640,7 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(10),
     marginRight: scale(20),
     color: '#000000',
+    fontFamily: 'Ubuntu-Regular',
     height: verticalScale(50),
     width: scale(280),
   },
@@ -651,7 +657,8 @@ const styles = StyleSheet.create({
   multiSelectText: {
     fontSize: moderateScale(13),
     paddingTop: verticalScale(5),
-    color: '#00000080',
+    color: '#000000',
+    fontFamily: 'Ubuntu-Regular',
     marginLeft: scale(10),
   },
 

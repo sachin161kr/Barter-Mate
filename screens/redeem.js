@@ -23,6 +23,10 @@ import service from '../assets/service.png';
 const RedeemScreen = ({route, navigation}) => {
   var userId = route.params.userId;
 
+  var username = route.params.username;
+
+  console.log(username);
+
   var symbol = '<';
 
   useEffect(() => {
@@ -94,9 +98,9 @@ const RedeemScreen = ({route, navigation}) => {
           />
           <Text
             style={{
-              fontWeight: '300',
+              fontFamily: 'Ubuntu-Regular',
               fontSize: moderateScale(18),
-              color: '#000',
+              color: '#00000080',
               alignSelf: 'center',
               textAlign: 'center',
               marginHorizontal: scale(30),
@@ -108,40 +112,44 @@ const RedeemScreen = ({route, navigation}) => {
             style={{
               alignSelf: 'center',
               fontSize: moderateScale(17),
-              color: '#000',
+              color: '#00000080',
               marginTop: verticalScale(20),
               textAlign: 'center',
               marginHorizontal: scale(30),
-              fontWeight: '300',
+              fontFamily: 'Ubuntu-Regular',
               fontSize: moderateScale(18),
             }}>
             You can check your booking in the order history under your profile
             section.
           </Text>
-          <TouchableOpacity
-            onPress={async () => {
-              var tempEmail = await AsyncStorage.getItem('email');
-              navigation.navigate('Pickup History Screen', {
-                email: `${tempEmail}`,
-              });
-            }}>
-            <Image
-              source={track}
-              style={{
-                height: verticalScale(40),
-                width: scale(80),
-                resizeMode: 'contain',
-                alignSelf: 'center',
-                marginTop: verticalScale(30),
-              }}
-            />
-          </TouchableOpacity>
+          {username == 'Guest' ? (
+            <></>
+          ) : (
+            <TouchableOpacity
+              onPress={async () => {
+                var tempEmail = await AsyncStorage.getItem('email');
+                navigation.navigate('Pickup History Screen', {
+                  email: `${tempEmail}`,
+                });
+              }}>
+              <Image
+                source={track}
+                style={{
+                  height: verticalScale(40),
+                  width: scale(80),
+                  resizeMode: 'contain',
+                  alignSelf: 'center',
+                  marginTop: verticalScale(30),
+                }}
+              />
+            </TouchableOpacity>
+          )}
           <Text
             style={{
               alignSelf: 'center',
               fontSize: moderateScale(20),
               color: '#000000',
-              fontWeight: 'bold',
+              fontFamily: 'Ubuntu-Bold',
               marginTop: verticalScale(12),
             }}>
             Available Offers

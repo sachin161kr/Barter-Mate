@@ -65,10 +65,10 @@ const PickupHistoryScreen = ({route, navigation}) => {
           <Text
             style={{
               fontSize: moderateScale(16),
-              fontWeight: '400',
               color: '#5A2D94',
               alignSelf: 'center',
               marginTop: verticalScale(40),
+              fontFamily: 'Ubuntu-Bold',
             }}>
             You have'nt placed any order yet.
           </Text>
@@ -112,9 +112,8 @@ const PickupHistoryScreen = ({route, navigation}) => {
                       <Text
                         style={{
                           fontSize: moderateScale(16),
-                          fontWeight: 'bold',
                           color: '#5A2D94',
-
+                          fontFamily: 'Ubuntu-Bold',
                           width: scale(120),
                         }}>
                         {key.category} ,
@@ -122,9 +121,8 @@ const PickupHistoryScreen = ({route, navigation}) => {
                       <Text
                         style={{
                           fontSize: moderateScale(16),
-                          fontWeight: 'bold',
                           color: '#5A2D94',
-
+                          fontFamily: 'Ubuntu-Bold',
                           width: scale(120),
                         }}>
                         {key.subcategory}
@@ -136,7 +134,9 @@ const PickupHistoryScreen = ({route, navigation}) => {
                           marginTop: verticalScale(10),
                           fontSize: moderateScale(14),
                           color: 'green',
-                          fontWeight: '400',
+                          width: scale(180),
+                          marginLeft: scale(15),
+                          fontFamily: 'Ubuntu-Regular',
                         }}>
                         Order Status : Completed
                       </Text>
@@ -146,9 +146,9 @@ const PickupHistoryScreen = ({route, navigation}) => {
                           marginTop: verticalScale(10),
                           fontSize: moderateScale(12),
                           color: 'red',
-                          fontWeight: '400',
                           width: scale(180),
                           marginLeft: scale(15),
+                          fontFamily: 'Ubuntu-Regular',
                         }}>
                         Order Status : Not Completed
                       </Text>
@@ -163,7 +163,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
                         marginTop: verticalScale(10),
                         fontSize: moderateScale(14),
                         color: '#000',
-                        fontWeight: '400',
+                        fontFamily: 'Ubuntu-Regular',
                       }}>
                       Order date : {key.createdDate.substring(0, 10)}
                     </Text>
@@ -172,7 +172,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
                         marginTop: verticalScale(10),
                         fontSize: moderateScale(14),
                         color: '#000',
-                        fontWeight: '400',
+                        fontFamily: 'Ubuntu-Regular',
                       }}>
                       Pickup date : {key.pickupDate.substring(0, 10)}
                     </Text>
@@ -181,7 +181,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
                         marginTop: verticalScale(10),
                         fontSize: moderateScale(14),
                         color: '#000',
-                        fontWeight: '400',
+                        fontFamily: 'Ubuntu-Regular',
                       }}>
                       Pickup Address : {key.address}
                     </Text>

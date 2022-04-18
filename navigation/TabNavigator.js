@@ -25,12 +25,13 @@ const BottomTabNavigator = () => {
           borderTopLeftRadius: moderateScale(10),
           borderTopRightRadius: moderateScale(10),
           height: verticalScale(67),
-          backgroundColor: '#f2748e',
+          backgroundColor: '#8D3DAF',
         },
 
         tabBarLabelStyle: {
           fontSize: moderateScale(13),
           marginBottom: verticalScale(10),
+          fontFamily: 'Ubuntu-Regular',
         },
       }}>
       <Tab.Screen
@@ -48,12 +49,13 @@ const BottomTabNavigator = () => {
                 style={{
                   height: verticalScale(30),
                   width: scale(30),
+                  resizeMode: 'contain',
                 }}
               />
             </View>
           ),
-          tabBarActiveTintColor: '#FFF',
-          tabBarInactiveTintColor: '#000',
+          tabBarActiveTintColor: '#f5f542',
+          tabBarInactiveTintColor: '#FFF',
         }}
       />
       <Tab.Screen
@@ -71,12 +73,13 @@ const BottomTabNavigator = () => {
                 style={{
                   height: verticalScale(25),
                   width: scale(25),
+                  resizeMode: 'contain',
                 }}
               />
             </View>
           ),
-          tabBarActiveTintColor: '#FFF',
-          tabBarInactiveTintColor: '#000',
+          tabBarActiveTintColor: '#f5f542',
+          tabBarInactiveTintColor: '#FFF',
         }}
       />
       <Tab.Screen
@@ -94,12 +97,13 @@ const BottomTabNavigator = () => {
                 style={{
                   height: verticalScale(35),
                   width: scale(35),
+                  resizeMode: 'contain',
                 }}
               />
             </View>
           ),
-          tabBarActiveTintColor: '#FFF',
-          tabBarInactiveTintColor: '#000',
+          tabBarActiveTintColor: '#f5f542',
+          tabBarInactiveTintColor: '#FFF',
         }}
       />
     </Tab.Navigator>

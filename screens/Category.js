@@ -121,35 +121,51 @@ const CategoryScreen = ({navigation}) => {
   const [description, setDescription] = useState('');
   const [itemSelected, setItem] = useState('');
   const [subCategory, setSubCategory] = useState('Choose Sub-Category');
+  var copyItem = '';
 
-  const [loginStatus, setLogin] = useState('');
-  const [username, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [landmark, setLandmark] = useState('');
-  const [pincode, setPincode] = useState('');
-  const [address, setAddress] = useState('');
+  //const [loginStatus, setLogin] = useState('');
+  // const [username, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [phone, setPhone] = useState('');
+  // const [landmark, setLandmark] = useState('');
+  // const [pincode, setPincode] = useState('');
+  // const [address, setAddress] = useState('');
+  // const [userId, setUserId] = useState('');
 
+  var username = '';
+  var email = '';
+  var phone = '';
+  var landmark = '';
+  var pincode = '';
+  var address = '';
+  var loginStatus = '';
   var userId = '';
 
   const getUser = async () => {
-    var tempLoginStatus = await AsyncStorage.getItem('loginStatus');
-    var tempUsername = await AsyncStorage.getItem('User');
-    var tempAddress = await AsyncStorage.getItem('address');
-    var tempEmail = await AsyncStorage.getItem('email');
-    var tempPhone = await AsyncStorage.getItem('phone');
-    var tempLandmark = await AsyncStorage.getItem('landmark');
-    var tempPincode = await AsyncStorage.getItem('pincode');
+    loginStatus = await AsyncStorage.getItem('loginStatus');
+    username = await AsyncStorage.getItem('User');
+    address = await AsyncStorage.getItem('address');
+    email = await AsyncStorage.getItem('email');
+    phone = await AsyncStorage.getItem('phone');
+    landmark = await AsyncStorage.getItem('landmark');
+    pincode = await AsyncStorage.getItem('pincode');
 
     userId = await AsyncStorage.getItem('userId');
 
-    setLogin(tempLoginStatus);
-    setName(tempUsername);
-    setAddress(tempAddress);
-    setEmail(tempEmail);
-    setPhone(tempPhone);
-    setLandmark(tempLandmark);
-    setPincode(tempPincode);
+    // setUserId(tempUserId);
+    // setLogin(tempLoginStatus);
+    // setName(tempUsername);
+    // setAddress(tempAddress);
+    // setEmail(tempEmail);
+    // setPhone(tempPhone);
+    // setLandmark(tempLandmark);
+    // setPincode(tempPincode);
+
+    console.log(username);
+    console.log(email);
+    console.log(phone);
+    console.log(userId);
+    console.log(loginStatus);
   };
 
   getUser();
@@ -163,6 +179,7 @@ const CategoryScreen = ({navigation}) => {
               style={{
                 flexDirection: 'row',
                 justifyContent: 'center',
+                backgroundColor: '#FFF',
               }}>
               <Image
                 source={logo}
@@ -175,10 +192,10 @@ const CategoryScreen = ({navigation}) => {
               <Text
                 style={{
                   fontSize: moderateScale(25),
-                  marginTop: verticalScale(19),
+                  marginTop: verticalScale(24),
                   marginLeft: scale(20),
                   color: '#5A2D94',
-                  fontWeight: '700',
+                  fontFamily: 'Ubuntu-Bold',
                 }}>
                 BarterMate
               </Text>
@@ -206,10 +223,11 @@ const CategoryScreen = ({navigation}) => {
                 <Image
                   source={profileIcon}
                   style={{
-                    height: verticalScale(45),
-                    width: scale(45),
-                    marginTop: verticalScale(15),
-                    marginLeft: scale(40),
+                    height: verticalScale(55),
+                    width: scale(55),
+                    resizeMode: 'contain',
+                    marginTop: verticalScale(10),
+                    marginLeft: scale(25),
                   }}
                 />
               </TouchableOpacity>
@@ -283,11 +301,12 @@ const CategoryScreen = ({navigation}) => {
               style={{
                 fontSize: moderateScale(18),
                 marginTop: verticalScale(10),
+                fontFamily: 'Ubuntu-Bold',
                 //marginLeft: scale(30),
                 //fontWeight: 'bold',
                 color: '#5A2D94',
               }}>
-              Choose Your Category
+              Categories ____________________
             </Text>
           </View>
           <View style={styles.gridContainer}>
@@ -298,24 +317,24 @@ const CategoryScreen = ({navigation}) => {
                   var tempLoginStatus = await AsyncStorage.getItem(
                     'loginStatus',
                   );
-                  if (tempLoginStatus == 'false') {
-                    setItem(key.text);
-                    setDescription(key.description);
-                    toggle();
-                    setSubCategory('Choose Sub-Category');
-                  } else if (tempLoginStatus == 'true') {
+                  setItem(key.text);
+                  copyItem = key.text;
+                  if (tempLoginStatus == 'true') {
                     navigation.navigate('Pickup Screen', {
                       name: `${username}`,
-                      itemSelected: `${itemSelected}`,
-                      subCategory: `${subCategory}`,
-                      address: `${address}`,
+                      userId: `${userId}`,
                       email: `${email}`,
                       phone: `${phone}`,
                       landmark: `${landmark}`,
-                      pincode: `${pincode}`,
-                      userId: `${userId}`,
+                      itemSelected: `${copyItem}`,
+                      subCategory: `${subCategory}`,
+                      address: `${address}`,
                       loadAgain: `${false}`,
                     });
+                  } else {
+                    setDescription(key.description);
+                    toggle();
+                    setSubCategory('Choose Sub-Category');
                   }
                 }}>
                 <LinearGradient
@@ -348,6 +367,7 @@ const CategoryScreen = ({navigation}) => {
                         marginBottom: verticalScale(4),
                         marginTop: verticalScale(8),
                         color: '#FFFFFF',
+                        fontFamily: 'Ubuntu-Bold',
                         //fontWeight: '900',
                         width: scale(120),
                       }}>
@@ -356,6 +376,7 @@ const CategoryScreen = ({navigation}) => {
                     <Text
                       style={{
                         color: '#FFFFFF',
+                        fontFamily: 'Ubuntu-Regular',
                       }}>
                       By BarterMate
                     </Text>
@@ -387,8 +408,8 @@ const CategoryScreen = ({navigation}) => {
                   color: '#FFF',
                   alignSelf: 'center',
                   fontSize: moderateScale(25),
-                  fontWeight: 'bold',
                   marginTop: verticalScale(40),
+                  fontFamily: 'Ubuntu-Medium',
                 }}>
                 {itemSelected}
               </Text>
@@ -397,6 +418,7 @@ const CategoryScreen = ({navigation}) => {
                   fontSize: moderateScale(25),
                   height: verticalScale(120),
                   color: '#FFF',
+                  fontFamily: 'Ubuntu-Regular',
                   textAlign: 'center',
                   fontWeight: '400',
                   marginTop: verticalScale(10),
@@ -433,10 +455,10 @@ const CategoryScreen = ({navigation}) => {
                           height: verticalScale(35),
                           marginBottom: verticalScale(10),
                           width: scale(200),
-                          fontWeight: '800',
                           textAlign: 'center',
                           alignSelf: 'center',
-                          paddingTop: verticalScale(3),
+                          fontFamily: 'Ubuntu-Bold',
+                          paddingTop: verticalScale(5),
                         }}>
                         Sign Up
                       </Text>
@@ -465,9 +487,9 @@ const CategoryScreen = ({navigation}) => {
                           backgroundColor: '#FFF',
                           height: verticalScale(35),
                           width: scale(200),
-                          fontWeight: '800',
                           textAlign: 'center',
-                          paddingTop: verticalScale(3),
+                          fontFamily: 'Ubuntu-Bold',
+                          paddingTop: verticalScale(5),
                           marginTop: verticalScale(15),
                         }}>
                         Guest
@@ -483,7 +505,7 @@ const CategoryScreen = ({navigation}) => {
                     if (loginStatus == 'true') {
                       navigation.navigate('Pickup Screen', {
                         name: `${username}`,
-                        itemSelected: `${itemSelected}`,
+                        itemSelected: `${copyItem}`,
                         subCategory: `${subCategory}`,
                         address: `${address}`,
                         email: `${email}`,
@@ -565,9 +587,9 @@ const CategoryScreen = ({navigation}) => {
                     <Text
                       style={{
                         color: '#FFF',
-
+                        fontFamily: 'Ubuntu-Regular',
                         fontSize: moderateScale(20),
-                        paddingTop: verticalScale(10),
+                        paddingTop: verticalScale(11),
                         textAlignVertical: 'center',
                         textAlign: 'center',
                       }}>
