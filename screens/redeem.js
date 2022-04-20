@@ -135,8 +135,8 @@ const RedeemScreen = ({route, navigation}) => {
               <Image
                 source={track}
                 style={{
-                  height: verticalScale(40),
-                  width: scale(80),
+                  height: verticalScale(50),
+                  width: scale(90),
                   resizeMode: 'contain',
                   alignSelf: 'center',
                   marginTop: verticalScale(30),
@@ -173,7 +173,7 @@ const RedeemScreen = ({route, navigation}) => {
                 borderRadius: moderateScale(10),
               }}
               start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}>
+              end={{x: 0, y: 1}}>
               <Image
                 source={service}
                 style={{
