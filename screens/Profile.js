@@ -20,7 +20,6 @@ const ProfileScreen = ({route, navigation}) => {
   var username = route.params.username;
 
   var userId = route.params.userId;
-  var name = '';
   var email = route.params.email;
   var phone = route.params.phone;
   var landmark = '';
@@ -87,6 +86,10 @@ const ProfileScreen = ({route, navigation}) => {
           }}>
           <TouchableOpacity
             onPress={() => {
+              console.log(username);
+              console.log(email);
+              console.log(phone);
+              console.log(userId);
               navigation.navigate('My Profile Screen', {
                 name: `${username}`,
                 email: `${email}`,

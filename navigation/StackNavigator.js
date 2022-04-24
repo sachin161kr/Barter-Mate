@@ -188,58 +188,7 @@ const MainStackNavigator = () => {
 const RateStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Price Screen"
-        component={PriceScreen}
-        options={{
-          header: () => {
-            return (
-              <>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    backgroundColor: '#FFF',
-                  }}>
-                  <Image
-                    source={logo}
-                    style={{
-                      height: verticalScale(75),
-                      width: scale(80),
-                      //marginLeft: scale(10),
-                    }}
-                  />
-                  <Text
-                    style={{
-                      fontSize: moderateScale(25),
-                      marginTop: verticalScale(24),
-                      marginLeft: scale(20),
-                      color: '#5A2D94',
-                      fontFamily: 'Ubuntu-Bold',
-                    }}>
-                    BarterMate
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate('Profile Screen');
-                    }}>
-                    <Image
-                      source={profileIcon}
-                      style={{
-                        height: verticalScale(55),
-                        width: scale(55),
-                        resizeMode: 'contain',
-                        marginTop: verticalScale(10),
-                        marginLeft: scale(25),
-                      }}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </>
-            );
-          },
-        }}
-      />
+      <Stack.Screen name="Price Screen" component={PriceScreen} />
     </Stack.Navigator>
   );
 };

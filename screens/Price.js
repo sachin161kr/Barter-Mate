@@ -13,14 +13,128 @@ import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import LinearGradient from 'react-native-linear-gradient';
+import profileIcon from '../assets/profileIcon.png';
+import logo from '../assets/logo2.png';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const PriceScreen = () => {
+const PriceScreen = ({navigation}) => {
   const [pincode, setPincode] = useState('Choose Pincode');
   const [fetch, setFetch] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [prices, setPrices] = useState([]);
   const [images, setImages] = useState([]);
+  const [itemSelected, setItem] = useState('');
+  const [subCategory, setSubCategory] = useState('Choose Sub-Category');
+
+  var username = '';
+  var email = '';
+  var phone = '';
+  var landmark = '';
+  var pinCode = '';
+  var address = '';
+  var loginStatus = '';
+  var userId = '';
+
+  const getUser = async () => {
+    loginStatus = await AsyncStorage.getItem('loginStatus');
+    username = await AsyncStorage.getItem('User');
+    address = await AsyncStorage.getItem('address');
+    email = await AsyncStorage.getItem('email');
+    phone = await AsyncStorage.getItem('phone');
+    landmark = await AsyncStorage.getItem('landmark');
+    pinCode = await AsyncStorage.getItem('pincode');
+
+    userId = await AsyncStorage.getItem('userId');
+
+    // setUserId(tempUserId);
+    // setLogin(tempLoginStatus);
+    // setName(tempUsername);
+    // setAddress(tempAddress);
+    // setEmail(tempEmail);
+    // setPhone(tempPhone);
+    // setLandmark(tempLandmark);
+    // setPincode(tempPincode);
+
+    console.log(username);
+    console.log(email);
+    console.log(phone);
+    console.log(userId);
+    console.log(loginStatus);
+  };
+
+  getUser();
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      header: () => {
+        return (
+          <>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                backgroundColor: '#FFF',
+              }}>
+              <Image
+                source={logo}
+                style={{
+                  height: verticalScale(75),
+                  width: scale(80),
+                  //marginLeft: scale(10),
+                }}
+              />
+              <Text
+                style={{
+                  fontSize: moderateScale(25),
+                  marginTop: verticalScale(24),
+                  marginLeft: scale(20),
+                  color: '#5A2D94',
+                  fontFamily: 'Ubuntu-Bold',
+                }}>
+                BarterMate
+              </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  // var tempLoginStatus = await AsyncStorage.getItem(
+                  //   'loginStatus',
+                  // );
+
+                  // var tempUsername = await AsyncStorage.getItem('User');
+
+                  if (loginStatus == 'true') {
+                    navigation.navigate('Profile Screen', {
+                      username: `${username}`,
+                      email: `${email}`,
+                      phone: `${phone}`,
+                      userId: `${userId}`,
+                    });
+                  } else {
+                    navigation.navigate('Login Screen', {
+                      itemSelected: `${itemSelected}`,
+                      subCategory: `${subCategory}`,
+                      // location: 'Profile',
+                      profile: 'true',
+                    });
+                  }
+                }}>
+                <Image
+                  source={profileIcon}
+                  style={{
+                    height: verticalScale(55),
+                    width: scale(55),
+                    resizeMode: 'contain',
+                    marginTop: verticalScale(10),
+                    marginLeft: scale(25),
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+          </>
+        );
+      },
+    });
+  }, [navigation]);
 
   const arrow = '=>';
 

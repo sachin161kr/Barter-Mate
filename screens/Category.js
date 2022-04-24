@@ -3,7 +3,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import {FloatingAction} from 'react-native-floating-action';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {FAB} from 'react-native-elements';
-import {startUpdateFlow} from '@gurukumparan/react-native-android-inapp-updates';
 
 import {
   Text,
@@ -83,20 +82,12 @@ const categoryList = [
   },
 ];
 
-const CategoryScreen = ({navigation}) => {
+const CategoryScreen = ({navigation, route}) => {
   const [loading, setLoading] = useState(true);
 
   const [images, setImages] = useState([]);
   const updateModes = 'flexible';
   //var images = [];
-
-  const update = async () => {
-    try {
-      const result = await startUpdateFlow(updateModes);
-    } catch (e) {
-      console.log('error:', e);
-    }
-  };
 
   //update();
 
@@ -141,6 +132,8 @@ const CategoryScreen = ({navigation}) => {
   var loginStatus = '';
   var userId = '';
 
+  var loadAgain = true;
+
   const getUser = async () => {
     loginStatus = await AsyncStorage.getItem('loginStatus');
     username = await AsyncStorage.getItem('User');
@@ -151,15 +144,6 @@ const CategoryScreen = ({navigation}) => {
     pincode = await AsyncStorage.getItem('pincode');
 
     userId = await AsyncStorage.getItem('userId');
-
-    // setUserId(tempUserId);
-    // setLogin(tempLoginStatus);
-    // setName(tempUsername);
-    // setAddress(tempAddress);
-    // setEmail(tempEmail);
-    // setPhone(tempPhone);
-    // setLandmark(tempLandmark);
-    // setPincode(tempPincode);
 
     console.log(username);
     console.log(email);
@@ -201,15 +185,19 @@ const CategoryScreen = ({navigation}) => {
               </Text>
               <TouchableOpacity
                 onPress={async () => {
-                  var tempLoginStatus = await AsyncStorage.getItem(
-                    'loginStatus',
-                  );
+                  await getUser();
+                  // var tempLoginStatus = await AsyncStorage.getItem(
+                  //   'loginStatus',
+                  // );
 
-                  var tempUsername = await AsyncStorage.getItem('User');
+                  // var tempUsername = await AsyncStorage.getItem('User');
 
-                  if (tempLoginStatus == 'true') {
+                  if (loginStatus === 'true') {
                     navigation.navigate('Profile Screen', {
-                      username: `${tempUsername}`,
+                      username: `${username}`,
+                      email: `${email}`,
+                      phone: `${phone}`,
+                      userId: `${userId}`,
                     });
                   } else {
                     navigation.navigate('Login Screen', {
@@ -314,12 +302,13 @@ const CategoryScreen = ({navigation}) => {
               <TouchableOpacity
                 key={key.key}
                 onPress={async () => {
-                  var tempLoginStatus = await AsyncStorage.getItem(
-                    'loginStatus',
-                  );
+                  await getUser();
+                  // var tempLoginStatus = await AsyncStorage.getItem(
+                  //   'loginStatus',
+                  // );
                   setItem(key.text);
                   copyItem = key.text;
-                  if (tempLoginStatus == 'true') {
+                  if (loginStatus == 'true') {
                     navigation.navigate('Pickup Screen', {
                       name: `${username}`,
                       userId: `${userId}`,
