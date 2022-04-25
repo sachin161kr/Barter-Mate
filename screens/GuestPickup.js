@@ -44,6 +44,8 @@ const GuestPickupScreen = ({route, navigation}) => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
+  var guestName = 'Guest';
+
   const [glassPicked, setGlassPicked] = useState(false);
   const [metalPicked, setMetalPicked] = useState(false);
   const [plasticPicked, setPlasticPicked] = useState(false);
@@ -160,7 +162,7 @@ const GuestPickupScreen = ({route, navigation}) => {
         //Alert.alert('We will send our representatives soon. Thank You');
         navigation.navigate('Redeem Screen', {
           userId: `${userId}`,
-          username: `${name}`,
+          username: `${guestName}`,
         });
       })
       .catch(function (error) {

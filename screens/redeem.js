@@ -157,7 +157,13 @@ const RedeemScreen = ({route, navigation}) => {
           <TouchableOpacity
             onPress={() => {
               if (isRedeemAc == false) {
-                handleRedeem();
+                if (username == 'Guest') {
+                  Alert.alert(
+                    'You need to be registered to avail this service',
+                  );
+                } else {
+                  handleRedeem();
+                }
               } else {
                 Alert.alert('You Have Already Redeemed this service.');
               }

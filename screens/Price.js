@@ -187,7 +187,7 @@ const PriceScreen = ({navigation}) => {
           style={{
             flex: 1,
             backgroundColor: '#FFFFFF',
-            paddingBottom: verticalScale(80),
+            paddingBottom: verticalScale(100),
           }}>
           <ScrollView
             horizontal={true}
