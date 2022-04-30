@@ -141,7 +141,7 @@ const PickupScreen = ({route, navigation}) => {
     axios(config)
       .then(function (response) {
         setAddressLoading(false);
-        //console.log(JSON.stringify(response.data.data));
+        console.log(JSON.stringify(response.data.data));
         var temp = JSON.stringify(response.data.data);
         setMyaddresses(JSON.parse(temp));
       })
@@ -297,7 +297,7 @@ const PickupScreen = ({route, navigation}) => {
                 fontFamily: 'Ubuntu-Regular',
                 fontSize: moderateScale(18),
               }}>
-              More Productive
+              Comfortable Place
             </Text>
             <Text
               style={{
@@ -307,7 +307,7 @@ const PickupScreen = ({route, navigation}) => {
                 fontFamily: 'Ubuntu-Regular',
                 fontSize: moderateScale(18),
               }}>
-              with Comfortable Place
+              Let's Contribute towards recycle!
             </Text>
           </View>
           <Text
@@ -319,7 +319,7 @@ const PickupScreen = ({route, navigation}) => {
               marginTop: verticalScale(30),
               marginBottom: verticalScale(20),
             }}>
-            {tempCategory} Picked!
+            {tempCategory} Selected!
           </Text>
 
           <View>
@@ -512,6 +512,14 @@ const PickupScreen = ({route, navigation}) => {
               selectedValue={currentAddress}
               onValueChange={itemValue => {
                 setCurrentAddress(itemValue);
+                var tempPincode = itemValue.substring(
+                  itemValue.length - 6,
+                  itemValue.length,
+                );
+                setPincode(tempPincode);
+                console.log(
+                  itemValue.substring(itemValue.length - 6, itemValue.length),
+                );
               }}>
               <Picker.Item
                 label="Choose Pickup Address"
@@ -519,8 +527,24 @@ const PickupScreen = ({route, navigation}) => {
               />
               {myAddresses.map(key => (
                 <Picker.Item
-                  label={key.tags + ' , ' + key.address1 + ' , ' + key.address2}
-                  value={key.tags + ' , ' + key.address1 + ' , ' + key.address2}
+                  label={
+                    key.tags +
+                    ' , ' +
+                    key.address1 +
+                    ' , ' +
+                    key.address2 +
+                    ' , ' +
+                    key.pinCode
+                  }
+                  value={
+                    key.tags +
+                    ' , ' +
+                    key.address1 +
+                    ' , ' +
+                    key.address2 +
+                    ' , ' +
+                    key.pinCode
+                  }
                 />
               ))}
             </Picker>
@@ -563,7 +587,7 @@ const PickupScreen = ({route, navigation}) => {
             </View>
           </TouchableOpacity>
 
-          <View
+          {/* <View
             style={{
               marginLeft: scale(20),
               marginRight: scale(20),
@@ -588,7 +612,7 @@ const PickupScreen = ({route, navigation}) => {
                 <Picker.Item label={key} value={key} />
               ))}
             </Picker>
-          </View>
+          </View> */}
 
           <View
             style={{

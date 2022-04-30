@@ -1,4 +1,8 @@
 rootProject.name = 'TrashToCash'
+include ':@gurukumparan_react-native-android-inapp-updates'
+project(':@gurukumparan_react-native-android-inapp-updates').projectDir = new File(rootProject.projectDir, '../node_modules/@gurukumparan/react-native-android-inapp-updates/android')
+include ':react-native-send-intent'
+project(':react-native-send-intent').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-send-intent/android')
 include ':@react-native-community_checkbox'
 project(':@react-native-community_checkbox').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-community/checkbox/android')
 include ':react-native-splash-screen'

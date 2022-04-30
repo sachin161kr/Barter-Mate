@@ -214,7 +214,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 fontFamily: 'Ubuntu-Regular',
                 fontSize: moderateScale(18),
               }}>
-              More Productive
+              Comfortable Place
             </Text>
             <Text
               style={{
@@ -224,7 +224,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 fontFamily: 'Ubuntu-Regular',
                 fontSize: moderateScale(18),
               }}>
-              with Comfortable Place
+              Let's Contribute towards recycle!
             </Text>
           </View>
           <Text
@@ -236,7 +236,7 @@ const GuestPickupScreen = ({route, navigation}) => {
               marginTop: verticalScale(30),
               marginBottom: verticalScale(20),
             }}>
-            {tempCategory} Picked!
+            {tempCategory} Selected!
           </Text>
 
           <View>

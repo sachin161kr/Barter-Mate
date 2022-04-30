@@ -98,12 +98,12 @@ const RegisterScreen = ({navigation, route}) => {
       .then(function (response) {
         setLoading(false);
         Alert.alert('Successfully Registered');
-        //navigation.navigate('Category Screen');
-        navigation.navigate('Login Screen', {
-          itemSelected: `${itemSelected}`,
-          subCategory: `${subCategory}`,
-          profile: `${profile}`,
-        });
+        navigation.navigate('Category Screen');
+        // navigation.navigate('Login Screen', {
+        //   itemSelected: `${itemSelected}`,
+        //   subCategory: `${subCategory}`,
+        //   profile: `${profile}`,
+        // });
       })
       .catch(error => {
         setLoading(false);

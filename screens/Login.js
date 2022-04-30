@@ -177,7 +177,7 @@ const LoginScreen = ({navigation, route}) => {
               marginBottom: verticalScale(30),
               color: '#FFF',
             }}>
-            Please enter your email & phone number to Login
+            Please enter your email & mobile number to Login
           </Text>
           <TextInput
             onChangeText={tempEmail => {

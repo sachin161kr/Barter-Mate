@@ -77,7 +77,7 @@ const RedeemScreen = ({route, navigation}) => {
           style={{
             flex: 1,
             backgroundColor: '#FFF',
-            paddingBottom: verticalScale(40),
+            paddingBottom: verticalScale(120),
           }}>
           <Image
             source={awesome}
@@ -108,20 +108,24 @@ const RedeemScreen = ({route, navigation}) => {
             }}>
             Your pickup has been scheduled. Our associate will attend to you!!
           </Text>
-          <Text
-            style={{
-              alignSelf: 'center',
-              fontSize: moderateScale(17),
-              color: '#00000080',
-              marginTop: verticalScale(20),
-              textAlign: 'center',
-              marginHorizontal: scale(30),
-              fontFamily: 'Ubuntu-Regular',
-              fontSize: moderateScale(18),
-            }}>
-            You can check your booking in the order history under your profile
-            section.
-          </Text>
+          {username == 'Guest' ? (
+            <></>
+          ) : (
+            <Text
+              style={{
+                alignSelf: 'center',
+                fontSize: moderateScale(17),
+                color: '#00000080',
+                marginTop: verticalScale(20),
+                textAlign: 'center',
+                marginHorizontal: scale(30),
+                fontFamily: 'Ubuntu-Regular',
+                fontSize: moderateScale(18),
+              }}>
+              You can check your booking in the order history under your profile
+              section.
+            </Text>
+          )}
           {username == 'Guest' ? (
             <></>
           ) : (

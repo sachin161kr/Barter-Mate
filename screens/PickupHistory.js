@@ -40,7 +40,10 @@ const PickupHistoryScreen = ({route, navigation}) => {
         setLoading(false);
         console.log(JSON.stringify(response.data.data));
         var temp = JSON.stringify(response.data.data);
-        setHistory(JSON.parse(temp));
+        // if (temp.pickupDate) {
+        //   setHistory(JSON.parse(temp));
+        // }
+        setHistory(JSON.parse(temp).reverse());
         //history = JSON.parse(temp);
       })
       .catch(function (error) {
@@ -94,15 +97,16 @@ const PickupHistoryScreen = ({route, navigation}) => {
                 <View
                   style={{
                     height: verticalScale(210),
-                    width: scale(292),
+                    width: scale(280),
                     borderBottomWidth: 1,
                     borderBottomColor: '#CAD5E2',
                     alignSelf: 'center',
+                    marginRight: scale(20),
                     marginTop: verticalScale(20),
                     borderRadius: moderateScale(10),
-                    paddingHorizontal: moderateScale(10),
+                    //paddingHorizontal: moderateScale(10),
                     paddingTop: verticalScale(20),
-                    marginHorizontal: scale(10),
+                    //marginHorizontal: scale(10),
                   }}>
                   <View
                     style={{
@@ -174,7 +178,9 @@ const PickupHistoryScreen = ({route, navigation}) => {
                         color: '#000',
                         fontFamily: 'Ubuntu-Regular',
                       }}>
-                      Pickup date : {key.pickupDate.substring(0, 10)}
+                      {key.pickupDate
+                        ? `Pickup date : ${key.pickupDate.substring(0, 10)}`
+                        : ''}
                     </Text>
                     <Text
                       style={{

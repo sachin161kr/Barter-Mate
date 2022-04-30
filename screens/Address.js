@@ -11,8 +11,12 @@ import {
   ActivityIndicator,
   Alert,
   ScrollView,
+  Image,
 } from 'react-native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+
+import edit from '../assets/edit.png';
+import trash from '../assets/trash.png';
 
 const AddressScreen = ({route, navigation}) => {
   const [loading, setLoading] = useState(true);
@@ -34,6 +38,93 @@ const AddressScreen = ({route, navigation}) => {
   const [addressType, setAddressType] = useState('Choose Address Type');
 
   const [myAddresses, setMyaddresses] = useState([]);
+  var addressId = '';
+
+  const [visible, setVisible] = useState(true);
+
+  const handleEdit = () => {
+    //setLoading(true);
+    var data = JSON.stringify({
+      userId: `${userId}`,
+      email: `${email}`,
+      phone: `${phone}`,
+      address1: `${address1}`,
+      address2: `${address2}`,
+      landMark: `${landmark}`,
+      pinCode: `${pincode}`,
+      city: `${city}`,
+      state: `${state}`,
+      tags: `${addressType}`,
+      addressId: `${addressId}`,
+    });
+
+    var config = {
+      method: 'post',
+      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/editAddress',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        setLoading(false);
+        Alert.alert('Address Successfully Changed');
+        setVisible(true);
+        handleShowAddress();
+        console.log(JSON.stringify(response.data.data));
+        // var temp = JSON.stringify(response.data.data);
+        // setMyaddresses(JSON.parse(temp));
+      })
+      .catch(function (error) {
+        console.log(error);
+        Alert.alert('Something Went Wrong');
+        setVisible(true);
+        setLoading(false);
+      });
+  };
+
+  const handleDelete = () => {
+    setLoading(true);
+    var data = JSON.stringify({
+      userId: `${userId}`,
+      email: `${email}`,
+      phone: `${phone}`,
+      address1: `${address1}`,
+      address2: `${address2}`,
+      landMark: `${landmark}`,
+      pinCode: `${pincode}`,
+      city: `${city}`,
+      state: `${state}`,
+      tags: `${addressType}`,
+      addressId: `${addressId}`,
+    });
+
+    var config = {
+      method: 'post',
+      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/deleteAddress',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        setLoading(false);
+        Alert.alert('Address Successfully Deleted');
+        handleShowAddress();
+        console.log(JSON.stringify(response.data.data));
+        // var temp = JSON.stringify(response.data.data);
+        // setMyaddresses(JSON.parse(temp));
+      })
+      .catch(function (error) {
+        console.log(error);
+        Alert.alert('Something Went Wrong');
+        setLoading(false);
+      });
+  };
 
   const handleShowAddress = () => {
     var data = JSON.stringify({
@@ -97,7 +188,9 @@ const AddressScreen = ({route, navigation}) => {
       .then(function (response) {
         //setLoading(false);
         //console.log(JSON.stringify(response.data));
+
         Alert.alert('Address added successfully.');
+
         handleShowAddress();
 
         // if (pickupScreen) {
@@ -150,7 +243,7 @@ const AddressScreen = ({route, navigation}) => {
             style={{
               flex: 1,
               backgroundColor: '#FFF',
-              paddingBottom: verticalScale(100),
+              paddingBottom: verticalScale(160),
             }}>
             <Picker
               style={{
@@ -301,7 +394,11 @@ const AddressScreen = ({route, navigation}) => {
                     addressType != 'Choose Address Type'
                   ) {
                     setLoading(true);
-                    handleAddress();
+                    if (visible) {
+                      handleAddress();
+                    } else {
+                      handleEdit();
+                    }
                   }
                 }}
                 style={{
@@ -315,19 +412,35 @@ const AddressScreen = ({route, navigation}) => {
                   borderRadius: moderateScale(10),
                 }}>
                 <View>
-                  <Text
-                    style={{
-                      fontSize: moderateScale(12),
-                      marginTop: verticalScale(3),
-                      color: '#FFF',
-                      textAlign: 'center',
-                      fontFamily: 'Ubuntu-Bold',
-                      paddingTop: verticalScale(10),
-                      // paddingTop: verticalScale(10),
-                      // paddingBottom: verticalScale(10),
-                    }}>
-                    Save Addresses
-                  </Text>
+                  {visible == true ? (
+                    <Text
+                      style={{
+                        fontSize: moderateScale(12),
+                        marginTop: verticalScale(3),
+                        color: '#FFF',
+                        textAlign: 'center',
+                        fontFamily: 'Ubuntu-Bold',
+                        paddingTop: verticalScale(10),
+                        // paddingTop: verticalScale(10),
+                        // paddingBottom: verticalScale(10),
+                      }}>
+                      Save Addresses
+                    </Text>
+                  ) : (
+                    <Text
+                      style={{
+                        fontSize: moderateScale(12),
+                        marginTop: verticalScale(3),
+                        color: '#FFF',
+                        textAlign: 'center',
+                        fontFamily: 'Ubuntu-Bold',
+                        paddingTop: verticalScale(10),
+                        // paddingTop: verticalScale(10),
+                        // paddingBottom: verticalScale(10),
+                      }}>
+                      Save Edited Addresses
+                    </Text>
+                  )}
                 </View>
               </TouchableOpacity>
             )}
@@ -341,55 +454,91 @@ const AddressScreen = ({route, navigation}) => {
                 alignSelf: 'center',
               }}
             />
-            <View>
-              <Text
-                style={{
-                  fontSize: moderateScale(14),
-                  fontFamily: 'Ubuntu-Regular',
-                  color: '#5A2D94',
-                  marginLeft: scale(30),
-                  marginTop: verticalScale(20),
-                }}>
-                MY SAVED ADDRESSES :
-              </Text>
-              {myAddresses.map(key => (
-                <View
+
+            {visible == true ? (
+              <View>
+                <Text
                   style={{
-                    flexDirection: 'row',
-                    height: verticalScale(60),
-                    width: scale(300),
-                    borderColor: '#FFF',
-                    borderBottomWidth: 1,
-                    borderBottomColor: '#CAD5E2',
-                    alignSelf: 'center',
-                    marginTop: verticalScale(10),
+                    fontSize: moderateScale(14),
+                    fontFamily: 'Ubuntu-Regular',
+                    color: '#5A2D94',
+                    marginLeft: scale(30),
+                    marginTop: verticalScale(20),
                   }}>
-                  <Text
+                  MY SAVED ADDRESSES :
+                </Text>
+                {myAddresses.map(key => (
+                  <View
                     style={{
-                      marginLeft: scale(10),
-                      marginTop: verticalScale(12),
-                      fontSize: moderateScale(18),
-                      color: '#5A2D94',
-                      width: scale(80),
-                      fontFamily: 'Ubuntu-Bold',
-                    }}>
-                    {key.tags}
-                  </Text>
-                  <Text
-                    style={{
-                      width: scale(200),
-                      marginLeft: scale(20),
-                      marginRight: scale(20),
+                      flexDirection: 'row',
+                      height: verticalScale(60),
+                      width: scale(300),
+                      borderColor: '#FFF',
+                      borderBottomWidth: 1,
+                      borderBottomColor: '#CAD5E2',
+                      alignSelf: 'center',
                       marginTop: verticalScale(10),
-                      color: '#000',
-                      fontFamily: 'Ubuntu-Regular',
                     }}>
-                    {key.address1},{key.address2},{key.city},{key.state},{' '}
-                    {key.pinCode}
-                  </Text>
-                </View>
-              ))}
-            </View>
+                    <Text
+                      style={{
+                        marginLeft: scale(10),
+                        marginTop: verticalScale(12),
+                        fontSize: moderateScale(18),
+                        color: '#5A2D94',
+                        width: scale(80),
+                        fontFamily: 'Ubuntu-Bold',
+                      }}>
+                      {key.tags}
+                    </Text>
+                    <Text
+                      style={{
+                        width: scale(180),
+
+                        marginTop: verticalScale(10),
+                        color: '#000',
+                        fontFamily: 'Ubuntu-Regular',
+                      }}>
+                      {key.address1},{key.address2},{key.city},{key.state},{' '}
+                      {key.pinCode}
+                    </Text>
+                    <View>
+                      <TouchableOpacity
+                        onPress={() => {
+                          addressId = key._id;
+                          setVisible(false);
+                        }}>
+                        <Image
+                          source={edit}
+                          style={{
+                            height: verticalScale(20),
+                            width: scale(20),
+                            resizeMode: 'contain',
+                            marginTop: verticalScale(6),
+                          }}
+                        />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => {
+                          addressId = key._id;
+                          handleDelete();
+                        }}>
+                        <Image
+                          source={trash}
+                          style={{
+                            height: verticalScale(20),
+                            width: scale(20),
+                            resizeMode: 'contain',
+                            marginTop: verticalScale(5),
+                          }}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            ) : (
+              <></>
+            )}
           </View>
         </ScrollView>
       )}

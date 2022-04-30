@@ -3,6 +3,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {FloatingAction} from 'react-native-floating-action';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {FAB} from 'react-native-elements';
+import {startUpdateFlow} from '@gurukumparan/react-native-android-inapp-updates';
 
 import {
   Text,
@@ -87,6 +88,16 @@ const CategoryScreen = ({navigation, route}) => {
 
   const [images, setImages] = useState([]);
   const updateModes = 'flexible';
+
+  const update = async () => {
+    try {
+      const result = await startUpdateFlow(updateModes);
+    } catch (e) {
+      console.log('error:', e);
+    }
+  };
+
+  update();
   //var images = [];
 
   //update();

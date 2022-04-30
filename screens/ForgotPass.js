@@ -116,7 +116,17 @@ const ForgotPassScreen = ({navigation}) => {
                 color: '#F4BE2C',
                 fontFamily: 'Ubuntu-Regular',
               }}>
-              Did someone forget their password?
+              Oops!! Forgot Password
+            </Text>
+
+            <Text
+              style={{
+                alignSelf: 'center',
+                color: '#FFF',
+                marginTop: verticalScale(10),
+                fontFamily: 'Ubuntu-Regular',
+              }}>
+              Please enter the registered email ID and
             </Text>
             <Text
               style={{
@@ -125,25 +135,7 @@ const ForgotPassScreen = ({navigation}) => {
                 marginTop: verticalScale(10),
                 fontFamily: 'Ubuntu-Regular',
               }}>
-              That's okay...
-            </Text>
-            <Text
-              style={{
-                alignSelf: 'center',
-                color: '#FFF',
-                marginTop: verticalScale(10),
-                fontFamily: 'Ubuntu-Regular',
-              }}>
-              Just enter the email address you've used to
-            </Text>
-            <Text
-              style={{
-                alignSelf: 'center',
-                color: '#FFF',
-                marginTop: verticalScale(10),
-                fontFamily: 'Ubuntu-Regular',
-              }}>
-              register with us and we'll reset it.
+              we will send a reset link on your email.
             </Text>
           </View>
           <View>
