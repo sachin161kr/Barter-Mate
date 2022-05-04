@@ -38,12 +38,16 @@ const AddressScreen = ({route, navigation}) => {
   const [addressType, setAddressType] = useState('Choose Address Type');
 
   const [myAddresses, setMyaddresses] = useState([]);
-  var addressId = '';
+
+  const [addressId, setAddressId] = useState('Empty');
+
+  var addressIdDelete = '';
 
   const [visible, setVisible] = useState(true);
 
   const handleEdit = () => {
-    //setLoading(true);
+    console.log(addressId);
+    setLoading(true);
     var data = JSON.stringify({
       userId: `${userId}`,
       email: `${email}`,
@@ -57,6 +61,8 @@ const AddressScreen = ({route, navigation}) => {
       tags: `${addressType}`,
       addressId: `${addressId}`,
     });
+
+    console.log(data);
 
     var config = {
       method: 'post',
@@ -74,6 +80,7 @@ const AddressScreen = ({route, navigation}) => {
         setVisible(true);
         handleShowAddress();
         console.log(JSON.stringify(response.data.data));
+        console.log('editCalled');
         // var temp = JSON.stringify(response.data.data);
         // setMyaddresses(JSON.parse(temp));
       })
@@ -98,8 +105,10 @@ const AddressScreen = ({route, navigation}) => {
       city: `${city}`,
       state: `${state}`,
       tags: `${addressType}`,
-      addressId: `${addressId}`,
+      addressId: `${addressIdDelete}`,
     });
+
+    console.log(data);
 
     var config = {
       method: 'post',
@@ -115,7 +124,7 @@ const AddressScreen = ({route, navigation}) => {
         setLoading(false);
         Alert.alert('Address Successfully Deleted');
         handleShowAddress();
-        console.log(JSON.stringify(response.data.data));
+        //console.log(JSON.stringify(response.data.data));
         // var temp = JSON.stringify(response.data.data);
         // setMyaddresses(JSON.parse(temp));
       })
@@ -146,6 +155,8 @@ const AddressScreen = ({route, navigation}) => {
         //console.log(JSON.stringify(response.data.data));
         var temp = JSON.stringify(response.data.data);
         setMyaddresses(JSON.parse(temp));
+        //setAddressType(temp.addressType);
+        //setAddressType(temp.tags);
       })
       .catch(function (error) {
         console.log(error);
@@ -162,6 +173,7 @@ const AddressScreen = ({route, navigation}) => {
   //handleShowAddress();
 
   const handleAddress = () => {
+    setLoading(true);
     var data = JSON.stringify({
       userId: `${userId}`,
       email: `${email}`,
@@ -225,6 +237,10 @@ const AddressScreen = ({route, navigation}) => {
       });
   };
 
+  // useEffect(() => {
+  //   refreshData();
+  // });
+
   return (
     <>
       {loading == true ? (
@@ -273,7 +289,7 @@ const AddressScreen = ({route, navigation}) => {
 
             <View>
               <TextInput
-                defaultValue=""
+                defaultValue={address1}
                 onChangeText={text => {
                   setAddress1(text);
                 }}
@@ -281,7 +297,7 @@ const AddressScreen = ({route, navigation}) => {
                 placeholder="Enter Address Line 1"
                 placeholderTextColor="#758283"></TextInput>
               <TextInput
-                defaultValue=""
+                defaultValue={address2}
                 onChangeText={text => {
                   setAddress2(text);
                 }}
@@ -294,7 +310,7 @@ const AddressScreen = ({route, navigation}) => {
                   marginLeft: scale(25),
                 }}>
                 <TextInput
-                  defaultValue="Noida"
+                  defaultValue={city}
                   onChangeText={text => {
                     setCity(text);
                   }}
@@ -337,7 +353,7 @@ const AddressScreen = ({route, navigation}) => {
                   flexDirection: 'row',
                 }}>
                 <TextInput
-                  defaultValue="Uttar Pradesh"
+                  defaultValue={state}
                   onChangeText={text => {
                     setState(text);
                   }}
@@ -387,16 +403,17 @@ const AddressScreen = ({route, navigation}) => {
                   if (
                     pincode != 'Choose Pincode' &&
                     address1 &&
-                    address2 &&
                     addressType &&
                     city &&
                     state &&
                     addressType != 'Choose Address Type'
                   ) {
-                    setLoading(true);
+                    //setLoading(true);
+                    //console.log(addressId);
                     if (visible) {
                       handleAddress();
                     } else {
+                      console.log(addressId);
                       handleEdit();
                     }
                   }
@@ -504,8 +521,26 @@ const AddressScreen = ({route, navigation}) => {
                     <View>
                       <TouchableOpacity
                         onPress={() => {
-                          addressId = key._id;
+                          setLoading(true);
+                          setAddressType(key.tags);
+                          setAddress1(key.address1);
+                          setAddress2(key.address2);
+                          setCity(key.city);
+                          setPincode(key.pinCode);
+                          setState(key.state);
+                          console.log('done');
+                          setLoading(false);
+
+                          // console.log(addressType);
+                          // console.log(address1);
+                          // console.log(address2);
+                          // console.log(city);
+                          // console.log(pincode);
+                          // console.log(state);
                           setVisible(false);
+                          //addressId = key._id;
+                          setAddressId(key._id);
+                          console.log(addressId);
                         }}>
                         <Image
                           source={edit}
@@ -519,7 +554,8 @@ const AddressScreen = ({route, navigation}) => {
                       </TouchableOpacity>
                       <TouchableOpacity
                         onPress={() => {
-                          addressId = key._id;
+                          addressIdDelete = key._id;
+                          //setAddressId(key._id);
                           handleDelete();
                         }}>
                         <Image

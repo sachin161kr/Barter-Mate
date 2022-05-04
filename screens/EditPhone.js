@@ -8,6 +8,7 @@ import {
   Alert,
   ActivityIndicator,
   Image,
+  ScrollView,
 } from 'react-native';
 import {scale, moderateScale, verticalScale} from 'react-native-size-matters';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -71,130 +72,132 @@ const EditPhoneScreen = ({route, navigation}) => {
 
   return (
     <>
-      <LinearGradient
-        colors={['#5A2D94', '#f2748e']}
-        start={{x: 0, y: 0}}
-        end={{x: 0, y: 1}}
-        style={{
-          backgroundColor: '#FFF',
-          margin: verticalScale(15),
-          borderRadius: moderateScale(15),
-          paddingBottom: verticalScale(80),
-        }}>
-        <Text
+      <ScrollView>
+        <LinearGradient
+          colors={['#5A2D94', '#f2748e']}
+          start={{x: 0, y: 0}}
+          end={{x: 0, y: 1}}
           style={{
-            color: '#FFF',
-            fontSize: moderateScale(20),
-            alignSelf: 'center',
-            fontFamily: 'Ubuntu-Bold',
-            marginTop: verticalScale(30),
-          }}>
-          Reset Phone Number
-        </Text>
-        <Image
-          source={ellipse}
-          style={{
-            height: verticalScale(150),
-            width: scale(150),
-            position: 'relative',
-            alignSelf: 'center',
-            resizeMode: 'contain',
-            marginTop: verticalScale(50),
-          }}
-        />
-        <Image
-          source={confused}
-          style={{
-            height: verticalScale(80),
-            width: scale(100),
-            position: 'absolute',
-            resizeMode: 'contain',
-            marginTop: verticalScale(135),
-            marginLeft: scale(113),
-          }}
-        />
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignSelf: 'center',
-
-            padding: moderateScale(5),
-            borderBottomColor: '#CAD5E2',
-            borderBottomWidth: 1,
-            width: scale(280),
-            marginTop: verticalScale(60),
+            backgroundColor: '#FFF',
+            margin: verticalScale(15),
+            borderRadius: moderateScale(15),
+            paddingBottom: verticalScale(80),
           }}>
           <Text
             style={{
-              fontSize: moderateScale(12),
-              marginTop: verticalScale(13),
-              marginRight: scale(10),
-              marginLeft: scale(3),
-              fontFamily: 'Ubuntu-Regular',
               color: '#FFF',
+              fontSize: moderateScale(20),
+              alignSelf: 'center',
+              fontFamily: 'Ubuntu-Bold',
+              marginTop: verticalScale(30),
             }}>
-            +91
+            Reset Phone Number
           </Text>
-          <TextInput
-            defaultValue={`${phone}`}
-            keyboardType="number-pad"
-            maxLength={10}
-            onChangeText={tempPhone => {
-              setPhone(tempPhone);
-            }}
+          <Image
+            source={ellipse}
             style={{
-              fontSize: moderateScale(12),
-              fontFamily: 'Ubuntu-Regular',
-              width: scale(300),
-              color: '#FFF',
-            }}
-            placeholder="Contact Number*"
-            placeholderTextColor="#FFF"></TextInput>
-        </View>
-        {loading == true ? (
-          <ActivityIndicator
-            color="#FFF"
-            size={'large'}
-            style={{
-              marginTop: verticalScale(10),
+              height: verticalScale(150),
+              width: scale(150),
+              position: 'relative',
+              alignSelf: 'center',
+              resizeMode: 'contain',
+              marginTop: verticalScale(50),
             }}
           />
-        ) : (
-          <TouchableOpacity
-            onPress={() => {
-              if (phone.length && phoneCheck()) {
-                handlePhone();
-              } else {
-                Alert.alert('Enter Valid Phone Number');
-              }
-            }}>
-            <View
-              style={{
-                alignSelf: 'center',
+          <Image
+            source={confused}
+            style={{
+              height: verticalScale(80),
+              width: scale(100),
+              position: 'absolute',
+              resizeMode: 'contain',
+              marginTop: verticalScale(135),
+              marginLeft: scale(113),
+            }}
+          />
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              alignSelf: 'center',
 
-                width: scale(280),
-                height: verticalScale(45),
-                marginTop: verticalScale(20),
-                backgroundColor: '#000',
-                borderRadius: moderateScale(10),
-                padding: moderateScale(10),
-                width: scale(220),
+              padding: moderateScale(5),
+              borderBottomColor: '#CAD5E2',
+              borderBottomWidth: 1,
+              width: scale(280),
+              marginTop: verticalScale(60),
+            }}>
+            <Text
+              style={{
+                fontSize: moderateScale(12),
+                marginTop: verticalScale(13),
+                marginRight: scale(10),
+                marginLeft: scale(3),
+                fontFamily: 'Ubuntu-Regular',
+                color: '#FFF',
               }}>
-              <Text
+              +91
+            </Text>
+            <TextInput
+              defaultValue={`${phone}`}
+              keyboardType="number-pad"
+              maxLength={10}
+              onChangeText={tempPhone => {
+                setPhone(tempPhone);
+              }}
+              style={{
+                fontSize: moderateScale(12),
+                fontFamily: 'Ubuntu-Regular',
+                width: scale(300),
+                color: '#FFF',
+              }}
+              placeholder="Contact Number*"
+              placeholderTextColor="#FFF"></TextInput>
+          </View>
+          {loading == true ? (
+            <ActivityIndicator
+              color="#FFF"
+              size={'large'}
+              style={{
+                marginTop: verticalScale(10),
+              }}
+            />
+          ) : (
+            <TouchableOpacity
+              onPress={() => {
+                if (phone.length && phoneCheck()) {
+                  handlePhone();
+                } else {
+                  Alert.alert('Enter Valid Phone Number');
+                }
+              }}>
+              <View
                 style={{
-                  fontSize: moderateScale(14),
-                  textAlign: 'center',
-                  paddingTop: verticalScale(5),
-                  fontFamily: 'Ubuntu-Regular',
-                  color: '#FFF',
+                  alignSelf: 'center',
+
+                  width: scale(280),
+                  height: verticalScale(45),
+                  marginTop: verticalScale(20),
+                  backgroundColor: '#000',
+                  borderRadius: moderateScale(10),
+                  padding: moderateScale(10),
+                  width: scale(220),
                 }}>
-                Save Phone Number
-              </Text>
-            </View>
-          </TouchableOpacity>
-        )}
-      </LinearGradient>
+                <Text
+                  style={{
+                    fontSize: moderateScale(14),
+                    textAlign: 'center',
+                    paddingTop: verticalScale(5),
+                    fontFamily: 'Ubuntu-Regular',
+                    color: '#FFF',
+                  }}>
+                  Save Phone Number
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
+        </LinearGradient>
+      </ScrollView>
     </>
   );
 };
