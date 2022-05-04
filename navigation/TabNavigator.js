@@ -1,6 +1,6 @@
 import React from 'react';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-import {View, Image} from 'react-native';
+import {View, Image, Platform} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -24,7 +24,7 @@ const BottomTabNavigator = () => {
           position: 'absolute',
           borderTopLeftRadius: moderateScale(10),
           borderTopRightRadius: moderateScale(10),
-          height: verticalScale(67),
+          height: Platform.OS == 'ios' ? verticalScale(87) : verticalScale(67),
           backgroundColor: '#8D3DAF',
         },
 

@@ -25,6 +25,7 @@
     "react-native": "0.66.3",
     "react-native-axios": "^0.17.1",
     "react-native-btr": "^2.1.2",
+    "react-native-date-picker": "^4.2.1",
     "react-native-elements": "^3.4.2",
     "react-native-floating-action": "^1.22.0",
     "react-native-form-validator": "^0.5.1",

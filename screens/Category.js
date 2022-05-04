@@ -14,6 +14,8 @@ import {
   ScrollView,
   TouchableOpacity,
   StatusBar,
+  Platform,
+  SafeAreaView,
 } from 'react-native';
 
 import {BottomSheet} from 'react-native-btr';
@@ -170,67 +172,133 @@ const CategoryScreen = ({navigation, route}) => {
       header: () => {
         return (
           <>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                backgroundColor: '#FFF',
-              }}>
-              <Image
-                source={logo}
-                style={{
-                  height: verticalScale(75),
-                  width: scale(80),
-                  //marginLeft: scale(10),
-                }}
-              />
-              <Text
-                style={{
-                  fontSize: moderateScale(25),
-                  marginTop: verticalScale(24),
-                  marginLeft: scale(20),
-                  color: '#5A2D94',
-                  fontFamily: 'Ubuntu-Bold',
-                }}>
-                BarterMate
-              </Text>
-              <TouchableOpacity
-                onPress={async () => {
-                  await getUser();
-                  // var tempLoginStatus = await AsyncStorage.getItem(
-                  //   'loginStatus',
-                  // );
+            {Platform.OS == 'ios' ? (
+              <SafeAreaView>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    backgroundColor: '#FFF',
+                  }}>
+                  <Image
+                    source={logo}
+                    style={{
+                      height: verticalScale(75),
+                      width: scale(80),
+                      //marginLeft: scale(10),
+                    }}
+                  />
+                  <Text
+                    style={{
+                      fontSize: moderateScale(25),
+                      marginTop: verticalScale(24),
+                      marginLeft: scale(20),
+                      color: '#5A2D94',
+                      fontFamily: 'Ubuntu-Bold',
+                    }}>
+                    BarterMate
+                  </Text>
+                  <TouchableOpacity
+                    onPress={async () => {
+                      await getUser();
+                      // var tempLoginStatus = await AsyncStorage.getItem(
+                      //   'loginStatus',
+                      // );
 
-                  // var tempUsername = await AsyncStorage.getItem('User');
+                      // var tempUsername = await AsyncStorage.getItem('User');
 
-                  if (loginStatus === 'true') {
-                    navigation.navigate('Profile Screen', {
-                      username: `${username}`,
-                      email: `${email}`,
-                      phone: `${phone}`,
-                      userId: `${userId}`,
-                    });
-                  } else {
-                    navigation.navigate('Login Screen', {
-                      itemSelected: `${itemSelected}`,
-                      subCategory: `${subCategory}`,
-                      // location: 'Profile',
-                      profile: 'true',
-                    });
-                  }
+                      if (loginStatus === 'true') {
+                        navigation.navigate('Profile Screen', {
+                          username: `${username}`,
+                          email: `${email}`,
+                          phone: `${phone}`,
+                          userId: `${userId}`,
+                        });
+                      } else {
+                        navigation.navigate('Login Screen', {
+                          itemSelected: `${itemSelected}`,
+                          subCategory: `${subCategory}`,
+                          // location: 'Profile',
+                          profile: 'true',
+                        });
+                      }
+                    }}>
+                    <Image
+                      source={profileIcon}
+                      style={{
+                        height: verticalScale(55),
+                        width: scale(55),
+                        resizeMode: 'contain',
+                        marginTop: verticalScale(10),
+                        marginLeft: scale(25),
+                      }}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </SafeAreaView>
+            ) : (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  backgroundColor: '#FFF',
                 }}>
                 <Image
-                  source={profileIcon}
+                  source={logo}
                   style={{
-                    height: verticalScale(55),
-                    width: scale(55),
-                    resizeMode: 'contain',
-                    marginTop: verticalScale(10),
-                    marginLeft: scale(25),
+                    height: verticalScale(75),
+                    width: scale(80),
+                    //marginLeft: scale(10),
                   }}
                 />
-              </TouchableOpacity>
-            </View>
+                <Text
+                  style={{
+                    fontSize: moderateScale(25),
+                    marginTop: verticalScale(24),
+                    marginLeft: scale(20),
+                    color: '#5A2D94',
+                    fontFamily: 'Ubuntu-Bold',
+                  }}>
+                  BarterMate
+                </Text>
+                <TouchableOpacity
+                  onPress={async () => {
+                    await getUser();
+                    // var tempLoginStatus = await AsyncStorage.getItem(
+                    //   'loginStatus',
+                    // );
+
+                    // var tempUsername = await AsyncStorage.getItem('User');
+
+                    if (loginStatus === 'true') {
+                      navigation.navigate('Profile Screen', {
+                        username: `${username}`,
+                        email: `${email}`,
+                        phone: `${phone}`,
+                        userId: `${userId}`,
+                      });
+                    } else {
+                      navigation.navigate('Login Screen', {
+                        itemSelected: `${itemSelected}`,
+                        subCategory: `${subCategory}`,
+                        // location: 'Profile',
+                        profile: 'true',
+                      });
+                    }
+                  }}>
+                  <Image
+                    source={profileIcon}
+                    style={{
+                      height: verticalScale(55),
+                      width: scale(55),
+                      resizeMode: 'contain',
+                      marginTop: verticalScale(10),
+                      marginLeft: scale(25),
+                    }}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
           </>
         );
       },

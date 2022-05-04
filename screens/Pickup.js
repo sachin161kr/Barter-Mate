@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {BackHandler} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-date-picker';
 import {
   Text,
   StyleSheet,
@@ -16,6 +17,7 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
+  Platform,
 } from 'react-native';
 
 import CheckBox from '@react-native-community/checkbox';
@@ -215,7 +217,16 @@ const PickupScreen = ({route, navigation}) => {
       landMark: `${landmark}`,
       pinCode: `${pincode}`,
       category: `${category}`,
-      pickupDate: `${dateLabel}`,
+      pickupDate:
+        Platform.OS == 'ios'
+          ? `${
+              date.getFullYear() +
+              '-' +
+              (date.getMonth() + 1) +
+              '-' +
+              date.getDate()
+            }`
+          : `${dateLabel}`,
       subcategory: multiSelect,
     });
 
@@ -614,56 +625,76 @@ const PickupScreen = ({route, navigation}) => {
             </Picker>
           </View> */}
 
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginLeft: scale(10),
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                setShow(true);
+          {Platform.OS == 'ios' ? (
+            <>
+              <Button title="Pick A Date" onPress={() => setOpen(true)} />
+              <DatePicker
+                modal
+                open={open}
+                date={date}
+                minimumDate={date}
+                onConfirm={date => {
+                  setOpen(false);
+                  setDate(date);
+                  console.log(date);
+                }}
+                onCancel={() => {
+                  setOpen(false);
+                }}
+              />
+            </>
+          ) : (
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginLeft: scale(10),
               }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  height: verticalScale(50),
-                  borderRadius: moderateScale(100),
-                  marginTop: verticalScale(10),
-                  alignSelf: 'center',
-                  //borderWidth: 1,
-                  borderColor: '#000',
-                  width: scale(180),
+              <TouchableOpacity
+                onPress={() => {
+                  setShow(true);
                 }}>
-                <Image
-                  source={calender}
-                  style={{
-                    height: verticalScale(50),
-                    width: scale(50),
-                    resizeMode: 'contain',
-                    marginLeft: scale(20),
-                    //marginTop: verticalScale(15),
-                  }}
-                />
-
                 <View
                   style={{
-                    marginLeft: scale(15),
-                    justifyContent: 'center',
+                    flexDirection: 'row',
+                    height: verticalScale(50),
+                    borderRadius: moderateScale(100),
+                    marginTop: verticalScale(10),
+                    alignSelf: 'center',
+                    //borderWidth: 1,
+                    borderColor: '#000',
+                    width: scale(180),
                   }}>
-                  <Text
+                  <Image
+                    source={calender}
                     style={{
-                      fontSize: moderateScale(15),
-                      textAlign: 'center',
-                      color: '#5A2D94',
-                      fontFamily: 'Ubuntu-Regular',
+                      height: verticalScale(50),
+                      width: scale(50),
+                      resizeMode: 'contain',
+                      marginLeft: scale(20),
+                      //marginTop: verticalScale(15),
+                    }}
+                  />
+
+                  <View
+                    style={{
+                      marginLeft: scale(15),
+                      justifyContent: 'center',
                     }}>
-                    {`${dateLabel}`}
-                  </Text>
+                    <Text
+                      style={{
+                        fontSize: moderateScale(15),
+                        textAlign: 'center',
+                        color: '#5A2D94',
+                        fontFamily: 'Ubuntu-Regular',
+                      }}>
+                      {`${dateLabel}`}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-            </TouchableOpacity>
-          </View>
+              </TouchableOpacity>
+            </View>
+          )}
 
           {isLoading == false ? (
             <View style={styles.pickupBtn}>
