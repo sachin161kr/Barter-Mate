@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Picker} from '@react-native-picker/picker';
+import ValidationComponent from 'react-native-form-validator';
 import axios from 'axios';
 import {
   View,
@@ -294,7 +295,7 @@ const AddressScreen = ({route, navigation}) => {
                   setAddress1(text);
                 }}
                 style={styles.textinput}
-                placeholder="Enter Address Line 1"
+                placeholder="Enter Address Line 1 *"
                 placeholderTextColor="#758283"></TextInput>
               <TextInput
                 defaultValue={address2}
@@ -302,7 +303,7 @@ const AddressScreen = ({route, navigation}) => {
                   setAddress2(text);
                 }}
                 style={styles.textinput}
-                placeholder="Enter Address Line 2"
+                placeholder="Enter Address Line 2 (optional)"
                 placeholderTextColor="#758283"></TextInput>
               <View
                 style={{
@@ -325,7 +326,7 @@ const AddressScreen = ({route, navigation}) => {
                     width: scale(100),
                     fontFamily: 'Ubuntu-Regular',
                   }}
-                  placeholder="Enter City"
+                  placeholder="Enter City *"
                   placeholderTextColor="#758283"></TextInput>
                 <Picker
                   style={{
@@ -370,7 +371,7 @@ const AddressScreen = ({route, navigation}) => {
                     marginLeft: scale(25),
                     fontFamily: 'Ubuntu-Regular',
                   }}
-                  placeholder="Enter State"
+                  placeholder="Enter State *"
                   placeholderTextColor="#758283"></TextInput>
                 <Text
                   style={{
@@ -400,16 +401,17 @@ const AddressScreen = ({route, navigation}) => {
             ) : (
               <TouchableOpacity
                 onPress={() => {
-                  if (
-                    pincode != 'Choose Pincode' &&
-                    address1 &&
-                    addressType &&
-                    city &&
-                    state &&
-                    addressType != 'Choose Address Type'
-                  ) {
-                    //setLoading(true);
-                    //console.log(addressId);
+                  if (addressType == 'Choose Address Type') {
+                    Alert.alert('Choose Address Type');
+                  } else if (address1.length == 0) {
+                    Alert.alert('Enter Valid Address in Address Line1');
+                  } else if (city.length == 0) {
+                    Alert.alert('Enter Valid City');
+                  } else if (pincode == 'Choose Pincode') {
+                    Alert.alert('Choose Valid Pincode');
+                  } else if (state.length == 0) {
+                    Alert.alert('Choose State');
+                  } else {
                     if (visible) {
                       handleAddress();
                     } else {
@@ -417,6 +419,19 @@ const AddressScreen = ({route, navigation}) => {
                       handleEdit();
                     }
                   }
+
+                  // if (
+                  //   pincode != 'Choose Pincode' &&
+                  //   address1 &&
+                  //   addressType &&
+                  //   city &&
+                  //   state &&
+                  //   addressType != 'Choose Address Type'
+                  // ) {
+                  //   //setLoading(true);
+                  //   //console.log(addressId);
+
+                  // }
                 }}
                 style={{
                   height: verticalScale(40),

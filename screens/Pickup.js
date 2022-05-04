@@ -669,16 +669,28 @@ const PickupScreen = ({route, navigation}) => {
             <View style={styles.pickupBtn}>
               <TouchableOpacity
                 onPress={() => {
-                  //addToList();
-                  if (
-                    currentAddress != 'Choose Pickup Address' &&
-                    dateLabel != 'Pick A Date' &&
-                    pincode != 'Choose Pincode'
+                  if (currentAddress == 'Choose Pickup Address') {
+                    Alert.alert('Choose Pickup Address');
+                  } else if (
+                    dateLabel == 'Pick A Date' ||
+                    dateLabel == 'NaN-NaN-NaN'
                   ) {
-                    handlePickeup();
+                    Alert.alert('Pick A Valid Date');
+                  } else if (pincode == 'Choose Pincode') {
+                    Alert.alert('Choose Valid Pincode');
                   } else {
-                    Alert.alert('Enter Valid Details');
+                    handlePickeup();
                   }
+                  //addToList();
+                  // if (
+                  //   currentAddress != 'Choose Pickup Address' &&
+                  //   dateLabel != 'Pick A Date' &&
+                  //   pincode != 'Choose Pincode'
+                  // ) {
+                  //   handlePickeup();
+                  // } else {
+                  //   Alert.alert('Enter Valid Details');
+                  // }
                 }}>
                 <View
                   style={{

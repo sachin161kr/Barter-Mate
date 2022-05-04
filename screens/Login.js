@@ -221,7 +221,13 @@ const LoginScreen = ({navigation, route}) => {
             <View style={styles.loginBtn}>
               <TouchableOpacity
                 onPress={() => {
-                  getCredentials();
+                  if (email.length == 0) {
+                    Alert.alert('Enter Valid email or phone number');
+                  } else if (password.length == 0) {
+                    Alert.alert('Enter Valid Password');
+                  } else {
+                    getCredentials();
+                  }
                 }}>
                 <View
                   style={{

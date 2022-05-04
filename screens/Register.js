@@ -64,7 +64,6 @@ const RegisterScreen = ({navigation, route}) => {
     if (phone.length == 10 && phone.length === tempNum.length) {
       return true;
     } else {
-      Alert.alert('Enter Valid Number');
       return false;
     }
   };
@@ -125,6 +124,7 @@ const RegisterScreen = ({navigation, route}) => {
           style={{
             margin: verticalScale(15),
             borderRadius: moderateScale(15),
+            paddingBottom: verticalScale(100),
           }}>
           <View>
             <Text
@@ -226,13 +226,29 @@ const RegisterScreen = ({navigation, route}) => {
               <View style={styles.registerBtn}>
                 <TouchableOpacity
                   onPress={() => {
-                    if (fullName && email && phone && password && confirmPass) {
-                      if (passCheck() && phoneCheck()) {
-                        handleSubmit();
-                      }
+                    if (fullName.length == 0) {
+                      Alert.alert('Enter Valid Name');
+                    } else if (email.length == 0) {
+                      Alert.alert('Enter Valid Email');
+                    } else if (phoneCheck() == false) {
+                      Alert.alert('Enter Valid Phone');
+                    } else if (password.length < 8) {
+                      Alert.alert('Password length must be greater than 7');
+                    } else if (confirmPass.length == 0) {
+                      Alert.alert('Confirm Password Cannot Be empty');
+                    } else if (confirmPass != password) {
+                      Alert.alert('Password not same as Confirmed Password');
                     } else {
-                      Alert.alert('Enter Valid Details');
+                      handleSubmit();
                     }
+
+                    // if (fullName && email && phone && password && confirmPass) {
+                    //   if (passCheck() && phoneCheck()) {
+                    //     handleSubmit();
+                    //   }
+                    // } else {
+                    //   Alert.alert('Enter Valid Details');
+                    // }
                   }}>
                   <View>
                     <Text
