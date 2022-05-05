@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Picker} from '@react-native-picker/picker';
-import ValidationComponent from 'react-native-form-validator';
 import axios from 'axios';
+import {BottomSheet} from 'react-native-btr';
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import {
   Alert,
   ScrollView,
   Image,
+  Platform,
 } from 'react-native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
@@ -45,6 +46,27 @@ const AddressScreen = ({route, navigation}) => {
   var addressIdDelete = '';
 
   const [visible, setVisible] = useState(true);
+
+  const [allPincodes, setAllPincodes] = useState([]);
+
+  const [visibleSheet, setVisibleSheet] = useState(false);
+  function toggle() {
+    setVisibleSheet(visibleSheet => !visibleSheet);
+  }
+
+  const allTags = ['HOME', 'OFFICE', 'OTHER'];
+
+  const getPincode = async () => {
+    const {data} = await axios.get(
+      'https://bartermateapi.herokuapp.com/admin/registration-api/pincode',
+    );
+    setAllPincodes(data.data);
+    console.log(allPincodes);
+  };
+
+  useEffect(() => {
+    getPincode();
+  }, []);
 
   const handleEdit = () => {
     console.log(addressId);
@@ -262,31 +284,142 @@ const AddressScreen = ({route, navigation}) => {
               backgroundColor: '#FFF',
               paddingBottom: verticalScale(160),
             }}>
-            <Picker
-              style={{
-                color: '#000',
-                width: scale(300),
-                fontSize: moderateScale(12),
-                marginLeft: scale(14),
-                marginTop: verticalScale(20),
-                fontFamily: 'Ubuntu-Regular',
-              }}
-              dropdownIconColor="#000"
-              dropdownIconRippleColor="#000"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={addressType}
-              onValueChange={itemValue => {
-                setAddressType(itemValue);
-              }}>
-              <Picker.Item
-                label="Choose Address Type"
-                value="Choose Address Type"
-              />
-              <Picker.Item label="HOME" value="HOME" />
-              <Picker.Item label="OFFICE" value="OFFICE" />
-              <Picker.Item label="OTHER" value="OTHER" />
-            </Picker>
+            {Platform.OS == 'ios' ? (
+              <TouchableOpacity onPress={toggle}>
+                <View
+                  style={{
+                    borderRadius: moderateScale(10),
+                    borderWidth: 1,
+                    alignSelf: 'center',
+                    height: verticalScale(50),
+                    width: scale(260),
+                    marginTop: verticalScale(15),
+                    // marginLeft: scale(15),
+                    borderColor: '#9b38d9',
+                  }}>
+                  <Text
+                    style={{
+                      alignSelf: 'center',
+                      marginTop: verticalScale(10),
+                      fontSize: moderateScale(20),
+                      fontFamily: 'Ubuntu-Regular',
+                      color: '#9b38d9',
+                    }}>
+                    {addressType}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ) : (
+              <Picker
+                style={{
+                  color: '#000',
+                  width: scale(300),
+                  fontSize: moderateScale(12),
+                  marginLeft: scale(14),
+                  marginTop: verticalScale(20),
+                  fontFamily: 'Ubuntu-Regular',
+                  //alignSelf: 'center',
+                }}
+                dropdownIconColor="#000"
+                dropdownIconRippleColor="#000"
+                onTouchCancel={true}
+                mode="dropdown"
+                selectedValue={addressType}
+                onValueChange={itemValue => {
+                  setAddressType(itemValue);
+                }}>
+                <Picker.Item
+                  label="Choose Address Type"
+                  value="Choose Address Type"
+                />
+                <Picker.Item label="HOME" value="HOME" />
+                <Picker.Item label="OFFICE" value="OFFICE" />
+                <Picker.Item label="OTHER" value="OTHER" />
+              </Picker>
+            )}
+            <BottomSheet
+              visible={visibleSheet}
+              onBackButtonPress={toggle}
+              onBackdropPress={toggle}>
+              <View
+                style={{
+                  backgroundColor: '#FFF',
+                  paddingVertical: verticalScale(20),
+                  height: verticalScale(300),
+                  marginHorizontal: scale(20),
+                  borderRadius: moderateScale(10),
+                  //marginBottom: verticalScale(50),
+                }}>
+                <ScrollView>
+                  {allTags.map(key => (
+                    <TouchableOpacity
+                      onPress={() => {
+                        setAddressType(key);
+                        toggle();
+                      }}>
+                      <Text
+                        style={{
+                          alignSelf: 'center',
+                          fontSize: moderateScale(20),
+                          fontFamily: 'Ubuntu-Regular',
+                          marginTop: verticalScale(10),
+                          borderWidth: 1,
+                          width: scale(270),
+                          textAlign: 'center',
+                          color: '#9b38d9',
+                          borderColor: '#9b38d9',
+                          //paddingHorizontal: scale(25),
+                          paddingVertical: verticalScale(5),
+                        }}>
+                        {key}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
+            </BottomSheet>
+
+            <BottomSheet
+              visible={visibleSheet}
+              onBackButtonPress={toggle}
+              onBackdropPress={toggle}>
+              <View
+                style={{
+                  backgroundColor: '#FFF',
+                  paddingVertical: verticalScale(20),
+                  height: verticalScale(300),
+                  marginHorizontal: scale(20),
+                  borderRadius: moderateScale(10),
+                  //marginBottom: verticalScale(50),
+                }}>
+                <ScrollView>
+                  {allPincodes.map(key => (
+                    <TouchableOpacity
+                      onPress={() => {
+                        setPincode(key);
+                        toggle();
+                      }}>
+                      <Text
+                        style={{
+                          alignSelf: 'center',
+                          fontSize: moderateScale(20),
+                          fontFamily: 'Ubuntu-Regular',
+                          marginTop: verticalScale(10),
+                          borderWidth: 1,
+                          width: scale(270),
+                          textAlign: 'center',
+                          color: '#9b38d9',
+                          borderColor: '#9b38d9',
+                          //paddingHorizontal: scale(25),
+                          paddingVertical: verticalScale(5),
+                        }}>
+                        {key}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
+            </BottomSheet>
 
             <View>
               <TextInput
@@ -328,26 +461,56 @@ const AddressScreen = ({route, navigation}) => {
                   }}
                   placeholder="Enter City *"
                   placeholderTextColor="#758283"></TextInput>
-                <Picker
-                  style={{
-                    color: '#000',
-                    width: scale(180),
-                    marginLeft: scale(10),
-                    marginTop: verticalScale(15),
-                    fontSize: moderateScale(12),
-                  }}
-                  dropdownIconColor="#000"
-                  dropdownIconRippleColor="#000"
-                  onTouchCancel={true}
-                  mode="dropdown"
-                  selectedValue={pincode}
-                  onValueChange={itemValue => {
-                    setPincode(itemValue);
-                  }}>
-                  <Picker.Item label="Choose Pincode" value="Choose Pincode" />
-                  <Picker.Item label="201301" value="201301" />
-                  <Picker.Item label="201304" value="201304" />
-                </Picker>
+                {Platform.OS == 'ios' ? (
+                  <TouchableOpacity onPress={toggle}>
+                    <View
+                      style={{
+                        borderRadius: moderateScale(10),
+                        borderWidth: 1,
+                        alignSelf: 'center',
+                        height: verticalScale(50),
+                        width: scale(180),
+                        marginTop: verticalScale(15),
+                        // marginLeft: scale(15),
+                        borderColor: '#9b38d9',
+                      }}>
+                      <Text
+                        style={{
+                          alignSelf: 'center',
+                          marginTop: verticalScale(10),
+                          fontSize: moderateScale(20),
+                          fontFamily: 'Ubuntu-Regular',
+                          color: '#9b38d9',
+                        }}>
+                        {pincode}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                ) : (
+                  <Picker
+                    style={{
+                      color: '#000',
+                      width: scale(180),
+                      marginLeft: scale(10),
+                      marginTop: verticalScale(15),
+                      fontSize: moderateScale(12),
+                    }}
+                    dropdownIconColor="#000"
+                    dropdownIconRippleColor="#000"
+                    onTouchCancel={true}
+                    mode="dropdown"
+                    selectedValue={pincode}
+                    onValueChange={itemValue => {
+                      setPincode(itemValue);
+                    }}>
+                    <Picker.Item
+                      label="Choose Pincode"
+                      value="Choose Pincode"
+                    />
+                    <Picker.Item label="201301" value="201301" />
+                    <Picker.Item label="201304" value="201304" />
+                  </Picker>
+                )}
               </View>
               <View
                 style={{

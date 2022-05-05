@@ -7,6 +7,7 @@ import {BackHandler} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DatePicker from 'react-native-date-picker';
+import {BottomSheet} from 'react-native-btr';
 import {
   Text,
   StyleSheet,
@@ -69,6 +70,11 @@ const PickupScreen = ({route, navigation}) => {
   const [allPincodes, setAllPincodes] = useState([]);
 
   //const [multiSelect, setMultiselect] = useState([]);
+
+  const [visible, setVisible] = useState(false);
+  function toggle() {
+    setVisible(visible => !visible);
+  }
 
   const checkName = () => {
     if (name == 'Guest') {
@@ -511,55 +517,144 @@ const PickupScreen = ({route, navigation}) => {
             />
           )}
 
-          <View style={styles.pickerStyle}>
-            <Picker
-              style={{
-                color: '#5A2D94',
-              }}
-              dropdownIconColor="#5A2D94"
-              dropdownIconRippleColor="#5A2D94"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={currentAddress}
-              onValueChange={itemValue => {
-                setCurrentAddress(itemValue);
-                var tempPincode = itemValue.substring(
-                  itemValue.length - 6,
-                  itemValue.length,
-                );
-                setPincode(tempPincode);
-                console.log(
-                  itemValue.substring(itemValue.length - 6, itemValue.length),
-                );
-              }}>
-              <Picker.Item
-                label="Choose Pickup Address"
-                value="Choose Pickup Address"
-              />
-              {myAddresses.map(key => (
+          {Platform.OS == 'ios' ? (
+            <TouchableOpacity onPress={toggle}>
+              <View
+                style={{
+                  borderRadius: moderateScale(20),
+                  borderWidth: 1,
+                  height: verticalScale(50),
+                  width: scale(300),
+                  alignSelf: 'center',
+                  marginBottom: verticalScale(10),
+                  marginTop: verticalScale(15),
+                  //marginLeft: scale(15),
+                  borderColor: '#9b38d9',
+                }}>
+                <Text
+                  style={{
+                    alignSelf: 'center',
+                    marginTop: verticalScale(10),
+                    fontSize: moderateScale(18),
+                    fontFamily: 'Ubuntu-Regular',
+                    color: '#9b38d9',
+                  }}>
+                  {currentAddress}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.pickerStyle}>
+              <Picker
+                style={{
+                  color: '#5A2D94',
+                }}
+                dropdownIconColor="#5A2D94"
+                dropdownIconRippleColor="#5A2D94"
+                onTouchCancel={true}
+                mode="dropdown"
+                selectedValue={currentAddress}
+                onValueChange={itemValue => {
+                  setCurrentAddress(itemValue);
+                  var tempPincode = itemValue.substring(
+                    itemValue.length - 6,
+                    itemValue.length,
+                  );
+                  setPincode(tempPincode);
+                  console.log(
+                    itemValue.substring(itemValue.length - 6, itemValue.length),
+                  );
+                }}>
                 <Picker.Item
-                  label={
-                    key.tags +
-                    ' , ' +
-                    key.address1 +
-                    ' , ' +
-                    key.address2 +
-                    ' , ' +
-                    key.pinCode
-                  }
-                  value={
-                    key.tags +
-                    ' , ' +
-                    key.address1 +
-                    ' , ' +
-                    key.address2 +
-                    ' , ' +
-                    key.pinCode
-                  }
+                  label="Choose Pickup Address"
+                  value="Choose Pickup Address"
                 />
-              ))}
-            </Picker>
-          </View>
+                {myAddresses.map(key => (
+                  <Picker.Item
+                    label={
+                      key.tags +
+                      ' , ' +
+                      key.address1 +
+                      ' , ' +
+                      key.address2 +
+                      ' , ' +
+                      key.pinCode
+                    }
+                    value={
+                      key.tags +
+                      ' , ' +
+                      key.address1 +
+                      ' , ' +
+                      key.address2 +
+                      ' , ' +
+                      key.pinCode
+                    }
+                  />
+                ))}
+              </Picker>
+            </View>
+          )}
+
+          <BottomSheet
+            visible={visible}
+            onBackButtonPress={toggle}
+            onBackdropPress={toggle}>
+            <View
+              style={{
+                backgroundColor: '#FFF',
+                paddingVertical: verticalScale(20),
+                height: verticalScale(300),
+                marginHorizontal: scale(20),
+                borderRadius: moderateScale(10),
+                //marginBottom: verticalScale(50),
+              }}>
+              <ScrollView>
+                {myAddresses.map(key => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setCurrentAddress(
+                        key.tags +
+                          ' , ' +
+                          key.address1 +
+                          ' , ' +
+                          key.address2 +
+                          ' , ' +
+                          key.pinCode,
+                      );
+                      // var tempPincode = itemValue.substring(
+                      //   itemValue.length - 6,
+                      //   itemValue.length,
+                      // );
+                      setPincode(key.pinCode);
+                      toggle();
+                    }}>
+                    <Text
+                      style={{
+                        alignSelf: 'center',
+                        fontSize: moderateScale(20),
+                        fontFamily: 'Ubuntu-Regular',
+                        marginTop: verticalScale(10),
+                        borderWidth: 1,
+                        width: scale(270),
+                        textAlign: 'center',
+                        color: '#9b38d9',
+                        borderColor: '#9b38d9',
+                        //paddingHorizontal: scale(25),
+                        paddingVertical: verticalScale(5),
+                      }}>
+                      {key.tags +
+                        ' , ' +
+                        key.address1 +
+                        ' , ' +
+                        key.address2 +
+                        ' , ' +
+                        key.pinCode}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          </BottomSheet>
 
           <TouchableOpacity
             onPress={() => {

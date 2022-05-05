@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {BottomSheet} from 'react-native-btr';
 import {
   View,
   Text,
@@ -38,6 +39,13 @@ const PriceScreen = ({navigation}) => {
   var loginStatus = '';
   var userId = '';
 
+  const [allPincodes, setAllPincodes] = useState([]);
+
+  const [visible, setVisible] = useState(false);
+  function toggle() {
+    setVisible(visible => !visible);
+  }
+
   const getUser = async () => {
     loginStatus = await AsyncStorage.getItem('loginStatus');
     username = await AsyncStorage.getItem('User');
@@ -66,6 +74,18 @@ const PriceScreen = ({navigation}) => {
   };
 
   getUser();
+
+  const getPincode = async () => {
+    const {data} = await axios.get(
+      'https://bartermateapi.herokuapp.com/admin/registration-api/pincode',
+    );
+    setAllPincodes(data.data);
+    console.log(allPincodes);
+  };
+
+  useEffect(() => {
+    getPincode();
+  }, []);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -295,35 +315,62 @@ const PriceScreen = ({navigation}) => {
             style={{
               flexDirection: 'row',
             }}>
-            <View
-              style={{
-                borderRadius: moderateScale(20),
-                borderWidth: 1,
-                height: verticalScale(50),
-                width: scale(260),
-                marginTop: verticalScale(15),
-                marginLeft: scale(15),
-                borderColor: '#9b38d9',
-              }}>
-              <Picker
+            {Platform.OS == 'ios' ? (
+              <TouchableOpacity onPress={toggle}>
+                <View
+                  style={{
+                    borderRadius: moderateScale(20),
+                    borderWidth: 1,
+                    height: verticalScale(50),
+                    width: scale(260),
+                    marginTop: verticalScale(15),
+                    marginLeft: scale(15),
+                    borderColor: '#9b38d9',
+                  }}>
+                  <Text
+                    style={{
+                      alignSelf: 'center',
+                      marginTop: verticalScale(10),
+                      fontSize: moderateScale(20),
+                      fontFamily: 'Ubuntu-Bold',
+                      color: '#9b38d9',
+                    }}>
+                    {pincode}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ) : (
+              <View
                 style={{
-                  color: '#A363A9',
-                  width: scale(260),
+                  borderRadius: moderateScale(20),
+                  borderWidth: 1,
                   height: verticalScale(50),
-                }}
-                dropdownIconColor="#A363A9"
-                dropdownIconRippleColor="#A363A9"
-                onTouchCancel={true}
-                mode="dropdown"
-                selectedValue={pincode}
-                onValueChange={itemValue => {
-                  setPincode(itemValue);
+                  width: scale(260),
+                  marginTop: verticalScale(15),
+                  marginLeft: scale(15),
+                  borderColor: '#9b38d9',
                 }}>
-                <Picker.Item label="Choose Pincode" value="Choose Pincode" />
-                <Picker.Item label="201301" value="201301" />
-                <Picker.Item label="201304" value="201304" />
-              </Picker>
-            </View>
+                <Picker
+                  style={{
+                    color: '#A363A9',
+                    width: scale(260),
+                    height: verticalScale(50),
+                  }}
+                  dropdownIconColor="#A363A9"
+                  dropdownIconRippleColor="#A363A9"
+                  onTouchCancel={true}
+                  mode="dropdown"
+                  selectedValue={pincode}
+                  onValueChange={itemValue => {
+                    setPincode(itemValue);
+                  }}>
+                  <Picker.Item label="Choose Pincode" value="Choose Pincode" />
+                  {allPincodes.map(key => (
+                    <Picker.Item label={key} value={key} />
+                  ))}
+                </Picker>
+              </View>
+            )}
 
             {loading == false ? (
               <TouchableOpacity
@@ -368,6 +415,48 @@ const PriceScreen = ({navigation}) => {
               />
             )}
           </View>
+
+          <BottomSheet
+            visible={visible}
+            onBackButtonPress={toggle}
+            onBackdropPress={toggle}>
+            <View
+              style={{
+                backgroundColor: '#FFF',
+                paddingVertical: verticalScale(20),
+                height: verticalScale(300),
+                marginHorizontal: scale(20),
+                borderRadius: moderateScale(10),
+                //marginBottom: verticalScale(50),
+              }}>
+              <ScrollView>
+                {allPincodes.map(key => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setPincode(key);
+                      toggle();
+                    }}>
+                    <Text
+                      style={{
+                        alignSelf: 'center',
+                        fontSize: moderateScale(20),
+                        fontFamily: 'Ubuntu-Regular',
+                        marginTop: verticalScale(10),
+                        borderWidth: 1,
+                        width: scale(270),
+                        textAlign: 'center',
+                        color: '#9b38d9',
+                        borderColor: '#9b38d9',
+                        //paddingHorizontal: scale(25),
+                        paddingVertical: verticalScale(5),
+                      }}>
+                      {key}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          </BottomSheet>
 
           {fetch == true ? (
             <View
