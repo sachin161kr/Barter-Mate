@@ -7,6 +7,8 @@ import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CheckBox from '@react-native-community/checkbox';
+import {BottomSheet} from 'react-native-btr';
+import DatePicker from 'react-native-date-picker';
 
 import {
   Text,
@@ -19,6 +21,7 @@ import {
   Image,
   ScrollView,
   Platform,
+  Button,
 } from 'react-native';
 
 import calender from '../assets/calender.png';
@@ -55,6 +58,10 @@ const GuestPickupScreen = ({route, navigation}) => {
   //const [multiSelect, setMultiselect] = useState([]);
   var multiSelect = [];
 
+  const [open, setOpen] = useState(false);
+
+  const [allPincodes, setAllPincodes] = useState([]);
+
   const [dateLabel, setDateLabel] = useState('Pick A Date');
 
   const addToList = () => {
@@ -87,6 +94,11 @@ const GuestPickupScreen = ({route, navigation}) => {
 
     //setMultiselect(newArr);
   };
+
+  const [visible, setVisible] = useState(false);
+  function toggle() {
+    setVisible(visible => !visible);
+  }
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -130,6 +142,18 @@ const GuestPickupScreen = ({route, navigation}) => {
     }
   };
 
+  const getPincode = async () => {
+    const {data} = await axios.get(
+      'https://bartermateapi.herokuapp.com/admin/registration-api/pincode',
+    );
+    setAllPincodes(data.data);
+    console.log(allPincodes);
+  };
+
+  useEffect(() => {
+    getPincode();
+  }, []);
+
   const handlePickeup = () => {
     addToList();
     setLoading(true);
@@ -142,7 +166,16 @@ const GuestPickupScreen = ({route, navigation}) => {
       landMark: `${landMark}`,
       pinCode: `${pincode}`,
       category: `${category}`,
-      pickupDate: `${dateLabel}`,
+      pickupDate:
+        Platform.OS == 'ios'
+          ? `${
+              date.getFullYear() +
+              '-' +
+              (date.getMonth() + 1) +
+              '-' +
+              date.getDate()
+            }`
+          : `${dateLabel}`,
       subcategory: multiSelect,
     });
 
@@ -206,7 +239,7 @@ const GuestPickupScreen = ({route, navigation}) => {
               }}>
               Hello Guest !
             </Text>
-            <Text
+            {/* <Text
               style={{
                 marginLeft: scale(30),
                 marginTop: verticalScale(10),
@@ -225,7 +258,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 fontSize: moderateScale(18),
               }}>
               Let's Contribute towards recycle!
-            </Text>
+            </Text> */}
           </View>
           <Text
             style={{
@@ -269,7 +302,8 @@ const GuestPickupScreen = ({route, navigation}) => {
               borderWidth: 2,
               borderColor: '#5A2D94',
               justifyContent: 'space-between',
-              height: verticalScale(110),
+              height:
+                Platform.OS == 'ios' ? verticalScale(125) : verticalScale(110),
               paddingTop: verticalScale(12),
               paddingHorizontal: scale(25),
               marginBottom: verticalScale(20),
@@ -279,7 +313,10 @@ const GuestPickupScreen = ({route, navigation}) => {
             ) : (
               <View
                 style={{
-                  height: verticalScale(25),
+                  height:
+                    Platform.OS == 'ios'
+                      ? verticalScale(35)
+                      : verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
                   //marginRight: scale(30),
@@ -301,7 +338,10 @@ const GuestPickupScreen = ({route, navigation}) => {
                 style={{
                   //borderWidth: 1,
                   //borderColor: '#000',
-                  height: verticalScale(25),
+                  height:
+                    Platform.OS == 'ios'
+                      ? verticalScale(35)
+                      : verticalScale(25),
                   width: scale(100),
                   //marginRight: scale(30),
                   flexDirection: 'row',
@@ -323,7 +363,10 @@ const GuestPickupScreen = ({route, navigation}) => {
                 style={{
                   //borderWidth: 1,
                   //borderColor: '#000',
-                  height: verticalScale(25),
+                  height:
+                    Platform.OS == 'ios'
+                      ? verticalScale(35)
+                      : verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
                   //marginRight: scale(30),
@@ -346,7 +389,10 @@ const GuestPickupScreen = ({route, navigation}) => {
                   // borderWidth: 1,
                   // borderColor: '#000',
                   //marginRight: scale(30),
-                  height: verticalScale(25),
+                  height:
+                    Platform.OS == 'ios'
+                      ? verticalScale(35)
+                      : verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
                   //marginTop: verticalScale(20),
@@ -368,7 +414,10 @@ const GuestPickupScreen = ({route, navigation}) => {
                 style={{
                   // borderWidth: 1,
                   // borderColor: '#000',
-                  height: verticalScale(25),
+                  height:
+                    Platform.OS == 'ios'
+                      ? verticalScale(35)
+                      : verticalScale(25),
                   width: scale(100),
                   flexDirection: 'row',
                   //marginTop: verticalScale(20),
@@ -390,7 +439,10 @@ const GuestPickupScreen = ({route, navigation}) => {
                 style={{
                   // borderWidth: 1,
                   // borderColor: '#000',
-                  height: verticalScale(25),
+                  height:
+                    Platform.OS == 'ios'
+                      ? verticalScale(35)
+                      : verticalScale(25),
                   width: scale(200),
                   flexDirection: 'row',
                   //marginTop: verticalScale(20),
@@ -412,7 +464,7 @@ const GuestPickupScreen = ({route, navigation}) => {
               setName(tempName);
             }}
             style={styles.textinput}
-            placeholder="Enter Name"
+            placeholder="Enter Name *"
             placeholderTextColor="#758283"></TextInput>
 
           <TextInput
@@ -421,27 +473,29 @@ const GuestPickupScreen = ({route, navigation}) => {
               setEmail(tempEmail);
             }}
             style={styles.textinput}
-            placeholder="Enter Email"
+            placeholder="Enter Email *"
             placeholderTextColor="#758283"></TextInput>
 
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'flex-start',
-              alignSelf: 'center',
-
-              padding: moderateScale(5),
+              //alignSelf: 'center',
+              height: verticalScale(50),
+              marginLeft: scale(25),
+              paddingVertical: moderateScale(5),
               borderBottomColor: '#CAD5E2',
               borderBottomWidth: 1,
-              width: scale(310),
+              width: scale(280),
               marginTop: verticalScale(10),
             }}>
             <Text
               style={{
                 fontSize: moderateScale(12),
-                marginTop: verticalScale(13),
+                marginTop: verticalScale(14),
+                marginBottom: verticalScale(7),
                 marginRight: scale(10),
-                marginLeft: scale(3),
+                //smarginLeft: scale(3),
                 fontFamily: 'Ubuntu-Regular',
                 color: '#758283',
               }}>
@@ -460,7 +514,7 @@ const GuestPickupScreen = ({route, navigation}) => {
                 color: '#000000',
                 fontFamily: 'Ubuntu-Regular',
               }}
-              placeholder="Contact Number*"
+              placeholder="Contact Number *"
               placeholderTextColor="#758283"></TextInput>
           </View>
 
@@ -470,7 +524,7 @@ const GuestPickupScreen = ({route, navigation}) => {
               setAddress(tempAddress);
             }}
             style={styles.textinput}
-            placeholder="Enter Pickup Address"
+            placeholder="Enter Pickup Address *"
             placeholderTextColor="#758283"></TextInput>
 
           <TextInput
@@ -479,85 +533,187 @@ const GuestPickupScreen = ({route, navigation}) => {
               setLandmark(tempLandmark);
             }}
             style={styles.textinput}
-            placeholder="Enter Landmark"
+            placeholder="Enter Landmark (Optional)"
             placeholderTextColor="#758283"></TextInput>
 
-          <View
-            style={{
-              marginLeft: scale(20),
-              marginRight: scale(20),
-              borderColor: '#A363A9',
-
-              marginHorizontal: moderateScale(10),
-              marginTop: verticalScale(10),
-            }}>
-            <Picker
-              style={{
-                color: '#5A2D94',
-              }}
-              dropdownIconColor="#5A2D94"
-              dropdownIconRippleColor="#5A2D94"
-              onTouchCancel={true}
-              mode="dropdown"
-              selectedValue={pincode}
-              onValueChange={itemValue => {
-                setPincode(itemValue);
-              }}>
-              <Picker.Item label="Choose Pincode" value="Choose Pincode" />
-              <Picker.Item label="201301" value="201301" />
-              <Picker.Item label="201304" value="201304" />
-            </Picker>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                setShow(true);
-              }}>
+          {Platform.OS == 'ios' ? (
+            <TouchableOpacity onPress={toggle}>
               <View
                 style={{
-                  flexDirection: 'row',
-                  height: verticalScale(50),
-                  borderRadius: moderateScale(100),
-                  marginTop: verticalScale(10),
+                  borderRadius: moderateScale(10),
+                  borderWidth: 1,
+                  height: verticalScale(40),
+                  width: scale(280),
+                  marginTop: verticalScale(15),
+                  //marginLeft: scale(15),
+                  borderColor: '#5A2D94',
                   alignSelf: 'center',
-                  //borderWidth: 1,
-                  borderColor: '#000',
-                  width: scale(180),
+                  marginBottom: verticalScale(20),
                 }}>
-                <Image
-                  source={calender}
+                <Text
                   style={{
-                    height: verticalScale(50),
-                    width: scale(50),
-                    resizeMode: 'contain',
-                    marginLeft: scale(20),
-                    //marginTop: verticalScale(15),
-                  }}
-                />
-
-                <View
-                  style={{
-                    marginLeft: scale(15),
-                    justifyContent: 'center',
+                    alignSelf: 'center',
+                    marginTop: verticalScale(8),
+                    fontSize: moderateScale(15),
+                    fontFamily: 'Ubuntu-Regular',
+                    color: '#5A2D94',
+                    paddingTop: verticalScale(3),
+                    textAlignVertical: 'center',
                   }}>
-                  <Text
-                    style={{
-                      fontSize: moderateScale(12),
-                      textAlign: 'center',
-                      color: '#5A2D94',
-                      fontFamily: 'Ubuntu-Regular',
-                    }}>
-                    {`${dateLabel}`}
-                  </Text>
-                </View>
+                  {pincode}
+                </Text>
               </View>
             </TouchableOpacity>
-          </View>
+          ) : (
+            <View
+              style={{
+                marginLeft: scale(20),
+                marginRight: scale(20),
+                borderColor: '#A363A9',
+
+                marginHorizontal: moderateScale(10),
+                marginTop: verticalScale(10),
+              }}>
+              <Picker
+                style={{
+                  color: '#5A2D94',
+                }}
+                dropdownIconColor="#5A2D94"
+                dropdownIconRippleColor="#5A2D94"
+                onTouchCancel={true}
+                mode="dropdown"
+                selectedValue={pincode}
+                onValueChange={itemValue => {
+                  setPincode(itemValue);
+                }}>
+                <Picker.Item label="Choose Pincode" value="Choose Pincode" />
+                {allPincodes.map(key => (
+                  <Picker.Item label={key} value={key} />
+                ))}
+              </Picker>
+            </View>
+          )}
+
+          <BottomSheet
+            visible={visible}
+            onBackButtonPress={toggle}
+            onBackdropPress={toggle}>
+            <View
+              style={{
+                backgroundColor: '#FFF',
+                paddingVertical: verticalScale(20),
+                height: verticalScale(300),
+                marginHorizontal: scale(20),
+                borderRadius: moderateScale(10),
+                //marginBottom: verticalScale(50),
+              }}>
+              <ScrollView>
+                {allPincodes.map(key => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setPincode(key);
+                      toggle();
+                    }}>
+                    <Text
+                      style={{
+                        alignSelf: 'center',
+                        fontSize: moderateScale(20),
+                        fontFamily: 'Ubuntu-Regular',
+                        marginTop: verticalScale(10),
+                        borderWidth: 1,
+                        width: scale(270),
+                        textAlign: 'center',
+                        color: '#5A2D94',
+                        borderColor: '#5A2D94',
+                        borderRadius: moderateScale(5),
+                        //paddingHorizontal: scale(25),
+                        paddingVertical: verticalScale(5),
+                      }}>
+                      {key}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          </BottomSheet>
+
+          {Platform.OS == 'ios' ? (
+            <>
+              <Button title={dateLabel} onPress={() => setOpen(true)} />
+              <DatePicker
+                modal
+                open={open}
+                date={date}
+                minimumDate={date}
+                onConfirm={date => {
+                  setDateLabel(
+                    date.getFullYear() +
+                      '-' +
+                      (date.getMonth() + 1) +
+                      '-' +
+                      date.getDate(),
+                  );
+                  setOpen(false);
+                  setDate(date);
+                  console.log(date);
+                }}
+                onCancel={() => {
+                  setOpen(false);
+                }}
+              />
+            </>
+          ) : (
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginLeft: scale(10),
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  setShow(true);
+                }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    height: verticalScale(50),
+                    borderRadius: moderateScale(100),
+                    marginTop: verticalScale(10),
+                    alignSelf: 'center',
+                    //borderWidth: 1,
+                    borderColor: '#000',
+                    width: scale(180),
+                  }}>
+                  <Image
+                    source={calender}
+                    style={{
+                      height: verticalScale(50),
+                      width: scale(50),
+                      resizeMode: 'contain',
+                      marginLeft: scale(20),
+                      //marginTop: verticalScale(15),
+                    }}
+                  />
+
+                  <View
+                    style={{
+                      marginLeft: scale(15),
+                      justifyContent: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        fontSize: moderateScale(15),
+                        textAlign: 'center',
+                        color: '#5A2D94',
+                        fontFamily: 'Ubuntu-Regular',
+                      }}>
+                      {`${dateLabel}`}
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </View>
+          )}
 
           {show && (
             <DateTimePicker
@@ -574,22 +730,23 @@ const GuestPickupScreen = ({route, navigation}) => {
             <View style={styles.pickupBtn}>
               <TouchableOpacity
                 onPress={() => {
-                  if (
-                    name &&
-                    email &&
-                    phone &&
-                    address &&
-                    dateLabel != 'Pick A Date'
+                  if (name.length == 0) {
+                    Alert.alert('Enter Valid Name');
+                  } else if (email.length == 0) {
+                    Alert.alert('Enter Valid Email');
+                  } else if (phoneCheck() == false) {
+                    Alert.alert('Enter Valid Phone Number');
+                  } else if (address.length == 0) {
+                    Alert.alert('Enter Valid Address');
+                  } else if (pincode == 'Choose Pincode') {
+                    Alert.alert('Choose Pincode');
+                  } else if (
+                    dateLabel == 'Pick A Date' ||
+                    dateLabel == 'NaN-NaN-NaN'
                   ) {
-                    if (phoneCheck()) {
-                      if (pincode != 'Choose Pincode') {
-                        handlePickeup();
-                      } else {
-                        Alert.alert('Choose Pincode');
-                      }
-                    }
+                    Alert.alert('Pick A Valid Date');
                   } else {
-                    Alert.alert('Enter Valid Details');
+                    handlePickeup();
                   }
                 }}>
                 <View

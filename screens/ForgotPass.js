@@ -126,7 +126,7 @@ const ForgotPassScreen = ({navigation}) => {
                 marginTop: verticalScale(10),
                 fontFamily: 'Ubuntu-Regular',
               }}>
-              Please enter the registered email ID and
+              Please enter the registered email ID
             </Text>
             <Text
               style={{
@@ -135,7 +135,7 @@ const ForgotPassScreen = ({navigation}) => {
                 marginTop: verticalScale(10),
                 fontFamily: 'Ubuntu-Regular',
               }}>
-              we will send a reset link on your email.
+              to reset the password.
             </Text>
           </View>
           <View>

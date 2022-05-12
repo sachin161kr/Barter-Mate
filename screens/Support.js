@@ -1,5 +1,12 @@
 import React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  PlatformColor,
+  Platform,
+} from 'react-native';
 
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import query from '../assets/query.png';
@@ -44,9 +51,11 @@ const SupportScreen = () => {
           </Text>
           <TouchableOpacity
             onPress={() => {
-              var SendIntentAndroid = require('react-native-send-intent');
+              if (Platform.OS == 'android') {
+                var SendIntentAndroid = require('react-native-send-intent');
 
-              SendIntentAndroid.sendPhoneDial('+91 88 2626-7661', false);
+                SendIntentAndroid.sendPhoneDial('+91 88 2626-7661', false);
+              }
             }}>
             <Text
               style={{
@@ -76,13 +85,15 @@ const SupportScreen = () => {
           </Text>
           <TouchableOpacity
             onPress={() => {
-              var SendIntentAndroid = require('react-native-send-intent');
+              if (Platform.OS == 'android') {
+                var SendIntentAndroid = require('react-native-send-intent');
 
-              SendIntentAndroid.sendText({
-                title: 'BarterMate Email',
-                text: 'info@bartermate.in',
-                type: SendIntentAndroid.TEXT_PLAIN,
-              });
+                SendIntentAndroid.sendText({
+                  title: 'BarterMate Email',
+                  text: 'info@bartermate.in',
+                  type: SendIntentAndroid.TEXT_PLAIN,
+                });
+              }
             }}>
             <Text
               style={{

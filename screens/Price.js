@@ -332,6 +332,7 @@ const PriceScreen = ({navigation}) => {
                       alignSelf: 'center',
                       marginTop: verticalScale(10),
                       fontSize: moderateScale(20),
+                      paddingTop: verticalScale(3),
                       fontFamily: 'Ubuntu-Bold',
                       color: '#9b38d9',
                     }}>

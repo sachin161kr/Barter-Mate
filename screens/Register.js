@@ -34,16 +34,9 @@ const RegisterScreen = ({navigation, route}) => {
   var profile = route.params.profile;
 
   const emailCheck = () => {
-    if (
-      email.includes('@gmail.com') ||
-      email.includes('@yahoo.com') ||
-      email.includes('@rediff.com') ||
-      email.includes('@hotmail.com')
-    ) {
-      return true;
-    }
-
-    return false;
+    var temp = email.toLowerCase();
+    console.log(email + ' ' + temp);
+    return temp === email;
   };
 
   const passCheck = () => {
@@ -230,6 +223,8 @@ const RegisterScreen = ({navigation, route}) => {
                       Alert.alert('Enter Valid Name');
                     } else if (email.length == 0) {
                       Alert.alert('Enter Valid Email');
+                    } else if (emailCheck() == false) {
+                      Alert.alert('Email must be in lowercase');
                     } else if (phoneCheck() == false) {
                       Alert.alert('Enter Valid Phone');
                     } else if (password.length < 8) {
@@ -240,6 +235,7 @@ const RegisterScreen = ({navigation, route}) => {
                       Alert.alert('Password not same as Confirmed Password');
                     } else {
                       handleSubmit();
+                      // console.log('Logged In');
                     }
 
                     // if (fullName && email && phone && password && confirmPass) {

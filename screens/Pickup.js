@@ -18,6 +18,7 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
+  Button,
   Platform,
 } from 'react-native';
 
@@ -68,6 +69,7 @@ const PickupScreen = ({route, navigation}) => {
   const [boxPicked, setBoxPicked] = useState(false);
 
   const [allPincodes, setAllPincodes] = useState([]);
+  const [open, setOpen] = useState(false);
 
   //const [multiSelect, setMultiselect] = useState([]);
 
@@ -306,7 +308,7 @@ const PickupScreen = ({route, navigation}) => {
               }}>
               Hello {name} !
             </Text>
-            <Text
+            {/* <Text
               style={{
                 marginLeft: scale(30),
                 marginTop: verticalScale(10),
@@ -325,7 +327,7 @@ const PickupScreen = ({route, navigation}) => {
                 fontSize: moderateScale(18),
               }}>
               Let's Contribute towards recycle!
-            </Text>
+            </Text> */}
           </View>
           <Text
             style={{
