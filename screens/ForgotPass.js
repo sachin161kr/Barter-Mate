@@ -126,7 +126,7 @@ const ForgotPassScreen = ({navigation}) => {
                 marginTop: verticalScale(10),
                 fontFamily: 'Ubuntu-Regular',
               }}>
-              Please enter the registered email ID
+              Please enter the registered email ID or
             </Text>
             <Text
               style={{
@@ -135,13 +135,13 @@ const ForgotPassScreen = ({navigation}) => {
                 marginTop: verticalScale(10),
                 fontFamily: 'Ubuntu-Regular',
               }}>
-              to reset the password.
+              Mobile no. to reset the password.
             </Text>
           </View>
           <View>
             <TextInput
               style={styles.textinput}
-              placeholder="Enter Registered Email"
+              placeholder="Enter Registered Email / Mobile No."
               placeholderTextColor="#FFF"
               onChangeText={tempEmail => {
                 setEmail(tempEmail);
@@ -166,11 +166,11 @@ const ForgotPassScreen = ({navigation}) => {
           ) : (
             <TouchableOpacity
               onPress={() => {
-                if (email.length >= 10 && emailCheck()) {
+                if (email.length > 0) {
                   setLoading(true);
                   getId();
                 } else {
-                  Alert.alert('Enter Valid Email');
+                  Alert.alert('Enter Valid Details');
                   setLoading(false);
                 }
               }}>

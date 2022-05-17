@@ -71,7 +71,9 @@ const MyProfileScreen = ({route, navigation}) => {
             <Text style={styles.text}>{email}</Text>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('Forgot Screen');
+                navigation.navigate('Edit Email Screen', {
+                  userId: `${userId}`,
+                });
               }}>
               <Image
                 source={edit}
@@ -103,6 +105,42 @@ const MyProfileScreen = ({route, navigation}) => {
               />
             </TouchableOpacity>
           </View>
+          <TouchableOpacity
+            style={{
+              height: verticalScale(40),
+              width: scale(300),
+              marginLeft: scale(30),
+              marginRight: scale(30),
+              alignSelf: 'center',
+              width: scale(220),
+              backgroundColor: '#000',
+              marginTop: verticalScale(20),
+              borderRadius: moderateScale(10),
+              borderColor: '#A363A9',
+              // marginLeft: scale(15),
+              // marginRight: scale(15),
+              // padding: moderateScale(6),
+              // marginBottom: verticalScale(30),
+            }}
+            onPress={() => {
+              navigation.navigate('Forgot Screen');
+            }}>
+            <View>
+              <Text
+                style={{
+                  fontSize: moderateScale(15),
+                  marginTop: verticalScale(3),
+                  paddingTop: verticalScale(7),
+                  color: '#FFF',
+                  fontFamily: 'Ubuntu-Regular',
+                  textAlign: 'center',
+                  // paddingTop: verticalScale(10),
+                  // paddingBottom: verticalScale(10),
+                }}>
+                Change Password
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </>

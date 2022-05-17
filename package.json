@@ -12,6 +12,7 @@
   "dependencies": {
     "@gurukumparan/react-native-android-inapp-updates": "^1.0.24",
     "@react-native-async-storage/async-storage": "^1.15.14",
+    "@react-native-clipboard/clipboard": "^1.10.0",
     "@react-native-community/checkbox": "^0.5.12",
     "@react-native-community/datetimepicker": "^5.1.0",
     "@react-native-picker/picker": "^2.2.1",

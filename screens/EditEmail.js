@@ -17,14 +17,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import confused from '../assets/confused.png';
 import ellipse from '../assets/ellipse.png';
 
-const EditPhoneScreen = ({route, navigation}) => {
+const EditEmailScreen = ({route, navigation}) => {
   var userId = route.params.userId;
-  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
 
   const setMyUser = async () => {
     const setUser = async () => {
-      await AsyncStorage.setItem('phone', `${phone}`);
+      await AsyncStorage.setItem('email', `${email}`);
       navigation.navigate('Category Screen');
     };
 
@@ -42,11 +42,11 @@ const EditPhoneScreen = ({route, navigation}) => {
     }
   };
 
-  const handlePhone = () => {
+  const handleEmail = () => {
     setLoading(true);
     var data = JSON.stringify({
       userId: `${userId}`,
-      phone: `${phone}`,
+      email: `${email}`,
     });
 
     var config = {
@@ -62,7 +62,7 @@ const EditPhoneScreen = ({route, navigation}) => {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         setLoading(false);
-        Alert.alert('Phone No. Successfully Changed');
+        Alert.alert('Email Address Successfully Changed');
         setMyUser();
       })
       .catch(function (error) {
@@ -91,7 +91,7 @@ const EditPhoneScreen = ({route, navigation}) => {
               fontFamily: 'Ubuntu-Bold',
               marginTop: verticalScale(30),
             }}>
-            Reset Phone Number
+            Reset Email Address
           </Text>
           <Image
             source={ellipse}
@@ -115,45 +115,28 @@ const EditPhoneScreen = ({route, navigation}) => {
               marginLeft: scale(113),
             }}
           />
-          <View
+          <TextInput
+            onChangeText={text => {
+              setEmail(text);
+            }}
             style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-              alignSelf: 'center',
-
-              padding: moderateScale(5),
-              borderBottomColor: '#CAD5E2',
+              fontSize: moderateScale(12),
+              borderColor: '#FFF',
               borderBottomWidth: 1,
-              width: scale(280),
-              marginTop: verticalScale(60),
-            }}>
-            <Text
-              style={{
-                fontSize: moderateScale(12),
-                marginTop: verticalScale(16),
-                marginRight: scale(10),
-                marginLeft: scale(3),
-                fontFamily: 'Ubuntu-Regular',
-                color: '#FFF',
-              }}>
-              +91
-            </Text>
-            <TextInput
-              defaultValue={`${phone}`}
-              keyboardType="number-pad"
-              maxLength={10}
-              onChangeText={tempPhone => {
-                setPhone(tempPhone);
-              }}
-              style={{
-                fontSize: moderateScale(12),
-                fontFamily: 'Ubuntu-Regular',
-                width: scale(300),
-                color: '#FFF',
-              }}
-              placeholder="Contact Number*"
-              placeholderTextColor="#FFF"></TextInput>
-          </View>
+              borderBottomColor: '#ffffff80',
+              //borderWidth: 1,
+              height: verticalScale(45),
+              //borderRadius: moderateScale(100),
+              marginTop: verticalScale(15),
+              marginLeft: scale(20),
+              paddingLeft: moderateScale(15),
+              marginRight: scale(20),
+              color: '#FFF',
+              fontFamily: 'Ubuntu-Regular',
+            }}
+            placeholder="Enter New Email Address"
+            placeholderTextColor="#FFF"
+            keyboardType="email-address"></TextInput>
           {loading == true ? (
             <ActivityIndicator
               color="#FFF"
@@ -165,10 +148,10 @@ const EditPhoneScreen = ({route, navigation}) => {
           ) : (
             <TouchableOpacity
               onPress={() => {
-                if (phone.length && phoneCheck()) {
-                  handlePhone();
+                if (email.length > 0) {
+                  handleEmail();
                 } else {
-                  Alert.alert('Enter Valid Phone Number');
+                  Alert.alert('Enter Valid Email');
                 }
               }}>
               <View
@@ -191,7 +174,7 @@ const EditPhoneScreen = ({route, navigation}) => {
                     fontFamily: 'Ubuntu-Regular',
                     color: '#FFF',
                   }}>
-                  Save Phone Number
+                  Save Email Address
                 </Text>
               </View>
             </TouchableOpacity>
@@ -202,4 +185,4 @@ const EditPhoneScreen = ({route, navigation}) => {
   );
 };
 
-export default EditPhoneScreen;
+export default EditEmailScreen;

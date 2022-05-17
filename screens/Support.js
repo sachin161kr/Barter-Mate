@@ -1,17 +1,23 @@
-import React from 'react';
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  PlatformColor,
-  Platform,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, Image, TouchableOpacity, Platform} from 'react-native';
 
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import query from '../assets/query.png';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 const SupportScreen = () => {
+  //const [copiedText, setCopiedText] = useState('');
+  var copiedText = '';
+
+  const copyToClipboard = () => {
+    Clipboard.setString(`${copiedText}`);
+  };
+
+  // const fetchCopiedText = async () => {
+  //   const text = await Clipboard.getString();
+  //   setCopiedText(text);
+  // };
+
   return (
     <>
       <View
@@ -55,6 +61,11 @@ const SupportScreen = () => {
                 var SendIntentAndroid = require('react-native-send-intent');
 
                 SendIntentAndroid.sendPhoneDial('+91 88 2626-7661', false);
+              } else {
+                //setCopiedText('+91 88 2626-7661');
+                copiedText = '+91 88 2626-7661';
+                copyToClipboard();
+                //fetchCopiedText();
               }
             }}>
             <Text
@@ -68,6 +79,8 @@ const SupportScreen = () => {
                 textAlign: 'center',
                 marginTop: verticalScale(10),
                 height: verticalScale(30),
+                paddingTop:
+                  Platform.OS == 'ios' ? verticalScale(8) : verticalScale(0),
               }}>
               +91-88 2626 7661
             </Text>
@@ -93,6 +106,10 @@ const SupportScreen = () => {
                   text: 'info@bartermate.in',
                   type: SendIntentAndroid.TEXT_PLAIN,
                 });
+              } else {
+                copiedText = 'info@bartermate.in';
+                copyToClipboard();
+                //fetchCopiedText();
               }
             }}>
             <Text
@@ -106,6 +123,8 @@ const SupportScreen = () => {
                 textAlign: 'center',
                 marginTop: verticalScale(10),
                 height: verticalScale(30),
+                paddingTop:
+                  Platform.OS == 'ios' ? verticalScale(8) : verticalScale(0),
               }}>
               info@bartermate.in
             </Text>

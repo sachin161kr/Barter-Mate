@@ -619,7 +619,7 @@ const AddressScreen = ({route, navigation}) => {
                         // paddingTop: verticalScale(10),
                         // paddingBottom: verticalScale(10),
                       }}>
-                      Save Addresses
+                      Save Address
                     </Text>
                   ) : (
                     <Text
@@ -633,7 +633,7 @@ const AddressScreen = ({route, navigation}) => {
                         // paddingTop: verticalScale(10),
                         // paddingBottom: verticalScale(10),
                       }}>
-                      Save Edited Addresses
+                      Save Edited Address
                     </Text>
                   )}
                 </View>
