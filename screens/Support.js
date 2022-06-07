@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Text, View, Image, TouchableOpacity, Platform} from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Platform,
+  Alert,
+} from 'react-native';
 
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import query from '../assets/query.png';
@@ -62,6 +69,7 @@ const SupportScreen = () => {
 
                 SendIntentAndroid.sendPhoneDial('+91 88 2626-7661', false);
               } else {
+                Alert.alert('Mobile No. copied');
                 //setCopiedText('+91 88 2626-7661');
                 copiedText = '+91 88 2626-7661';
                 copyToClipboard();
@@ -107,6 +115,7 @@ const SupportScreen = () => {
                   type: SendIntentAndroid.TEXT_PLAIN,
                 });
               } else {
+                Alert.alert('Email copied');
                 copiedText = 'info@bartermate.in';
                 copyToClipboard();
                 //fetchCopiedText();

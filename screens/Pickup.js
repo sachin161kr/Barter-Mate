@@ -238,6 +238,10 @@ const PickupScreen = ({route, navigation}) => {
       subcategory: multiSelect,
     });
 
+    console.log('====================================');
+    console.log(data);
+    console.log('====================================');
+
     var config = {
       method: 'post',
       url: 'https://bartermateapi.herokuapp.com/admin/registration-api/addPickup',

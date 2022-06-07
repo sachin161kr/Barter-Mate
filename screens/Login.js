@@ -78,7 +78,7 @@ const LoginScreen = ({navigation, route}) => {
         type = 'number';
       }
       var data = JSON.stringify({
-        email: `${email}`,
+        email: `${email.toLowerCase()}`,
         password: `${password}`,
         type: `${type}`,
       });
