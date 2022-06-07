@@ -63,7 +63,26 @@ const MyProfileScreen = ({route, navigation}) => {
             }}>
             PERSONAL DETAILS :
           </Text>
-          <Text style={styles.text}>{name}</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            <Text style={styles.text}>{name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Edit Name Screen', {
+                  userId: `${userId}`,
+                });
+              }}>
+              <Image
+                source={edit}
+                style={{
+                  marginTop: verticalScale(10),
+                  marginLeft: scale(30),
+                }}
+              />
+            </TouchableOpacity>
+          </View>
           <View
             style={{
               flexDirection: 'row',

@@ -26,6 +26,7 @@ import EditPhoneScreen from '../screens/EditPhone';
 import RedeemScreen from '../screens/redeem';
 import SupportScreen from '../screens/Support';
 import EditEmailScreen from '../screens/EditEmail';
+import EditNameScreen from '../screens/EditName';
 
 const MainStackNavigator = () => {
   return (
@@ -185,6 +186,13 @@ const MainStackNavigator = () => {
       <Stack.Screen
         name="Edit Email Screen"
         component={EditEmailScreen}
+        options={{
+          title: '',
+        }}
+      />
+      <Stack.Screen
+        name="Edit Name Screen"
+        component={EditNameScreen}
         options={{
           title: '',
         }}

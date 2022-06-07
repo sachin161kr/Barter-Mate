@@ -733,8 +733,30 @@ const AddressScreen = ({route, navigation}) => {
                       <TouchableOpacity
                         onPress={() => {
                           addressIdDelete = key._id;
+                          Alert.alert(
+                            'Delete Address?',
+                            'Are you sure you want to delete this address?',
+                            [
+                              {
+                                text: 'Yes',
+                                onPress: () => {
+                                  handleDelete();
+                                },
+                              },
+                              {
+                                text: 'No',
+                                onPress: () => {},
+                              },
+                            ],
+                            // {
+                            //   cancelable: true,
+                            //   onDismiss: () =>
+                            //     Alert.alert(
+                            //       'This alert was dismissed by tapping outside of the alert dialog.',
+                            //     ),
+                            // },
+                          );
                           //setAddressId(key._id);
-                          handleDelete();
                         }}>
                         <Image
                           source={trash}
