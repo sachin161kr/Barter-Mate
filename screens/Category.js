@@ -4,7 +4,7 @@ import {FloatingAction} from 'react-native-floating-action';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {FAB} from 'react-native-elements';
 import {startUpdateFlow} from '@gurukumparan/react-native-android-inapp-updates';
-
+import Carousel from '../component/Carousel';
 import {
   Text,
   StyleSheet,
@@ -324,7 +324,7 @@ const CategoryScreen = ({navigation, route}) => {
       <StatusBar backgroundColor="#A363A9" />
       <ScrollView>
         <View style={styles.container}>
-          <ScrollView
+          {/* <ScrollView
             horizontal={true}
             style={{
               height: verticalScale(280),
@@ -357,7 +357,14 @@ const CategoryScreen = ({navigation, route}) => {
                 </View>
               ))}
             </View>
-          </ScrollView>
+          </ScrollView> */}
+          <View
+            style={{
+              height: verticalScale(280),
+              marginBottom: verticalScale(20),
+            }}>
+            <Carousel data={images} />
+          </View>
           <View
             style={{
               flexDirection: 'row',

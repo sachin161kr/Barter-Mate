@@ -11,6 +11,7 @@ import {
   Image,
   Platform,
 } from 'react-native';
+import Carousel from '../component/Carousel';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
@@ -276,7 +277,7 @@ const PriceScreen = ({navigation}) => {
             backgroundColor: '#FFFFFF',
             paddingBottom: verticalScale(100),
           }}>
-          <ScrollView
+          {/* <ScrollView
             horizontal={true}
             style={{
               height: verticalScale(280),
@@ -309,8 +310,14 @@ const PriceScreen = ({navigation}) => {
                 </View>
               ))}
             </View>
-          </ScrollView>
-
+          </ScrollView> */}
+          <View
+            style={{
+              height: verticalScale(280),
+              marginBottom: verticalScale(20),
+            }}>
+            <Carousel data={images} />
+          </View>
           <View
             style={{
               flexDirection: 'row',
