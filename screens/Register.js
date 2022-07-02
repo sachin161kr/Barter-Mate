@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
@@ -33,6 +34,8 @@ const RegisterScreen = ({navigation, route}) => {
 
   var profile = route.params.profile;
 
+  var userId = route.params.userId;
+
   const emailCheck = () => {
     var temp = email.toLowerCase();
     console.log(email + ' ' + temp);
@@ -59,6 +62,85 @@ const RegisterScreen = ({navigation, route}) => {
     } else {
       return false;
     }
+  };
+
+  const setMyUser = async () => {
+    const setUser = async () => {
+      await AsyncStorage.setItem('loginStatus', 'true');
+      await AsyncStorage.setItem('User', `${fullName}`);
+      await AsyncStorage.setItem('email', `${email}`);
+      await AsyncStorage.setItem('address', `${address}`);
+      await AsyncStorage.setItem('phone', `${phone}`);
+      await AsyncStorage.setItem('landmark', `${landmark}`);
+      await AsyncStorage.setItem('pincode', `${pincode}`);
+      await AsyncStorage.setItem('userId', `${userId}`);
+    };
+
+    await setUser();
+  };
+
+  const getCredentials = () => {
+    setLoading(true);
+
+    var type = 'email';
+    var data = JSON.stringify({
+      email: `${email.toLowerCase()}`,
+      password: `${password}`,
+      type: `${type}`,
+    });
+
+    var config = {
+      method: 'post',
+      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/login',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        setLoading(false);
+        // const userData = response.data;
+        // name = userData.data.userDetails.name;
+        // phone = userData.data.userDetails.phone;
+        // email2 = userData.data.userDetails.email;
+        // address = userData.data.userDetails.address;
+        // landmark = userData.data.userDetails.landMark;
+        // pincode = userData.data.userDetails.pinCode;
+        // userId = userData.data.userDetails._id;
+
+        setMyUser();
+
+        if (profile == 'true') {
+          navigation.navigate('Profile Screen', {
+            username: `${fullName}`,
+            phone: `${phone}`,
+            email: email,
+            userId: `${userId}`,
+          });
+        } else {
+          //var tempUsername = await AsyncStorage.getItem('User');
+          navigation.navigate('Pickup Screen', {
+            name: `${fullName}`,
+            email: email,
+            phone: `${phone}`,
+            address: `${address}`,
+            landmark: `${landmark}`,
+            pincode: `${pincode}`,
+            itemSelected: `${itemSelected}`,
+            subCategory: `${subCategory}`,
+            userId: `${userId}`,
+            loadAgain: `${false}`,
+          });
+        }
+      })
+      .catch(function (error) {
+        setLoading(false);
+        Alert.alert('Login Failed');
+        console.log(error);
+      });
   };
 
   const handleSubmit = () => {
@@ -90,7 +172,8 @@ const RegisterScreen = ({navigation, route}) => {
       .then(function (response) {
         setLoading(false);
         Alert.alert('Successfully Registered');
-        navigation.navigate('Category Screen');
+        //navigation.navigate('Category Screen');
+        getCredentials();
         // navigation.navigate('Login Screen', {
         //   itemSelected: `${itemSelected}`,
         //   subCategory: `${subCategory}`,

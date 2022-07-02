@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {FloatingAction} from 'react-native-floating-action';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-import {FAB} from 'react-native-elements';
 import {startUpdateFlow} from '@gurukumparan/react-native-android-inapp-updates';
 import Carousel from '../component/Carousel';
 import {

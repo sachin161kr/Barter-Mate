@@ -287,6 +287,7 @@ const LoginScreen = ({navigation, route}) => {
                     itemSelected: `${itemSelected}`,
                     subCategory: `${subCategory}`,
                     profile: `${profile}`,
+                    userId: `${userId}`,
                   });
                 }}>
                 <Text
