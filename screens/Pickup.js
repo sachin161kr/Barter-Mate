@@ -134,6 +134,7 @@ const PickupScreen = ({route, navigation}) => {
 
   const handleShowAddress = () => {
     setAddressLoading(true);
+    console.log('Beelo user id');
     console.log(userId);
     var data = JSON.stringify({
       userId: `${userId}`,
@@ -141,7 +142,7 @@ const PickupScreen = ({route, navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/listAddAddress',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/listAddAddress',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -167,7 +168,7 @@ const PickupScreen = ({route, navigation}) => {
 
   const getPincode = async () => {
     const {data} = await axios.get(
-      'https://bartermateapi.herokuapp.com/admin/registration-api/pincode',
+      'https://talented-lamb-pleat.cyclic.app/admin/registration-api/pincode',
     );
     setAllPincodes(data.data);
     console.log(allPincodes);
@@ -244,7 +245,7 @@ const PickupScreen = ({route, navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/addPickup',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/addPickup',
       headers: {
         'Content-Type': 'application/json',
       },

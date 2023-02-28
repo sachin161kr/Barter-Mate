@@ -20,6 +20,7 @@ import profileIcon from '../assets/profileIcon.png';
 import logo from '../assets/logo2.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import banner_dummy from '../assets/banner_dummy.png';
 
 const PriceScreen = ({navigation}) => {
   const [pincode, setPincode] = useState('Choose Pincode');
@@ -72,13 +73,31 @@ const PriceScreen = ({navigation}) => {
     console.log(phone);
     console.log(userId);
     console.log(loginStatus);
+    console.log('done user');
+  };
+
+  const getImages = async () => {
+    try {
+      await axios
+        .get(
+          'https://talented-lamb-pleat.cyclic.app/admin/registration-api/image',
+        )
+        .then(res => {
+          setLoading(false);
+          setImages(res.data.data.image);
+        });
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
   };
 
   getUser();
+  getImages();
 
   const getPincode = async () => {
     const {data} = await axios.get(
-      'https://bartermateapi.herokuapp.com/admin/registration-api/pincode',
+      'https://talented-lamb-pleat.cyclic.app/admin/registration-api/pincode',
     );
     setAllPincodes(data.data);
     console.log(allPincodes);
@@ -86,6 +105,7 @@ const PriceScreen = ({navigation}) => {
 
   useEffect(() => {
     getPincode();
+    //getImages();
   }, []);
 
   React.useLayoutEffect(() => {
@@ -226,19 +246,6 @@ const PriceScreen = ({navigation}) => {
 
   const arrow = '=>';
 
-  useEffect(() => {
-    try {
-      axios
-        .get('https://bartermateapi.herokuapp.com/admin/registration-api/image')
-        .then(res => {
-          setLoading(false);
-          setImages(res.data.data.image);
-        });
-    } catch (err) {
-      setLoading(false);
-    }
-  }, []);
-
   const handlePriceDetails = () => {
     setLoading(true);
     var data = JSON.stringify({
@@ -247,7 +254,7 @@ const PriceScreen = ({navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/listAllRatebyPincode',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/listAllRatebyPincode',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -316,7 +323,20 @@ const PriceScreen = ({navigation}) => {
               height: verticalScale(280),
               marginBottom: verticalScale(20),
             }}>
-            <Carousel data={images} />
+            {images.length == 0 ? (
+              <Image
+                source={banner_dummy}
+                style={{
+                  width: scale(320),
+                  height: verticalScale(260),
+                  marginLeft: verticalScale(15),
+                  resizeMode: 'stretch',
+                  borderRadius: moderateScale(12),
+                }}
+              />
+            ) : (
+              <Carousel data={images} />
+            )}
           </View>
           <View
             style={{

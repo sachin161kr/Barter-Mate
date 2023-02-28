@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-import {startUpdateFlow} from '@gurukumparan/react-native-android-inapp-updates';
 import Carousel from '../component/Carousel';
 import {
   Text,
@@ -30,6 +29,7 @@ import question from '../assets/question.png';
 import ProfileScreen from './Profile';
 import profileIcon from '../assets/profileIcon.png';
 import logo from '../assets/logo2.png';
+import banner_dummy from '../assets/banner_dummy.png';
 
 import box from '../assets/box.png';
 
@@ -87,17 +87,9 @@ const CategoryScreen = ({navigation, route}) => {
   const [loading, setLoading] = useState(true);
 
   const [images, setImages] = useState([]);
-  const updateModes = 'flexible';
+  // const updateModes = 'flexible';
 
-  const update = async () => {
-    try {
-      const result = await startUpdateFlow(updateModes);
-    } catch (e) {
-      console.log('error:', e);
-    }
-  };
-
-  update();
+  //update();
   //var images = [];
 
   //update();
@@ -105,7 +97,9 @@ const CategoryScreen = ({navigation, route}) => {
   useEffect(() => {
     try {
       axios
-        .get('https://bartermateapi.herokuapp.com/admin/registration-api/image')
+        .get(
+          'https://talented-lamb-pleat.cyclic.app/admin/registration-api/image',
+        )
         .then(res => {
           setLoading(false);
           setImages(res.data.data.image);
@@ -359,9 +353,23 @@ const CategoryScreen = ({navigation, route}) => {
           <View
             style={{
               height: verticalScale(280),
+              width: scale(360),
               marginBottom: verticalScale(20),
             }}>
-            <Carousel data={images} />
+            {images.length == 0 ? (
+              <Image
+                source={banner_dummy}
+                style={{
+                  width: scale(320),
+                  height: verticalScale(260),
+                  marginLeft: verticalScale(15),
+                  resizeMode: 'stretch',
+                  borderRadius: moderateScale(12),
+                }}
+              />
+            ) : (
+              <Carousel data={images} />
+            )}
           </View>
           <View
             style={{

@@ -28,7 +28,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/pickedupHistoy',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/pickedupHistoy',
       headers: {
         'Content-Type': 'application/json',
       },

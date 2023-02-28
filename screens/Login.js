@@ -85,7 +85,7 @@ const LoginScreen = ({navigation, route}) => {
 
       var config = {
         method: 'post',
-        url: 'https://bartermateapi.herokuapp.com/admin/registration-api/login',
+        url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/login',
         headers: {
           'Content-Type': 'application/json',
         },

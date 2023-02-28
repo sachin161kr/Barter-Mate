@@ -58,7 +58,7 @@ const AddressScreen = ({route, navigation}) => {
 
   const getPincode = async () => {
     const {data} = await axios.get(
-      'https://bartermateapi.herokuapp.com/admin/registration-api/pincode',
+      'https://talented-lamb-pleat.cyclic.app/admin/registration-api/pincode',
     );
     setAllPincodes(data.data);
     console.log(allPincodes);
@@ -89,7 +89,7 @@ const AddressScreen = ({route, navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/editAddress',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/editAddress',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -135,7 +135,7 @@ const AddressScreen = ({route, navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/deleteAddress',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/deleteAddress',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -165,7 +165,7 @@ const AddressScreen = ({route, navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/listAddAddress',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/listAddAddress',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -183,7 +183,7 @@ const AddressScreen = ({route, navigation}) => {
       })
       .catch(function (error) {
         console.log(error);
-        Alert.alert('Something Went Wrong');
+        Alert.alert('No Addresses Found');
         setLoading(false);
       });
   };
@@ -212,7 +212,7 @@ const AddressScreen = ({route, navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/addAddress',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/addAddress',
       headers: {
         'Content-Type': 'application/json',
       },

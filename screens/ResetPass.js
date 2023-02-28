@@ -44,7 +44,7 @@ const ResetPassScreen = ({route, navigation}) => {
 
     var config = {
       method: 'put',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/updatePassword',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/updatePassword',
       headers: {
         'Content-Type': 'application/json',
       },

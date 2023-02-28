@@ -38,12 +38,13 @@ const ForgotPassScreen = ({navigation}) => {
   };
 
   const getId = () => {
+    console.log(email);
     var data = JSON.stringify({
-      email: `${email}`,
+      email: `${email.toLowerCase()}`,
     });
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/emailcheck',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/emailcheck',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -52,7 +53,10 @@ const ForgotPassScreen = ({navigation}) => {
 
     axios(config)
       .then(function (response) {
+        console.log(response.data);
         id = response.data.data._id;
+        console.log('this is id');
+        console.log(id);
 
         setLoading(false);
         navigation.navigate('Reset Screen', {

@@ -144,7 +144,7 @@ const GuestPickupScreen = ({route, navigation}) => {
 
   const getPincode = async () => {
     const {data} = await axios.get(
-      'https://bartermateapi.herokuapp.com/admin/registration-api/pincode',
+      'https://talented-lamb-pleat.cyclic.app/admin/registration-api/pincode',
     );
     setAllPincodes(data.data);
     console.log(allPincodes);
@@ -181,7 +181,7 @@ const GuestPickupScreen = ({route, navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/guest',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/guest',
       headers: {
         'Content-Type': 'application/json',
       },

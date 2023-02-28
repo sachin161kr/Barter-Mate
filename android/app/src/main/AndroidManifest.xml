@@ -12,6 +12,7 @@
       android:theme="@style/AppTheme">
         <activity
             android:name="com.bartermate.SplashActivity"
+            android:exported="true"
             android:theme="@style/SplashTheme"
             android:label="@string/app_name"
             android:launchMode="singleTask"

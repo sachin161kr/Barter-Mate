@@ -50,7 +50,7 @@ const RedeemScreen = ({route, navigation}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/Service',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/Service',
       headers: {
         'Content-Type': 'application/json',
       },

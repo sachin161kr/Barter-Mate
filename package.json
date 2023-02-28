@@ -10,7 +10,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@gurukumparan/react-native-android-inapp-updates": "^1.0.24",
     "@react-native-async-storage/async-storage": "^1.17.6",
     "@react-native-clipboard/clipboard": "^1.10.0",
     "@react-native-community/checkbox": "^0.5.12",

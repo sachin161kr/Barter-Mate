@@ -51,7 +51,7 @@ const EditEmailScreen = ({route, navigation}) => {
 
     var config = {
       method: 'put',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/editUser',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/editUser',
       headers: {
         'Content-Type': 'application/json',
       },

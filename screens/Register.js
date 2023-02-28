@@ -91,7 +91,7 @@ const RegisterScreen = ({navigation, route}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/login',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/login',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -161,7 +161,7 @@ const RegisterScreen = ({navigation, route}) => {
 
     var config = {
       method: 'post',
-      url: 'https://bartermateapi.herokuapp.com/admin/registration-api/registration',
+      url: 'https://talented-lamb-pleat.cyclic.app/admin/registration-api/registration',
       headers: {
         'Content-Type': 'application/json',
       },
