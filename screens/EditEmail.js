@@ -46,7 +46,7 @@ const EditEmailScreen = ({route, navigation}) => {
     setLoading(true);
     var data = JSON.stringify({
       userId: `${userId}`,
-      email: `${email}`,
+      email: `${email.toLowerCase()}`,
     });
 
     var config = {

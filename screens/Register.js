@@ -306,8 +306,6 @@ const RegisterScreen = ({navigation, route}) => {
                       Alert.alert('Enter Valid Name');
                     } else if (email.length == 0) {
                       Alert.alert('Enter Valid Email');
-                    } else if (emailCheck() == false) {
-                      Alert.alert('Email must be in lowercase');
                     } else if (phoneCheck() == false) {
                       Alert.alert('Enter Valid Phone');
                     } else if (password.length < 8) {

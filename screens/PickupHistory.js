@@ -73,7 +73,7 @@ const PickupHistoryScreen = ({route, navigation}) => {
               marginTop: verticalScale(40),
               fontFamily: 'Ubuntu-Bold',
             }}>
-            You have'nt placed any order yet.
+            You haven't placed any order yet.
           </Text>
         ) : (
           <View
