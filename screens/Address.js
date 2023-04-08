@@ -21,12 +21,16 @@ import edit from '../assets/edit.png';
 import trash from '../assets/trash.png';
 
 const AddressScreen = ({route, navigation}) => {
+  let userId2 = route.params.userId;
+
   const [loading, setLoading] = useState(true);
   const [address1, setAddress1] = useState('');
   const [address2, setAddress2] = useState('');
   const [city, setCity] = useState('Noida');
   const [state, setState] = useState('Uttar Pradesh');
-  var userId = route.params.userId;
+  //var userId = route.params.userId;
+  // var userId = AsyncStorage.getItem("userId");
+
   var email = route.params.email;
   var phone = route.params.phone;
   var landmark = route.params.landmark;
@@ -55,6 +59,22 @@ const AddressScreen = ({route, navigation}) => {
   }
 
   const allTags = ['HOME', 'OFFICE', 'OTHER'];
+
+  const [userId, setUserId] = useState('');
+
+  let tempUserId = '';
+
+  useEffect(() => {
+    const getUserId = async () => {
+      console.log('heloo----');
+      tempUserId = await AsyncStorage.getItem('userId');
+      console.log(tempUserId);
+
+      setUserId(tempUserId);
+    };
+
+    getUserId();
+  }, []);
 
   const getPincode = async () => {
     const {data} = await axios.get(
@@ -158,9 +178,11 @@ const AddressScreen = ({route, navigation}) => {
       });
   };
 
-  const handleShowAddress = () => {
+  const handleShowAddress = async () => {
+    console.log(userId, 'userId');
+    console.log('show address');
     var data = JSON.stringify({
-      userId: `${userId}`,
+      userId: userId2,
     });
 
     var config = {
@@ -175,7 +197,7 @@ const AddressScreen = ({route, navigation}) => {
     axios(config)
       .then(function (response) {
         setLoading(false);
-        //console.log(JSON.stringify(response.data.data));
+        console.log(JSON.stringify(response.data.data));
         var temp = JSON.stringify(response.data.data);
         setMyaddresses(JSON.parse(temp));
         //setAddressType(temp.addressType);
@@ -209,6 +231,8 @@ const AddressScreen = ({route, navigation}) => {
       state: `${state}`,
       tags: `${addressType}`,
     });
+
+    console.log(data);
 
     var config = {
       method: 'post',
@@ -507,8 +531,9 @@ const AddressScreen = ({route, navigation}) => {
                       label="Choose Pincode"
                       value="Choose Pincode"
                     />
-                    <Picker.Item label="201301" value="201301" />
-                    <Picker.Item label="201304" value="201304" />
+                    {allPincodes.map(item => (
+                      <Picker.Item label={item} value={item} />
+                    ))}
                   </Picker>
                 )}
               </View>

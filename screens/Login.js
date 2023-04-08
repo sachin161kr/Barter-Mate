@@ -51,6 +51,8 @@ const LoginScreen = ({navigation, route}) => {
       await AsyncStorage.setItem('landmark', `${landmark}`);
       await AsyncStorage.setItem('pincode', `${pincode}`);
       await AsyncStorage.setItem('userId', `${userId}`);
+
+      console.log(userId);
     };
 
     await setUser();

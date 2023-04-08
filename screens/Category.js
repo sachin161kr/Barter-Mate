@@ -356,20 +356,16 @@ const CategoryScreen = ({navigation, route}) => {
               width: scale(360),
               marginBottom: verticalScale(20),
             }}>
-            {images.length == 0 ? (
-              <Image
-                source={banner_dummy}
-                style={{
-                  width: scale(320),
-                  height: verticalScale(260),
-                  marginLeft: verticalScale(15),
-                  resizeMode: 'stretch',
-                  borderRadius: moderateScale(12),
-                }}
-              />
-            ) : (
-              <Carousel data={images} />
-            )}
+            <Image
+              source={banner_dummy}
+              style={{
+                width: scale(320),
+                height: verticalScale(260),
+                marginLeft: verticalScale(15),
+                resizeMode: 'stretch',
+                borderRadius: moderateScale(12),
+              }}
+            />
           </View>
           <View
             style={{
@@ -745,3 +741,18 @@ const styles = StyleSheet.create({
 });
 
 //<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="105" height="90" viewBox="0 0 105 90">
+
+// {images.length == 0 ? (
+//   <Image
+//     source={banner_dummy}
+//     style={{
+//       width: scale(320),
+//       height: verticalScale(260),
+//       marginLeft: verticalScale(15),
+//       resizeMode: 'stretch',
+//       borderRadius: moderateScale(12),
+//     }}
+//   />
+// ) : (
+//   <Carousel data={images} />
+// )}

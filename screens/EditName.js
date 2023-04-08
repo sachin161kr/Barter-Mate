@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {
   View,
@@ -18,9 +18,26 @@ import confused from '../assets/confused.png';
 import ellipse from '../assets/ellipse.png';
 
 const EditNameScreen = ({route, navigation}) => {
-  var userId = route.params.userId;
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
+
+  //var userId = '';
+
+  const [userId, setUserId] = useState('');
+
+  let tempUserId = '';
+
+  useEffect(() => {
+    const getUserId = async () => {
+      console.log('heloo----');
+      tempUserId = await AsyncStorage.getItem('userId');
+      console.log(tempUserId);
+
+      setUserId(tempUserId);
+    };
+
+    getUserId();
+  }, []);
 
   const setMyUser = async () => {
     const setUser = async () => {
@@ -33,8 +50,9 @@ const EditNameScreen = ({route, navigation}) => {
 
   const handleName = () => {
     setLoading(true);
+    console.log(userId, 'userid');
     var data = JSON.stringify({
-      userId: `${userId}`,
+      userId: userId,
       username: `${name}`,
     });
 

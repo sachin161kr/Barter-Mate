@@ -32,6 +32,8 @@ const PriceScreen = ({navigation}) => {
   const [itemSelected, setItem] = useState('');
   const [subCategory, setSubCategory] = useState('Choose Sub-Category');
 
+  console.log(navigation);
+
   var username = '';
   var email = '';
   var phone = '';
@@ -67,13 +69,6 @@ const PriceScreen = ({navigation}) => {
     // setPhone(tempPhone);
     // setLandmark(tempLandmark);
     // setPincode(tempPincode);
-
-    console.log(username);
-    console.log(email);
-    console.log(phone);
-    console.log(userId);
-    console.log(loginStatus);
-    console.log('done user');
   };
 
   const getImages = async () => {
@@ -87,26 +82,27 @@ const PriceScreen = ({navigation}) => {
           setImages(res.data.data.image);
         });
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       setLoading(false);
     }
   };
-
-  getUser();
-  getImages();
 
   const getPincode = async () => {
     const {data} = await axios.get(
       'https://talented-lamb-pleat.cyclic.app/admin/registration-api/pincode',
     );
     setAllPincodes(data.data);
-    console.log(allPincodes);
+    //console.log(data.data);
   };
 
+  console.log(allPincodes);
+
   useEffect(() => {
+    getUser();
+    getImages();
     getPincode();
     //getImages();
-  }, []);
+  }, [navigation]);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -265,7 +261,6 @@ const PriceScreen = ({navigation}) => {
       .then(function (response) {
         setLoading(false);
         setFetch(true);
-        console.log(JSON.stringify(response.data.data));
         var temp = JSON.stringify(response.data.data);
         setPrices(JSON.parse(temp));
       })
@@ -323,20 +318,16 @@ const PriceScreen = ({navigation}) => {
               height: verticalScale(280),
               marginBottom: verticalScale(20),
             }}>
-            {images.length == 0 ? (
-              <Image
-                source={banner_dummy}
-                style={{
-                  width: scale(320),
-                  height: verticalScale(260),
-                  marginLeft: verticalScale(15),
-                  resizeMode: 'stretch',
-                  borderRadius: moderateScale(12),
-                }}
-              />
-            ) : (
-              <Carousel data={images} />
-            )}
+            <Image
+              source={banner_dummy}
+              style={{
+                width: scale(320),
+                height: verticalScale(260),
+                marginLeft: verticalScale(15),
+                resizeMode: 'stretch',
+                borderRadius: moderateScale(12),
+              }}
+            />
           </View>
           <View
             style={{

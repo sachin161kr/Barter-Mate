@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {
   View,
@@ -18,9 +18,25 @@ import confused from '../assets/confused.png';
 import ellipse from '../assets/ellipse.png';
 
 const EditEmailScreen = ({route, navigation}) => {
-  var userId = route.params.userId;
+  //var userId = route.params.userId;
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const [userId, setUserId] = useState('');
+
+  let tempUserId = '';
+
+  useEffect(() => {
+    const getUserId = async () => {
+      console.log('heloo----');
+      tempUserId = await AsyncStorage.getItem('userId');
+      console.log(tempUserId);
+
+      setUserId(tempUserId);
+    };
+
+    getUserId();
+  }, []);
 
   const setMyUser = async () => {
     const setUser = async () => {

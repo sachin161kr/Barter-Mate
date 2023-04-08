@@ -126,7 +126,7 @@ const RedeemScreen = ({route, navigation}) => {
               section.
             </Text>
           )}
-          {username == 'Guest' ? (
+          {/* {username == 'Guest' ? (
             <></>
           ) : (
             <TouchableOpacity
@@ -147,8 +147,8 @@ const RedeemScreen = ({route, navigation}) => {
                 }}
               />
             </TouchableOpacity>
-          )}
-          <Text
+          )} */}
+          {/* <Text
             style={{
               alignSelf: 'center',
               fontSize: moderateScale(20),
@@ -157,8 +157,8 @@ const RedeemScreen = ({route, navigation}) => {
               marginTop: verticalScale(12),
             }}>
             Available Offers
-          </Text>
-          <TouchableOpacity
+          </Text> */}
+          {/* <TouchableOpacity
             onPress={() => {
               if (isRedeemAc == false) {
                 if (username == 'Guest') {
@@ -194,7 +194,7 @@ const RedeemScreen = ({route, navigation}) => {
                 }}
               />
             </LinearGradient>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <TouchableOpacity
           onPress={() => {
@@ -203,7 +203,7 @@ const RedeemScreen = ({route, navigation}) => {
           <View
             style={{
               backgroundColor: '#FFF',
-              paddingBottom: verticalScale(30),
+              paddingBottom: verticalScale(130),
               width: '100%',
             }}>
             <Text

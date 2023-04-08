@@ -29,12 +29,15 @@ const RegisterScreen = ({navigation, route}) => {
 
   const [isLoading, setLoading] = useState(false);
 
+  //const [userId, setUserId] = useState('');
+  let userId = '';
+
   const itemSelected = route.params.itemSelected;
   const subCategory = route.params.subCategory;
 
   var profile = route.params.profile;
 
-  var userId = route.params.userId;
+  //var userId = route.params.userId;
 
   const emailCheck = () => {
     var temp = email.toLowerCase();
@@ -74,6 +77,12 @@ const RegisterScreen = ({navigation, route}) => {
       await AsyncStorage.setItem('landmark', `${landmark}`);
       await AsyncStorage.setItem('pincode', `${pincode}`);
       await AsyncStorage.setItem('userId', `${userId}`);
+
+      let tempUserId = await AsyncStorage.getItem('userId');
+
+      console.log(tempUserId, 'temp Async');
+
+      //console.log(userId);
     };
 
     await setUser();
@@ -81,6 +90,8 @@ const RegisterScreen = ({navigation, route}) => {
 
   const getCredentials = () => {
     setLoading(true);
+
+    setMyUser();
 
     var type = 'email';
     var data = JSON.stringify({
@@ -110,8 +121,6 @@ const RegisterScreen = ({navigation, route}) => {
         // landmark = userData.data.userDetails.landMark;
         // pincode = userData.data.userDetails.pinCode;
         // userId = userData.data.userDetails._id;
-
-        setMyUser();
 
         if (profile == 'true') {
           navigation.navigate('Profile Screen', {
@@ -143,7 +152,7 @@ const RegisterScreen = ({navigation, route}) => {
       });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setLoading(true);
 
     // var type = 'email';
@@ -153,7 +162,7 @@ const RegisterScreen = ({navigation, route}) => {
 
     var data = JSON.stringify({
       name: `${fullName}`,
-      email: `${email}`,
+      email: `${email.toLowerCase()}`,
       phone: `${phone}`,
       password: `${password}`,
       // type: `${type}`,
@@ -171,7 +180,12 @@ const RegisterScreen = ({navigation, route}) => {
     axios(config)
       .then(function (response) {
         setLoading(false);
+        console.log(response.data.data);
         Alert.alert('Successfully Registered');
+        //setUserId(response.data.data._id);
+        userId = response.data.data._id;
+
+        //setMyUser();
         //navigation.navigate('Category Screen');
         getCredentials();
         // navigation.navigate('Login Screen', {
@@ -186,6 +200,8 @@ const RegisterScreen = ({navigation, route}) => {
         Alert.alert(error.response.data.msg);
       });
   };
+
+  console.log(userId, '----------------------');
 
   return (
     <>
